@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<script type="text/javascript"></script>
+
+<h3>A demonstration of how to access a SELECT element</h3>
+
+<select id="mySelect" size="10">
+  <option>Apple</option>
+  <option>Pear</option>
+  <option>Banana</option>
+  <option>Orange</option>
+</select>
+
+<p>Click the button to get the number of option elements found in a drop-down list.</p>
+
+<button onclick="f1()">getAllOptions</button>
+<button onclick="f2()">getSelectedOption</button>
+<button onclick="f3()">getAllSelectedOptions</button>
+<button onclick="f4()">addOption</button>
+<button onclick="f5()">removeAllOptionsByValue</button>
+<button onclick="f6()">removeAllOptions</button>
+
+<p id="jsFiddleBackup">https://jsfiddle.net/z18yohaq/</p>
+
+<script>
+function f1() {
+  getAllOptions("mySelect");
+}
+function f2() {
+    getSelectedOption("mySelect");
+}
+function f3() {
+    getAllSelectedOptions("mySelect");
+}
+function f4() {
+    addOption("mySelect", "Peas", "Peas");
+}
+function f5() {
+    removeAllOptionsByValue("mySelect", "Peas");
+}
+function f6() {
+    removeAllOptions("mySelect");
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <label>Name:</label>
+    <input type="text" id="idName" value="Tom">
+    <input type="button" value="get" onclick="getElementVal()">
+    <div id="myDiv">xxx</div>
+
+    <script>
+        function getElementVal() {
+            var theDiv = document.getElementById("myDiv");
+            var object1 = document.getElementById("idName");
+            console.log(object1);
+            var object1Val = object1.value;
+            console.log(object1Val); //Tom
+            theDiv.innerHTML = object1Val;
+            var theName=document.getElementById("idName").value; //chain
+            console.log(theName); //Tom
+            object1.value="new Value"; //set
+            object1Val= object1.value //get
+            theDiv.innerHTML=object1Val;
+            alert(theDiv.innerHTML);
+        }
+    </script>
+    <!-- <script src="JSWLab1.js"></script> -->
+</body>
+
+</html>

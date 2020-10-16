@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <title>06mouseeventObject.html</title>
+    <style>
+        #rect {
+            position: relative;
+            width: 800px;
+            height: 600px;
+            background-color: #b0e9ff;
+            }
+    </style>
+    
+</head>
+<body>
+    <input type="button" id="idbut" value="button">
+    <hr>
+    <div id="myDiv"></div>
+    <script>
+         let myDiv=document.querySelector("#myDiv")
+         let but=document.querySelector("#idbut");
+         but.addEventListener("mousemove",function(event){
+            myDiv.innerHTML="screenX="+event.screenX+
+                            "<br>clientX="+event.clientX+
+                            "<br>offsetX="+event.offsetX;
+         });   
+    </script>
+
+
+
+</body>
+</html>

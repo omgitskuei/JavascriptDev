@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--^Designates this as an English webpage-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="author" content="Kuei-Feng Tung">
+    <meta name="keywords" content="tillandsia">
+    <meta name="date" content="2019/11/04">
+    <meta name="description"
+        content="They are also commonly known as airplants because of their natural propensity to cling wherever conditions permit.">
+    <meta name="generator" content="Visual Studio Code">
+    <link rel="stylesheet" href="css/homepage.css">
+    <!--^Linking external .css sheet to this html page-->
+
+    <style>
+        /*Write style exceptions here*/
+        /* * {
+            margin: 0;
+            padding: 0;
+        } */
+
+        .st1 {
+            margin: 20px;
+            width: 450px;
+            border-bottom: 1px dashed black;
+        }
+
+        fieldset {
+            margin: 15px;
+            width: 500px;
+            border: 1px solid black;
+            border-radius: 15px;
+        }
+
+        label {
+            float: left;
+            text-align: right;
+        }
+
+        .sub {
+            text-align: center;
+        }
+    </style>
+
+    <title>Form</title>
+    <!--^Web browser tab display name-->
+</head>
+
+<body>
+    <h1>Create new user</h1>
+    <form action="#" method="GET"></form>
+    <fieldset>
+        <legend>個人資料 Part 1</legend>
+        <div class=st1>
+            <label class=label for="account">姓名：</label>
+            <input type="text" id="account" name="account" value="Guest" size="10">
+        </div>
+        <div>
+            <label class=label for="gender">性別:</label>
+            <input type="radio" name="gender" value="male">male
+            <input type="radio" name="gender" value="female">female
+        </div>
+        <div>
+            <label class=label for="LivingIn">City:</label>
+            <select name="LivingIn">
+                <option value="TPE">Taipei</option>
+                <option value="TPH">New Taipei</option>
+                <option value="TYU">Taoyuan</option>
+            </select>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>個人資料 Part 2</legend>
+        <div class=st1>
+            <label class=label for="pwd">新密碼:</label>
+            <input type="password" id="pwd" name="pwd" maxlength="10" size="10">
+        </div>
+        <div class=st1>
+            <label class=label for="memo">建議:</label>
+            <textarea cols="40" rows="5" id="memo" name="memo">Leave your suggestions here.</textarea>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>個人資料 Part 3</legend>
+        <div>
+            <label class=label for="hobby">興趣:</label>
+            <input type="checkbox" name="hobby" value="music">music
+            <input type="checkbox" name="hobby" value="sport">sport
+            <input type="checkbox" name="hobby" value="reading">reading
+            <input type="checkbox" name="hobby" value="dance">dance
+        </div>
+        <div class="st1">
+            <label class="title">照片：</label>
+            <input type="file" name="file1">
+        </div>
+        <div class="st1">
+            <input type="submit" value="Send">
+            <input type="reset" value="Clear">
+        </div>
+    </fieldset>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>02scroll.html</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        div.demo {
+            background: lightcyan none repeat scroll 0 0;
+            border: 1px solid cyan#666;
+            margin: 0px;
+            padding: 0px;
+            position: relative;
+            width: 500px;
+            height: 300px;
+            overflow: auto;
+            top:100px;
+            left:500px;
+        }
+        p {
+            margin: 10px;
+            padding: 5px;
+            border: 2px solid #666;
+            width: 1000px;
+            height: 1000px;
+        }
+        .read_progress{
+            position: fixed;
+            left:0;
+            right:0;
+            top:0;
+            height: 20px;
+            background: rgba(0,0,0,.3);
+        }
+        .read_progress_bar{
+            height: 20px;
+            background: red;
+            width: 0%;
+        }
+  </style>
+    
+</head>
+<body>
+        <!-- <div class="demo"><h1>demo</h1><p>scroll</p></div> -->
+        <div class="demo"><p>scroll</p></div>
+        <div class="read_progress">
+                <div id="read_progress_bar" class="read_progress_bar"></div>
+        </div>    
+    <script src="../js/jquery-3.4.1.min.js"></script>
+    <script>
+        $(function(){
+           
+            var pageHeight=$("p").height();
+            var windowHeight=$("div.demo").height()-50
+            // var windowHeight=200
+            console.log("page height: "+pageHeight)
+            console.log("window height: "+windowHeight)
+            console.log("window top: "+$(window).scrollTop())
+
+            $("div.demo").scroll(function(){
+                // let scrollTop=$(this).scrollTop();
+                // console.log(scrollTop)
+                // let scrollPercent=Math.round( (scrollTop/ (pageHeight - windowHeight )) * 100) +"%";
+                // console.log(scrollPercent)
+
+                // $("#read_progress_bar").css("width", scrollPercent)
+
+                // $("#read_progress_bar").width(scrollPercent);
+                // $( "div.demo" ).scrollTop( 300 );
+                console.log($(this).scrollTop())
+                console.log("pw="+(pageHeight - windowHeight ))
+                let scrollTop=$(this).scrollTop();
+               
+                let scrollPercent=Math.round( (scrollTop/ (pageHeight - windowHeight )) * 100) +"%";
+                console.log(scrollPercent)
+                $("#read_progress_bar").width(scrollPercent);
+                
+            })
+            
+
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>01ancestorsTraversing.html</title>
+    <style>
+        table,td{border:1px blue solid;
+            border-collapse: collapse;
+            text-align: center
+        }        
+    </style>
+</head>
+<body>    
+    <input type="button" id="btnLoad" value="load()">
+    <input type="button" id="btnGet" value="get()">
+    <input type="button" id="btnPost" value="post()">
+    <input type="button" id="btnJson" value="getJSON()">
+    <input type="button" id="btnajax" value="ajax()">
+    <img id="img1" src="ajax-loader.gif" style="display: none" alt="">
+    <hr>    
+    <div id="show">div</div>
+ 
+    <script src="../js/jquery-3.4.1.min.js"></script>
+    <script>
+        $(function(){
+            $("#btnLoad").click(function(){
+                //$("#show").load("../Lab02/01basicSelector.html");
+                $("#show").load("../Lab02/01basicSelector.html .classP");	
+                //$("#show").load("first.jsp",{"name":"Jack"});  //post
+                //$("#show").load("first.jsp?name=Jack");//get
+                // $("#show").load("first.jsp",{"name":"Jack",age:25},function(response){
+                //     console.log(response);
+                // });                           
+            });
+
+            $("#btnGet").click(function(){                
+                $.get("first.jsp",{name:"Jack",age:30},function(data){ //傳送方式是使用post，但是執行是使用get事件
+		            //$("#show").text(data);
+		            $("#show").html("<h2>"+data+"</h2>");	
+		        }); 
+            });
+
+            $("#btnPost").click(function(){               
+                $.post("first.jsp",{name:"Jack",age:30},function(data){  
+		            //$("#show").text(data);
+		            $("#show").html("<h2>"+data+"</h2>");	
+		        });
+            });
+	    
+            $("#btnJson").click(function(){  
+                $.getJSON("emps.json",function(data){                          
+                    // alert(data.employees[0].name);
+                    // alert(data.employees[0].workYears);
+                    // alert(data.employees[0].salary); 
+                    // let str=""; 
+                    // for(let i=0;i<data.employees.length;i++){
+                    //     str+=data.employees[i].name+",";
+                    //     str+=data.employees[i].workYears+",";
+                    //     str+=data.employees[i].salary+"<br>";                       
+                    // }
+                    // $("#show").html(str);
+                    // console.log(data.employees);
+                    let str="<table><tr><td>index</td><td>name</td><td>workYears</td><td>salary</td></tr>";
+                    $.each(data.employees,function(index,value){
+                        // console.log(index+","+value.name);
+                        str+="<tr><td>"+index+"</td>";
+                        str+="<td>"+value.name+"</td>";
+                        str+="<td>"+value.workYears+"</td>";
+                        str+="<td>"+value.salary+"</td></tr>";
+                    });
+                    str+="</table>"
+                    $("#show").html(str);
+                });
+            });
+
+            $("#btnajax").click(function(){               
+                $.ajax({
+                    url:'first.jsp',
+                    type:'POST', //'GET',
+                    data:{name:"Steve",age:20},
+                    dataType:'text',
+                    success: function(data){
+                        $("#show").html("<h2>"+data+"</h2>");                   
+                    }
+                });	
+            });
+
+            // 從jQuery 1.9開始，jQuery global Ajax事件的所有處理程序，
+            // 會添加.ajaxStart（）方法的處理程序，都必須附加到 document。
+            // 如果在 $.ajax（）或$.ajaxSetup（）的 global選項設為false，
+            // 則不會觸發.ajaxStart（）方法。
+
+            // 1. 將事件處理程序附加到任何元素
+            // 2. 使用任何jQuery方法發出Ajax請求
+            // 3. 如果用戶使用觸發元素並發送Ajax請求，則會顯示.ajaxStart()
+            // $("#img1").hide();
+            $(document).ajaxStart(function(){       
+                $("#img1").show();                
+            }) .ajaxStop(function(){
+                $("#img1").hide();
+            });
+        });           				
+    </script>
+</body>
+</html>

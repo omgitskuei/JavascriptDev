@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>02magnific-popup.html</title>
+    <!-- Magnific Popup core CSS file -->   
+    <link rel="stylesheet" href="../css/magnific/magnific-popup.css">
+    <style>
+        #open-popup {padding:20px}
+        .white-popup {
+            position: relative;
+            background: #FFF;
+            padding: 40px;
+            width: auto;
+            max-width: 200px;
+            margin: 20px auto;
+            text-align: center;
+        }        
+    </style>
+</head>
+<body>
+        <!-- <div class="popup-gallery">
+            <a href="http://farm9.staticflickr.com/8242/8558295633_f34a55c1c6_b.jpg" title="The Cleaner"><img src="http://farm9.staticflickr.com/8242/8558295633_f34a55c1c6_s.jpg" width="75" height="75"></a>
+            <a href="http://farm9.staticflickr.com/8382/8558295631_0f56c1284f_b.jpg" title="Winter Dance"><img src="http://farm9.staticflickr.com/8382/8558295631_0f56c1284f_s.jpg" width="75" height="75"></a>
+            <a href="http://farm9.staticflickr.com/8225/8558295635_b1c5ce2794_b.jpg" title="The Uninvited Guest"><img src="http://farm9.staticflickr.com/8225/8558295635_b1c5ce2794_s.jpg" width="75" height="75"></a>
+            <a href="http://farm9.staticflickr.com/8383/8563475581_df05e9906d_b.jpg" title="Oh no, not again!"><img src="http://farm9.staticflickr.com/8383/8563475581_df05e9906d_s.jpg" width="75" height="75"></a>
+            <a href="http://farm9.staticflickr.com/8235/8559402846_8b7f82e05d_b.jpg" title="Swan Lake"><img src="http://farm9.staticflickr.com/8235/8559402846_8b7f82e05d_s.jpg" width="75" height="75"></a>
+            <a href="http://farm9.staticflickr.com/8235/8558295467_e89e95e05a_b.jpg" title="The Shake"><img src="http://farm9.staticflickr.com/8235/8558295467_e89e95e05a_s.jpg" width="75" height="75"></a>
+            <a href="http://farm9.staticflickr.com/8378/8559402848_9fcd90d20b_b.jpg" title="Who's that, mommy?"><img src="http://farm9.staticflickr.com/8378/8559402848_9fcd90d20b_s.jpg" width="75" height="75"></a>
+        </div> -->
+
+        <div class="popup-gallery">
+            <a href="images/ad001.jpg" title="car1"><img src="images/ad001.jpg"  width="75" height="75"></a>
+            <a href="images/ad002.jpg" title="car2"><img src="images/ad002.jpg"  width="75" height="75"></a>
+            <a href="images/ad003.jpg" title="car3"><img src="images/ad003.jpg"  width="75" height="75"></a>
+            <a href="images/ad004.jpg" title="car4"><img src="images/ad004.jpg"  width="75" height="75"></a>
+            <a href="images/ad005.jpg" title="car5"><img src="images/ad005.jpg"  width="75" height="75"></a>
+        </div>
+        
+            <script src="../js/jquery-3.4.1.min.js"></script>
+            <!-- jQuery 1.7.2+ or Zepto.js 1.0+ -->
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+            <!-- Magnific Popup core JS file -->
+            <script src="../js/jquery.magnific-popup.min.js"></script>   
+            <script>
+            $(document).ready(function() {
+                $('.popup-gallery').magnificPopup({
+                    delegate: 'a',
+                    type: 'image',
+                    tLoading: 'Loading image #%curr%...',
+                    mainClass: 'mfp-img-mobile',            
+                    gallery: {
+                        enabled: true,
+                        // tPrev: 'Previous (Left arrow key)', // Alt text on left arrow
+                        // tNext: 'Next (Right arrow key)', // Alt text on right arrow
+                        tPrev: '上一張 (Left arrow key)', // Alt text on left arrow
+                        tNext: '下一張 (Right arrow key)', // Alt text on right arrow
+                        navigateByImgClick: true,
+                        preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+                    },
+                    image: {
+                        tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
+                        titleSrc: function(item) {
+                            return item.el.attr('title') + '<small>by Marsel Van Oosten</small>';
+                        }
+                    }
+                });
+            });
+            </script>        
+
+</body>
+</html>

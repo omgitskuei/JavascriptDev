@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>02contextmenu.html</title> 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        img{
+            width:300px;
+            height: 200px
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>this is heading 2</h2>	
+        <img id="idImg" src="images/sport.jpg" /><br>
+        <a id="idlink" href="http://www.google.com">google</a>
+    </div>
+
+    <script src="../js/jquery-3.4.1.min.js"></script>
+    <script>       
+        $(function(){
+            //在文件的contextmenu事件，取消預設的動作(preventDefault)
+            // $("#idImg").contextmenu(function(event){
+            //     event.preventDefault();
+            // });
+            // $(Image).contextmenu(function(event){    //this is WRONG
+            //     event.preventDefault();
+            // }); 
+            // $(document).contextmenu(function(event){
+            //     event.preventDefault();
+            // }); 
+
+        
+         });
+    </script>
+</body>
+</html>

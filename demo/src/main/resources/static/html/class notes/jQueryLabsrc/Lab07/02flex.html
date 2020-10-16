@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>02flex.html</title>
+    <style>
+    .container {
+        display: flex;
+        width:800px;
+        border:2px solid #61a0f8;
+        }
+
+    .item {
+        flex-basis: 50px;
+        height: 50px;
+        margin: 10px;
+        background: #f08bc3;
+        flex:1 0 0;
+        }
+    /* .item.red {
+        background: red;
+        flex-grow: 1
+    }
+    .item.blue {
+        background: blue;    
+    }
+    .item.green {
+        background: green;
+    }  */
+    </style>
+</head>
+<body>
+        <div class="container">
+                <div class="item red"></div>
+                <div class="item blue"></div>
+                <div class="item green"></div>
+              </div>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<!--^Designates this as HTML5-->
+<html lang="en">
+<!--^Designates this as an English webpage-->
+
+<head>
+    <meta charset="UTF-8">
+    <!--^Sets encoding as UTF-8-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--^Sets webpage to scale width to end-user viewing device width-->
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Kuei-Feng Tung">
+    <meta name="keywords"
+        content="Kuei, Kuei-Feng Tung, kuei-feng tung, kuei-feng, HTML, biography, bio, homepage, home">
+    <!--^Lists keywords for search enginges to use to find the webpage-->
+    <meta name="date" content="2019/10/30">
+    <!--^Last updated on this date "YYYY/MM/DD"-->
+    <meta name="description"
+        content="Get Kuei-Feng's take on food, gardening, and programming, and follow for thoughts on world affairs.">
+    <!--^Description for webpage on search engine-->
+    <meta name="generator" content="Visual Studio Code">
+    <!--^Lists tools used to develop the webpage-->
+
+    <link rel="stylesheet" href="css/homepage.css">
+    <!--^Linking external .css sheet to this html page-->
+
+    <style>
+        /* * { margin:0; padding:0;} */
+
+        /*Write style exceptions here*/
+        a:link { color:teal; text-decoration:none;}
+        a:visited { color:purple; text-decoration:underline; }
+        a:hover { font-weight:bolder; font-size: 2em; }
+        a:active { font-weight:bolder; font-size: 2em; color: turquoise; }
+
+        .menu1 {list-style-type: square;}
+        .menu1 li {font-style: italic; float:left; width:10em; border: 3px solid black;}
+        .menu1 a:link { color:teal; text-decoration:none;}
+        .menu1 a:visited { color:purple; text-decoration:underline;}
+        .menu1 a:hover { color:turquoise; text-decoration:none; background-color:navy;}
+        .menu1 a:active { color:turquoise; text-decoration:none; background-color:navy;}
+
+        .menu2 {list-style-type: none; list-style-image: url("images/dogeIcon.jpg");}
+        .menu2 li {font-style: italic;}
+        .menu2 a:link { color:teal; text-decoration:none;}
+        .menu2 a:visited { color:purple; text-decoration:underline;}
+        .menu2 a:hover { color:teal; text-decoration:none; background-color:navy;}
+        .menu2 a:active { color:turquoise; text-decoration:none; background-color:navy;}
+
+        .menu3 {list-style-type: none; list-style-image: url("images/dogeIconBW.png");}
+        .menu3 {list-style-position:inside;}
+        .menu3 {background-color:gold;}
+
+        .menu4 {list-style-type: none; list-style-image: url("images/dogeIconBW.png");}
+        .menu4 {list-style-position:outside;}
+        .menu4 {background-color:orange;}
+
+        img {
+            border: 3px dotted black;
+            margin: 4em;
+            padding: 2em;
+        }
+
+        .tb1{
+            width:400px;
+            border:3px solid green;
+            border-collapse: collapse;
+        }
+        td,th {
+            border:1px solid red;
+            text-align: center;
+        }
+
+        thead {
+            text-emphasis: none;
+        }
+    </style>
+
+    <title>Home | Kuei-Feng Tung</title>
+    <!--^Web browser tab display name-->
+</head>
+
+<body>
+    <h1 id="stylesplosion">CSS的字體</h1>
+    <!--Google is optimized to use h1, only use one h1 per webpage.-->
+    <!--An HTML element can be assigned multiple classes at the same time with syntax; 
+        ...eg. <h2 class= semibold hlyellow>Acknowledgements</h2> -->
+    <h2></h2>
+    <p></p>
+    <!--^Paragraph tags work like [Enter] after the end.-->
+    <p>I <span class="semibold">italicize</span> part of this sentence.</p>
+    <!--^Use span tag to style bits of blocks-->
+
+    <h3></h3>
+
+    <img class="" src="images/vuejsLogo.png" alt="Vuejs Logo">
+
+    <h4></h4>
+
+    <ul class="menu1 borderDashTopBottom">
+        <li><a href="http://google.com">Google</a></li>
+        <li><a href="http://bing.com">Bing</a></li>
+        <li><a href="http://youtube.com">Youtube</a></li>
+        <li><a href="http://bing.com">n</a></li>
+    </ul>
+
+    <ul>
+        <li><a href="http://google.com">Google</a>
+            <ul class="menu2">
+                <li >Very Wow</li>
+                <li class="menu3">Much good</li>
+                <li class="menu4">So Amaze</li>
+            </ul>
+        </li>
+        <li><a href="http://bing.com">Bing</a></li>
+        <li><a href="http://youtube.com">Youtube</a></li>
+        <li><a href="http://bing.com">n</a></li>
+    </ul>
+
+    <ul class="menu2 borderSolid">
+        <li><a href="http://google.com">Google</a></li>
+        <li><a href="http://bing.com">Bing</a></li>
+        <li><a href="http://youtube.com">Youtube</a></li>
+        <li><a href="http://bing.com">n</a></li>
+    </ul>
+
+    <table class="tb1">
+        <caption><h4>Table 1: Price chart</h4></caption>
+        <thead>
+            <tr><th>Project</th><th>Metal</th><th>Stone</th><th>Wood</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>Chair</td><td>$13</td><td>$12</td><td>$8</td></tr>
+            <tr><td>Table</td><td>$15</td><td>$13</td><td>$9</td></tr>
+            <tr><td>Bedframe</td><td>$12</td><td>$6</td><td>$7</td></tr>
+        </tbody>
+    </table>
+
+    <script>
+        stylesplosion.style.color = "black";
+        /* ^overrides stylesplosion's grey text color w black */
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh=tw">
+
+<head>
+    <meta charset="UTF-8">
+    <title>02eventHandlerall</title>
+</head>
+
+<body>
+
+    <!-- First way of writing code -->
+    <button onclick="f1(event)">Hello</button>
+    <button id="idbutton">Hello2</button>
+    <script>
+        // 1.
+        let btn = document.querySelector("button");
+        function f1(evt) {
+            console.log("1");
+        }
+        // 2 - prints only 2x because theres 2 onclicks, 2nd one overrides 1st
+        btn.onclick = f2; //1st onclick
+        function f2() {
+            console.log("2");
+        };
+        btn.onclick = function () {  //2nd onclick
+            console.log("2x");
+        };
+        // 3 - 
+        btn.addEventListener("click", f3);
+        function f3() {
+            console.log("3");
+        }
+        btn.addEventListener("click", function () {
+            console.log("3x");
+        });
+    </script>
+</body>
+
+</html>

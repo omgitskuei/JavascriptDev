@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>01showhidemenu.html</title>
+    <style>
+        body{
+            background: #ccc;
+        }
+        .transition{
+            transition: 0.4s;
+        }
+        .wrapper{
+            width:800px;
+            margin: 20px auto;
+        }
+        .menu{
+            display: inline-block;
+            cursor: pointer;
+            position: relative;
+            padding: 0 0 0 2px;
+        }
+        .menu.active{
+            background: #fff;
+            /* background:red; */
+        }
+        .menu ul{
+            position: relative;
+            left:0;
+            top:0;
+            background:rgba(255,255,255,.8);
+            width:120px;
+            opacity: 0;
+            max-height: 0;
+            /* height: 0; */
+            overflow: hidden;
+        }
+        .menu.active ul{
+            opacity: 1;
+            max-height: 300px;
+            /* height: 300px; */
+        }
+        .menu ul li a{
+            display: block;
+            padding:10px 12px;    
+        }
+        .menu ul li a:hover{
+            background: lightblue;
+        }
+        ul,li{
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .bar{
+            width: 36px;
+            height: 6px;
+            background: #666;
+            margin: 6px 0;
+            border-radius: 2px;
+        }
+        .active .bar1{
+            -webkit-transform: rotate(-45deg) translate(-9px, 7px) ;
+            transform: rotate(-45deg) translate(-9px, 7px) ;      
+        }
+        
+        .active .bar2{opacity: 0;}
+        
+        .active .bar3{
+            -webkit-transform: rotate(45deg) translate(-9px, -8px) ;
+            transform: rotate(45deg) translate(-9px, -8px) ;      
+        } 
+        
+    </style>          
+</head>
+<body>
+    <div class="wrapper">
+        <div class="menu transition" >                          <!--two classes; "menu" and "transition"-->
+            <div class="bar bar1 transition"></div>
+            <div class="bar bar2 transition"></div>
+            <div class="bar bar3 transition"></div>
+            <ul class="transition">
+            <li><a class="transition">Home</a></li>
+            <li><a class="transition">Shop</a></li>
+            <li><a class="transition">Gallery</a></li>
+            <li><a class="transition">About</a></li>
+            </ul>
+        </div>
+    </div>  
+    <script src="../js/jquery-3.4.1.min.js"></script>
+    <script>
+        $(function(){
+            
+        })
+    </script>
+</body>
+</html>

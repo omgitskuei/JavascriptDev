@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>清單與超連結選擇器的練習</title>
+    <style>
+        .H2title {
+            color: blue
+        }
+
+        .menu1 {
+            list-style-type: none;
+
+        }
+
+        .menu1 li a:link {
+            color: #007979;
+            text-decoration: none;
+        }
+
+        .menu1 li {
+            height: 2.5em;
+        }
+
+        .menu1 li a:visited {
+            color: cornflowerblue;
+        }
+
+        .menu1 li a:hover {
+            color: #ffffff;
+            /* text-decoration:underline; */
+            background-color: #0080FF;
+        }
+
+        .menu1 li a:active {
+            font-size: 30px;
+        }
+
+        .menu2 {
+            list-style-type: upper-alpha;
+
+        }
+
+        .menu3 {
+            list-style-type: none;
+            list-style-image: url(images/arrow1.jpg);
+
+        }
+        .in {
+            background-color:yellow;
+            list-style-position:inside;
+            padding-left:25px;
+        }
+        .out {
+            background-color:yellow;
+            list-style-position:outside;
+            padding-left:25px;
+        }
+        .menu4 {
+            border:5px dotted #acd6ff;
+            width:600px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2 class="H2title">沒有項目符號的清單</h2>
+    <ul class="menu1">
+        <li>
+            <a href="http://www.iiiedu.org.tw">首頁</a>
+        </li>
+        <li>
+            <a href="first.html">關於</a>
+        </li>
+        <li>
+            <a href="second.html">部落格</a>
+        </li>
+        <li>
+            <a href="list.html">聯絡</a>
+        </li>
+    </ul>
+    <h2 class="H2title">menu2 有項目符號的清單</h2>
+    <ul class="menu2">
+        <li>
+            <a href="http://www.iiiedu.org.tw">首頁</a>
+        </li>
+        <li>
+            <a href="first.html">關於</a>
+            <ul class="menu3">
+                <li class="in">HTML5</li>
+                <li class="out">CSS3</li>
+            </ul>
+        </li>
+        <li>
+            <a href="second.html">部落格</a>
+        </li>
+        <li>
+            <a href="list.html">聯絡</a>
+        </li>
+    </ul>
+    <h2 class="H2title">有邊框樣式的清單</h2>
+    aaa<ul class="menu4">
+        <li>
+            <a href="http://www.iiiedu.org.tw">首頁</a>
+        </li>
+        <li>
+            <a href="first.html">關於</a>
+        </li>
+        <li>
+            <a href="second.html">部落格</a>
+        </li>
+        <li>
+            <a href="list.html">聯絡</a>
+        </li>
+    </ul>bbb
+</body>
+
+</html>

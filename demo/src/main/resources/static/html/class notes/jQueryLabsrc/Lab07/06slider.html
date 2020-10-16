@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>05slider</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/all.min.css">
+    <style>
+        .wrapper{
+            max-width: 800px;
+            height: 300px;
+            background: #000;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        .slider-container{
+            width: 3200px;
+            left:0px;
+            transition: .5s;
+        }
+        .slider-container li{
+            height: 300px;
+            flex: 1 0 0;
+        }
+        .slider-container li img{
+            width:100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .slider-dot{
+            bottom: 10px;
+            width: 100%;
+        }
+        .slider-dot li{
+            width: 24px;
+            height: 8px;
+            border: 1px solid #fff;
+            margin:0 3px;
+        }
+        .slide_btn{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            top:0;
+            bottom:0;
+            width: 30px;
+        }
+        .prev_slide{
+            left:0;
+        }
+        .next_slide{
+            right:0;
+        }
+        .slide_btn i{
+            color:rgba(255,255,255,.6);
+            transition: .5s;
+        }
+        .slide_btn:hover i{
+            color:rgba(255,255,255,.8);
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper position-relative">
+        <ul id="slider-container" class="list-unstyled slider-container d-flex position-absolute">
+            <!-- <li><img src="images/slide1.jpg" alt=""></li>
+            <li><img src="images/slide2.jpg" alt=""></li>
+            <li><img src="images/slide3.jpg" alt=""></li>
+            <li><img src="images/slide4.jpg" alt=""></li> -->
+        </ul>
+        <ul id="slider-dot" class="list-unstyled position-absolute slider-dot m-0 d-flex justify-content-center">
+            <!-- <li></li>
+            <li></li>
+            <li></li>
+            <li></li>            -->
+        </ul>
+        <div id="prev_slide" class="slide_btn prev_slide position-absolute">
+            <i class="fas fa-chevron-left"></i>
+        </div>
+        <div  id="next_slide" class="slide_btn next_slide position-absolute">
+                <i class="fas fa-chevron-right"></i>
+        </div>
+    </div>
+    <script src="../js/jquery-3.4.1.min.js"></script>
+    <script>
+        let slideWidth=$(".wrapper").width();
+        let slideNum=0;
+        let slidePictures=["slide1.jpg", "slide2.jpg", "slide3.jpg", "slide4.jpg"];
+        // let slideCount=$("#slider-container li").length;
+        slideCount=slidePictures.length;
+        
+
+        for(let slide of slidePictures){
+            console.log(slide)
+            let slideContent="<li><img src='images/"+slide+"' alt=''></li>";
+            $("#slider-container").append(slideContent);
+            $("#slider-dot").append("<li></li>");
+        }
+    
+    
+        $("#slider-container").css("width", slideCount*slideWidth)
+        // $("#slider-dot li").eq(2).css("background", "#fff")
+        $("#slider-dot li").eq(0).css("background", "#fff")
+        $("#slider-dot li").hover(function(){
+            slideNum=$(this).index();
+            console.log(slideNum)
+            slideGo()
+            // $(this).css("background", "#fff").siblings().css("background", "none")
+            // $("#slider-container").css("left", 0-slideNum*slideWidth)
+            // console.log("hover")
+        })
+
+        $("#prev_slide").click(function(){
+            slideNum--;
+            if(slideNum<0)slideNum=slideCount-1;
+            
+            // console.log("prev")
+            // $("#slider-dot li").eq(slideNum).css("background", "#fff").siblings().css("background", "none")
+            // $("#slider-container").css("left", 0-slideNum*slideWidth)
+            slideGo()
+        })
+
+        $("#next_slide").click(function(){
+            // console.log("next")
+            slideNum++;
+            if(slideNum>(slideCount-1))slideNum=0;
+            console.log(slideNum)
+            slideGo()
+        })
+
+        function slideGo(){
+            if(slideNum>(slideCount-1))slideNum=0;
+            // slideNum=slideNum%slideCount;
+            $("#slider-dot li").eq(slideNum).css("background", "#fff").siblings().css("background", "none")
+            $("#slider-container").css("left", 0-slideNum*slideWidth)
+        }
+
+        var autoRun=setInterval(function(){
+            slideNum++;
+            slideGo()
+        }, 5000)
+
+        $(".wrapper").hover(function(){
+            clearInterval(autoRun)
+        }, function(){
+            autoRun=setInterval(function(){
+                slideNum++;
+                slideGo()
+            }, 5000)
+        })        
+
+        $(window).resize(function(){
+            slideWidth=$(".wrapper").width();
+            $("#slider-container").css("width", slideCount*slideWidth)
+            slideGo()
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>04onevent.html</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <div class="py-2">
+            <input id="input" type="text" class="form-control">
+        </div>
+        <input class="btn btn-primary" type="button" value="事先綁定" id="buttonBefore" >
+        <input class="btn btn-primary" type="button" value="綁定多個事件" id="buttonMultiple" >
+        <input class="btn btn-primary" type="button" value="綁定不同事件" id="buttonDiff" >
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script>
+        $(function(){
+            $("#buttonBefore").on( "click", function() {
+                console.log( $(this).val() );
+            });
+
+            $("#buttonMultiple").on({
+                click: function(){
+                    console.log("click");
+                },
+                dblclick: function(){
+                    console.log("Double Click");
+                },
+                mouseenter: function(){
+                    console.log("Mouse Enter");
+                }
+            });
+
+           $("#buttonDiff").click(function(){
+                $("#input").focus();
+                $("#input").on("change keyup",function(e){
+                    let inputValue=$(this).val();
+                    console.log(inputValue);
+                    console.log(e.type)
+                })
+            })  
+          
+
+
+        })
+    </script>
+</body>
+</html>

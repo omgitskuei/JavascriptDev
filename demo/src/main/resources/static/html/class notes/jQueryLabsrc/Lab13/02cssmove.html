@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="UTF-8">
+<head>
+    <meta charset="UTF-8">
+    <title>02cssmove.html</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <style>
+        .box{
+            width: 120px;
+            height: 120px;
+            background: lightskyblue;
+            transition: .2s;
+            top:0;
+            left:0;
+        }
+        .field{
+            height: 400px;
+            background: #eee;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="field position-relative">
+            <div class="box position-absolute"></div>
+            <div class="cover position-absolute"></div>
+        </div>
+        <div class="py-2">
+            <div class="py-3 text-center">
+                <div class="py-1">
+                    <button id="up" data-direction="up" class="btn btn-info"><i class="fas fa-caret-up"></i></button>
+                </div>
+                <div>
+                    <button id="left" data-direction="left" class="btn btn-info mx-1"><i class="fas fa-caret-left"></i></button>
+                    <button id="right" data-direction="right" class="btn btn-info mx-1"><i class="fas fa-caret-right"></i></button>
+                </div>
+                <div class="py-1">
+                    <button id="down" data-direction="down" class="btn btn-info"><i class="fas fa-caret-down"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/jquery-3.4.1.min.js"></script>
+    <script>
+        let speed=10;
+
+        $("#up").click(function(){
+            $(".box").css("top", "-="+speed+"px");
+        });
+        $("#down").click(function(){
+            $(".box").css("top", "+="+speed+"px");
+        });
+        $("#left").click(function(){
+            $(".box").css("left", "-="+speed+"px");
+        });
+        $("#right").click(function(){
+            $(".box").css("left", "+="+speed+"px");
+        });
+
+
+    
+    </script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+#stylesplosion {
+    background-color:#FF7575;
+    color: #5B5B5B;
+    font-size: 2em;
+    font-weight: 700;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-decoration: underline;
+    text-transform: lowercase;
+    font-style: oblique;
+}
+
+.st1 {color:yellowgreen;text-transform: uppercase;}
+
+h4.st2 {font-family: fantasy;}  /*adding tag h4 in front of */
+
+/*h1 {color: darkslateblue;}
+h2 {color: firebrick;}
+h3 {font-size: 50px;}  */

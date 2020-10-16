@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>02addremoveClass.html</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        .box{
+            width: 120px;
+            height: 120px;
+            background: lightskyblue;
+            transition: .5s;
+        }
+        .box.active{
+            background: pink;
+            border-radius: 50%;
+            transition: 1.0s;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="py-2">
+            <button id="add" type="button" class="btn btn-primary">add</button>
+            <button id="remove" type="button" class="btn btn-primary">remove</button>
+            <button id="toggle" type="button" class="btn btn-primary">toggle</button>
+        </div>
+        <div class="box">
+            wow
+        </div>
+        
+    </div> 
+        
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script>
+        $(function(){
+            $("#add").click(function(){
+                $(".box").addClass("active");                        // note its not 
+            });                                                     // addClass(".box.active")
+            $("#remove").click(function(){
+                $(".box").removeClass("active");
+            });
+            $("#toggle").click(function(){
+                $(".box").toggleClass("active");
+            });            
+        })
+    </script>
+</body>
+</html>

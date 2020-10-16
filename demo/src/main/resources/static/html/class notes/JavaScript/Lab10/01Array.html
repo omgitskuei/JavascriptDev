@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <title>01Array.html</title>
+</head>
+<body>
+    <script>
+        //Array 物件
+        let myFruits = ["apple", "banana", "orange"];
+        for(let i=0;i<myFruits.length;i++) {
+            console.log(myFruits[i]);
+        }
+
+        for(let fruit of myFruits) {
+            alert(fruit);
+        }
+        //Array 方法
+        console.log(myFruits.join("-"));
+        console.log(myFruits.sort());
+
+    </script>
+</body>
+</html>

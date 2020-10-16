@@ -1,0 +1,102 @@
+#stylesplosion {
+    background-color:#FF7575;
+    color: #5B5B5B;
+    font-size: 2em;
+    font-weight: 700;
+    font-family: Verdana, Tahoma, sans-serif;
+    text-decoration: underline;
+    text-transform: lowercase;
+    font-style: oblique;
+}
+
+
+.center { text-align: center;}
+/*^Text-align takes center, left (default), right, and justify.*/
+
+.indent { text-indent: 1em;}
+/*^Text indent beginning of element.*/
+
+blockquote { font-style: italic;}
+/*^Blockquote a section, aka indents all lines of section, w/ <blockquote></blockquote> html tags
+... The above example customizes blockquote to also italicize.*/
+
+.margin { margin: 2em 2em 2em 2em;}
+/*^margin: [All/Top] [Right] [Bottom] [Left].
+...For these values, "0" is default/no change, otherwise units in em.
+...Writing {margin: 2em} will make all 4 sides 2em.*/
+.marginTopBottom { margin-top: 2em; margin-bottom: 2em;}
+/*^Can also specify individual margins only - also; margin-right, margin-left.*/
+.marginLeftRight { margin-left: 400px; margin-right: 400px;}
+/*^Can also specify individual margins only - also; margin-right, margin-left.*/
+
+.borderSolid { border: 3px solid black; padding: 2em;}
+/*^border: [width (pixels)] [style] [color]. Specs are always in this order; width style color.
+...There's 8 border styles: dotted, dashed, solid, double, groove, ridge, inset, outset.*/
+/*^padding adds whitespace between text and border.
+...padding: [All/Top] [Right] [Bottom] [Left] - similar to margins.*/ 
+.borderDashTopBottom {
+    border-top: 5px dashed black; border-bottom: 5px dashed black;
+    padding-top: 0.3em; padding-bottom: 0.3em;}
+/*^Can also specify individual borders only - also; border-right, border-left.*/
+
+body {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 1em;
+    color: black;
+}
+/*^Inheritance - The 'parent' element/tag encloses 'children' element/tags.
+...Children elements will inherit CSS formatting from Parent tags unless overriden.*/
+/*<body></body> is the 'uber' parent.*/
+/*Remember that overriding an inherited style and using em will change size relatively
+...eg. <h1> is originally 2em. You override it with 1em - 1em (or 100%) of 2em is still 2em.*/
+
+.capitalize { text-transform: capitalize;}
+/*^Change element to uppercase/lowercase/capitalize*/
+
+.fontcourier { font-family: 'Courier New', Courier, monospace;}
+.fontserif { font-family: serif;}
+.fontsans { font-family: sans-serif;}
+/*^Changes font*/
+
+h4.st2 {font-family: fantasy;} 
+/*^adding tag h4 in front of class st2 will restrict st2 use to h4 type only. */
+
+.hlred { background-color: #FF7575;}
+.hlyellow { background-color: goldenrod;;}
+.hlblue { background-color: lightseagreen;}
+.hlgreen { background-color: mediumseagreen;}
+.hlgrey { background-color: silver;}
+.hlpink { background-color: palevioletred;}
+/*^Created special class hl (highlight) with background colors.
+...These classes aren't tied to element.
+...eg. p.bold { font-weight: bolder }  -- is tied to <p></p>.
+...eg.cont. <p class="bolder">Hi, this is in bolder. </p>*/
+
+.halfmorelinespacing { line-height: 1.8em;}
+/*^1.2em is default line-height, or line spacing. */
+
+.size12 { font-size: 1em;}
+/*^font-size 1em is default. Can also use units; ems, points, percentage, pixels. */
+
+.semibold { font-weight: 700;}
+/*^font-weight: lighter, normal, bold, bolder, 100 lightest, 400 normal, to 900 boldest.
+...text can also be bolded in HTML with <b></b> tags. eg.<p>.</p> */
+
+.italic { font-style: italic;}
+/*font-style: italic is the same as <p>This <i>text</i> is in italic</p> in html.
+...An alternative to <i></i> is <em></em> - diff, vocal emphasis is put on <em> by screen readers. */
+
+.oblique { font-style: oblique;}
+/*this is similar to but not the same as italic. */
+
+.redtext { color: red;}
+/*^Changes text color can use color Name, Hex Color Code, RGB Color Code.
+...eg. Color name Silver, Hexadecimal #C0C0C0, RGB Decimal (R,G,B) rgb(192, 192, 192). */
+
+.spreadletters { letter-spacing: 0em;}
+/*^letter spacing 0em is default, change applies to space as well as letters*/
+
+h1, h2 { color: black; }
+/*^Grouping - This makes style changes to both h1 and h2*/
+
+#missionStatement { color: black; font-style: italic; ;}

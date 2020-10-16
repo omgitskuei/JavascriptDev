@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Kuei-Feng Tung">
+    <meta name="keywords" content="HTML, practice, index, homepage, home">
+    <meta name="date" content="2019/10/30">
+    <meta name="description" content="Kuei-Feng practicing some HTML">
+    <meta name="generator" content="Visual Studio Code">
+
+    <link rel="stylesheet" href="css/styles1.css">
+
+    <style>
+        /*Write style exceptions here*/
+    </style>
+
+    <title>CSS的字體</title>
+</head>
+
+<body>
+    <h1 id="stylesplosion">CSS的字體</h1>
+    <!--<h2 id="style1">CSS的字體2</h2> -->
+    <!-- used ID twice here, technically works but script can't run-->
+
+    <h1 class="st1">yellow-green class CSS的字體3</h1>
+    <h1>normal asdasd</h1>
+
+    <h3>h3 normal</h3>
+    <h3 class="st2">not-Fantasy h3</h3> <!-- won't apply st2 because st2 is locked to h4 only-->
+
+    <h4 class="st2">Fantasy h4</h4>
+    <h4>regular h4</h4>
+
+    <script>
+        stylesplosion.style.color = "black"; 
+        /* ^overrides stylesplosion's grey text color w black */
+    </script>
+</body>
+
+</html>

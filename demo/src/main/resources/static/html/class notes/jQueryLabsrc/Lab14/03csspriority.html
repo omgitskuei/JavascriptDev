@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>03csspriority.html</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        .box{
+            width: 120px;
+            height: 120px;
+            background: lightskyblue;
+            transition: .5s;
+        }
+        .active{
+            width: 120px;
+            height: 120px;
+            background: pink;
+            border-radius: 50%;
+            transition: .5s;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="idbox" class="box" >
+    </div>
+        
+    </div> 
+        
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script>
+        $(function(){
+            
+            $("#idbox").hover(over,out);
+
+            function over(){
+                $('#idbox').addClass("active");
+                // $('#idbox').removeClass("box").addClass("active");
+            }  
+
+            function out(){
+                $('#idbox').addClass("box");
+                // $('#idbox').removeClass("active").addClass("box");
+            }           
+        })
+    </script>
+</body>
+</html>

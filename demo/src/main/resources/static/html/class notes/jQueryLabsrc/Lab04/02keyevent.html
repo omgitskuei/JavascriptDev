@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+       <input  class="form-control" id="idText" type="text">
+       <h1 >hello, <span id="showName"></span></h1>
+
+    </div>
+    <script src="../js/jquery-3.4.1.min.js"></script>
+    <script>
+            $(function(){
+                //事件優先順序 keydown->keypress->keyup
+                 $("#idText").keydown(function(){
+                    console.log("keydown");
+
+                })
+
+                $("#idText").keyup(function(){
+                    console.log("keyup");
+                    $("#showName").text($(this).val()); //
+                    
+                })                
+
+                $("#idText").keypress(function(){
+                    console.log("keypress");
+                   
+                })
+               
+            })
+    </script>
+</body>
+</html>

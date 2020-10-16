@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>表單練習</title>
+    <style>
+        fieldset {
+            width: 500px;
+            margin: 15px;
+            border: 1px solid #acd6ff;
+            border-radius: 15px;
+        }
+
+        .st1 {
+            width: 450px;
+            border-bottom: 1px solid #E0E0E0;
+            margin: 20px;
+            padding-bottom: 10px;
+        }
+
+        .sub {
+            width: 450px;
+            margin: 20px;
+            text-align: center;
+        }
+
+        .t1 {
+            width: 100px;
+            float: left;
+            text-align: right;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="#" method="get" enctype="multipart/form-data">
+        <fieldset>
+            <legend>個人資料一</legend>
+            <div class="st1">
+                <label class="t1" for="account1">姓名:</label>
+                <input type="text" id="account1" name="account" placeholder="guest" autofocus size="10">
+            </div>
+            <div class="st1">
+                <label for="" class="t1">性別:</label>
+
+                <input type="radio" name="gender" value="male" id="m1">
+                <label for="m1">男</label>
+                <input type="radio" name="gender" value="female">
+                <label for=f1>女</label>
+            </div>
+            <div class=st1>
+                <label for="" class=t1>生日:</label>
+                <input type="date" name="birth">
+            </div>
+            <div class=st1>
+                <label for="" class=t1>今天:</label>
+                <input type="datetime" name="today">
+            </div>
+            <div class=st1>
+                <label for="" class=t1>Local Date 今天:</label>
+                <input type="datetime-local" name="">
+            </div>
+            <div class=st1>
+                <label for="" class=t1>Select month 今月:</label>
+                <input type="month" name="">
+            </div>
+            <div class=st1>
+                <label for="" class=t1>Select time 現在時間:</label>
+                <input type="time" time="">
+            </div>
+            <div class=st1>
+                <label for="" class=t1>Select month 選星期:</label>
+                <input type="week" name="">
+            </div>
+            <div class=st1>
+                <label for="" class=t1>Select Email:</label>
+                <input type="email" name="">
+            </div>
+            <div class=st1>
+                <label for="" class=t1>Select month 今月:</label>
+                <input type="url" name="url1" value="http://">
+            </div>
+            <div class=st1>
+                <label for="" class=t1>Home TEL:</label>
+                <input type="tel" name="" value="02" patter=[\d]{}
+            </div>
+            <div class=st1>
+                <label for="" class=t1>TW ID:</label>
+                <input type="text" name="twID" maxlength="10" pattern="[a-zA-Z]{1}[1-2]{1}[\d]{8}">
+            </div>
+            <div class=st1>
+                <input type="search" name="">
+            </div>
+            <div class=st1>
+                <input type="color" name="color1">
+            </div>
+            <div class=st1>
+                <input type="range" name="range1" min="-20" max="20" step="5">
+            </div>
+            <div class=st1>
+                <input type="number" name="rating" min="0" max="10" step="2">
+            </div>
+
+            <div class="st1">
+                <label class="t1" for="pwd1">密碼:</label>
+                <input type="password" id="pwd1" name="pwd" maxlength="6">
+            </div>
+            <div class="st1">
+                <label for="" class="t1">縣市:</label>
+                <select name="add1" id="" multiple>
+                    <option value="Tpe">台北市</option>
+                    <option value="Tph" selected>新北市</option>
+                    <option value="Tyc">桃園市</option>
+                </select>
+            </div>
+            <div class="st1">
+                <label for="" class="t1">完整地址:</label>
+                <input type="text" name="add2" size="30">
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>個人資料二</legend>
+            <div class="st1">
+                <label for="" class="t1">興趣:</label>
+                <label>
+                    <input type="checkbox" name="hobby" value="music">音樂
+                </label>
+                <label>
+                    <input type="checkbox" name="hobby" value="sport">運動
+                </label>
+                <label>
+                    <input type="checkbox" name="hobby" value="travel">旅遊
+                </label>
+                <label>
+                    <input type="checkbox" name="hobby" value="movie">電影
+                </label>
+            </div>
+            <div class="st1">
+                <label for="" class="t1">照片:</label>
+                <input type="file" name="file1">
+            </div>
+            <div class="st1">
+                <label class="t1" for="comment1">意見:</label>
+                <textarea cols="40" rows="5" id="comment1" name="comment"></textarea>
+            </div>
+        </fieldset>
+        <div class="sub">
+            <input type="submit" value="送出">
+            <input type="reset" value="清除">
+        </div>
+
+    </form>
+</body>
+
+</html>

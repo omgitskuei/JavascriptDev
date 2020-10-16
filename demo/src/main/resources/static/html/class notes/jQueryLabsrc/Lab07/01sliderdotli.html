@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>01sliderdotli.html</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        .wrapper{
+            max-width: 800px;
+            height: 300px;
+            background: #000;
+            margin: 0 auto;
+            overflow: hidden;  
+        }
+        .slider-dot{
+            bottom: 10px;
+            width: 100%;  /*100% of 24px from .slider-dot li width*/
+        }
+
+        .slider-dot li{
+            width: 24px;
+            height: 8px;
+            border: 1px solid #fff;
+            margin:0 3px; 
+            /* background: none;            */
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper position-relative">
+        <ul id="slider-dot" class="list-unstyled position-absolute slider-dot m-0 d-flex justify-content-center">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>              
+    </div>
+</body>
+</html>

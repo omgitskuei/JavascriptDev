@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head>
+    <meta charset="UTF-8">
+    <title>01string.html</title>
+</head>
+
+<body>
+    <div id="iddiv"></div>
+    <script>
+        let name = "Tom";
+        let age = 29;
+        let mydiv=document.getElementById("iddiv");
+        mydiv.innerHTML= `name=${name}, age=${age}`;
+
+        let str = "java script";  //字串變數
+
+        //字串物件
+        let strObj = new String("java script hello");
+        console.log("strObj.charAt(3)=");  //a
+        console.log("strObj.charCodeAt(3)=");  //97
+        console.log("strObj.indexOf('a')=");
+        console.log("strObj.lastIndexOf('a')=");
+        console.log("strObj.lastIndexOf('@')=");  //can't find "@" in string strObj, so returns -1
+        console.log("strObj.substr(5,3)=");  //scr
+        console.log("strObj.substr(5)=");  //script hello
+        console.log("strObj.substring(5,8)=");  //scr
+        console.log("strObj.split(' ')="+strObj.split(' '));  //splits element by space, so "java, script, hello"
+        console.log("strObj.split(' ')="+strObj.split(' '));
+        console.log("strObj.toUpperCase()=");
+    </script>
+</body>
+
+</html>

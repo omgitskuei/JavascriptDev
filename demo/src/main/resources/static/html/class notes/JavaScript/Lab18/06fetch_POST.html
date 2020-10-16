@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <title>06fetch_POST.html</title>
+</head>
+<body>
+    <div id="myDiv"></div>
+    <script>
+        const uri = 'https://script.google.com/macros/s/AKfycbxXH6aPsldTBeS41WRMnJEA5Xstc7cYMj6YimDO2Al7H6DkJZiz/exec';
+
+        fetch(uri, {
+        method:'POST',
+        body:encodeURI(JSON.stringify({
+            name:'oxxo',
+            age:18
+        })),
+
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
+        }
+        })
+        .then(res => {
+            return res.json();   // 使用 json() 可以得到 json 物件
+        }).then(result => {
+            
+
+            document.querySelector("#myDiv").innerHTML= result.text;
+            console.log(result); // 得到 {name: "oxxo", age: 18, text: "你的名字是 oxxo，年紀 18 歲～"}
+        });
+    </script>
+</body>
+</html>

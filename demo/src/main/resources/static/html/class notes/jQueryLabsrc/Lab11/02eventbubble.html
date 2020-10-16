@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>02eventBubble.html</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body> 
+    <div class="container">
+    <table id="idtable" class="table table-bordered table-sm" >
+            <tr>
+                <td>A0</td>
+                <td>B1</td>
+                <td>C2</td>
+                <td class="btn btn-danger">刪除</td>
+            </tr>
+            <tr>
+                <td>D3</td>
+                <td>E4</td>
+                <td>F5</td>
+                <td class="btn btn-danger">刪除</td>
+            </tr>
+            <tr>
+                <td>G6</td>
+                <td>H7</td>
+                <td>I8</td>
+                <td class="btn btn-danger">刪除</td>
+            </tr>
+        </table>
+    </div>
+        <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+        <script>
+            $(document).ready(function () {   
+               
+                $('.btn-danger').click(function () {
+                    console.log("btn-danger")
+                });   
+
+                $('#idtable').click(function(){
+                    console.log("idtable");
+                });                                                 
+    
+            });
+        </script>
+</body>
+</html>

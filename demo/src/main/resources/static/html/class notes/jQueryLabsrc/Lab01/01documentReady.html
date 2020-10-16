@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>01documentReady.html</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script>
+        jQuery(document).ready(function () {
+            $('h1').css('color', 'green');
+
+            // ready是一個事件，等到DOMTree產生後會執行這個事件
+            $('h1').mouseover(function () {
+                $(this).css('color', 'red');
+            });
+            $('h1').mouseout(function () {
+                $(this).css('color', 'green');
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <h1>write less,do more</h1>
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>05oneoffevent</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body> 
+    <div class="container">
+   
+        <input class="btn btn-primary" type="button" value="one" id="buttonOne" >
+        <input class="btn btn-primary" type="button" value="on" id="buttonOn" >
+        <input class="btn btn-primary" type="button" value="off" id="buttonOnOff" >
+        <input class="btn btn-primary" type="button" value="click" id="buttonClick">
+        <input class="btn btn-primary" type="button" value="off" id="buttonClickOff" >
+
+        <div id="msg"></div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script>
+        $(document).ready(function () {   
+            //練習一
+            //使用one來繫結buttonOne按鈕的click事件
+            //按下按鈕後在msg的div中顯示one的字樣
+            //瀏覽網頁時,重複按下buttonOne按鈕,只會在div中出現一次one的字
+            $("#buttonOne").one({
+                click:function(){
+                    $("#msg").append("one<br>");
+                }
+            });
+
+
+            //練習二
+            //使用on來繫結buttonOn按鈕的click事件
+            //按下按鈕後在msg的div中顯示on的字樣
+            //瀏覽網頁時,重複按下buttonOn按鈕,會在div中重複出現on的字
+            $("#buttonOn").on({
+                click:function(){
+                    $("#msg").append("on<br>");
+                }
+            });
+
+
+            $("#buttonOnOff").click(function () {
+                //練習三
+                //將buttonOn按鈕的click事件取消掉
+                $("#buttonOn").off("click");
+            })
+
+            //不一定要on綁定才可以用off移除
+            $("#buttonClick").click(function(){
+                console.log("click");
+                $('#msg').append("click<br>");
+            })
+
+            $("#buttonClickOff").click(function(){
+                $("#buttonClick").off("click");
+            })
+
+                
+        });
+    </script>
+</body>
+</html>

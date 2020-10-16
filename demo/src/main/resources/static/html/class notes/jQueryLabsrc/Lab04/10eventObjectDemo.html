@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>10eventObjectDemo.html</title> 
+    <style>
+        img{
+            width:300px;
+            height: 200px
+        }
+    </style>
+</head>
+<body>
+    this is test line<br/>	
+    <img id="idImg" src="images/sport.jpg" />
+	<a href="http://www.google.com"  onclick="event.preventDefault();">google</a>
+
+    <script>
+        //在文件的contextmenu事件，取消預設的動作(preventDefault)
+       document.oncontextmenu=function(){
+           event.preventDefault();
+       }    
+    </script>
+</body>
+</html>

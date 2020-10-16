@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>03toolTip.html</title>
+    <style>
+        #mybox {
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 100px;
+            width: 250px;
+            background-color: blue;
+            color: #ffffff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        #tooltip {
+            position: absolute;
+            z-index: 2;
+            width: 200px;
+            padding: 5px;
+            background-color: rgb(216, 251, 252);
+            border: 2px solid #a0e8fa;
+            border-radius: 5px;
+            display: none;
+            top:130px;
+            left:650px;
+        }
+        #log{
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 100px;
+            width: 200px;
+            padding: 5px;            
+            background-color: rgb(216, 251, 252);
+            text-align: center;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="mybox">Hover over me for more information</div>
+    <div id="tooltip">This is more information</div>
+    <div id="log"></div>
+
+    <script src="../js/jquery-3.4.1.min.js"></script>
+    <script> 
+        $(function(){
+            //滑鼠移到id為mybox的div上時顯示id為tooltip的div內容
+            //滑鼠離開id為mybox的div上時隱藏id為tooltip的div內容
+            //pageX--滑鼠相對於文件左邊的位置
+            //pageY--滑鼠相對於文件頂部的位置
+            $('#mybox').hover(over,out)
+                        .mousemove(move)
+            var tip = $('#tooltip');
+            function over(){
+                tip.show();
+            }
+            function out(){
+                tip.hide();
+            }
+            function move(evt){
+                console.log(evt.pageX);
+                console.log(evt.clientX);
+                console.log(evt)
+                var x = evt.pageX + 15
+                var y = evt.pageY + 15
+                tip.css({
+                    'left': x + 'px',
+                    'top': y + 'px'
+                })
+            }            
+
+            //取得滑鼠在頁面上的位置座標，設定於id為log元素                       
+
+      
+        });
+    </script>  
+
+</body>
+</html>

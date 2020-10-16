@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <title>04hasClass.html</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        .color {
+            width: 48px;
+            height: 48px;
+            margin: 10px;
+            border-radius: 50%;
+        }
+
+        .bg {
+            border: 5px solid blue;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="py-2">
+            <button id="has" type="button" class="btn btn-primary">has</button>
+        </div>
+        <div class="row py-2">
+            <div class="col-6 d-flex">
+                <div class="color has" style="background: red"></div>
+                <div class="color" style="background: yellow"></div>
+                <div class="color has" style="background: green"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script>
+        $(function () {
+            $("#has").click(function () {
+                $(".color").each(function () {
+                    if ($(this).hasClass("has")) {
+                        $(this).addClass("bg");
+                    }
+                })
+            })
+        })
+    </script>
+
+
+</body>
+
+</html>

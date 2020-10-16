@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <title>04fetch.html</title>
+</head>
+<body>
+    <div id="theDiv"></div>
+    <script>
+    fetch('ajaxText.txt')
+        .then(response=>{
+        // var responseT=response.text();
+        // console.log(responseT);
+        // return responseT;
+        console.log(response.status,response.ok);
+        if (!response.ok) throw new Error(response.statusText)
+            return response.text();
+        })
+        .then(txt=>{
+        document.getElementById('theDiv').innerHTML = txt;
+        });    
+    </script>
+</body>
+</html>

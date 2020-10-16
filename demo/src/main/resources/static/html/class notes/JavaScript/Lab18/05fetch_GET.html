@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <title>05fetch_GET.html</title>
+</head>
+<body>
+    <div id="myDiv"></div>
+    <script>
+        const uri ="first.jsp?name=Jack&age=25";
+
+        fetch(uri, {method:'GET'})
+        .then(res => {
+            return res.text();   // 使用 text() 可以得到純文字 String
+        }).then(result => {            
+            console.log(result); // Hello Jack,You are 25 years old.
+            let myDiv=document.querySelector("#myDiv");
+            myDiv.innerHTML=result;
+        });
+    </script>
+</body>
+</html>

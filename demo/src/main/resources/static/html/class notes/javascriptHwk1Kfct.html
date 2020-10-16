@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JavaScript Homework 1. 使用Table印出九九乘法表</title>
+    <style>
+        .tb1 {
+            width: 400px;
+            border: 3px solid #0072E3;
+            border-collapse: collapse;
+        }
+        thead {
+            background-color:	#2894FF;
+            text-transform:uppercase;
+            color:#ffffff;
+        }
+        tbody {
+            background-color: #C4E1FF;
+            /* text-align:center;  文字水平對齊 left,right,center */
+        }
+        /* tbody tr:nth-child(2n) { 
+             /* background-color: #84C1FF; 
+        } */
+        /* tbody tr:nth-child(2n+1) {
+            background-color:	#C4E1FF;
+        } */
+    </style>
+</head>
+
+<body>
+
+    <script>
+        function tableCreate() {
+            //create table element
+            var body = document.body,
+                tbl = document.createElement('table');
+            tbl.style.borderTop = '3px solid #0072E3';
+            tbl.style.borderRight = '3px solid #0072E3';
+            tbl.style.borderBottom = '3px solid #0072E3';
+            tbl.style.borderLeft = '1px solid #0072E3';
+            //tbl.style.borderCollapse = collapse;
+            tbl.style.borderSpacing = 0;
+
+            for (var i = 0; i < 10; i++) {
+                var tr = tbl.insertRow();
+                
+                for (var j = 2; j < 10; j++) {
+                    if (i == 0 | j==0) {
+                        continue;
+                    } else {
+                        var td = tr.insertCell();
+                        td.appendChild(document.createTextNode(j+'*'+i+"="+(i*j)));
+                        td.style.textAlign = 'left';
+                        td.style.borderLeft = '2px solid #0072E3';
+                        td.style.color='red';
+                    }
+                }
+            }
+            body.appendChild(tbl);
+        }
+        tableCreate();
+    </script>
+</body>
+
+</html>

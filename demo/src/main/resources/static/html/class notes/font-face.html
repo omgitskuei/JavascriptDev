@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--^Designates this as an English webpage-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="author" content="Kuei-Feng Tung">
+    <meta name="keywords" content="Fonts Exercise">
+    <meta name="date" content="2019/11/04">
+    <meta name="description" content="Proof of concept for linking font styles from online">
+    <meta name="generator" content="Visual Studio Code">
+    <link rel="stylesheet" href="css/fontlink.css">
+    <!--^Linking external .css sheet to this html page-->
+    <script>
+        document.createElement("article");
+        document.createElement("header");
+        document.createElement("footer");
+        document.createElement("nav");
+        document.createElement("figure");
+        document.createElement("figcaption");
+        /*Helps older versions of Internet Explorer (IE) understand HTML5 headers*/
+    </script>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Wallpoet&display=swap">
+
+    <style>
+        /*Write style exceptions here*/
+        .justOld {
+            font-family: JustOldFashion;
+            border: black;
+        }
+
+        .wallPoet {
+            font-family: 'Wallpoet', cursive;
+            border: black;
+        }
+
+        @font-face {
+            src: url(font/JustOldFashion.ttf);
+            font-family: JustOldFashion;
+        }
+
+        
+        @import url("https://fonts.googleapis.com/css?family=Wallpoet&display=swap");
+        
+    </style>
+
+    <title>Fonts</title>
+    <!--^Web browser tab display name-->
+</head>
+
+<body>
+    <header>
+        <!-- Company Logo, etc -->
+        <h1>Kuei's Plantarium</h1>
+        <hgroup>
+            <p>A quick guide to plants written by an enthusiat</p>
+            <!-- Company slogan, etc -->
+
+        </hgroup>
+        <nav>
+            <!-- Navigation bar-->
+        </nav>
+    </header>
+
+    <article>
+        <!-- Division for webpage content -->
+        <h2>Plant Profile: Tillandsia</h2>
+        <h3>Overview</h3>
+        <figure class="imgFloatL figStyle">
+            <img src="images\220px-Tillandsia_fasciculata.jpg" alt="[Tillandsia Image]"
+                title="A blooming Tillandsia specimen" width="300px">
+            <figcaption>
+                <b>Fig. 1</b> A blooming Tillandsia Fasciculata, on tree branch in Brazil.
+            </figcaption>
+        </figure>
+        <p>
+            <span class=justOld>Tillandsia is a gichomes)</span>capable of rapidly absorbing <span class=wallPoet>capable of rapidly absorbing water that gathers</span>  on them.
+        </p></br>
+        <h3></h3>
+        <p>
+        </p></br>
+
+        <footer>
+
+        </footer>
+    </article>
+
+    <aside>
+        <!-- Sidebar -->
+        <nav>
+
+        </nav>
+        <section>
+
+        </section>
+    </aside>
+
+    <footer>
+        <section>
+            <!-- Copyright info -->
+        </section>
+        <nav>
+
+        </nav>
+        <address>
+
+        </address>
+    </footer>
+    <script>
+        /* ^overrides styles*/
+    </script>
+</body>
+
+</html>

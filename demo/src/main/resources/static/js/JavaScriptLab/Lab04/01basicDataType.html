@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <title>01basicDataType.html</title>
+</head>
+<body>
+    <script>
+        //數字變數
+        var a=10;
+        console.log("a="+a+" typeof a="+typeof a);  //number
+
+
+        //字串變數
+        a="abc";
+        console.log("a="+a+" typeof a="+typeof a);  //string
+
+        //布林變數             
+        var b=true;
+        console.log("b="+b+" typeof b="+typeof b);
+        var c=b+1;
+        console.log("c="+c+" typeof c="+typeof c);
+        console.log("c="+c);
+        // if(c){
+        //     alert(true);
+
+        // }else{
+        //     alert(false);
+        // }
+        var n=null;
+        console.log("n="+n+" typeof n="+typeof n);  //typeof n=object(datatype) ,Object==>class
+        var u;
+        
+        console.log("u="+u+" typeof u="+typeof u);  //default value ,datatype
+
+
+        //資料類型的轉換
+        //轉換為數值number
+        //parseInt,parseFloat,Number
+        console.log("parseInt('123.45')="+parseInt('123.45'));  //123
+        console.log("parseInt('12a3.45')="+parseInt('12a3.45'));
+        console.log("parseInt('a123.45')="+parseInt('a123.45'));
+
+
+        console.log("Number('123.45')="+Number('123.45'));
+        console.log("Number('12a3.45')="+Number('12a3.45'));
+        console.log("Number('a123.45')="+Number('a123.45'));//NaN not a number
+
+
+        //轉換為字串string
+        var age=29;
+        console.log(age+"years age");
+        console.log(typeof (age+"years age"));  //string
+
+
+        var strAge=age.toString();
+        console.log(typeof strAge);
+            
+        console.log(typeof String(age));
+    
+    
+        </script>
+</body>
+</html>

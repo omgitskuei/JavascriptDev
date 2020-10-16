@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <title>03setclock.html</title>
+
+</head>
+<body> 
+    <!-- <img alt="" src="Images/0.gif" /><img alt="" src="Images/1.gif" />:
+    <img alt="" src="Images/2.gif" /><img alt="" src="Images/3.gif" />
+    -->
+    <img alt="" id="picH1" /><img alt="" id="picH2" />:
+    <img alt="" id="picM1" /><img alt="" id="picM2" />:
+    <img alt="" id="picS1" /><img alt="" id="picS2" />
+   
+    <script>        
+    //    document.getElementById("picS1").src="Images/1.gif";
+    //    document.querySelector("#picS2").src="Images/2.gif";
+    function setclock(){
+        //建立日期
+        var d=new Date();
+        //取得秒數，分割為兩位數
+        var s=d.getSeconds();
+        // alert(s);
+        var s1=parseInt(s/10);
+        // alert(s1)
+        var s2=s%10;
+
+        //顯示圖片，對應秒數
+        document.getElementById("picS1").src=`Images/${s1}.gif`;  //es6
+        document.querySelector("#picS2").src="Images/"+s2+".gif";  //es5
+    }
+        window.setInterval(setclock,1000);
+        setclock();
+    </script>
+</body>
+</html>

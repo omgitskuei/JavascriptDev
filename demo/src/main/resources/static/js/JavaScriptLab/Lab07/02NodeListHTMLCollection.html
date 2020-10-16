@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+    
+</head>
+<body>
+    <form >
+        name:<input type="text" id="idName" name="txtName" value="abc" /><span id="idsp"></span><br />
+        <input type="checkbox" name="hobby" class="hobbyClass" checked="checked" value="reading" />reading
+        <input type="checkbox" name="hobby" class="hobbyClass" value="movie" />movie
+        <input type="checkbox" name="hobby" class="hobbyClass" value="game" />game
+        <!--<input type="checkbox" name="hobby" value="sleep" />sleep-->
+        <br />
+        <input id="idcheck" type="button" value="check" onclick="check()" />
+
+
+        <script>
+                /*
+                JavaScript物件種類
+                1.原生(Native)物件-- 是由ECMAScript規格所定義的物件或物件類別。
+                                    例如， Date，Array，function，RegExp
+
+                2.主機(host)物件--  由JavaScript執行環境所定義的物件(例如Web瀏覽器)。
+                                    客戶端用來表示網頁結構的HTMLElement物件
+                                    (https://developer.mozilla.org/en-US/docs/Web/API)
+
+                3.使用者定義(User-defined)物件--使用JavaScript程式碼所建立的物件
+                */
+
+                //[object class] 一個物件的類別(class)屬性是個字串，提供關於該物件的種類的資訊
+                /*
+                https://www.w3.org/TR/dom/#old-style-collections:-nodelist-and-htmlcollection
+                NodeList 與 HTMLCollection : 這些物件是唯讀的類陣列物件(array-like objects)
+                1.NodeList物件 : 有length 屬性和item(index)方法,[]
+                2.HTMLCollection物件 : 有length 屬性和item(index)方法,[],namedItem(name)
+                */
+        
+               
+                function check() {
+                  
+                    // //NodeList
+                    // var theHobbys = document.getElementsByName("hobby");
+                    // alert(theHobbys);  //[object NodeList]  [object class]
+                    // var theHobbysLen = theHobbys.length;
+                    
+                    // console.log(theHobbys);
+                    // // for (var i = 0; i < theHobbysLen; i++) {
+                    // //     //console.log(theHobbys.item(i).value);
+                    // //     console.log(theHobbys[i].value);
+                    // // }
+                 
+        
+        
+                 
+                    //HTMLCollection
+                    // var theInputs = document.getElementsByTagName("input");
+                    // alert(theInputs);  //[object HTMLCollection]
+                    // var theInputsLen = theInputs.length;
+                    // console.log(theInputs);
+        
+                    // for (var i = 0; i < theInputsLen; i++) {
+                    //     //console.log(theInputs.item(i).value);
+                    //     //console.log(theInputs[i].value);                    
+                    // }
+                    //console.log(theInputs.namedItem("txtName").value);  //abc
+                    //console.log(theInputs.namedItem("hobby").value);  //reading 傳回第一個
+                    //console.log(theInputs["hobby"].value);
+               
+        
+        
+                    
+                    //HTMLCollection
+                    var theHobbyClass = document.getElementsByClassName("hobbyClass");
+                    //alert(theHobbyClass); //HTMLCollection
+                    var theHobbyClassLen = theHobbyClass.length;
+                    // for (var i = 0; i < theHobbyClassLen; i++) {
+                    //     //console.log(theHobbyClass.item(i).value);
+                    //     //console.log(theHobbyClass[i].value);                    
+                    // }
+                    // console.log(theHobbyClass.namedItem("hobby").value);  //reading 傳回第一個
+                    
+                }
+            </script>
+        
+    </form>
+</body>
+</html>

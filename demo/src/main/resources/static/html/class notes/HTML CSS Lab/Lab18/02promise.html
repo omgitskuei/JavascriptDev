@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <title>02promise.html</title>
+</head>
+<body>
+    <script>
+        var isMomHappy=true;
+        let willIGetNewPhone = new Promise(function (resolve, reject) {
+            if (isMomHappy) {
+                let phone = {
+                    brand: 'apple',
+                color: 'black',
+                type: 'iPhone 11 Pro'
+                }
+                resolve(phone)
+            } else {
+                let reason = new Error('Mom is unhappy')
+                reject(reason)
+            }
+        });
+
+        function askMom () {
+            willIGetNewPhone.then(function (fulfilled) {
+                console.log(fulfilled)
+            }).catch(function (error) {
+                console.log(error)
+            })
+        }
+
+        askMom();
+    </script>
+</body>
+</html>

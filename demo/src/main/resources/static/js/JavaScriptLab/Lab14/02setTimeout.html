@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <title>02setTimeout.html</title>
+</head>
+<body>    
+	<input type="button" id="idbutstop" value="停止轉向連結" onclick="stopf()" />
+
+    <script>   
+        // window.setTimeout(f,2000);
+        // function f(){
+        //     alert("f");
+        // }
+
+        // window.setTimeout(function (){
+        //     alert("f");
+        // },2000);
+            
+        // var f=()=>{
+        //     alert("f");
+        // }
+        // window.setTimeout(f,2000);
+
+         
+        // window.setTimeout(()=>{
+        //     alert("f");
+        // },2000);
+        
+        
+
+        // document.getElementById("idbutstop").onclick=stopf;  //事件繫結      
+
+        function stopf() {
+                //window.clearTimeout-停止計時器            
+                window.clearTimeout(t);
+        }
+
+        // //轉向連結到 http://taipei.iiiedu.org.tw
+        // slide80,location.href-轉向連結到其它網址
+        function f2(){
+            location.href="http://tw.yahoo.com";
+        }
+        var t=window.setTimeout(f2,2000);
+        
+    </script>
+    
+</body>
+</html>

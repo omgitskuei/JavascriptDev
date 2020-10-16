@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <title>05eventObject.html</title>
+</head>
+<body>
+    <!--HTML屬性事件處理程序-->
+    <input type="button" id="idmouse1" value="HTML屬性事件" onmousedown="mouseDown(event);" />
+    <!--avaScript屬性事件處理程序-->
+    <input type="button" id="idmouse2" value="JavaScript屬性事件" />
+    <!--W3C DOM 事件處理程序-->
+    <input type="button" id="idmouse3" value="W3C DOM 事件處理程序" />
+    
+    <script>
+        function mouseDown(nsevent) {  //以event物件作為參數來使用                
+            console.log(nsevent.type);
+            console.log(nsevent.button);
+            console.log(nsevent);
+        }
+        
+        //JavaScript屬性事件處理程序            
+        document.getElementById("idmouse2").onmousedown = mouseDown;
+
+        //W3C DOM 事件處理程序           
+        document.getElementById("idmouse3").addEventListener("mousedown", mouseDown);  //事件繫結                                                   
+    </script>
+        
+</body>
+</html>

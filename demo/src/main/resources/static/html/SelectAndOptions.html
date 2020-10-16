@@ -1,49 +1,125 @@
 <!DOCTYPE html>
 <html>
+
 <body>
 
-<script type="text/javascript"></script>
+    <!--
+<script src="/demo/src/main/resources/static/js/SelectAndOptions.js" type="text/javascript"></script>  
+-->
+    <article>
 
-<h3>A demonstration of how to access a SELECT element</h3>
+        <h3>The SELECT element</h3>
 
-<select id="mySelect" size="10">
-  <option>Apple</option>
-  <option>Pear</option>
-  <option>Banana</option>
-  <option>Orange</option>
-</select>
+        <div class="column" id="column1">
+            <h4>mySelect:</h5>
+                <select id="mySelect" size="10" style="width:150px">
+                    <option>Apple</option>
+                    <option>Pear</option>
+                    <option>Banana</option>
+                    <option>Orange</option>
+                </select>
+        </div>
 
-<p>Click the button to get the number of option elements found in a drop-down list.</p>
+        <div class="column" id="column2">
+            <!-- Add options -->
+            <div>
+                <h5>Click to add an array of Options objects to the Select</h5>
+                <textarea id="addArrayTextarea" rows="4" cols="50">A textarea representing an empty array.</textarea>
+                <button onclick="f8()">addArrayOfOptionsToSelect</button>
+            </div>
+            <div>
+                <h5>Click to append a new option to the end of the select</h5>
+                <input type="text" id="addOptionText" placeholder="Enter an option text" />
+                <input type="text" id="addOptionValue" placeholder="Enter an option value" />
+                <button onclick="f4()">addOption</button>
+            </div>
+            <!-- Return options -->
+            <div>
+                <h5>Click to return all current options</h5>
+                <button onclick="f1()">getAllOptions</button>
+            </div>
+            <div>
+                <h5>Click to return the selected option</h5>
+                <button onclick="f2()">getSelectedOption</button>
+            </div>
+            <div>
+                <h5>Click to returns an array of all selected options</h5>
+                <button onclick="f3()">getAllSelectedOptions</button>
+            </div>
+            <div>
+                <h5>Click to return an option's value</h5>
+                <input type="text" id="getOptionValueByOptionTextInput" placeholder="Enter an option text" />
+                <button onclick="f7()">getOptionValuesByOptionText</button>
+            </div>
+            <!-- Remove options -->
+            <div>
+                <h5>Click to remove all options with a particular value</h5>
+                <input type="text" id="removeAllOptionsByValueInput" placeholder="Enter an option value" />
+                <button onclick="f5()">removeAllOptionsByValue</button>
+            </div>
+            <div>
+                <h5>Click to remove all current options</h5>
+                <button onclick="f6()">removeAllOptions</button>
+            </div>
+            <!-- Modify Select -->
+            <div>
+                <h5>Click to modify Select's size attribute</h5>
+                <input type="text" id="selectSizeInput" />
+                <button onclick="f9()">setSelectSize</button>
+            </div>
+        </div>
 
-<button onclick="f1()">getAllOptions</button>
-<button onclick="f2()">getSelectedOption</button>
-<button onclick="f3()">getAllSelectedOptions</button>
-<button onclick="f4()">addOption</button>
-<button onclick="f5()">removeAllOptionsByValue</button>
-<button onclick="f6()">removeAllOptions</button>
+        <div>
+            <h4>Console:</h4>
+            <textarea id="consoleTextarea" rows="4" cols="50">Returned results will appear here.</textarea>
+        </div>
 
-<p id="jsFiddleBackup">https://jsfiddle.net/z18yohaq/</p>
+    </article>
 
-<script>
-function f1() {
-  getAllOptions("mySelect");
-}
-function f2() {
-    getSelectedOption("mySelect");
-}
-function f3() {
-    getAllSelectedOptions("mySelect");
-}
-function f4() {
-    addOption("mySelect", "Peas", "Peas");
-}
-function f5() {
-    removeAllOptionsByValue("mySelect", "Peas");
-}
-function f6() {
-    removeAllOptions("mySelect");
-}
-</script>
+
+    <script>
+        var arrayOfOptions = [];
+
+        function f1() {
+            arrayOfOptions = getAllOptions("mySelect");
+        }
+        function f2() {
+            getSelectedOption("mySelect");
+        }
+        function f3() {
+            getAllSelectedOptions("mySelect");
+        }
+        function f4() {
+            addOption(
+                "mySelect",
+                document.getElementById("addOptionText").value,
+                document.getElementById("addOptionValue").value);
+        }
+        function f5() {
+            removeAllOptionsByValue(
+                "mySelect",
+                document.getElementById("removeAllOptionsByValueInput").value);
+        }
+        function f6() {
+            removeAllOptions("mySelect");
+        }
+        function f7() {
+            getOptionValuesByOptionText(
+                "mySelect",
+                document.getElementById("getOptionValueByOptionTextInput").value);
+        }
+        function f8() {
+            addArrayOfOptionsToSelect("mySelect", arrayOfOptions);
+        }
+
+        function f9() {
+            setSelectSize(
+                "mySelect",
+                document.getElementById("selectSizeInput").value);
+        }
+
+    </script>
 
 </body>
+
 </html>

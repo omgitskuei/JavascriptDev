@@ -79,42 +79,43 @@
 
     <script>
         var arrayOfOptions = [];
+        var selectID = "mySelect";
 
         function f1() {
-            arrayOfOptions = getAllOptions("mySelect");
+            arrayOfOptions = getAllOptions(selectID);
         }
         function f2() {
-            getSelectedOption("mySelect");
+            getSelectedOption(selectID);
         }
         function f3() {
-            getAllSelectedOptions("mySelect");
+            getAllSelectedOptions(selectID);
         }
         function f4() {
             addOption(
-                "mySelect",
+                selectID,
                 document.getElementById("addOptionText").value,
                 document.getElementById("addOptionValue").value);
         }
         function f5() {
             removeAllOptionsByValue(
-                "mySelect",
+                selectID,
                 document.getElementById("removeAllOptionsByValueInput").value);
         }
         function f6() {
-            removeAllOptions("mySelect");
+            removeAllOptions(selectID);
         }
         function f7() {
             getOptionValuesByOptionText(
-                "mySelect",
+                selectID,
                 document.getElementById("getOptionValueByOptionTextInput").value);
         }
         function f8() {
-            addArrayOfOptionsToSelect("mySelect", arrayOfOptions);
+            addArrayOfOptionsToSelect(selectID, arrayOfOptions);
         }
 
         function f9() {
             setSelectSize(
-                "mySelect",
+                selectID,
                 document.getElementById("selectSizeInput").value);
         }
 

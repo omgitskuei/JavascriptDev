@@ -1,4 +1,3 @@
-
 /**
 getAllOptions() - Returns Array of All Options in Select element
  */
@@ -152,6 +151,7 @@ function addArrayOfOptionsToSelect(targetSelectID, arrayOfOptions) {
     debugString = debugString.concat("]");
     console.log(debugString);
 }
+
 
 
 

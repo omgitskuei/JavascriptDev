@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html>
+<!-- Goal: Create a login form with validation for Name, Password, Date -->
+
 <head>
-    <meta charset="UTF-8">    
+    <meta charset="UTF-8">
     <title>HW02.html</title>
     <style>
         fieldset {
-            background-color: rgba(51, 230, 214,0.5);
-            border: 3px double #AFEEEE;
+            background-color: rgb(238, 217, 124);
+            border: 3px double #463e1a;
         }
 
         legend {
             font-size: 30px;
-            color: #AFEEEE;
+            color: #435a70;
             text-shadow: 5px 5px 10px gray;
         }
 
@@ -25,6 +27,7 @@
             float: left;
             text-align: center;
         }
+
         div {
             margin-bottom: 10px;
         }
@@ -33,43 +36,162 @@
             margin-top: 5px;
             margin-left: 100px;
         }
+
+        .errorMsg {
+            color: #be1e1e;
+        }
     </style>
 </head>
+
 <body>
     <form action="#" method="get">
         <fieldset>
             <legend>Form Check</legend>
             <div>
                 <label for="name">姓名：</label>
-                <input type="text"  id="idName" autocomplete="off" placeholder="請輸入姓名" />
-                <span id="nameCheck"></span>
+                <input type="text" id="nameInput" autocomplete="off" placeholder="請輸入姓名" />
+                <span id="nameSpan" class="errorMsg"></span>
                 <br />
-                <p>(不可空白,至少兩個字且必須為中文字)</p>
+                <p>(不可空白,至少兩個字且必須為English, 兩個字且必須為中文字)</p>
             </div>
             <div>
                 <label for="pwd">密碼：</label>
-                <input type="password" id="idPwd" placeholder="請輸入密碼" />
-                <span id="pwdCheck"></span>
+                <input type="password" id="pwdInput" placeholder="請輸入密碼" />
+                <span id="pwdSpan" class="errorMsg"></span>
                 <br />
-                <p>(不可空白,不包含中文字,至少6個字且必須包含英文字母、數字、特殊字元[[!@#$%^&*])</p>
+                <p>(不可空白,不包含中文字,至少6個字且必須包含英文字母、數字、特殊字元[!@#$%^&*])</p>
             </div>
             <div>
                 <label for="date">日期：</label>
-                <input type="text" id="idDate" placeholder="ex:2000/2/29" />
-                <span id="dateCheck"></span>
+                <input type="date" id="dateInput" placeholder="ex:2000/2/29" />
+                <span id="dateSpan" class="errorMsg"></span>
                 <br />
                 <p>(格式：西元年/月/日 ex:2000/2/29)</p>
             </div>
             <p>
-                <input type="reset" value="Reset" />
-                <input type="button" id="btnsubmit" value="Submit" />
+                <input type="reset" id="resetBtn" value="Reset" />
+                <input type="button" id="submitBtn" value="Submit" />
             </p>
-        </fieldset>    
-        
+        </fieldset>
+
     </form>
 
-    <script>        
-        
+    <script>
+        // listen for Btn Submit being clicked
+        document.getElementById("submitBtn").addEventListener(
+            "click",
+            function () {
+                console.log("Clicked Submit button");
+                // constant Chinese characters in unicode
+                const REGEX_CHINESE = /[\u4e00-\u9fff]|[\u3400-\u4dbf]|[\u{20000}-\u{2a6df}]|[\u{2a700}-\u{2b73f}]|[\u{2b740}-\u{2b81f}]|[\u{2b820}-\u{2ceaf}]|[\uf900-\ufaff]|[\u3300-\u33ff]|[\ufe30-\ufe4f]|[\uf900-\ufaff]|[\u{2f800}-\u{2fa1f}]/u;
+                // Spec chars (not including space), english chars, numbers 
+                const REGEX_SPEC = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+                const REGEX_ENG = /[A-Za-z]/;
+                const REGEX_NUM = /[0-9]/;
+                // Counters for valid chars
+                let countSpecChars = 0;
+                let countEngChars = 0;
+                let countNums = 0;
+                let totalValidChars = 0;
+                let thisChar = "";
+                // Validation results
+                let returnValue = false;
+                let validateName = false;
+                let validatePwd = false;
+                let validateDate = true;
+                // get input values
+                let nameInputValue = document.getElementById("nameInput").value;
+                let pwdInputValue = document.getElementById("pwdInput").value;
+                let dateInputValue = document.getElementById("dateInput").value;    // returns format "YYYY-MM-DD"
+                // Reset spans with class=errorMsg
+                document.getElementById("nameSpan").innerHTML = "";
+                document.getElementById("pwdSpan").innerHTML = "";
+                document.getElementById("dateSpan").innerHTML = "";
+
+                // nameInputValue cannot be empty, and must all be chinese or all be english, must be longer than 2 chars regardless of language
+                if (nameInputValue.length === 0) {
+                    // check if empty
+                    document.getElementById("nameSpan").innerHTML = "Name input is empty";
+                    validateName = false;
+                } else {
+                    // reset counters
+                    countEngChars = 0;
+                    countChineseChar = 0;
+                    // check if valid (>=2 english chars, AND >=2 chinese chars)
+                    for (let charIndex = 0; charIndex < nameInputValue.length; charIndex++) {
+                        thisChar = nameInputValue.substring(charIndex, charIndex + 1);
+                        if (REGEX_ENG.test(thisChar)) {
+                            countEngChars = countEngChars + 1;
+                        }
+                        if (REGEX_CHINESE.test(thisChar)) {
+                            countChineseChar = countChineseChar + 1;
+                        }
+                    }
+                    console.log(countEngChars + " and " + countChineseChar)
+                    if ((countEngChars > 2 && countChineseChar == 0) || (countChineseChar > 2 && countEngChars == 0)) {
+                        validateName = true;
+                    } else {
+                        document.getElementById("nameSpan").innerHTML = "Name input must be all English or all Chinese, and longer than 2 characters";
+                        validateName = false;
+                    }
+                }
+                // pwdInputValue cannot be empty, must be longer than 6 valid (spec, english, numbers) chars
+                if (pwdInputValue.length === 0) {
+                    // check if empty
+                    document.getElementById("pwdSpan").innerHTML = "Pwd input is empty";
+                    validatePwd = false;
+                } else {
+                    // reset counters
+                    countSpecChars = 0;
+                    countEngChars = 0;
+                    countNums = 0;
+                    totalValidChars = 0;
+                    // check if valid (no chinese chars,>6 english chars, numbers, spec-chars [!@#$%^&*])
+                    for (let charIndex = 0; charIndex < pwdInputValue.length; charIndex++) {
+                        thisChar = pwdInputValue.substring(charIndex, charIndex + 1);
+                        // check if contains chinese (if contains, fail)
+                        if (REGEX_CHINESE.test(thisChar)) {
+                            document.getElementById("pwdSpan").innerHTML = "Pwd contains invalid char;" + thisChar + " is chinese.";
+                            validatePwd = false;
+                        } else {
+                            // check if contains spec-chars
+                            if (REGEX_SPEC.test(thisChar)) {
+                                countSpecChars = countSpecChars + 1;
+                            }
+                            // check if contains english
+                            if (REGEX_ENG.test(thisChar)) {
+                                countEngChars = countEngChars + 1;
+                            }
+                            // check if countains numbers
+                            if (REGEX_NUM.test(thisChar)) {
+                                countNums = countNums + 1;
+                            }
+                        }
+                    }
+                    totalValidChars = countSpecChars + countEngChars + countNums;
+                    if (totalValidChars < 6) {
+                        document.getElementById("pwdSpan").innerHTML = "Invalid Pwd; must be 6 characters or longer";
+                        validatePwd = false;
+                    } else {
+                        validatePwd = true;
+                    }
+                }
+                // dateInputValue cannot be empty
+                if (dateInputValue.length === 0) {
+                    // check if empty
+                    document.getElementById("dateSpan").innerHTML = "Date input is empty";
+                    validateDate = false;
+                }
+                if (validateName && validatePwd && validateDate) {
+                    returnValue = true;
+                }
+                console.log(`Name = ${nameInputValue}, Pwd = ${pwdInputValue}, Date = ${dateInputValue}`);      // this is called "Template Literals" or "Template Strings using backtick ` and dollar sign $ plus curly brackets {} for variables"
+                console.log("Submit validation results: " + returnValue);
+                return returnValue;
+            }
+        );
+
     </script>
 </body>
+
 </html>

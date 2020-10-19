@@ -1,24 +1,102 @@
 <!DOCTYPE html>
 <html>
+<!-- Goal: Create a 9x9 multiplication table using javascript and inserting it into a div-->
+
 <head>
-    <meta charset="UTF-8">    
+    <meta charset="UTF-8">
     <title>HW01.html</title>
     <style>
         table {
-            border: 2px solid #0026ff;
-            background-color: #0ff;
+            border: 2px solid darkblue;
+            background-color: lightblue;
             border-collapse: collapse;
         }
-    
+
         td {
-            border: 1px solid #0026ff;
-            color: fuchsia;
+            border: 1px solid #239e83;
+            color: rgb(32, 70, 32);
         }
-    </style>    
+    </style>
 </head>
+
 <body>
+    <div id="notesDiv" style="float: right;">
+        What happens if I add another row (newRow2) at the first row? <br />
+        It pushes the previous first row to the second row. <br />
+
+        What happens if I add a third cell (newCell32) even though up until now, there's only been 2 cells per
+        row?<br />
+        It pushes the borders and 'expands the row' but the other cells, same column, remain empty.<br />
+    </div>
+
+    <div id="tableDiv">
+        <!-- Insert a table here via javascript -->
+    </div>
     <script>
-        
+        // Create a new table
+        let newTable = document.createElement("table");
+        newTable.id = "newTable";
+
+        // Insert a new <tr> table row called newRow 
+        let newRow = newTable.insertRow(0);     // position (0), first row, top of table
+        // Insert a new Cell into newRow
+        let newCell1 = newRow.insertCell(0);
+        // Add content to new Cell
+        newCell1.innerHTML = "NEW CELL1";
+        // Repeat
+        let newCell2 = newRow.insertCell(1);
+        newCell2.innerHTML = "NEW CELL2";
+
+        // NOTES;
+        let newRow2 = newTable.insertRow(0);
+        // What happens if I add another row (newRow2) at the first row?
+        // It pushes the previous first row to the second row.
+        let newCell12 = newRow2.insertCell(0);
+        newCell12.innerHTML = "Overlap CELL1";
+        let newCell22 = newRow2.insertCell(1);
+        newCell22.innerHTML = "Overlap CELL2";
+        let newCell32 = newRow2.insertCell(2);
+        // What happens if I add a third cell (newCell32) even though up until now, there's only been 2 cells per row?
+        // It pushes the borders and 'expands the row' but the other cells, same column, remain empty
+        newCell32.innerHTML = "Overlap CELL3"
+        // Insert newTable into div
+        let tableDiv = document.getElementById("tableDiv");
+        tableDiv.append(newTable);
+    </script>
+
+    <br />
+
+    <div id="multiplicationTableDiv">
+        <!-- Insert the multiplication table here-->
+    </div>
+    <script>
+        // Create a new table
+        let mulTable = document.createElement("table");
+        mulTable.id = "mulTable";
+
+        let noOfColumns = 9;
+        let noOfRows = 9;
+
+        // Populate Rows
+        for (let rowIndex = 0; rowIndex < noOfRows; rowIndex++) {
+            let newRow = mulTable.insertRow(rowIndex);
+            // Populate Columns
+            for (let colIndex = 0; colIndex < noOfColumns; colIndex++) {
+                let x = colIndex + 1;
+                let y = rowIndex + 1;
+                let product = x * y;
+
+                // Insert a new Cell into newRow
+                let newCell = newRow.insertCell(colIndex);
+                // Add content to new Cell
+                newCell.innerHTML = x + " * " + y + " = " + product;
+            }
+        }
+
+        // Insert newTable into div
+        let multTableDiv = document.getElementById("multiplicationTableDiv");
+        multTableDiv.append(mulTable);
     </script>
 </body>
+
 </html>

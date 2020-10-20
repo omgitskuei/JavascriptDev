@@ -1,8 +1,21 @@
 /**
+ * Class Option that mirrors the html element Option
+ * Declaration syntax:
+ *     let newOption = new Option(false, "Car", "car");
  * 
- * @param {} targetSelectID 
  */
-
+class Option {
+    // constructor
+    constructor(paramSelected = false, paramText = "", paramValue = "") {
+        this.selected = paramSelected;
+        this.text = paramText;
+        this.value = paramValue;
+    }
+    // class methods
+    toString() {
+        return "{selected=" + this.selected + ", text=" + this.text + ", value=" + this.value + "}";
+    }
+}
 
 /**
  * getAllOptions() - Returns Array of All Options in Select element
@@ -16,7 +29,8 @@ function getAllOptions(targetSelectID) {
             let isOptionSelected = eachOption.selected;
             let optionText = eachOption.text;
             let optionValue = eachOption.value;
-            arrayOfOptions.push({ selected: isOptionSelected, text: optionText, value: optionValue });
+            let newOption = new Option(eachOption.selected, eachOption.text, eachOption.value);
+            arrayOfOptions.push(newOption);
             if (arrayCounter > 0) {
                 debugString = debugString.concat(", \n\r ");
             }
@@ -33,16 +47,18 @@ function getAllOptions(targetSelectID) {
  * getSelectedOption() - Returns the selected Option in a Select element
  */
 function getSelectedOption(targetSelectID) {
-    let debugString = "getSelectedOption(" + targetSelectID + ") returning: \n\r{";
+    // let debugString = "getSelectedOption(" + targetSelectID + ") returning: \n\r{";
+    let debugString = "getSelectedOption(" + targetSelectID + ") returning: \n\r";
     let thisSelect = document.getElementById(targetSelectID);
     let selectedOption = thisSelect.options[thisSelect.selectedIndex];
     if (selectedOption != undefined) {
         let text = thisSelect.options[thisSelect.selectedIndex].text;
         let value = thisSelect.options[thisSelect.selectedIndex].value;
-        selectedOption = { text: text, value: value };
-        debugString = debugString.concat("text : " + text + ", value : " + value);
+        let newOption = new Option(true, text, value);
+        debugString = debugString.concat(newOption);
+    } else {
+        debugString = debugString.concat("{}");
     }
-    debugString = debugString.concat("}");
     console.log(debugString);
     return selectedOption;
 }
@@ -55,17 +71,15 @@ function getAllSelectedOptions(targetSelectID) {
     let arrayOfOptions = [];
     let debugString = "getAllSelectedOptions(" + targetSelectID + ") returning: \n\r[";
     let arrayCounter = 0;
-    Array.from(document.getElementById(targetSelectID).options).forEach(            // document.getElementById(targetSelectID).options is a HTMLCollection object
+    Array.from(document.getElementById(targetSelectID).options).forEach(
         function (eachOption) {
-            let isOptionSelected = eachOption.selected;
-            let optionText = eachOption.text;
-            let optionValue = eachOption.value;
-            if (isOptionSelected == true) {
-                arrayOfOptions.push({ selected: isOptionSelected, text: optionText, value: optionValue });
+            let thisOption = new Option(eachOption.selected, eachOption.text, eachOption.value);
+            if (thisOption.selected == true) {
+                arrayOfOptions.push(thisOption);
                 if (arrayCounter > 0) {
                     debugString = debugString.concat(", \n\r ");
                 }
-                debugString = debugString.concat(arrayCounter + " : {selected : " + isOptionSelected + ", text : " + optionText + ", value : " + optionValue + "}");
+                debugString = debugString.concat(arrayCounter + " : " + thisOption);
                 arrayCounter = arrayCounter + 1;
             }
         }
@@ -85,16 +99,13 @@ function getOptionValuesByOptionText(targetSelectID, targetOptionText) {
     let arrayCounter = 0;
     Array.from(targetSelect.options).forEach(
         function (eachOption) {
-            let isOptionSelected = eachOption.selected;
-            let optionText = eachOption.text;
-            let optionValue = eachOption.value;
-
-            if (targetOptionText == optionText) {
-                arrayOfOptions.push({ selected: isOptionSelected, text: optionText, value: optionValue });
+            let thisOption = new Option(eachOption.selected, eachOption.text, eachOption.value);
+            if (targetOptionText == thisOption.text) {
+                arrayOfOptions.push(thisOption);
                 if (arrayCounter > 0) {
                     debugString = debugString.concat(", \n\r ");
                 }
-                debugString = debugString.concat(arrayCounter + " : {selected : " + isOptionSelected + ", text : " + optionText + ", value : " + optionValue + "}");
+                debugString = debugString.concat(arrayCounter + " : " + thisOption);
                 arrayCounter = arrayCounter + 1;
             }
         }
@@ -116,7 +127,22 @@ function setSelectSize(targetSelectID, size) {
     console.log(debugString);
 }
 
-
+/**
+ * setSelectMultiple - Add/Remove a Select element with attribute 'multiple'
+ * NOTE: it is more user-friendly to use checkboxes instead
+ */
+function setSelectMultiple(targetSelectID, boolMultiple) {
+    let debugString = `setSelectMultiple(${targetSelectID}, ${boolMultiple})`;
+    let targetSelect = document.getElementById(targetSelectID);
+    if (boolMultiple == true) {
+        targetSelect.toggleAttribute("multiple");
+        debugString = debugString.concat(" turned attribute on/true.");
+    } else {
+        targetSelect.toggleAttribute("multiple");
+        debugString = debugString.concat(" turned attribute off/false.");
+    }
+    console.log(debugString);
+}
 
 
 /**
@@ -191,7 +217,7 @@ function removeAllOptionsByValue(targetSelectID, optionValue) {
 }
 
 /**
- * removeAllOptionsByValue() - Remove all options with matching text as param
+ * removeAllOptionsByText() - Remove all options with matching text as param
  */
 function removeAllOptionsByText(targetSelectID, optionText) {
     let debugString = "removeAllOptionsByText(" + targetSelectID + ", " + optionText + ") removed:  \n\r[";
@@ -224,8 +250,7 @@ function removeAllOptionsByText(targetSelectID, optionText) {
 function removeAllOptions(targetSelectID) {
     let targetSelect = document.getElementById(targetSelectID);
     let debugString = "removeAllOptions() removed all " + targetSelect.options.length + " options."
-    let i, L = targetSelect.options.length - 1;
-    for (i = L; i >= 0; i--) {
+    for (let i = targetSelect.options.length - 1; i >= 0; i--) {
         targetSelect.remove(i);
     }
     console.log(debugString);
@@ -235,7 +260,7 @@ function removeAllOptions(targetSelectID) {
  * removeDuplicateOptions() - Removes options with duplicate values and text
  */
 function removeDuplicateOptions(targetSelectID) {
-    let debugString = `removeDuplciateOptions(${targetSelectID}) removed: \n\r[`;
+    let debugString = "removeDuplciateOptions(" + targetSelectID + ") removed: \n\r[";
     let targetSelect = document.getElementById(targetSelectID);
     let arrayOfOptions = Array.from(targetSelect.options);
     let arrayOfUniqueOptions = [];
@@ -250,18 +275,32 @@ function removeDuplicateOptions(targetSelectID) {
         for (let indexUnique = 0; indexUnique < arrayOfUniqueOptions.length; indexUnique++) {
             if (arrayOfUniqueOptions[indexUnique].value == eachValue && arrayOfUniqueOptions[indexUnique].text == eachText) {
                 duplicate = true;
-                debugString.concat("{selected=false, value=" + eachValue + ", text=" + eachText + "},\n\r ");
-                console.log("asdasda");
+                debugString = debugString + "{selected=false, value=" + eachValue + ", text=" + eachText + "},\n\r ";
             }
         }
         if (duplicate === false) {
             arrayOfUniqueOptions.push(eachOption);
         }
     }
-    removeAllOptions(targetSelectID);
-    addArrayOfOptionsToSelect(targetSelectID, arrayOfUniqueOptions);
-    debugString = debugString.substring(0, debugString.length - 1);
-    debugString.concat("]");
+    // same as removeAllOptions()
+    let i, L = targetSelect.options.length - 1;
+    for (i = L; i >= 0; i--) {
+        targetSelect.remove(i);
+    }
+    // same as addArrayOfOptionsToSelect()
+    for (let i = 0; i < arrayOfUniqueOptions.length; i++) {
+        let text = arrayOfUniqueOptions[i].text;
+        let value = arrayOfUniqueOptions[i].value;
+        let newOption = document.createElement('option');
+        newOption.appendChild(document.createTextNode(text));
+        newOption.value = value;
+        targetSelect.appendChild(newOption);
+    }
+    // print out debugString
+    if (arrayOfUniqueOptions.length < arrayOfOptions.length) {
+        debugString = debugString.substring(0, debugString.length - 4);
+    }
+    debugString = debugString + "]";
     console.log(debugString);
     return arrayOfUniqueOptions;
 } 

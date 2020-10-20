@@ -87,6 +87,10 @@
                 <input type="text" id="selectSizeInput" />
                 <button onclick="f9()">setSelectSize</button>
             </div>
+            <div>
+                <h5>Click to modify Select's multiple attribute</h5>
+                <button onclick="f11()">setSelectMultiple</button>
+            </div>
         </div>
 
         <div>
@@ -100,6 +104,7 @@
     <script>
         var arrayOfOptions = [];
         var selectID = "mySelect";
+        let bool = false;
 
         function f1() {
             arrayOfOptions = getAllOptions(selectID);
@@ -143,6 +148,10 @@
             removeDuplicateOptions(selectID);
         }
 
+        function f11() {
+            bool = !bool;       // reverse the boolean (eg. false to true)
+            setSelectMultiple(selectID, bool);
+        }
     </script>
 
 </body>

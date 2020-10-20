@@ -7,14 +7,14 @@ Initially 5 grey'd out stars. The stars become colorized when mouse cursor mouse
     <meta charset="UTF-8">
     <title>HW03.html</title>
     <style>
-        /* Class s turns on greyscale filter over elements
+        /* Class greyscale turns on greyscale filter over elements
         (in this case, a grey star)*/
-        .s {
+        .greyscale {
             -webkit-filter: grayscale(1);
         }
 
-        /* Class n turns off greyscale filter */
-        .n {
+        /* Class colorized turns off greyscale filter */
+        .colorized {
             -webkit-filter: grayscale(0);
         }
     </style>
@@ -23,51 +23,83 @@ Initially 5 grey'd out stars. The stars become colorized when mouse cursor mouse
 <body>
     <div>
         <!-- Note the stars are labeled img[#]-->
-        <img id="img1" class="s" src="images/star.jpg">
-        <img id="img2" class="s" src="images/star.jpg">
-        <img id="img3" class="s" src="images/star.jpg">
-        <img id="img4" class="s" src="images/star.jpg">
-        <img id="img5" class="s" src="images/star.jpg">
+        <img id="img1" class="greyscale star" src="images/star.jpg">
+        <img id="img2" class="greyscale star" src="images/star.jpg">
+        <img id="img3" class="greyscale star" src="images/star.jpg">
+        <img id="img4" class="greyscale star" src="images/star.jpg">
+        <img id="img5" class="greyscale star" src="images/star.jpg">
 
-        <div id="iddiv"></div>
+        <p>ratingDiv stores rating choice, can be hidden, or stored as a javascript var instead of on the document</p>
+        ratingDiv.innerHTML = <span id="ratingDiv">0</span>
+
+        <p>debugDiv prints out latest event</p>
+        debugDiv.innerHTML = <span id="debugDiv"></span>
 
     </div>
 
     <script>
-        // 
-        let flag = true, flag2 = true;
         // get all star imgs and put it into an array
-        let ArrayOfStars = document.querySelectorAll("img.s");
-        // attach mouse-over, mouse-out (opposite of mouse-over), and click events to each star img
+        let ArrayOfStars = document.querySelectorAll("img.star");
+        // attach mouse-over, mouse-out, and click events to each star img
         for (let i = 0; i < ArrayOfStars.length; i++) {
-            ArrayOfStars[i].onmouseover = mouseOver;
-            ArrayOfStars[i].onmouseout = mouseOut;
-            ArrayOfStars[i].onclick = Click;
+            ArrayOfStars[i].onmouseover = mouseOverStar;
+            ArrayOfStars[i].onmouseout = mouseOutStar;
+            ArrayOfStars[i].onclick = clickStar;
         }
-        function mouseOver() {
+        function mouseOverStar() {
             // get star num of the star that's moused-over
             let starNo = this.id.charAt(3);     // 'this.id' returns "img[#]"
-            // turn off greyscale for stars on its left, and itself
-            for (let i = 0; i < starNo; i++) {
-                ArrayOfStars[i].className = "n";    // .n turns off greyscale
-                // console.log(`mouseover=${i}`);
+            let ArrayOfStars = document.querySelectorAll("img.star");
+            // update to colorize up to current star
+            for (let i = 0; i < ArrayOfStars.length; i++) {
+                if (i < starNo) {
+                    // colorize moused-on
+                    ArrayOfStars[i].classList.remove("greyscale");
+                    ArrayOfStars[i].classList.add("colorized");
+                } else {
+                    // greyscale others
+                    ArrayOfStars[i].classList.remove("colorized");
+                    ArrayOfStars[i].classList.add("greyscale");
+                }
             }
-            document.getElementById("iddiv").innerHTML = `Moused-over star img${starNo}`;
-        }
-        function mouseOut() {
-            // get star num of the star that's  moused-out
-            let starNo = this.id.charAt(3);
-            // turn on greyscale for stars on its left, and itself
-            for (let i = 0; i < starNo; i++) {
-                ArrayOfStars[i].className = "s";    // .s turns on greyscale
-                // console.log(`mouseout = ${i} `);
-            }
-            document.getElementById("iddiv").innerHTML = `Moused-out star img${starNo - 1}`;
-        }
-        function Click() {
-            let starNo = this.id.charAt(3);
-            document.getElementById("iddiv").innerHTML = `You give star No = ${starNo}`;
 
+            document.getElementById("debugDiv").innerHTML = `Moused-over star img${starNo}`;
+        }
+        function mouseOutStar() {
+            let starNo = this.id.charAt(3);
+            let choiceNum = parseInt(document.getElementById("ratingDiv").innerHTML);
+            let ArrayOfStars = document.querySelectorAll("img.star");
+            // no prev choice
+            if (choiceNum == "0") {
+                console.log("no choice");
+                // grey all
+                for (let i = 0; i < ArrayOfStars.length; i++) {
+                    ArrayOfStars[i].classList.remove("colorized");
+                    ArrayOfStars[i].classList.add("greyscale");
+                }
+            } else {
+                // there's a previous choice, so revert to it
+                for (let i = ArrayOfStars.length - 1; i >= 0; i--) {
+                    console.log(i);
+                    if (i > choiceNum - 1) {
+                        // grey 
+                        ArrayOfStars[i].classList.remove("colorized");
+                        ArrayOfStars[i].classList.add("greyscale");
+                    } else {
+                        // colorize
+                        ArrayOfStars[i].classList.remove("greyscale");
+                        ArrayOfStars[i].classList.add("colorized");
+                    }
+
+                }
+            }
+
+            document.getElementById("debugDiv").innerHTML = `Moused-out star img${starNo}`;
+        }
+        function clickStar() {
+            let starNo = this.id.charAt(3);
+            document.getElementById("ratingDiv").innerHTML = `${starNo}`;
+            document.getElementById("debugDiv").innerHTML = `Clicked star img${starNo}`;
         }
     </script>
 </body>

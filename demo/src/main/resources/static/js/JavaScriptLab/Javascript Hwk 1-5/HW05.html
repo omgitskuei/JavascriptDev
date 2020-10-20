@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="UTF-8">    
-    <title>HW05.html</title>    
+    <meta charset="UTF-8">
+    <title>HW05.html</title>
 </head>
+
 <body>
     年
     <select id="idSelectYear"></select>
@@ -14,10 +16,11 @@
     <label>選擇日期:</label>
     <span id="idsp"></span>
 
-    <script>            
-        document.getElementById("idSelectYear").addEventListener("change",addDate);
-        document.getElementById("idSelectMonth").addEventListener("change",addDate);
-        document.getElementById("idSelectDate").addEventListener("change",displayDate);
+    <script>
+        document.getElementById("idSelectYear").addEventListener("change", addDate);
+        document.getElementById("idSelectMonth").addEventListener("change", addDate);
+        document.getElementById("idSelectDate").addEventListener("change", displayDate);
+
         for (i = 2011; i < 2021; i++) {     //新增年
             var opt = window.document.createElement("option");
             opt.value = i;
@@ -41,7 +44,7 @@
                 var opts = document.getElementById('idSelectDate').childNodes[0];
                 document.getElementById('idSelectDate').removeChild(opts);
             }
-            
+
             yy = document.getElementById('idSelectYear').value;
             mm = document.getElementById('idSelectMonth').value;
             var date = new Date(yy, mm, 0);
@@ -52,7 +55,7 @@
                 opt.innerHTML = i;
                 document.getElementById('idSelectDate').appendChild(opt);
             }
-            
+
         }
 
         function displayDate() {
@@ -61,4 +64,5 @@
         }
     </script>
 </body>
+
 </html>

@@ -1,43 +1,46 @@
 <!DOCTYPE html>
 <html lang="zh-tw">
+
 <head>
     <meta charset="UTF-8">
     <title>01getElementContent.html</title>
     <style>
-        h{
+        h {
             /* color:red */
         }
     </style>
 
 
 </head>
+
 <body>
     <label>Name:</label>
-     <input type="text" id="idName" value="Tom"><!--  產生idName 物件 -->
-    <input type="button"  value="get" onclick="getElementVal()" >
+    <input type="text" id="idName" value="Tom"><!--  產生idName 物件 -->
+    <input type="button" value="get" onclick="getElementVal()">
     <br>
     <div id="myDiv">xxx</div>
-    
+
     <script>
-            //  1. // 2./* */
-            function getElementVal(){
-                var theDiv=document.getElementById("myDiv");
-                // console.log("hello");
-                var theNameObj=document.getElementById("idName");
-                console.log(theNameObj);  //<input...
-                var theNameObjVal=theNameObj.value;
-                // console.log(theNameObjVal);  //Tom
-                theDiv.innerHTML=theNameObjVal;
-                var theName=document.getElementById("idName").value;  //chain 鏈
-                console.log(theName);  //Tom
-                theNameObj.value="new Value";  //set
-                theNameObjVal=theNameObj.value;  //get
-                // console.log(theNameObj.value);
-                // console.log(theNameObj);
-                // var theDiv=document.getElementById("myDiv");
-                theDiv.innerHTML=theNameObjVal;  //theDiv set
-                alert(theDiv.innerHTML);
-            }
-        </script>
+        //  1. // 2./* */
+        function getElementVal() {
+            var theDiv = document.getElementById("myDiv");
+            // console.log("hello");
+            var theNameObj = document.getElementById("idName");
+            console.log(theNameObj);  //<input...
+            var theNameObjVal = theNameObj.value;
+            // console.log(theNameObjVal);  //Tom
+            theDiv.innerHTML = theNameObjVal;
+            var theName = document.getElementById("idName").value;  //chain 鏈
+            console.log(theName);  //Tom
+            theNameObj.value = "new Value";  //set
+            theNameObjVal = theNameObj.value;  //get
+            // console.log(theNameObj.value);
+            // console.log(theNameObj);
+            // var theDiv=document.getElementById("myDiv");
+            theDiv.innerHTML = theNameObjVal;  //theDiv set
+            alert(theDiv.innerHTML);
+        }
+    </script>
 </body>
+
 </html>

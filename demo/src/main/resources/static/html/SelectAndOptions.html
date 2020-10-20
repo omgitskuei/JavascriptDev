@@ -1,11 +1,26 @@
 <!DOCTYPE html>
 <html>
 
+<head>
+    <meta charset="UTF-8">
+    <title>SelectAndOptions.html</title>
+    <style>
+        body {
+            border: 3px solid black;
+        }
+
+        .column {
+            display: block;
+            margin: auto auto;
+        }
+    </style>
+</head>
+
 <body>
 
-    <!--
-<script src="/demo/src/main/resources/static/js/SelectAndOptions.js" type="text/javascript"></script>  
--->
+
+    <script type="text/javascript" src="../js/references/SelectAndOptions.js"></script>
+
     <article>
 
         <h3>The SELECT element</h3>
@@ -61,6 +76,11 @@
                 <h5>Click to remove all current options</h5>
                 <button onclick="f6()">removeAllOptions</button>
             </div>
+            <div>
+                <h5>Click to remove duplicate options</h5>
+                <button onclick="f10()">removeDuplicateOptions</button>
+            </div>
+
             <!-- Modify Select -->
             <div>
                 <h5>Click to modify Select's size attribute</h5>
@@ -117,6 +137,10 @@
             setSelectSize(
                 selectID,
                 document.getElementById("selectSizeInput").value);
+        }
+
+        function f10() {
+            removeDuplicateOptions(selectID);
         }
 
     </script>

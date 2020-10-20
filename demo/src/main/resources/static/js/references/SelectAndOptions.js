@@ -1,5 +1,11 @@
 /**
-getAllOptions() - Returns Array of All Options in Select element
+ * 
+ * @param {} targetSelectID 
+ */
+
+
+/**
+ * getAllOptions() - Returns Array of All Options in Select element
  */
 function getAllOptions(targetSelectID) {
     let arrayOfOptions = [];
@@ -24,7 +30,7 @@ function getAllOptions(targetSelectID) {
 }
 
 /**
-getSelectedOption() - Returns the selected Option in a Select element
+ * getSelectedOption() - Returns the selected Option in a Select element
  */
 function getSelectedOption(targetSelectID) {
     let debugString = "getSelectedOption(" + targetSelectID + ") returning: \n\r{";
@@ -42,7 +48,8 @@ function getSelectedOption(targetSelectID) {
 }
 
 /**
-getAllSelectedOptions() - Returns ALL selected Option in a (multi) Select element (also works for non-multi selects)
+ * getAllSelectedOptions() - Returns ALL selected Options
+ * This requires a multi-select to work
  */
 function getAllSelectedOptions(targetSelectID) {
     let arrayOfOptions = [];
@@ -69,7 +76,7 @@ function getAllSelectedOptions(targetSelectID) {
 }
 
 /**
-getOptionValueByOptionText() - Returns the option value based on param option text
+ * getOptionValueByOptionText() - Returns option value given param option text
  */
 function getOptionValuesByOptionText(targetSelectID, targetOptionText) {
     let debugString = "getOptionValuesByOptionText(" + targetSelectID + ", " + targetOptionText + ") returned: \n\r[";
@@ -101,7 +108,7 @@ function getOptionValuesByOptionText(targetSelectID, targetOptionText) {
 
 
 /**
-setSelectSize() - Update Select element's size attribute'
+ * setSelectSize() - Update Select element's size attribute'
  */
 function setSelectSize(targetSelectID, size) {
     let debugString = "setSelectSize(" + targetSelectID + ", " + size + ") updated element's attribute size=" + size;
@@ -113,7 +120,7 @@ function setSelectSize(targetSelectID, size) {
 
 
 /**
-addOption - Add a single option with param text and value to a Select element
+ * addOption - Add a single option with param text and value to a Select element
  */
 function addOption(targetSelectID, optionText, optionValue) {
     let debugString = "addOption(" + targetSelectID + ", " + optionText + ", " + optionValue + ") added: \n\r";
@@ -131,7 +138,7 @@ function addOption(targetSelectID, optionText, optionValue) {
 }
 
 /**
-addArrayOfOptionsToSelect - Add an array of Options to a Select element
+ * addArrayOfOptionsToSelect - Add an array of Options to a Select element
  */
 function addArrayOfOptionsToSelect(targetSelectID, arrayOfOptions) {
     let debugString = "addArrayOfOptionsToSelect(" + targetSelectID + ", " + arrayOfOptions + ") added: \n\r[";
@@ -156,7 +163,7 @@ function addArrayOfOptionsToSelect(targetSelectID, arrayOfOptions) {
 
 
 /**
-removeAllOptionsByValue() - Remove all options that have matching values as the param
+ * removeAllOptionsByValue() - Remove all options with matching values as param
  */
 function removeAllOptionsByValue(targetSelectID, optionValue) {
     let debugString = "removeAllOptionsByValue(" + targetSelectID + ", " + optionValue + ") removed:  \n\r[";
@@ -184,7 +191,7 @@ function removeAllOptionsByValue(targetSelectID, optionValue) {
 }
 
 /**
-removeAllOptionsByValue() - Remove all options that have matching values as the param
+ * removeAllOptionsByValue() - Remove all options with matching text as param
  */
 function removeAllOptionsByText(targetSelectID, optionText) {
     let debugString = "removeAllOptionsByText(" + targetSelectID + ", " + optionText + ") removed:  \n\r[";
@@ -212,7 +219,7 @@ function removeAllOptionsByText(targetSelectID, optionText) {
 }
 
 /**
-removeallOptions() - Remove all options in a Select element
+ * removeAllOptions() - Remove all options in a Select element
  */
 function removeAllOptions(targetSelectID) {
     let targetSelect = document.getElementById(targetSelectID);
@@ -223,3 +230,38 @@ function removeAllOptions(targetSelectID) {
     }
     console.log(debugString);
 }
+
+/**
+ * removeDuplicateOptions() - Removes options with duplicate values and text
+ */
+function removeDuplicateOptions(targetSelectID) {
+    let debugString = `removeDuplciateOptions(${targetSelectID}) removed: \n\r[`;
+    let targetSelect = document.getElementById(targetSelectID);
+    let arrayOfOptions = Array.from(targetSelect.options);
+    let arrayOfUniqueOptions = [];
+    // loop through each option
+    for (let index = 0; index < arrayOfOptions.length; index++) {
+        let eachOption = arrayOfOptions[index];
+        let eachValue = eachOption.value;
+        let eachText = eachOption.text;
+        let duplicate = false;
+
+        // check if each is unique;
+        for (let indexUnique = 0; indexUnique < arrayOfUniqueOptions.length; indexUnique++) {
+            if (arrayOfUniqueOptions[indexUnique].value == eachValue && arrayOfUniqueOptions[indexUnique].text == eachText) {
+                duplicate = true;
+                debugString.concat("{selected=false, value=" + eachValue + ", text=" + eachText + "},\n\r ");
+                console.log("asdasda");
+            }
+        }
+        if (duplicate === false) {
+            arrayOfUniqueOptions.push(eachOption);
+        }
+    }
+    removeAllOptions(targetSelectID);
+    addArrayOfOptionsToSelect(targetSelectID, arrayOfUniqueOptions);
+    debugString = debugString.substring(0, debugString.length - 1);
+    debugString.concat("]");
+    console.log(debugString);
+    return arrayOfUniqueOptions;
+} 

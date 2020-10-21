@@ -1,74 +1,54 @@
 /**
-https://www.w3schools.com/js/js_mistakes.asp
+ * https://www.w3schools.com/js/js_mistakes.asp
+ * JavaScript Common Mistakes
+ * This chapter points out some common JavaScript mistakes.
  */
-JavaScript Common Mistakes
-This chapter points out some common JavaScript mistakes.
 
-Accidentally Using the Assignment Operator
-JavaScript programs may generate unexpected results if a programmer accidentally uses an assignment operator (=), instead of a comparison operator (==) in an if statement.
-
-This if statement returns false (as expected) because x is not equal to 10:
-
+/**
+ * Assignment Operator (=) is NOT a comparison operator (==), (===)
+ */
+// Returns false (as expected) because x is not equal to 10:
 var x = 0;
-if (x == 10)
-This if statement returns true (maybe not as expected), because 10 is true:
-
+if (x == 10) { }
+// Returns true (not as expected), because 10 is true:
 var x = 0;
-if (x = 10)
-This if statement returns false (maybe not as expected), because 0 is false:
-
+if (x = 10) { }
+// Returns false (maybe not as expected), because 0 is false:
 var x = 0;
 if (x = 0)
-An assignment always returns the value of the assignment.
 
-Expecting Loose Comparison
-In regular comparison, data type does not matter. This if statement returns true:
-
+  /**
+   * Expecting Loose Comparison
+   */
+  // In regular comparison, data type does not matter. Returns true.
+  var x = 10;
+var y = "10";
+console.log(x == y);
+// In strict comparison, data type does matter. Returns false.
 var x = 10;
 var y = "10";
-if (x == y)
-In strict comparison, data type does matter. This if statement returns false:
-
+if (x === y) { }
+// switch statements ALWAYS use STRICT comparison:
 var x = 10;
-var y = "10";
-if (x === y)
-It is a common mistake to forget that switch statements use strict comparison:
-
-This case switch will display an alert:
-
-var x = 10;
-switch(x) {
-  case 10: alert("Hello");
+switch (x) {
+  case 10: alert("Hello");    // will run
 }
-This case switch will not display an alert:
-
 var x = 10;
-switch(x) {
-  case "10": alert("Hello");
+switch (x) {
+  case "10": alert("Hello");  // will NOT run
 }
 
-Confusing Addition & Concatenation
-Addition is about adding numbers.
+/**
+ * Addition != Concatenation
+ * In JavaScript both operations use the same + operator.
+ */
+var x = 10 + 5;          // x = 15
+var x = 10 + "5";        // x = "105"
 
-Concatenation is about adding strings.
-
-In JavaScript both operations use the same + operator.
-
-Because of this, adding a number as a number will produce a different result from adding a number as a string:
-
-var x = 10 + 5;          // the result in x is 15
-var x = 10 + "5";        // the result in x is "105"
-When adding two variables, it can be difficult to anticipate the result:
-
-var x = 10;
-var y = 5;
-var z = x + y;           // the result in z is 15
-
-var x = 10;
-var y = "5";
-var z = x + y;           // the result in z is "105"
-Misunderstanding Floats
-All numbers in JavaScript are stored as 64-bits Floating point numbers (Floats).
+/**
+ * Misunderstanding Floats
+ * All numbers in JavaScript are stored as 64-bits Floating point numbers(Floats).
+ *
 
 All programming languages, including JavaScript, have difficulties with precise floating point values:
 
@@ -84,7 +64,7 @@ JavaScript will allow you to break a statement into two lines:
 
 Example 1
 var x =
-"Hello World!";
+  "Hello World!";
 But, breaking a statement in the middle of a string will not work:
 
 Example 2
@@ -100,7 +80,7 @@ Because of a misplaced semicolon, this code block will execute regardless of the
 
 if (x == 19);
 {
-  // code block 
+  // code block
 }
 Breaking a Return Statement
 It is a default JavaScript behavior to close a statement automatically at the end of a line.
@@ -109,7 +89,7 @@ Because of this, these two examples will return the same result:
 
 Example 1
 function myFunction(a) {
-  var power = 10 
+  var power = 10
   return a * power
 }
 Example 2
@@ -124,7 +104,7 @@ Because of this, example 3 will also return the same result:
 Example 3
 function myFunction(a) {
   var
-  power = 10; 
+    power = 10;
   return a * power;
 }
 But, what will happen if you break the return statement in two lines like this:
@@ -132,18 +112,18 @@ But, what will happen if you break the return statement in two lines like this:
 Example 4
 function myFunction(a) {
   var
-  power = 10; 
+    power = 10;
   return
   a * power;
 }
 The function will return undefined!
 
-Why? Because JavaScript thought you meant:
+Why ? Because JavaScript thought you meant:
 
 Example 5
 function myFunction(a) {
   var
-  power = 10; 
+    power = 10;
   return;
   a * power;
 }
@@ -151,7 +131,7 @@ Explanation
 If a statement is incomplete like:
 
 var
-JavaScript will try to complete the statement by reading the next line:
+  JavaScript will try to complete the statement by reading the next line:
 
 power = 10;
 But since this statement is complete:
@@ -160,7 +140,7 @@ return
 JavaScript will automatically close it like this:
 
 return;
-This happens because closing (ending) statements with semicolon is optional in JavaScript.
+This happens because closing(ending) statements with semicolon is optional in JavaScript.
 
 JavaScript will close the return statement at the end of the line, because it is a complete statement.
 
@@ -169,11 +149,11 @@ Never break a return statement.
 Accessing Arrays with Named Indexes
 Many programming languages support arrays with named indexes.
 
-Arrays with named indexes are called associative arrays (or hashes).
+Arrays with named indexes are called associative arrays(or hashes).
 
 JavaScript does not support arrays with named indexes.
 
-In JavaScript, arrays use numbered indexes:  
+In JavaScript, arrays use numbered indexes:
 
 Example
 var person = [];
@@ -199,17 +179,17 @@ Ending Definitions with a Comma
 Trailing commas in object and array definition are legal in ECMAScript 5.
 
 Object Example:
-person = {firstName:"John", lastName:"Doe", age:46,}
+person = { firstName: "John", lastName: "Doe", age: 46, }
 Array Example:
 points = [40, 100, 1, 5, 25, 10,];
-WARNING !!
+WARNING!!
 
 Internet Explorer 8 will crash.
 
 JSON does not allow trailing commas.
 
-JSON:
-person = {"firstName":"John", "lastName":"Doe", "age":46}
+  JSON:
+person = { "firstName": "John", "lastName": "Doe", "age": 46 }
 JSON:
 points = [40, 100, 1, 5, 25, 10];
 Undefined is Not Null
@@ -222,18 +202,19 @@ This can make it a little bit difficult to test if an object is empty.
 You can test if an object exists by testing if the type is undefined:
 
 Example:
-if (typeof myObj === "undefined") 
-But you cannot test if an object is null, because this will throw an error if the object is undefined:
+if (typeof myObj === "undefined")
+  But you cannot test if an object is null, because this will throw an error if the object is undefined:
 
 Incorrect:
-if (myObj === null) 
-To solve this problem, you must test if an object is not null, and not undefined.
+if (myObj === null)
+  To solve this problem, you must test if an object is not null, and not undefined.
 
 But this can still throw an error:
 
 Incorrect:
-if (myObj !== null && typeof myObj !== "undefined") 
-Because of this, you must test for not undefined before you can test for not null:
+if (myObj !== null && typeof myObj !== "undefined")
+  Because of this, you must test for not undefined before you can test for not null:
 
-Correct:
-if (typeof myObj !== "undefined" && myObj !== null) 
+    Correct:
+    if (typeof myObj !== "undefined" && myObj !== null)
+*/

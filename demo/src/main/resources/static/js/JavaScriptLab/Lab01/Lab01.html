@@ -1,4 +1,10 @@
 <!DOCTYPE html>
+<!--
+    Lab 1: Script below writes the following onto an empty white page;
+    "EEIT111
+    JavaScript丁"
+-->
+
 <html lang="zh-tw">
 
 <head>
@@ -7,16 +13,13 @@
 </head>
 
 <body>
-    <!--
-        Lab 1: Script below writes the following onto an empty white page;
-        "EEIT111
-        JavaScript丁"
-    -->
+
     <script>
+        // Note there is no flow control here so it runs every time
         document.write("EEIT111<br>JavaScript");    // Notice the <br> ENTER
         document.write("\u4e01");                   // Can write chinese chars
 
-
+        // single line multi-declaration, but i is undefined rn
         let i, L = 5 - 1;
         document.write("i = " + i);
         document.write("L = " + L);

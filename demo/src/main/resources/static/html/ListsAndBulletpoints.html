@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<style>
+    ul {
+        border: 3px solid red;
+    }
+
+    ol {
+        border: 3px solid blue;
+    }
+
+    dl {
+        border: 3px solid green;
+    }
+</style>
+
+<body>
+    <p>Grey border for div, Red for ul, Blue for ol, Green for dl</p>
+    <div style="border:3px solid grey" id="targetDIV"></div>
+    <br />
+    <button style="width:200px" onclick="f1()">Add a List</button><br />
+    <button style="width:200px" onclick="f2()">Add a List Item</button><br />
+    <button style="width:200px" onclick="f3()">Get all List Items</button><br />
+    <button style="width:200px" onclick="f4()">Remove all List Items</button><br />
+    <button style="width:200px" onclick="f5()">Try it</button><br />
+
+    <script>
+        var targetDIV = "targetDIV";
+
+        function f1() {
+            addList("newList", targetDIV, "dl");
+        }
+        function f2() {
+            addListItem("newList", "", "Coffee");
+        }
+        function f3() {
+            getAllListItems("newList");
+        }
+        function f4() {
+            removeAllListItems("newList");
+        }
+        function f5() {
+            changeListType("newList", "ul")
+        }
+    </script>
+
+
+
+
+    <script>
+        class List {
+            constructor(paramType = "ul", paramArrayOfItems = {}) {
+                if (paramType == "ul" || paramType == "ol" || paramType == "dl") {
+                    this.type = paramType;
+                }
+                if (paramArrayOfItems.length > 0) {
+                    this.items = paramArrayOfItems;
+                }
+            }
+            toString() {
+                return `{type=${paramType}, items=${paramArrayOfItems}}`;
+            }
+        }
+        class ListItem {
+            constructor(paramValue = "", paramText = "") {
+                // Note: if type of List is not "ol", value attr is ignored by html
+                this.value = paramValue;
+                this.text = paramText;
+            }
+            toString() {
+                return `{value=${this.value}, ${this.text}}`;
+            }
+        }
+
+
+        /**
+     * changeListType() - Update list type (ul, ol, dl)                    WIP
+     */
+        function changeListType(targetListID, newType) {
+            let debugString = `changeListType(${targetListID}, ${newType}) changed `;
+            let targetList = document.getElementById(targetListID);
+            console.log(targetList);
+            debugString = debugString.concat(`nodeName from ${targetList.nodeName} to ${newType}`);
+            targetList.nodeName = newType;
+            console.log(targetList);
+            console.log(debugString);
+        }
+
+        /** 
+         * addList() - Add new list to an element (div, p, span, etc)
+        */
+        function addList(newListID, targetElementID, listType) {
+            let debugString = `addList(${targetElementID}, ${listType}) `;
+            let uniqueOrEmpty = false;
+            let targetElement = document.getElementById(targetElementID);
+            let newList = document.createElement(listType);
+            // make sure ID is unique before appending
+            if (document.getElementById(newListID) == null) {
+                uniqueOrEmpty = true;
+            };
+            if (uniqueOrEmpty == true) {
+                newList.id = newListID;
+                targetElement.appendChild(newList);
+                debugString = debugString.concat(`added: <${listType} id=${newListID}> </${listType}> child`);
+            } else {
+                debugString = debugString.concat("error: id not empty or unique.");
+            }
+            console.log(debugString);
+        }
+
+        /**
+         * addListItem() - Add new item to a list
+         */
+        function addListItem(targetListID, listItemValue, listItemText) {
+            let debugString = `addListItem(${targetListID}, ${listItemValue}, ${listItemText}) added: `;
+            let targetList = document.getElementById(targetListID);
+            let listItemObj = new ListItem(listItemValue, listItemText);
+            let newListItem = document.createElement("li");
+            newListItem.value = listItemObj.value;
+            newListItem.appendChild(document.createTextNode(listItemObj.text));
+            targetList.appendChild(newListItem);
+            debugString = debugString.concat(`<li value=${listItemValue}> ${listItemText} </li> child`);
+            console.log(debugString);
+        }
+        /**
+         * getAllListItems() - Returns Array of All List Items in a List element
+         */
+        function getAllListItems(targetListID) {
+            let debugString = `getAllListItems(${targetListID}) returned `;
+            let arrayOfListItems = [];
+            let targetList = document.getElementById(targetListID);
+            let allListItems = targetList.getElementsByTagName("li");
+            for (let i = 0; i < allListItems.length; i++) {
+                arrayOfListItems.push(new ListItem(allListItems[i].value, allListItems[i].innerText));
+            }
+            debugString = debugString.concat(arrayOfListItems);
+            console.log(debugString);
+            return arrayOfListItems;
+        }
+
+        /**
+     * removeAllListItems() - Remove all items from a list
+     */
+        function removeAllListItems(targetListID) {
+            let debugString = `removeAllListItems(${targetListID}) removed `;
+            let count = 0;
+            let targetSelect = document.getElementById(targetListID);
+            let arrayOfListItems = Array.from(targetSelect.getElementsByTagName("li"));
+            arrayOfListItems.forEach(function (each) {
+                targetSelect.removeChild(each);
+                count = count + 1;
+            });
+            debugString = debugString.concat(count + " items");
+            console.log(debugString)
+        }
+
+
+    </script>
+</body>
+
+</html>

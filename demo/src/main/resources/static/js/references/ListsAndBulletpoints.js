@@ -66,29 +66,6 @@ function getAllListItems(targetListID) {
     return arrayOfListItems;
 }
 
-/**
- * changeListType() - Update list type (ul, ol, dl)                    WIP
- */
-function changeListType(targetListID, newType) {
-    let debugString = `changeListType(${targetListID}, ${newType}) changed `;
-    let targetList = document.getElementById(targetListID);
-    // back-up list items' text-nodes into an array
-
-    // delete the list element (among with its li children)
-
-    // re-make the list element of the desired newType type
-
-    // re-populate the new list with list items from back-up array
-
-
-    // PREVIOUS ATTEMPT:
-
-    // console.log(targetList);
-    // debugString = debugString.concat(`nodeName from ${targetList.nodeName} to ${newType}`);
-    // targetList.nodeName = newType;
-    // console.log(debugString);
-}
-
 /** 
  * addList() - Add new list to an element (div, p, span, etc)
 */
@@ -127,19 +104,40 @@ function addListItem(targetListID, listItemValue, listItemText) {
 }
 
 /**
- * addArrayOfListItems() - Add an array of items to a list
+ * addArrayOfStringsAsListItemsToList() - Add an array of items to a list
+ * Array contains ListItems
  */
-function addArrayOfListItems(targetListID, arrayOfListItems) {
-    //
-    //
+function addArrayOfStringsAsListItemsToList(targetListID, arrayOfListItems) {
+    let debugString = `addArrayOfStringsAsListItemsToList(${targetListID}, ${arrayOfListItems}) added `;
+    let count = 0;
+    let targetList = document.getElementById(targetListID);
+    debugString = debugString.concat(`${count} list items.`);
+    for (let i = 0; i < arrayOfListItems.length; i++) {
+        count = count + 1;
+        let newList = document.createElement("li");
+        newList.setAttribute("value", "");
+        newList.innerHTML = arrayOfListItems[i];
+        targetList.appendChild(newList);
+    }
+    console.log(debugString);
 }
 
 /**
  * removeListItemByText() - Remove a item from a list by text node
  */
 function removeListItemByText(targetListID, targetText) {
-    //
-    //
+    let debugString = `removeListItemByText(${targetListID}, ${targetText}) removed `;
+    let count = 0;
+    let targetList = document.getElementById(targetListID);
+    let array = Array.from(targetList.getElementsByTagName("li"))
+    for (let index = 0; index < array.length; index++) {
+        if (array[index].innerHTML == targetText) {
+            count = count + 1;
+            targetList.removeChild(array[index]);
+        }
+    }
+    debugString = debugString.concat(`${count} list items`);
+    console.log(debugString);
 }
 
 /**
@@ -148,10 +146,10 @@ function removeListItemByText(targetListID, targetText) {
 function removeAllListItems(targetListID) {
     let debugString = `removeAllListItems(${targetListID}) removed `;
     let count = 0;
-    let targetSelect = document.getElementById(targetListID);
-    let arrayOfListItems = Array.from(targetSelect.getElementsByTagName("li"));
+    let targetList = document.getElementById(targetListID);
+    let arrayOfListItems = Array.from(targetList.getElementsByTagName("li"));
     arrayOfListItems.forEach(function (each) {
-        targetSelect.removeChild(each);
+        targetList.removeChild(each);
         count = count + 1;
     });
     debugString = debugString.concat(count + " items");

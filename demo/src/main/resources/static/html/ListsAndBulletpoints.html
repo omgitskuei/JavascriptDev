@@ -18,11 +18,19 @@
     <p>Grey border for div, Red for ul, Blue for ol, Green for dl</p>
     <div style="border:3px solid grey" id="targetDIV"></div>
     <br />
+    <input type="text" id=addAListInput>
     <button style="width:200px" onclick="f1()">Add a List</button><br />
+
+    <input type="text" id=addAListItemInput>
     <button style="width:200px" onclick="f2()">Add a List Item</button><br />
     <button style="width:200px" onclick="f3()">Get all List Items</button><br />
     <button style="width:200px" onclick="f4()">Remove all List Items</button><br />
-    <button style="width:200px" onclick="f5()">Try it</button><br />
+
+    <input type="text" id=removeListItemsInput>
+    <button style="width:200px" onclick="f5()">Remove List Items By Text</button><br />
+
+    <input type="text" id=addArrayOfStringsAsListItemsToList>
+    <button style="width:200px" onclick="f6()">Add Array of Strings as List Items it</button><br />
 
     <script>
         var targetDIV = "targetDIV";
@@ -40,7 +48,10 @@
             removeAllListItems("newList");
         }
         function f5() {
-            changeListType("newList", "ul")
+            removeListItemByText("newList", document.getElementById("removeListItemsInput").value);
+        }
+        function f6() {
+            addArrayOfStringsAsListItemsToList("newList", ["Pear", "Apple", "Pickles"]);
         }
     </script>
 
@@ -74,15 +85,39 @@
 
 
         /**
-     * changeListType() - Update list type (ul, ol, dl)                    WIP
+     * addArrayOfStringsAsListItemsToList() - Add an array of items to a list
+     * Array contains strings, syntax looks like ["item1", "item2", "item3"]
      */
-        function changeListType(targetListID, newType) {
-            let debugString = `changeListType(${targetListID}, ${newType}) changed `;
+        function addArrayOfStringsAsListItemsToList(targetListID, arrayOfListItems) {
+            let debugString = `addArrayOfStringsAsListItemsToList(${targetListID}, ${arrayOfListItems}) added `;
+            let count = 0;
             let targetList = document.getElementById(targetListID);
-            console.log(targetList);
-            debugString = debugString.concat(`nodeName from ${targetList.nodeName} to ${newType}`);
-            targetList.nodeName = newType;
-            console.log(targetList);
+            debugString = debugString.concat(`${count} list items.`);
+            for (let i = 0; i < arrayOfListItems.length; i++) {
+                count = count + 1;
+                let newList = document.createElement("li");
+                newList.setAttribute("value", "");
+                newList.innerHTML = arrayOfListItems[i];
+                targetList.appendChild(newList);
+            }
+            console.log(debugString);
+        }
+
+        /**
+     * removeListItemByText() - Remove a item from a list by text node
+     */
+        function removeListItemByText(targetListID, targetText) {
+            let debugString = `removeListItemByText(${targetListID}, ${targetText}) removed `;
+            let count = 0;
+            let targetList = document.getElementById(targetListID);
+            let array = Array.from(targetList.getElementsByTagName("li"))
+            for (let index = 0; index < array.length; index++) {
+                if (array[index].innerHTML == targetText) {
+                    count = count + 1;
+                    targetList.removeChild(array[index]);
+                }
+            }
+            debugString = debugString.concat(`${count} list items`);
             console.log(debugString);
         }
 

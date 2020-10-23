@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>05formSelector.html</title>
+</head>
+
+<body>
+    <form action="" method="put" onsubmit="return false;">
+        <div>
+            <label>Text:</label>
+            <!-- value overrides placeholder-->
+            <input type="text" id="aTextField" name="someTextField" value="value text" placeholder="placeholder text" />
+        </div>
+        <div>
+            <label>Radio group:</label>
+            <!-- checked radio -->
+            <input type="radio" id="radioA" value="a" checked="checked" /><span>A</span>
+            <input type="radio" id="radioB" value="b" />
+            <span>B</span>
+            <!-- disabled radio -->
+            <input type="radio" id="radioC" value="c" disabled="disable" /><span>C</span>
+            <input type="radio" id="radioD" value="d" disabled="disable" /><span>D</span>
+            <input type="radio" id="radioE" value="e" disabled="disable" /><span>E</span>
+        </div>
+        <div>
+            <label>Checkboxes:</label>
+            <input type="checkbox" name="checkboxes" id="checkbox1" value="1" /><span>1</span>
+            <input type="checkbox" name="checkboxes" id="checkbox2" value="2" /><span>2</span>
+            <!-- checked checkbox -->
+            <input type="checkbox" name="checkboxes" id="checkbox3" value="3" checked="checked" />
+            <span>3</span>
+            <input type="checkbox" name="checkboxes" id="checkbox4" value="4" /><span>4</span>
+        </div>
+        <div>
+            <select>
+                <option id="opt1" value="1">A</option>
+                <!-- selected B makes it the default value -->
+                <option id="opt2" value="2" selected="selected">B</option>
+                <option id="opt3" value="3">C</option>
+            </select>
+        </div>
+        <div>
+            <input type="image" src="images/n1.png">
+        </div>
+        <!-- <input type="button" value="OK"> -->
+        <button type="submit" id="submitButton">Submit</button>
+    </form>
+
+    <hr>
+
+    <input type="button" id="btn1" value=":checked">
+    <input type="button" id="btn2" value=":selected">
+    <input type="button" id="btn3" value=":disable">
+    <input type="button" id="btn4" value=":image">
+    <input type="button" id="btn5" value=":text">
+    <input type="button" id="btn6" value=":input">
+
+    <script src="../js/jquery-3.4.1.min.js"></script>
+    <script>
+        $(function () {
+            // # refers to id
+            $("#btn1").click(function () {
+                // selector : means "filter", only select checked ones
+                // radio and checkbox both can be 'checked'
+                console.log($(":checked"));
+            });
+
+
+            $("#btn2").click(function () {
+                // only options can be 'selected'
+                $(":selected").css("background-color", "green");
+                console.log($(":selected"));
+            });
+
+            $("#btn3").click(function () {
+                console.log($(":disabled"))
+            });
+
+            $("#btn4").click(function () {
+                $(":image").css("border", "fuchsia dotted 2px");
+            });
+
+            $("#btn5").click(function () {
+                $(":text").css("background-color", "pink");
+            });
+
+            $("#btn6").click(function () {
+                $(":input").css("background-color", "yellow");
+            });
+
+        });
+    </script>
+
+</body>
+
+</html>

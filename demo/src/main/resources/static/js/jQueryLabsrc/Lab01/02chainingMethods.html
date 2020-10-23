@@ -12,15 +12,15 @@
     <h1>write less, do more3</h1>
     <h1>write less, do more4</h1>
     <h1>write less, do more5</h1>
-
+    <!-- This is importing the mini version of jQuery -->
     <script src="../js/jquery-3.4.1.min.js"></script>
     <script>
         jQuery(document).ready(function () {
-            $('h1')    //chaining 3 methods .css, .mouseover, .mouseout together for h1
-            .css(  'color', 'green'  ) //no ; here
-            .mouseover(  function(){  $(this).css('color', 'red');  }  )  //no ; here
-            .mouseout(  function (){  $(this).css('color', 'green');  }  );  //*
-            //note theres only 1 ; * here
+            // chaining 3 methods .css, .mouseover, .mouseout together for h1
+            $('h1')
+                .css('color', 'green') // NOTE: no ";" here
+                .mouseover(function () { $(this).css('color', 'red'); })
+                .mouseout(function () { $(this).css('color', 'green'); });
         });
     </script>
 

@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>04attributeSelector.html</title>   
+    <title>04attributeSelector.html</title>
 </head>
+
 <body>
     <a href="a.doc">A(doc)</a> |
     <a href="a.pdf">A(pdf)</a> <br />
@@ -15,48 +17,50 @@
     <input type="button" id="btn3" value="!=">
     <input type="button" id="btn4" value="^=">
     <input type="button" id="btn5" value="*=">
-    <input type="button" id="btn6" value="$="> 
+    <input type="button" id="btn6" value="$=">
     <input type="button" id="btn7" value="$=href">
 
-    <script src="../js/jquery-3.4.1.min.js"></script>    
+    <script src="../js/jquery-3.4.1.min.js"></script>
     <script>
-         $(function(){
-            $("#btn1").click(function(){                 
-                $("a[href]").css("text-decoration","none");                
+        $(function () {
+            // Select all a href
+            $("#btn1").click(function () {
+                $("a[href]").css("text-decoration", "none");
             });
-
-            $("#btn2").click(function(){                
-                $("a[href='a.pdf']").css("background-color","pink");
+            // Select a.doc
+            $("#btn2").click(function () {
+                $("a[href='a.pdf']").css("background-color", "pink");
             });
-
-            $("#btn3").click(function(){               
-                $("a[href!='a.doc']").css("color","green");
+            // Select not-a.doc
+            $("#btn3").click(function () {
+                $("a[href!='a.doc']").css("color", "green");
             });
-
-            $("#btn4").click(function(){               
-                $("a[href^='a']").css("border","dotted red 2px");
+            // has attribute with a value beginning exactly with a given string
+            $("#btn4").click(function () {
+                $("a[href^='a']").css("border", "dotted red 2px");
             });
-
-            $("#btn5").click(function(){               
-                $("a[href*='pdf']").css("background-color","cyan");
+            // has an attribute containing a given substring.
+            $("#btn5").click(function () {
+                $("a[href*='pdf']").css("background-color", "cyan");
             });
-
-            $("#btn6").click(function(){               
-                $("a[href$='.doc']").css({"background-color":"yellow","color":"green"});
+            // has attribute with a value ending EXACTLY with a given string
+            $("#btn6").click(function () {
+                $("a[href$='.doc']").css(
+                    {
+                        "background-color": "yellow",
+                        "color": "green"
+                    });
             });
-            $("#btn7").click(function(){               
-                //在pdf及doc的超連結前面加上小圖
-                //css 參考用法如下
-                //text-decoration:none
-                //background:url(images/pdf_icon.gif) no-repeat
-                //padding-left:20px
+            $("#btn7").click(function () {
+                //在前面加上小圖
                 $("a[href$='.pdf']").css({
-                    "text-decoration":"none",
-                    "background":"url('images/pdf_icon.gif') no-repeat"
+                    "text-decoration": "none",
+                    "background": "url('images/pdf_icon.gif') no-repeat"
                 });
-            });          
+            });
         });
-       
+
     </script>
 </body>
+
 </html>

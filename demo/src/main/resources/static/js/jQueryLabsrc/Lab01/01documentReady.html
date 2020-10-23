@@ -4,16 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <title>01documentReady.html</title>
+    <!-- Here attaching jQuery library -->
     <script src="https://code.jquery.com/jquery-3.4.1.js"
         integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
     <script>
+        // document.ready waits for domTree to finish before applying changes
+        // ready是一個事件，等到DOMTree產生後會執行這個事件
         jQuery(document).ready(function () {
+            // change color
             $('h1').css('color', 'green');
-
-            // ready是一個事件，等到DOMTree產生後會執行這個事件
+            // add mouse-over event
             $('h1').mouseover(function () {
                 $(this).css('color', 'red');
             });
+            // add mouse-out event
             $('h1').mouseout(function () {
                 $(this).css('color', 'green');
             });

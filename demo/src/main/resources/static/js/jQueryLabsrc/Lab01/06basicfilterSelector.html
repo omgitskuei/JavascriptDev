@@ -14,7 +14,8 @@
 </head>
 
 <body>
-    <h2>languages table</h2>
+    <h1>jQuery lab</h1>
+    <h2>Languages table</h2>
     <table id="languages">
         <thead>
             <tr>
@@ -25,22 +26,22 @@
         </thead>
         <tbody>
             <tr>
-                <td>Java</td>
+                <td class="langName">Java</td>
                 <td>Static</td>
                 <td>1995</td>
             </tr>
             <tr>
-                <td>Ruby</td>
+                <td class="langName">Ruby</td>
                 <td>Dynamic</td>
                 <td>1993</td>
             </tr>
             <tr>
-                <td>JavaScript</td>
+                <td class="langName">JavaScript</td>
                 <td>Dynamic</td>
                 <td>1995</td>
             </tr>
             <tr>
-                <td>C++</td>
+                <td class="langName">C++</td>
                 <td>Static</td>
                 <td>1983</td>
             </tr>
@@ -65,66 +66,142 @@
     <hr>
 
     <!-- buttons -->
+    <input type="button" id="btn0" value="reset">
+    <br />
     <input type="text" id="text1" value="0">
     <input type="button" id="btn1" value="td:eq(x)">
-
+    changes cells from top to bottom, left to right
+    <br />
     <input type="text" id="text2" value="1">
     <input type="button" id="btn2" value="td:lt(x)">
-
-    <input type="button" id="btn31" value=":td:even">
-    <input type="button" id="btn41" value=":td:odd">
-
-    <input type="button" id="btn3" value=":tr:even">
-    <input type="button" id="btn4" value=":tr:odd">
-    <input type="button" id="btn5" value=":first">
-    <input type="button" id="btn6" value=":header">
-    <input type="button" id="btn7" value=":not()">
+    <br />
+    <input type="button" id="btn3" value=":td:even">
+    <input type="button" id="btn4" value=":td:odd">
+    <br />
+    <input type="button" id="btn5" value=":tr:even">
+    <input type="button" id="btn6" value=":tr:odd">
+    <br />
+    <input type="button" id="btn7" value=":first">
+    <br />
+    <input type="button" id="btn8" value=":header">
+    <br />
+    <input type="button" id="btn9" value=":input[type='checkbox']:not(:checked)+label">
+    <br />
+    <input type="button" id="btn10" value="td.langName">
 
     <script src="../js/jquery-3.4.1.min.js"></script>
     <script>
         $(function () {
-            // >=0. 1 means 2nd cell
+            /**
+             $("expression") 
+             basic selector filter for elements that match the expression
+            */
+            $("#btn0").click(function () {
+                // find all td's
+                $(`td`).removeAttr("style");
+                $(`tr`).removeAttr("style");
+            });
+
+            /**
+             $(":eq(index)") - https://api.jquery.com/eq-selector/
+             Select the element at index n within the matched set.
+             eq = 0-based index of expression-matching elements
+             counts cells from top-left to bottom-right
+             */
             $("#btn1").click(function () {
                 let num = text1.value;
+                // select the td with index = num, where first td has num = 0
+                // eg. num = 0 means first cell (left), first row
                 $(`td:eq(${num})`).css("background-color", "yellow");
             });
-            // >=1. changes x num of cells (td) from top-left to top-right, then next row.
+
+            /**
+             $(":lt(index)") - https://api.jquery.com/lt-selector/
+             Select all elements at an index LESS THAN* index within the matched set.
+             lt starts from 1 (*)
+             counts cells from top-left to bottom-right
+            */
             $("#btn2").click(function () {
                 let num = text2.value;
-                $(`td:lt(${num})`).css("background-color", "green");
+                // select x num of td's
+                // eg. num = 2 means first cell (from left) and second cell, first row
+                $(`td:lt(${num})`).css("background-color", "orange");
             });
 
-
-            $("#btn31").click(function () {
-                $("tbody td:even").css("background-color", "aqua");
-            });
-            // changes even rows (rem first row of th is still first row)
-            $("#btn41").click(function () {
-                $("tbody td:odd").css("background-color", "aqua");
-            });
-
-            // changes even rows (rem first row of th is still first row)
+            /**
+             $("(":even")") - https://api.jquery.com/even-selector/
+             Selects even elements, 0-indexed, first cell IS index 0.
+            */
             $("#btn3").click(function () {
-                $("tbody tr:even").css("background-color", "aqua");
+                // changes even rows, BUT only select tbody
+                $("tbody td:even").css("background-color", "red");
             });
-            // changes odd rows
-            // BUT 1st row of th are NOT affected, since its in thead not tbody
+
+            /**
+             $("(":odd")") - https://api.jquery.com/odd-selector/
+             Selects odd elements, 0-indexed, first cell IS index 0.
+            */
             $("#btn4").click(function () {
-                $("tbody tr:odd").css("background-color", "fuchsia");
+                // changes odd rows, BUT only select tbody
+                $("tbody td:odd").css("background-color", "purple");
             });
 
+            /**
+             $("(":even")")
+             NOTE: unlike before, this function adds color to TR not TD
+            */
             $("#btn5").click(function () {
-                $("tr td:first").css("background-color", "lime");
+                // changes even rows (rem first row of th is still first row)
+                $("tbody tr:even").css("background-color", "blue");
             });
-
+            /**
+             $("(":odd")")
+            */
             $("#btn6").click(function () {
-                $(":header").css("background-color", "blue");
+                $("tbody tr:odd").css("background-color", "teal");
             });
 
+            /**
+             $(":first") - https://api.jquery.com/first-selector/
+             Selects the first matched DOM element.
+             jQuery 3.4, deprecated, use .first();
+             :first = :eq(0) = :lt(1)
+                 $( "tr td" ).first().css( "background-color", "cyan" );
+            */
             $("#btn7").click(function () {
-                //將input標籤，type屬性為checkbox且沒有設checked的label標籤背景設為黃色
-                $("input[type='checkbox']:not(:checked)+label").css("background", "yellow");
+                $("tr td:first").css("background-color", "cyan");
+                // $("tr td").first().css("background-color", "black");
+                // ^ both are equivalent
             });
+            /**
+             $(":header") - https://api.jquery.com/header-selector/
+             Selects all elements that are headers, like h1, h2, h3 and so on.
+             NOTE: there's a performance issue as it doesn't use native DOM querySelectorAll() method
+             IMPROVE PERFORMANCE by selecting elements using native dom methods, then use .filter(":header")
+            */
+            $("#btn8").click(function () {
+                $(":header").css("background-color", "green");
+            });
+
+            /**
+             selectors can be compounded like so;
+            */
+            $("#btn9").click(function () {
+                //將input標籤，type屬性為checkbox且沒有設checked的label標籤背景設為黃色
+                $("input[type='checkbox']:not(:checked)+label").css("background-color", "lime");
+            });
+
+            /**
+             $("expression.className") - https://api.jquery.com/class-selector/
+             Selects all elements with the given class.
+            */
+            $("#btn10").click(function () {
+                // if expression is not given, the WHOLE dom is filtered for class "langName"
+                $(".langName").css("background-color", "beige");
+                // select all td's and look for class "langName"
+                $("td.langName").css("background-color", "beige");
+                // ^ both have the same effect, with different efficiencies
+            })
         });
     </script>
 </body>

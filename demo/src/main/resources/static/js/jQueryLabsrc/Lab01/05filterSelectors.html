@@ -10,7 +10,7 @@
     <form action="" method="put" onsubmit="return false;">
         <div>
             <label>Text:</label>
-            <!-- value overrides placeholder-->
+            <!-- value overrides placeholder -->
             <input type="text" id="aTextField" name="someTextField" value="value text" placeholder="placeholder text" />
         </div>
         <div>
@@ -69,12 +69,13 @@
 
 
             $("#btn2").click(function () {
-                // only options can be 'selected'
+                // only options can be 'selected' pseudo-class
                 $(":selected").css("background-color", "green");
                 console.log($(":selected"));
             });
 
             $("#btn3").click(function () {
+                // 'disable' pseudo-class
                 console.log($(":disabled"))
             });
 

@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>01childSelector.html</title>
     <style>
-        table,th,td{border:1px solid gray;}            
+        table,
+        th,
+        td {
+            border: 1px solid gray;
+        }
     </style>
 </head>
+
 <body>
     <h2>languages table</h2>
     <table id="languages">
@@ -27,7 +33,7 @@
                 <td>Ruby</td>
                 <td>Dynamic</td>
                 <td>1993</td>
-                </tr>
+            </tr>
             <tr>
                 <td>JavaScript</td>
                 <td>Dynamic</td>
@@ -58,65 +64,118 @@
     <input type="button" id="btn12" value=":nth-child(3n+1)">
 
     <script src="../js/jquery-3.4.1.min.js"></script>
+    <!-- ":whatever" is jQuery pseudo-class syntax ":" plus some class name, they act like selectors -->
     <script>
-        $(function(){
-            $("#btn1").click(function(){                 
-                $("tr td:first-child").css("background-color","yellow");                
+        $(function () {
+            /**
+            :first-child Selector - https://api.jquery.com/first-child-selector/
+            Selects all elements that are the first child of their parent.
+            NOTE: .first() matches one, :first-child can return many
+                eg. Select the first child of EACH DIV, add css and hover on/off
+                    $( "div span:first-child" )
+                        .css( "text-decoration", "underline" )
+                        .hover(
+                            // hover on
+                            function() {
+                                $( this ).addClass( "sogreen" );
+                            },
+                            // hover off
+                            function() {
+                                $( this ).removeClass( "sogreen" );
+                            }
+                        );
+            equivalent to :nth-child(1). see below(*)
+            */
+            $("#btn1").click(function () {
+                $("tr td:first-child").css("background-color", "yellow");
             });
 
-            $("#btn2").click(function(){                
-                $("tr td:last-child").css("background-color","orange");
+            /**
+            :last-child Selector - https://api.jquery.com/last-child-selector/
+            Selects all elements that are the last child of their parent.
+            NOTE: .last() matches one, :last-child can return many
+                eg. same as :first-child
+            */
+            $("#btn2").click(function () {
+                $("tr td:last-child").css("background-color", "orange");
             });
 
-            $("#btn3").click(function(){               
+            /**
+            :nth-child(n) Selector - https://api.jquery.com/nth-child-selector/
+            n can be a number 1 or larger, "even", "odd", or an equation
+            Selects all elements that are the nth-child of their parent.
+            */
+            $("#btn3").click(function () {
                 // $("tbody tr:nth-child(2)").css("background-color","lime");
-                $("tbody tr:nth-child(2)").css("color","blue");
+                $("tbody tr:nth-child(2)").css("color", "blue");
             });
 
-            $("#btn4").click(function(){               
-                $("thead tr:only-child").css("background-color","fuchsia");
+            /**
+            :only-child Selector - https://api.jquery.com/only-child-selector/#only-child1
+            Selects all elements that are the only child of their parent.
+            NOTE: If the parent has other child elements, nothing is matched.
+            */
+            $("#btn4").click(function () {
+                $("thead tr:only-child").css("background-color", "fuchsia");
             });
 
-            //Basic Filter selector
-            $("#btn5").click(function(){                 
-                $("tr td:first").css("background-color","lime");                           
+            /**
+            $(":first") - https://api.jquery.com/first-selector/
+            Selects the first matched DOM element.
+            jQuery 3.4, deprecated, use .first();
+            :first = :eq(0) = :lt(1)
+                $( "tr td" ).first().css( "background-color", "cyan" );
+            */
+            $("#btn5").click(function () {
+                $("tr td:first").css("background-color", "lime");
             });
 
-            $("#btn6").click(function(){                
-                $("tr td:last").css("background-color","plum");
+            /**
+            $(":last") - https://api.jquery.com/last-selector/
+            Selects the last matched DOM element.
+            jQuery 3.4, deprecated, use .last();
+            :last = :eq(0) = :lt(1)
+                $( "tr td" ).last().css( "background-color", "cyan" );
+            */
+            $("#btn6").click(function () {
+                $("tr td:last").css("background-color", "plum");
             });
 
-            $("#btn7").click(function(){                 
+            /**
+
+            */
+            $("#btn7").click(function () {
                 // $("tr td:even").css("background-color","lime"); 
-                $("tbody tr:even").css("background-color","lime");                          
+                $("tbody tr:even").css("background-color", "lime");
             });
 
-            $("#btn8").click(function(){                
+            $("#btn8").click(function () {
                 // $("tr td:odd").css("background-color","plum");
-                $("tbody tr:odd").css("background-color","plum");
+                $("tbody tr:odd").css("background-color", "plum");
             });
 
             //child filter selector
-            $("#btn9").click(function(){
+            $("#btn9").click(function () {
                 //tbody的偶數列綠色 nth-child(even)                 
                 $("tbody tr:nth-child(even)").css("color", "green").css("font-weight", "bolder");
             });
 
-            $("#btn10").click(function(){  
+            $("#btn10").click(function () {
                 //tbody的奇數列黃色 nth-child(odd)               
                 $("tbody tr:nth-child(odd)").css("color", "yellow").css("font-weight", "bolder");
             });
 
-            $("#btn11").click(function(){                                                        
-                $("tbody tr:nth-child(2n)").css("color", "yellow").css("font-weight", "bolder");            
-            });  
+            $("#btn11").click(function () {
+                $("tbody tr:nth-child(2n)").css("color", "yellow").css("font-weight", "bolder");
+            });
 
-            $("#btn12").click(function(){                
-            //第1,4...列文字顏色設為桃紅色(fuchsia)
-            $("tbody tr:nth-child(3n+1)").css("color", "red").css("font-weight", "bolder");
-                                
-            });                         
+            $("#btn12").click(function () {
+                //第1,4...列文字顏色設為桃紅色(fuchsia)
+                $("tbody tr:nth-child(3n+1)").css("color", "red").css("font-weight", "bolder");
+
+            });
         });
-    </script>    
+    </script>
 </body>
+
 </html>

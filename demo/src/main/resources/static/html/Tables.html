@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Tables.html</title>
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid gray
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Tables.html</h1>
+    <h2>Example table</h2>
+    <pre>
+    Function createNewTable(<br>
+        targetID,<br>
+        tableID,<br>
+        headersArray,<br>
+        cellsArray,<br>
+        cellsArrayIsDelimitedByColumn<br>
+    )
+    </pre>
+    <hr>
+
+    <div id="tableDiv">
+    </div>
+
+    <hr>
+
+    <div id="tableDiv2">
+    </div>
+
+    <!-- buttons -->
+    <!-- <input type="button" id="btn0" value="reset">
+    <br />
+    <input type="text" id="text1" value="0">
+    <input type="button" id="btn1" value="td:eq(x)"> -->
+
+
+    <script type="text/javascript" src="../js/references/Tables.js"></script>
+
+    <script>
+        // If each index of cellsArray is a COLUMN
+        let targetID = "tableDiv";
+        let tableID = "staticTable";
+        let headersArray = ["Code", "Name", "Price", "Stock"];
+        let cellsArray = [
+            ["A1", "A2", "A3", "B1"],
+            ["Bananas", "Apples", "Oranges", "Pears"],
+            ["$10", "$12", "$11", "$23"],
+            ["210", "310", "110", "120"]
+        ];
+        let cellsArrayIsDelimitedByColumn = true;
+        createNewTable(targetID,
+            tableID,
+            headersArray,
+            cellsArray,
+            cellsArrayIsDelimitedByColumn)
+
+        // If each index of cellsArray is a ROW
+        let targetID2 = "tableDiv2";
+        let tableID2 = "staticTable2";
+        let headersArray2 = ["Code", "Name", "Price", "Stock"];
+        let cellsArray2 = [
+            ["A1", "Bananas", "$10", "210"],
+            ["A2", "Apples", "$12", "310"],
+            ["A3", "Oranges", "$11", "110"],
+            ["B1", "Pears", "$23", "120"]
+        ];
+        let cellsArrayIsDelimitedByColumn2 = false;
+        createNewTable(targetID2,
+            tableID2,
+            headersArray2,
+            cellsArray2,
+            cellsArrayIsDelimitedByColumn2)
+
+    </script>
+</body>
+
+</html>

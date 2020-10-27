@@ -1,5 +1,38 @@
 /**
  * getAllOptions() - Returns Array of All Options in Select element
+ * param targetID
+ * param newTableID
+ * param headersArray
+ * param cellsArray
+ * param cellsArrayIsDelimitedByColumn
+ * 
+ * automatically generate table from data sets (arrays)
+ * 
+ * eg. 
+ * Params:
+ *     newTableID = staticTable;
+ *     headersArray = ["Code", "Name", "Price", "Stock"];
+ *     cellsArray = [["A1", "Bananas", "$10", "210"]];
+ *     cellsArrayIsDelimitedByColumn = false;
+ * Generated result:
+ * <table id="staticTable">
+ *     <thead>
+ *         <tr>
+ *             <th id="staticTable-0-0">Code</th>
+ *             <th id="staticTable-0-1">Name</th>
+ *             <th id="staticTable-0-2">Price</th>
+ *             <th id="staticTable-0-3">Stock</th>
+ *         </tr>
+ *     </thead>
+ *     <tbody>
+ *         <tr>
+ *             <td id="staticTable-1-0">A1</td>
+ *             <td id="staticTable-1-1">Bananas</td>
+ *             <td id="staticTable-1-2">$10</td>
+ *             <td id="staticTable-1-3">210</td>
+ *         </tr>
+ *     </tbody>
+ * </table>
  */
 function createNewTable(
     targetID,
@@ -17,7 +50,7 @@ function createNewTable(
     newTable.id = tableID;
     let thead = document.createElement("thead");
     let tbody = document.createElement("tbody");
-    // add headers to thead
+    // add th to thead
     let tr = document.createElement("tr");
     for (let index = 0; index < headersArray.length; index++) {
         let th = document.createElement("th");

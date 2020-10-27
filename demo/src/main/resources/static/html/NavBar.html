@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .navbar {
+        width: 100%;
+        background-color: #555;
+        overflow: auto;
+    }
+
+    .navbar a {
+        float: left;
+        padding: 12px;
+        color: white;
+        text-decoration: none;
+        font-size: 17px;
+    }
+
+    .navbar a:hover {
+        background-color: #000;
+    }
+
+    .active {
+        background-color: #4CAF50;
+    }
+
+    @media screen and (max-width: 500px) {
+        .navbar a {
+            float: none;
+            display: block;
+        }
+    }
+
+    /* .topnav {
+        overflow: hidden;
+        background-color: #e9e9e9;
+    }
+
+    .topnav a {
+        float: left;
+        display: block;
+        color: black;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+    }
+
+    .topnav a:hover {
+        background-color: #ddd;
+        color: black;
+    }
+
+    .topnav a.active {
+        background-color: #2196F3;
+        color: white;
+    }
+
+    .topnav .search-container {
+        float: right;
+    }
+
+    .topnav input[type=text] {
+        padding: 6px;
+        margin-top: 8px;
+        font-size: 17px;
+        border: none;
+    }
+
+    .topnav .search-container button {
+        float: right;
+        padding: 6px 10px;
+        margin-top: 8px;
+        margin-right: 16px;
+        background: #ddd;
+        font-size: 17px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .topnav .search-container button:hover {
+        background: #ccc;
+    }
+
+    @media screen and (max-width: 600px) {
+        .topnav .search-container {
+            float: none;
+        }
+
+        .topnav a,
+        .topnav input[type=text],
+        .topnav .search-container button {
+            float: none;
+            display: block;
+            text-align: left;
+            width: 100%;
+            margin: 0;
+            padding: 14px;
+        }
+
+        .topnav input[type=text] {
+            border: 1px solid #ccc;
+        }
+    } */
+</style>
+
+<body>
+
+    <h2>Responsive Navigation Bar with Icons</h2>
+    <p>Try to resize the browser window to see the responsive effect.</p>
+
+    <div class="navbar topnav">
+        <a class="active" href="#">
+            <i class="fa fa-fw fa-home"></i>
+            <span>Home</span>
+        </a>
+
+        <a href="javascript:showSearch();">
+            <div class="" id="search-container" hidden>
+                <form action="/action_page.php">
+                    <input type="text" placeholder="Search.." name="search">
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                </form>
+            </div>
+            <i class="fa fa-fw fa-search"></i>
+            <span>Search</span>
+        </a>
+        <a href="#">
+            <i class="fa fa-fw fa-envelope"></i>
+            <search>Contact</search>
+
+        </a>
+        <a href="#">
+            <i class="fa fa-tw fa-book"></i>
+            Portfolio
+        </a>
+        <!-- Settings -->
+        <div id="settings">
+
+        </div>
+        <a href="javascript:toggleSettings();">
+            <i class="fa fa-fw fa-gear"></i>
+            <span>Settings</span>
+        </a>
+        <div id="lang" hidden>
+            <a href="javascript:switchLang();" id="settingsLang">
+                <i class="fa fa-fw fa-globe"></i>
+                <span id="settingsLangText">EN</span>
+            </a>
+        </div>
+        <div id="contrast" hidden>
+            <a href="javascript:switchContrast();" id="settingsContrast" hidden>
+                <i id="sunMoon" class="fa fa-fw fa-sun-o"></i>
+                <span id="settingsContrastText">Light</span>
+            </a>
+        </div>
+    </div>
+
+</body>
+
+<script>
+
+    function showSearch() {
+        let searchBar = document.getElementById("search-container");
+        searchBar.toggleAttribute("hidden");
+    }
+
+    function switchLang() {
+        let langBtnText = document.getElementById("settingsLangText").innerHTML;
+        if (langBtnText == "EN") {
+            document.getElementById("settingsLangText").innerHTML = "CN";
+        } else if (langBtnText == "CN") {
+            document.getElementById("settingsLangText").innerHTML = "EN";
+        }
+    }
+
+    function switchContrast() {
+        let contrastBtnText = document.getElementById("settingsContrastText").innerHTML;
+        if (contrastBtnText == "Light") {
+            document.getElementById("settingsContrastText").innerHTML = "Dark";
+            document.getElementById("sunMoon").classList.remove("fa-sun-o");
+            document.getElementById("sunMoon").classList.add("fa-moon-o");
+        } else if (contrastBtnText == "Dark") {
+            document.getElementById("settingsContrastText").innerHTML = "Light";
+            document.getElementById("sunMoon").classList.add("fa-sun-o");
+            document.getElementById("sunMoon").classList.remove("fa-moon-o");
+        }
+    }
+
+    function toggleSettings() {
+        document.getElementById("lang").toggleAttribute("hidden");
+        document.getElementById("contrast").toggleAttribute("hidden");
+    }
+</script>
+
+</html>

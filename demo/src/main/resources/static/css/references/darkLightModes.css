@@ -1,0 +1,31 @@
+    /* Dark mode OFF*/
+
+    .lightModeNavbar {
+        background-color: rgb(191, 235, 248);
+        border: 1px solid rgb(77, 205, 255);
+        color: rgb(18, 12, 71);
+    }
+
+    .lightModeNavbar a {
+        color: rgb(49, 49, 49);
+    }
+
+    .lightModeNavbar a:hover {
+        color: rgb(0, 17, 102);
+    }
+
+    /* Dark mode ON */
+
+    .darkModeNavbar {
+        background-color: rgb(61, 61, 61);
+        border: 1px solid black;
+        color: rgb(162, 241, 131);
+    }
+
+    .darkModeNavbar a {
+        color: rgb(131, 216, 241);
+    }
+
+    .darkModeNavbar a:hover {
+        filter: grayscale(100%);
+    }

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>webpageLayout.html</title>
+    <style>
+        * {
+            padding: 0px, 0px, 0px, 0px;
+            margin: 0px, 0px, 0px, 0px;
+        }
+
+        body {
+            height: 80vh;
+        }
+
+        #navbar {
+            border: 1px solid black;
+            width: 100%;
+            height: 80px;
+            float: left;
+            display: block;
+            background-color: green;
+        }
+
+        #main {
+            border: 1px solid black;
+            width: 100%;
+            height: 100%;
+            float: left;
+            display: block;
+        }
+
+        #sidebar {
+            border: 1px solid grey;
+            width: 10%;
+            height: 100%;
+            float: left;
+            display: block;
+
+        }
+
+        #content {
+            border: 1px solid grey;
+            width: 89.5%;
+            height: 100%;
+            float: right;
+            display: block;
+        }
+
+        #footer {
+            border: 1px solid black;
+            width: 100%;
+            height: 10%;
+            float: left;
+            display: block;
+        }
+
+        code {
+            display: block;
+            background-color: rgb(18, 52, 85);
+            color: rgb(228, 228, 228);
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+        code span.string {
+            color: rgb(255, 187, 85);
+        }
+
+        code span.var {
+            color: rgb(85, 201, 255);
+        }
+    </style>
+</head>
+
+<body>
+    <nav id="navbar"></nav>
+    <div id="main">
+        <div id="sidebar">sidebar</div>
+        <div id="content">
+            <code>
+                <span class=var>function f()</span> {
+                    console.log(<span class=string>"hi"</span>);
+                }
+            </code>
+            <p>
+                contentcontent is best content. You want great content. Only greatest content here. OMG so amazing wow
+                why?
+                contentcontent is best content. You want great content. Only greatest content here. OMG so amazing wow
+                why? OMG so amazing wow why? OMG so amazing wow why? OMG so amazing wow why?
+                contentcontent is best content. You want great content. Only greatest content here. OMG so amazing wow
+                why? OMG so amazing wow why? OMG so amazing wow why? OMG so amazing wow why? OMG so amazing wow why?OMG
+                so amazing wow why?
+            </p>
+            <p>
+                contentcontent is best content. You want great content. Only greatest content here.
+            </p>
+
+        </div>
+    </div>
+    <div id="footer">footer</div>
+</body>
+
+<!-- Import jQuery (mini) -->
+<script src="../js/jquery-3.4.1.min.js">
+
+</script>
+
+<script>
+    let navbarHTML = "<link rel='stylesheet' href ='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' > <style>.navbar {width: 100%;float: left;overflow: auto;} .navbar a {float: left; padding: 12px; color: black; text - decoration: none; font - size: 17px; } /* Dark mode OFF*/ .lightModeNavbar { background - color: rgb(191, 235, 248); border: 1px solid rgb(77, 205, 255); } .lightModeNavbar div a { color: rgb(49, 49, 49); } .lightModeNavbar a: hover { color: rgb(0, 17, 102); } /* Dark mode ON */ .darkModeNavbar { background - color: rgb(49, 49, 49); border: 1px solid black; color: rgb(162, 241, 131);} .darkModeNavbar div a {color: rgb(131, 216, 241);} .darkModeNavbar a: hover { filter: grayscale(100 %); } @media screen and(max - width: 500px) {.navbar a { float: none; display: block; } }</style ><div id='navbar' class='navbar darkModeNavbar'><div id=navbarLogo><a href='javascript: redirectHome()'><span style='font - family: Arial; font - weight: bold; text - align: justify; text - justify: inter - character; '>Kuei-Feng Tung</span></a></div><div id='navbarHome'><a href='javascript: redirectHome(); '><i class='fa fa - fw fa - home'></i><span id='navbarHomeText'>Home</span></a></div><div id='navbarPortfolio'><a href='javascript: redirectPortfolio()'><i class='fa fa - tw fa - book'></i><span id='navbarPortfolioText'>Portfolio</span></a></div><!--Settings --><div id='navbarSettings' style='float: right; '><a href='javascript: toggleSettings(); '><i class='fa fa - fw fa - gear'></i><span id='navbarSettingsText'>Settings</span></a><!-- Folded settings --><div id='navbarSettingsDropdown' hidden><div id='navbarSettingsDropdownLang'><a href='javascript: switchLang(); '><i class='fa fa - fw fa - globe'></i><span id='navbarSettingsDropdownLangText'>EN</span></a></div><div id='navbarSettingsDropdownContrast'><a href='javascript: switchContrast(); '><i id='sunMoon' class='fa fa - fw fa - sun - o'></i><span id='navbarSettingsDropdownContrastText'>Dark</span></a></div></div></div></div > ";
+    document.getElementById("navbar").innerHTML = navbarHTML;
+</script>
+
+</html>

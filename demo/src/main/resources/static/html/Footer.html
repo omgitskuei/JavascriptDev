@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- import icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    @media screen and (max-width: 500px) {
+        .navbar a {
+            float: none;
+            display: block;
+        }
+    }
+
+    footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        text-align: center;
+    }
+</style>
+<style>
+    /* Dark mode ON */
+
+    .darkModeNavbar {
+        background-color: rgb(61, 61, 61);
+        border: 1px solid black;
+        color: rgb(162, 241, 131);
+    }
+
+    .darkModeNavbar a {
+        color: rgb(131, 216, 241);
+    }
+
+    .darkModeNavbar a:hover {
+        filter: grayscale(100%);
+    }
+</style>
+
+<body>
+    <!-- Footer -->
+    <footer id="footer" class="darkModeNavbar">
+        <br>
+        <div>
+            Author: Kuei-Feng Tung |
+            <a href="mailto:kueifengtung@yahoo.com">kueifengtung@yahoo.com</a> | <input id="queryInput" type="search">
+            <button onclick="redirectSearch()"><i class="fa fa-tw fa-search"></i> Search</button>
+        </div>
+        <br>
+    </footer>
+</body>
+
+<script>
+    function redirectSearch() {
+        console.log("Clicked Search");
+    }
+</script>
+
+
+
+
+
+</html>

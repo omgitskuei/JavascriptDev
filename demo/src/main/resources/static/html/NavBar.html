@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- import icons -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
     * {
@@ -26,35 +27,6 @@
         font-size: 17px;
     }
 
-    /* Dark mode OFF*/
-    .lightModeNavbar {
-        background-color: rgb(191, 235, 248);
-        border: 1px solid rgb(77, 205, 255);
-    }
-
-    .lightModeNavbar div a {
-        color: rgb(49, 49, 49);
-    }
-
-    .lightModeNavbar a:hover {
-        color: rgb(0, 17, 102);
-    }
-
-    /* Dark mode ON */
-    .darkModeNavbar {
-        background-color: rgb(49, 49, 49);
-        border: 1px solid black;
-        color: rgb(162, 241, 131);
-    }
-
-    .darkModeNavbar div a {
-        color: rgb(131, 216, 241);
-    }
-
-    .darkModeNavbar a:hover {
-        filter: grayscale(100%);
-    }
-
     @media screen and (max-width: 500px) {
         .navbar a {
             float: none;
@@ -62,6 +34,9 @@
         }
     }
 </style>
+
+<!-- import dark/light modes-->
+<link rel="stylesheet" href="../css/references/darkLightModes.css">
 
 <body>
     <!-- Navbar -->
@@ -111,50 +86,6 @@
             </div>
         </div>
     </div>
-
-    <!-- article body -->
-    <article>
-        <!-- Row 1 -->
-        <div style="float:none; display:block; width:100%; height: 50%;">
-            <div style="background-color: blue; width:50%">
-asd
-            </div>
-            <div style="background-color: greenyellow; width:50%">
-das
-            </div>
-        </div>
-        <!-- Row 2-->
-        <div>
-            <div style="background-color: red;">
-
-            </div>
-            <div style="background-color: orange;">
-
-            </div>
-        </div>
-    </article>
-
-    <style>
-        footer {
-            position: fixed;
-            left: 0;
-            bottom: 0;
-            width: 100%;
-            text-align: center;
-        }
-    </style>
-    <!-- Footer -->
-    <footer id="footer" class="darkModeNavbar">
-        <br>
-        <div>
-            Author: Hege Refsnes | 
-            <a href="mailto:hege@example.com">hege@example.com</a> | <input id="queryInput" type="search">
-            <button onclick="redirectSearch()">Search</button>
-        </div>
-        <br>
-            
-        
-    </footer>
 </body>
 
 <script>

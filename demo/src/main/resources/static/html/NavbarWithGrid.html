@@ -1,92 +1,67 @@
 <!DOCTYPE html>
 <html>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- import icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-    * {
-        border: crimson solid 1px;
-        margin: 0;
-        padding: 0;
-    }
 
-    body {
-        font-family: Arial, Helvetica, sans-serif;
-    }
-
-    .navbar {
-        width: 100%;
-        float: left;
-        overflow: auto;
-    }
-
-    .navbar a {
-        float: left;
-        padding: 12px;
-        color: black;
-        text-decoration: none;
-        font-size: 17px;
-    }
-
-    @media screen and (max-width: 500px) {
-        .navbar a {
-            float: none;
-            display: block;
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
         }
-    }
-</style>
 
-<!-- import dark/light modes-->
-<!-- <link rel="stylesheet" href="../css/references/darkLightModes.css"> -->
+        /* Navbar */
+        .navbarGrid {
+            display: grid;
+            justify-items: stretch;
+            align-items: stretch;
+            justify-content: stretch;
+            align-content: stretch;
+            grid-auto-flow: row;
+            grid-template-columns: 3fr 7fr;
+            grid-auto-flow: row dense;
+            border: red solid 1px;
+        }
+
+        div {
+            border: blue solid 1px;
+        }
+
+        ul {
+            border: green solid 1px;
+        }
+
+        li {
+            border: yellow solid 1px;
+        }
+    </style>
+    <!-- import dark/light modes-->
+    <link rel="stylesheet" href="../css/references/darkLightModes.css">
+    <!-- import icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
 
 <body>
     <!-- Navbar -->
-    <div id="navbar" class="navbar darkModeNavbar">
+    <div id="navbar" class="navbarGrid darkModeNavbar">
         <!-- Logo -->
-        <div id=navbarLogo>
-            <a href="javascript:redirectHome()">
-                <span
-                    style="font-family:Arial; font-weight:bold; text-align:justify; text-justify:inter-character;">Kuei-Feng
-                    Tung</span>
-            </a>
+        <div>
+
         </div>
-        <!-- Home -->
-        <div id="navbarHome">
-            <a href="javascript:redirectHome();">
-                <i class="fa fa-fw fa-home"></i>
-                <span id="navbarHomeText">Home</span>
-            </a>
-        </div>
-        <!-- Portfolio -->
-        <div id="navbarPortfolio">
-            <a href="javascript:redirectPortfolio()">
-                <i class="fa fa-tw fa-book"></i>
-                <span id="navbarPortfolioText">Portfolio</span>
-            </a>
-        </div>
-        <!-- Settings -->
-        <div id="navbarSettings" style="float:right;">
-            <a href="javascript:toggleSettings();">
-                <i class="fa fa-fw fa-gear"></i>
-                <span id="navbarSettingsText">Settings</span>
-            </a>
-            <!-- Folded settings -->
-            <div id="navbarSettingsDropdown" hidden>
-                <div id="navbarSettingsDropdownLang">
-                    <a href="javascript:switchLang();">
-                        <i class="fa fa-fw fa-globe"></i>
-                        <span id="navbarSettingsDropdownLangText">EN</span>
-                    </a>
-                </div>
-                <div id="navbarSettingsDropdownContrast">
-                    <a href="javascript:switchContrast();">
-                        <i id="sunMoon" class="fa fa-fw fa-sun-o"></i>
-                        <span id="navbarSettingsDropdownContrastText">Dark</span>
-                    </a>
-                </div>
-            </div>
-        </div>
+        <!-- Buttons -->
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
     </div>
+
 </body>
 
 <script>

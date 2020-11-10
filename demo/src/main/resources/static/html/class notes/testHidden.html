@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>表格練習</title>
+    <style>
+        div.floats {
+            background-color: lightblue;
+            border: black solid 2px;
+            height: 70px;
+            width: 70px;
+            float: left;
+            padding: 5px
+        }
+
+        div.blocks {
+            display: block;
+        }
+
+        button {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <button onclick=clicked() value="try hidden">try hidden</button>
+    <hr>
+    <div class="blocks">
+        <div class="floats" id="a" hidden=true>
+            hidden<br>
+            =true
+        </div>
+
+        <div class="floats" id="b" hidden>
+            hidden
+        </div>
+    </div>
+
+</body>
+<script>
+    function clicked() {
+        console.log("clicked");
+        let a = document.getElementById("a");
+        let b = document.getElementById("b");
+        a.toggleAttribute("hidden");
+        b.toggleAttribute("hidden");
+    }
+</script>
+
+</html>

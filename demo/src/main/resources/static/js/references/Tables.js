@@ -47,7 +47,7 @@ function createNewTable(
     let targetDiv = document.getElementById(targetID);
     // create table, thead, and tbody
     let newTable = document.createElement("table");
-    newTable.id = tableID;
+    newTable.id = newTableID;
     let thead = document.createElement("thead");
     let tbody = document.createElement("tbody");
     // add th to thead
@@ -97,5 +97,30 @@ function createNewTable(
     }
     newTable.appendChild(tbody);
     targetDiv.appendChild(newTable);
+    console.log(debugString);
+}
+
+// Add a column of buttons to the end of each tr
+function addRowsDeleteBtns(tableID, btnText) {
+    let debugString = `addRowsDeleteBtns(${tableID}, ${btnText})`;
+    let table = document.getElementById(tableID);
+    let tableRows = table.getElementsByTagName("tr");
+    // Add btn to each row
+    for (let i = 1; i < tableRows.length; i++) {
+        // Create new td
+        let newTd = document.createElement("td");
+        // Create new btn
+        let button = document.createElement("button");
+        button.innerHTML = btnText;
+        button.addEventListener("click", deleteRow);
+        // Add btn to td
+        newTd.appendChild(button);
+        let eachRow = tableRows[i];
+        eachRow.appendChild(newTd);
+    }
+    function deleteRow() {
+        console.log("clicked button \""+this.innerHTML+"\", running function deleteRow()");
+        this.parentNode.parentNode.remove();
+    }
     console.log(debugString);
 }

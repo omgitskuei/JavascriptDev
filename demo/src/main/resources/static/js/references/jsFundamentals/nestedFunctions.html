@@ -1,0 +1,40 @@
+< !DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>NestedFunctions.html</title>
+        <style>
+
+        </style>
+    </head>
+
+    <body>
+        <h1>NestedFunctions.html</h1>
+        <div>
+            <button onclick="a(this)">A</button>
+            <button onclick="a(this)">A (and B)</button>
+            <button onclick="a(this)">A (and C)</button>
+        </div>
+        <script>
+            // check out function in function
+            function a(element) {
+                console.log("a()");
+                console.log(element);
+                if (this.innerHTML == "A (and B)") {
+                    b();
+                }
+                if (this.innerHTML == "A (and C)") {
+                    c();
+                }
+                function b() {
+                    console.log("b()");
+                }
+                function cb() {
+                    console.log("c()");
+                }
+            }
+        </script>
+    </body>
+
+    </html>

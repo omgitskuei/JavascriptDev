@@ -35,7 +35,7 @@
     <div id="tableDiv2">
     </div>
 
-    <button onclick="a()">Button C</button>
+    <!-- <button onclick="a()">Button C</button> -->
 
     <!-- buttons -->
     <!-- <input type="button" id="btn0" value="reset">
@@ -81,15 +81,6 @@
             cellsArray2,
             cellsArrayIsDelimitedByColumn2);
 
-        // check out function in function
-        function a() {
-            console.log("a()");
-            b();
-            function b() {
-                console.log("b()");
-            }
-        }
-
         // Add a column of buttons to the end of each tr in the 1st table
         addRowsDeleteBtns("tableDiv", "Delete Row");
         addRowsDeleteBtns("staticTable", "Delete me");
@@ -97,10 +88,10 @@
         // Add a column of buttons to the end of each tr in the 1st table
         addRowsDeleteBtns("tableDiv2", "Delete");
         addRowsDeleteBtns("staticTable2", "Delete!");
-        
-        
-        
-        
+
+
+
+
     </script>
 </body>
 

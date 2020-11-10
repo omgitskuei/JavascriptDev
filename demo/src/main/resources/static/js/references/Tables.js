@@ -47,6 +47,8 @@ function createNewTable(
     let targetDiv = document.getElementById(targetID);
     // create table, thead, and tbody
     let newTable = document.createElement("table");
+    newTable.classList.add("table-style");
+    newTable.classList.add("normal-table");
     newTable.id = newTableID;
     let thead = document.createElement("thead");
     let tbody = document.createElement("tbody");
@@ -106,7 +108,7 @@ function addRowsDeleteBtns(tableID, btnText) {
     let table = document.getElementById(tableID);
     let tableRows = table.getElementsByTagName("tr");
     // Add btn to each row
-    for (let i = 1; i < tableRows.length; i++) {
+    for (let i = 1; i < tableRows.length; i++) { // start from 1, not 0, to skip adding btn to header
         // Create new td
         let newTd = document.createElement("td");
         // Create new btn
@@ -119,8 +121,24 @@ function addRowsDeleteBtns(tableID, btnText) {
         eachRow.appendChild(newTd);
     }
     function deleteRow() {
-        console.log("clicked button \""+this.innerHTML+"\", running function deleteRow()");
+        console.log("clicked button \"" + this.innerHTML + "\", running function deleteRow()");
         this.parentNode.parentNode.remove();
     }
     console.log(debugString);
+}
+
+function tableDeleteRow(element, tableID) {
+    let table = document.getElementById(tableID);
+    let tableBody = table.getElementsByTagName("tbody");
+    let tableRows = tableBody.getElementsByTagName("tr");
+    tableRows.remove();
+
+
+    console.log("clicked tableDeleteRow(element)");
+    var targetRow = $(this).closest("tr");
+    targetRow.remove();
+    function deleteRow() {
+        console.log("clicked button \"" + this.innerHTML + "\", running function deleteRow()");
+        this.parentNode.parentNode.parentNode.remove();
+    }
 }

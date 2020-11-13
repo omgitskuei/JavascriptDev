@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+    </style>
+</head>
+
+<body>
+
+    <h2>Buttons</h2>
+    <input type="button" id="btn0" value="btn0">
+
+    <!-- Vanilla Javascript btn onClick -->
+    <script>
+        var btn0 = document.getElementById("btn0");
+        btn0.addEventListener(
+            "click",
+            function () {
+                console.log("clicked btn0");
+                // btn0.removeAttribute("disabled");
+                // btn0.toggleAttribute("disabled");
+                // btn0.toggleAttribute("disabled", "true");
+                // btn0.toggleAttribute("disabled", "false");
+            }
+        )
+
+    </script>
+
+    <!-- jQuery btn onClick-->
+    <script src="..\js\jQueryLabsrc\js\jquery-3.4.1.min.js"></script>
+    <script>
+        // jQuery id-selector
+        $("#btn0").click(function () {
+            console.log("jQuery, clicked btn0");
+        });
+    </script>
+</body>
+
+</html>

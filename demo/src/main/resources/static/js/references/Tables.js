@@ -15,24 +15,30 @@
  *     cellsArray = [["A1", "Bananas", "$10", "210"]];
  *     cellsArrayIsDelimitedByColumn = false;
  * Generated result:
- * <table id="staticTable">
- *     <thead>
- *         <tr>
- *             <th id="staticTable-0-0">Code</th>
- *             <th id="staticTable-0-1">Name</th>
- *             <th id="staticTable-0-2">Price</th>
- *             <th id="staticTable-0-3">Stock</th>
- *         </tr>
- *     </thead>
- *     <tbody>
- *         <tr>
- *             <td id="staticTable-1-0">A1</td>
- *             <td id="staticTable-1-1">Bananas</td>
- *             <td id="staticTable-1-2">$10</td>
- *             <td id="staticTable-1-3">210</td>
- *         </tr>
- *     </tbody>
- * </table>
+<table class="table-style normal-table" id="staticTable">
+    <thead>
+        <tr id="staticTable-Row0">
+            <th id="staticTable-Row0-Col0">Code</th>
+            <th id="staticTable-Row0-Col1">Name</th>
+            <th id="staticTable-Row0-Col2">Price</th>
+            <th id="staticTable-Row0-Col3">Stock</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr id="staticTable-Row1">
+            <td id="staticTable-Row1-Col0">A1</td>
+            <td id="staticTable-Row1-Col1">Bananas</td>
+            <td id="staticTable-Row1-Col2">$10</td>
+            <td id="staticTable-Row1-Col3">210</td>
+            <td>
+                <button>Delete Row</button>
+            </td>
+            <td>
+                <button>Delete me</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
  */
 function createNewTable(
     targetID,
@@ -50,49 +56,64 @@ function createNewTable(
     newTable.classList.add("table-style");
     newTable.classList.add("normal-table");
     newTable.id = newTableID;
+    // thead
     let thead = document.createElement("thead");
-    let tbody = document.createElement("tbody");
-    // add th to thead
+    // create tr
     let tr = document.createElement("tr");
+    tr.id = `${newTableID}-Row0`;
+    // add th cells to tr
     for (let index = 0; index < headersArray.length; index++) {
         let th = document.createElement("th");
         th.innerHTML = headersArray[index];
         cellV = index;
-        th.id = `${tableID}-${cellX}-${cellV}`;
+        th.id = `${newTableID}-Row${cellX}-Col${cellV}`;
         tr.appendChild(th);
     }
+    // add tr to thead
     thead.appendChild(tr);
     newTable.appendChild(thead);
-    // add tr rows based on headersArray.length
+
+    // tbody
+    let tbody = document.createElement("tbody");
     cellX = 1;
     cellV = 0;
     if (cellsArrayIsDelimitedByColumn == true) {
+        // If data is grouped by ROWS
         for (let index = 0; index < headersArray.length; index++) {
+            // create tr
             tr = document.createElement("tr");
-            // add td cells based on cellsArray[i].length
+            let rowCount = tbody.childElementCount + 1;
+            tr.id = `${newTableID}-Row${rowCount}`;
+            // add td cells to tr
             for (let indexCell = 0; indexCell < headersArray.length; indexCell++) {
                 let td = document.createElement("td");
                 td.innerHTML = cellsArray[indexCell][index];
-                td.id = `${tableID}-${cellX}-${cellV}`;
+                td.id = `${newTableID}-Row${cellX}-Col${cellV}`;
                 cellV++;
                 tr.appendChild(td);
             }
             cellX++;
+            // add tr to tbody
             tbody.appendChild(tr);
             cellV = 0;
         }
     } else {
+        // If data is grouped by COLUMNS not ROWS
         for (let index = 0; index < headersArray.length; index++) {
+            // create tr
             tr = document.createElement("tr");
-            // add td cells based on cellsArray[i].length
+            let rowCount = tbody.childElementCount + 1;
+            tr.id = `${newTableID}-Row${rowCount}`;
+            // add td cells to tr
             for (let indexCell = 0; indexCell < headersArray.length; indexCell++) {
                 let td = document.createElement("td");
                 td.innerHTML = cellsArray[index][indexCell];
-                td.id = `${tableID}-${cellX}-${cellV}`;
+                td.id = `${newTableID}-Row${cellX}-Col${cellV}`;
                 cellV++;
                 tr.appendChild(td);
             }
             cellX++;
+            // add tr
             tbody.appendChild(tr);
             cellV = 0;
         }
@@ -127,18 +148,18 @@ function addRowsDeleteBtns(tableID, btnText) {
     console.log(debugString);
 }
 
-function tableDeleteRow(element, tableID) {
-    let table = document.getElementById(tableID);
-    let tableBody = table.getElementsByTagName("tbody");
-    let tableRows = tableBody.getElementsByTagName("tr");
-    tableRows.remove();
+// function tableDeleteRow(element, tableID) {
+//     let table = document.getElementById(tableID);
+//     let tableBody = table.getElementsByTagName("tbody");
+//     let tableRows = tableBody.getElementsByTagName("tr");
+//     tableRows.remove();
 
 
-    console.log("clicked tableDeleteRow(element)");
-    var targetRow = $(this).closest("tr");
-    targetRow.remove();
-    function deleteRow() {
-        console.log("clicked button \"" + this.innerHTML + "\", running function deleteRow()");
-        this.parentNode.parentNode.parentNode.remove();
-    }
-}
+//     console.log("clicked tableDeleteRow(element)");
+//     var targetRow = $(this).closest("tr");
+//     targetRow.remove();
+//     function deleteRow() {
+//         console.log("clicked button \"" + this.innerHTML + "\", running function deleteRow()");
+//         this.parentNode.parentNode.parentNode.remove();
+//     }
+// }

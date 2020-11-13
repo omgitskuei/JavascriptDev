@@ -11,6 +11,7 @@
             border: 1px solid gray
         }
     </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -37,16 +38,24 @@
 
     <!-- <button onclick="a()">Button C</button> -->
 
+    <hr>
+
     <!-- buttons -->
-    <!-- <input type="button" id="btn0" value="reset">
+    <input type="button" id="btn0" value="btn0">
     <br />
     <input type="text" id="text1" value="0">
-    <input type="button" id="btn1" value="td:eq(x)"> -->
+    <input type="button" id="btn1" value="td:eq(x)">
 
 
     <script type="text/javascript" src="../js/references/Tables.js"></script>
 
     <script>
+        $('#btn0').click(function () {
+            console.log("clicked btn0");
+            let s = $('staticTable td#staticTable-Row1-Col1');
+            console.log(s);
+        })
+
         // If each index of cellsArray is a COLUMN
         let targetID = "tableDiv";
         let tableID = "staticTable";

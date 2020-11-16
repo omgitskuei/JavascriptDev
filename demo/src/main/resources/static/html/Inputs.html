@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- import icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<style>
+
+</style>
+
+<body>
+    <!-- Table -->
+    <form id="search-form" class="form-style needs-validation" novalidate>
+        <div class="form-column">
+            <div class="f-group quarter02">
+                <label class="label-style">發票種類</label>
+                <input id="formINV_TYPE" type="text" class="input-style" />
+            </div>
+
+            <div class="f-group quarter02">
+                <label class="label-style">法定分類</label>
+                <input id="formLAW_TYPE" type="text" class="input-style cost-right" data-type="number" />
+            </div>
+
+            <div class="f-group quarter02">
+                <label class="label-style">發票編號</label>
+                <input id="formINV_NO" type="text" class="input-style" />
+            </div>
+
+            <div class="f-group quarter02">
+                <label class="label-style">發票開立日期</label>
+                <div class="f-sub-group">
+                    <div class="i-group date" id="datepicker01" data-target-input="nearest" data-target="#datepicker01"
+                        data-toggle="datetimepicker">
+                        <input id="formINV_DATE" type="text" class="input-style datetimepicker-input format-date"
+                            data-target="#datepicker01" />
+                        <div class="input-icon">
+                            <i class="icon-work-calendar"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-column">
+            <div class="f-group quarter02">
+                <label class="label-style">客戶名稱</label>
+                <input id="formCUST_NAME" type="text" class="input-style" />
+            </div>
+
+            <div class="f-group quarter02">
+                <label class="label-style">客戶稅號</label>
+                <div class="f-sub-group flex-wrap">
+                    <input id="formCUST_TAX_ID" type="text" class="input-style flex-1" />
+                    <!-- Search Icon -->
+                    <button type="button" class="btn btn-func" onclick="custTaxID()">
+                        <i class="icon-work-search">SEARCH</i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="f-group quarter02">
+                <label class="label-style">付款目的</label>
+                <div class=autocomplete>
+                    <select id="formPAY_PURPOSE" class="input-style" />
+                    <option value="請選擇">請選擇</option>
+                    <option value="1">DKEMD</option>
+                    <option value="2">PHÍ KHÁC</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="f-group quarter02">
+                <label class="label-style">加值稅率</label>
+                <div class="i-group">
+                    <input id="formVAT_RATE" type="text" class="input-style" />
+                    <div class="input-icon">%</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-column">
+            <div class="f-group quarter02">
+                <label class="label-style">金額(未稅)</label>
+                <input id="formAPY_AMT" type="text" class="input-style cost-right" data-type="number" />
+            </div>
+
+            <div class="f-group quarter02">
+                <label class="label-style">VAT金額</label>
+                <input id="formVAT" type="text" class="input-style cost-right" data-type="number" />
+            </div>
+        </div>
+
+        <!-- Form btns -->
+        <div class="d-flex align-items-center justify-content-center mt-1">
+            <!-- UCAAAA0307 1.4.3.3 && 1.4.4.1 -->
+            <button type="button" id="btnNew" class="btn btn-linear ml-2 btn-create" onclick="clickBtnNew()">新增</button>
+            <button type="button" id="btnConfirmEdit" class="btn btn-linear ml-2 btn-edit" onclick="formUpdateRow()">
+                修改確認</button>
+        </div>
+
+        <div class="tableDiv">
+            <table id="editTable" class="table-style normal-table">
+                <thead>
+                    <tr>
+                        <th id="SEQ_NOColTH" width="50px">編號</th>
+                        <th id="INV_TYPEColTH" width="85px">發票種類</th>
+                        <th id="LAW_TYPEColTH" width="85px">法定分類</th>
+                        <th id="INV_NOColTH" width="85px">發票編號</th>
+                        <th id="INV_DATEColTH" width="115px">發票開立日期</th>
+                        <th id="CUST_NAMEColTH" width="95px">客戶名稱</th>
+                        <th id="CUST_TAX_IDColTH" width="95px">客戶稅號</th>
+                        <th id="PAY_PURPOSEColTH" width="95px">付款目的</th>
+                        <th id="VAT_RATEColTH" width="95px">加值稅率</th>
+                        <th id="APY_AMTColTH" width="130px">金額(未稅)</th>
+                        <th id="VATColTH" width="130px">VAT金額</th>
+                        <th id="INV_TYPEColTH" width="90px">操作</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td class="ColSEQ_NO">1</td>
+                        <td class="ColINV_TYPE">2OS02L</td>
+                        <td class="ColLAW_TYPE">NT/29P</td>
+                        <td class="ColINV_NO">000029</td>
+                        <td class="ColINV_DATE">01/04/2020</td>
+                        <td class="ColCUST_NAME">Mr Jack Doodle</td>
+                        <td class="ColCUST_TAX_ID">2343455</td>
+                        <td class="ColPAY_PURPOSE">PHÍ KHÁC</td>
+                        <td class="ColVAT_RATE">10%</td>
+                        <td class="ColAPY_AMT text-right">6.300.000</td>
+                        <td class="ColVAT text-right">6.300.000</td>
+                        <td>
+                            <div class="func-group">
+                                <!-- Row edit btn -->
+                                <button type="button" class="btn-table-func" onclick="tableEditRow(this)">
+                                    <i class="icon-table-edit"></i>
+                                </button>
+                                <!-- Row delete btn -->
+                                <button type="button" class="btn-table-func" onclick="tableDeleteRow(this)">
+                                    <i class="icon-features-delete"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="ColSEQ_NO">2</td>
+                        <td class="ColINV_TYPE">4KR93</td>
+                        <td class="ColLAW_TYPE">ED/20</td>
+                        <td class="ColINV_NO">020293</td>
+                        <td class="ColINV_DATE">02/04/2020</td>
+                        <td class="ColCUST_NAME">EKDMEEO</td>
+                        <td class="ColCUST_TAX_ID">20394833</td>
+                        <td class="ColPAY_PURPOSE">DKEMD</td>
+                        <td class="ColVAT_RATE">10%</td>
+                        <td class="ColAPY_AMT text-right">3.000.000</td>
+                        <td class="ColVAT text-right">3.000.000</td>
+                        <td>
+                            <div class="func-group">
+                                <!-- Row edit btn -->
+                                <button type="button" class="btn-table-func" onclick="tableEditRow(this)">
+                                    <i class="icon-table-edit"></i>
+                                </button>
+                                <!-- Row delete btn -->
+                                <button type="button" class="btn-table-func" onclick="tableDeleteRow(this)">
+                                    <i class="icon-features-delete"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <hr>
+
+        <hr />
+        <!-- Save Button -->
+        <div class="d-flex align-items-center justify-content-center">
+            <button type="submit" id="btnSave" class="btn btn-linear">暫存</button>
+        </div>
+    </form>
+
+    <div>
+        hPAYPURPOSE=<span id="hPAYPURPOSE"></span>
+        hPAYPURPOSEID=<span id="hPAYPURPOSEID"></span>
+        hSEQ_NO=<span id="hSEQ_NO"></span>
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer" class="darkModeNavbar">
+        <br>
+        <div>
+            Author: Kuei-Feng Tung |
+            <a href="mailto:kueifengtung@yahoo.com">kueifengtung@yahoo.com</a> | <input id="queryInput" type="search">
+            <button id="searchBtn" onclick="redirectSearch()"><i class="fa fa-tw fa-search"></i> Search</button>
+        </div>
+        <br>
+    </footer>
+</body>
+
+<script src="..\js\jQueryLabsrc\js\jquery-3.4.1.min.js"></script>
+<script>
+    function redirectSearch() {
+        console.log("Clicked Search");
+        var inputID = "queryInput";
+        var thisInput = document.getElementById(inputID);
+        console.log("Query= " + thisInput.value);
+    }
+
+    function tableDeleteRow(element) {
+        var thisBtn = $(element);
+        thisBtn.closest('tr').remove();
+    }
+
+    /**
+     * UCAAAA_0307 5, 5.2, 5.3
+     * Clicking Search/Magnifying glasses Icon in Form
+     */
+    function custTaxID() {
+        alert("clicked MagGlass");
+        var formCUST_TAX_ID = document.getElementById("formCUST_TAX_ID").value;
+        // 5.3, 5.3.1 - Check if input is not-empty
+        if (formCUST_TAX_ID == null || formCUST_TAX_ID === "" || formCUST_TAX_ID.length == 0) {
+            alert("請輸入客戶資料!");
+        } else {
+            alert("formCUST_TAX_ID=" + formCUST_TAX_ID);
+            // Call AJAX to AAAA0307 doQuery(req), calls DKG0_0100.doGetid(req) where req wraps CUST_TAX_ID
+
+            // Get CUST_NAME query result from Ajax resp
+
+            // 5.2, 5.2.1 - Set CUST_NAME in Form as Ajax resp CUST_NAME
+        }
+    }
+
+
+    function tableEditRow(element) {
+        var btn = $(element);
+        var tr = btn.closest('tr');
+        var trs = btn.closest('tbody').find('tr');
+        // Enable other rows and their btns
+        trs.removeClass('tr-disabled');
+        trs.find('button').attr('disabled', false);
+        // Disable this row that's being edited and its btns
+        tr.find('button').attr('disabled', true);
+        tr.addClass('tr-disabled');
+        // 7.2 Disable Form btn 'Create' and Enable Form btn 'Edit'
+        $('.btn-create').attr('disabled', true);
+        $('.btn-edit').attr('disabled', false);
+        // Get all tds from row
+        let thisRowTDs = tr.find('td');
+        // 7.1.1 Copy innerText from each td into Form all inputs EXCEPT formPAY_PURPOSE
+        document.getElementById('formINV_TYPE').value = thisRowTDs[1].innerText;
+        document.getElementById('formLAW_TYPE').value = thisRowTDs[2].innerText;
+        document.getElementById('formINV_NO').value = thisRowTDs[3].innerText;
+        document.getElementById('formINV_DATE').value = thisRowTDs[4].innerText;
+        document.getElementById('formCUST_NAME').value = thisRowTDs[5].innerText;
+        document.getElementById('formCUST_TAX_ID').value = thisRowTDs[6].innerText;
+        // skip formPAY_PURPOSE
+        document.getElementById('formVAT_RATE').value = thisRowTDs[8].innerText;
+        document.getElementById('formAPY_AMT').value = thisRowTDs[9].innerText;
+        document.getElementById('formVAT').value = thisRowTDs[10].innerText;
+        // check if td's PAY_PURPOSE is one of the options
+        var formPAY_PURPOSE_select = document.getElementById("formPAY_PURPOSE");
+        for (let i = 0; i < formPAY_PURPOSE_select.children.length; i++) {
+            if (formPAY_PURPOSE_select.children[i].innerHTML == thisRowTDs[7].innerText) {
+                // 7.1.2 If it is an option, select it
+                formPAY_PURPOSE_select.selectedIndex = i;
+                break;
+            } else {
+                // else, select default "請選擇" ("Please select...")
+                formPAY_PURPOSE_select.selectedIndex = 0;
+            }
+        }
+        // 7.1.3 Store table Row num SEQ_NO in hidden dom element for returning data into correct row in formUpdateRow()
+        document.getElementById("hSEQ_NO").innerHTML = thisRowTDs[0].innerText;
+
+
+
+    }
+
+
+
+
+    /**
+    * UCAAAA_0307 4.1, 4.1.1, 4.1.2, 4.1.3
+    * Validate Form inputs before updating table row
+    */
+    function validateForm() {
+        // 4.1.1 發票種類、法定分類、發票編號、發票開立日期、客戶名稱、客戶稅號必須輸入 - Certain fields are required
+        var invalid = false;
+        var errors = [];
+        var thisInput = null;
+        // 發票編號
+        thisInput = document.getElementById("formINV_TYPE");
+        if (thisInput.value.trim() == "") {
+            errors.push("發票編號");
+        }
+        // 法定分類
+        thisInput = document.getElementById("formLAW_TYPE");
+        if (thisInput.value.trim() == "") {
+            errors.push("法定分類");
+        }
+        // 發票編號
+        thisInput = document.getElementById("formINV_NO");
+        if (thisInput.value.trim() == "") {
+            errors.push("發票編號");
+        }
+        // 發票開立日期
+        thisInput = document.getElementById("formINV_DATE");
+        if (thisInput.value.trim() == "") {
+            errors.push("發票開立日期");
+        }
+        // 客戶名稱
+        thisInput = document.getElementById("formCUST_NAME");
+        if (thisInput.value.trim() == "") {
+            errors.push("客戶名稱");
+        }
+        // 客戶稅號
+        thisInput = document.getElementById("formCUST_TAX_ID");
+        if (thisInput.value.trim() == "") {
+            errors.push("客戶稅號");
+        }
+        // 4.1.1 為空的話顯示錯誤訊息:請輸入(欄位名稱) - If empty, throw error
+        if (errors.length > 0) {
+            var alertString = "請輸入(";
+            for (let i = 0; i < errors.length; i++) {
+                alertString = alertString + errors[i]; if (i != errors.length - 1) {
+                    alertString = alertString + ", ";
+                }
+            } alertString = alertString + ")"; invalid = true; alert(alertString);
+        } // 4.1.2付款目的必須選擇 - Select id = formPAY_PURPOSE is required 
+        var formPAY_PURPOSE_select = document.getElementById("formPAY_PURPOSE");
+        var selectedOption = formPAY_PURPOSE_select.options[formPAY_PURPOSE_select.selectedIndex];
+        if (selectedOption.innerText == "請選擇") {
+            alert("請選擇付款目的");
+            invalid = true;
+        } // 4.1.3 加值稅率、金額(未稅)、VAT金額必須輸入數字 - Certain fields must be nums errors=[]; // 加值稅率
+        thisInput = document.getElementById("formVAT_RATE");
+        if (thisInput.value.trim() == "") { errors.push("加值稅率"); }
+        //金額(未稅) 
+        thisInput = document.getElementById("formAPY_AMT");
+        if (thisInput.value.trim() == "") { errors.push("金額(未稅)"); }
+        // VAT金額 
+        thisInput = document.getElementById("formVAT");
+        if (thisInput.value.trim() == "") { errors.push("VAT金額"); }
+        // 4.1.3 若檢核失敗，顯示錯誤訊息: (欄位名稱)請輸入數字。 
+        if (errors.length > 0) {
+            var alertString = "(";
+            for (let i = 0; i < errors.length; i++) {
+                alertString = alertString + errors[i]; if (i != errors.length - 1) {
+                    alertString = alertString + ", ";
+                }
+            } alertString = alertString + ")請輸入數字。"; invalid = true; alert(alertString);
+        }
+        if (invalid) { return false; }
+        else { return true; }
+    }
+
+
+    function clickBtnNew() {
+        let tr = document.createElement("tr");
+        let table = document.getElementById("editTable");
+        let tbody = table.getElementsByTagName("tbody");
+        // add seq no
+        let newColSEQ_NO = document.createElement("td");
+        let numOfRows = tbody[0].children.length;
+        let newNumOfRows = parseInt(numOfRows) + 1;
+        // give seq no based on tbody # of trs
+        newColSEQ_NO.innerText = newNumOfRows;
+        newColSEQ_NO.classList.add("ColSEQ_NO");
+        tr.appendChild(newColSEQ_NO);
+        // add each form value to each td
+        let newColINV_TYPE = document.createElement("td");
+        newColINV_TYPE.innerText = document.getElementById('formINV_TYPE').value;
+        newColINV_TYPE.classList.add("ColINV_TYPE");
+        tr.appendChild(newColINV_TYPE);
+        let newColLAW_TYPE = document.createElement("td");
+        newColLAW_TYPE.innerText = document.getElementById('formLAW_TYPE').value;
+        newColLAW_TYPE.classList.add("ColLAW_TYPE");
+        tr.appendChild(newColLAW_TYPE);
+        let newColINV_NO = document.createElement("td");
+        newColINV_NO.innerText = document.getElementById('formINV_NO').value;
+        newColINV_NO.classList.add("ColINV_NO");
+        tr.appendChild(newColINV_NO);
+        let newColINV_DATE = document.createElement("td");
+        newColINV_DATE.innerText = document.getElementById('formINV_DATE').value;
+        newColINV_DATE.classList.add("ColINV_DATE");
+        tr.appendChild(newColINV_DATE);
+        let newColCUST_NAME = document.createElement("td");
+        newColCUST_NAME.innerText = document.getElementById('formCUST_NAME').value;
+        newColCUST_NAME.classList.add("ColCUST_NAME");
+        tr.appendChild(newColCUST_NAME);
+        let newColCUST_TAX_ID = document.createElement("td");
+        newColCUST_TAX_ID.innerText = document.getElementById('formCUST_TAX_ID').value;
+        newColCUST_TAX_ID.classList.add("ColCUST_TAX_ID");
+        tr.appendChild(newColCUST_TAX_ID);
+        let newColPAY_PURPOSE = document.createElement("td");
+        let formPAY_PURPOSE_select = document.getElementById("formPAY_PURPOSE");
+        let selectedOptionValue = formPAY_PURPOSE_select.selectedIndex;
+        let selectedOptionLabel = formPAY_PURPOSE_select.children[selectedOptionValue].innerHTML;
+        newColPAY_PURPOSE.innerText = selectedOptionLabel;
+        newColPAY_PURPOSE.classList.add("ColPAY_PURPOSE");
+        tr.appendChild(newColPAY_PURPOSE);
+        let newColVAT_RATE = document.createElement("td");
+        newColVAT_RATE.innerText = document.getElementById('formVAT_RATE').value;
+        newColVAT_RATE.classList.add("ColVAT_RATE");
+        tr.appendChild(newColVAT_RATE);
+        let newColAPY_AMT = document.createElement("td");
+        newColAPY_AMT.innerText = document.getElementById('formAPY_AMT').value;
+        newColAPY_AMT.classList.add("ColAPY_AMT");
+        newColAPY_AMT.classList.add("text-right");
+        tr.appendChild(newColAPY_AMT);
+        let newColVAT = document.createElement("td");
+        newColVAT.innerText = document.getElementById('formVAT').value;
+        newColVAT.classList.add("ColVAT");
+        newColVAT.classList.add("text-right");
+        tr.appendChild(newColVAT);
+        // create btns td, div
+        let newBtnsTD = document.createElement("td");
+        let rowBtnsDIV = document.createElement("div");
+        rowBtnsDIV.classList.add("func-group");
+        // create edit btn
+        let newBtnEdit = document.createElement("button");
+        newBtnEdit.classList.add("btn-table-func");
+        newBtnEdit.type = "button";
+        let editIcon = document.createElement("i");
+        editIcon.classList.add("icon-features-edit");
+        newBtnEdit.appendChild(editIcon);
+        //newBtnEdit.attachEvent("onclick", tableEditRow);
+        //newBtnEdit.addEventListener("click", tableEditRow);
+        newBtnEdit.addEventListener("click", function () {
+            tableEditRow(this)
+        });
+        // create del btn
+        let newBtnDel = document.createElement("button");
+        newBtnDel.classList.add("btn-table-func");
+        newBtnDel.type = "button";
+        let delIcon = document.createElement("i");
+        delIcon.classList.add("icon-features-delete");
+        newBtnDel.appendChild(delIcon);
+        newBtnDel.addEventListener("click", function () {
+            tableDeleteRow(this)
+        });
+        // append edit btn and del btn to div
+        rowBtnsDIV.appendChild(newBtnEdit);
+        rowBtnsDIV.appendChild(newBtnDel);
+        // append div to td
+        newBtnsTD.appendChild(rowBtnsDIV);
+        tr.appendChild(newBtnsTD);
+        tbody[0].appendChild(tr);
+    }
+
+
+
+
+
+
+    function formUpdateRow() { // Validate form inputs before updating table var
+        validForm = validateForm();
+        if (validForm) { // Form is valid 
+            var table = $('#editTable');
+            // Remove grey filter from all rows 
+            table.find('tr').removeClass('tr-disabled');
+            // Enable all row btns 
+            table.find('tr button').attr('disabled', false);
+            // Enable Form btn Create, Disable Form btn Edit
+            $('.btn-create').attr('disabled', false);
+            $('.btn-edit').attr('disabled', true);
+            // Get table Row num SEQ_NO from hidden dom element 
+            var hSEQ_NO = document.getElementById("hSEQ_NO");
+            // Get table's each row's SEQ_NO
+            var eachRowSEQ_NO = $('#editTable > tbody > tr').find(" td:first");
+            for (let i = 0; i < eachRowSEQ_NO.length; i++) {
+                if (hSEQ_NO.innerText == eachRowSEQ_NO[i].innerText) {
+                    var tr = eachRowSEQ_NO[i].parentElement;
+                    console.log(tr);
+                    var targetRowTDs = tr.getElementsByTagName("td");
+
+                    let allRows = $('#editTable > tbody > tr');
+                    console.log(allRows);
+
+                    //var targetRowTDs = allRows[i]..find(" td");
+                    targetRowTDs[1].innerText = document.getElementById('formINV_TYPE').value;
+                    targetRowTDs[2].innerText = document.getElementById('formLAW_TYPE').value;
+                    targetRowTDs[3].innerText = document.getElementById('formINV_NO').value;
+                    targetRowTDs[4].innerText = document.getElementById('formINV_DATE').value;
+                    targetRowTDs[5].innerText = document.getElementById('formCUST_NAME').value;
+                    targetRowTDs[6].innerText = document.getElementById('formCUST_TAX_ID').value;
+                    let formPAY_PURPOSE_select = document.getElementById("formPAY_PURPOSE");
+                    let selectedOptionValue = formPAY_PURPOSE_select.selectedIndex;
+                    let selectedOptionLabel = formPAY_PURPOSE_select.children[selectedOptionValue].innerHTML;
+                    targetRowTDs[7].innerText = selectedOptionLabel;
+                    targetRowTDs[8].innerText = document.getElementById('formVAT_RATE').value;
+                    targetRowTDs[9].innerText = document.getElementById('formAPY_AMT').value;
+                    targetRowTDs[10].innerText = document.getElementById('formVAT').value;
+                    break;
+                }
+            }
+        } else { // Form is invalid 
+            alert("Form was invalid.");
+        }
+    }
+
+
+</script>
+
+</html>

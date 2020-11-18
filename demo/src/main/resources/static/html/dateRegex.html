@@ -1,0 +1,110 @@
+<script>
+  // function isValidDate(dateString) {
+  //   var regEx = /^\d{4}-\d{2}-\d{2}$/;
+  //   if (!dateString.match(regEx)) return false; // Invalid format
+  //   var d = new Date(dateString);
+  //   var dNum = d.getTime();
+  //   if (!dNum && dNum !== 0) return false; // NaN value, Invalid date
+  //   return d.toISOString().slice(0, 10) === dateString;
+  // }
+  // /* Example Uses */
+  // console.log(isValidDate("0000-00-00")); // false
+  // console.log(isValidDate("2015-01-40")); // false
+  // console.log(isValidDate("2016-11-25")); // true
+  // console.log(isValidDate("1970-01-01")); // true = epoch
+  // console.log(isValidDate("2016-02-29")); // true = leap day
+  // console.log(isValidDate("2013-02-29")); // false = not leap day
+  // console.log(isValidDate2("2016-11/25")); // false
+  // console.log(isValidDate2("2016/11-25")); // false
+
+
+  // console.log("");
+  // function isValidDate2(passedDateString) {
+  //   let dateString = passedDateString;
+  //   var regEx = /^([0-9]{4})([/,-]{1})([0-9]{1,2})\2{1}([0-9]{1,2})$/;
+  //   if (!dateString.match(regEx)) {
+  //     return false; // Invalid format
+  //   } else {
+  //     if (dateString.includes("/")) {
+  //       dateString = dateString.split("/").join("-");
+  //     }
+  //     var d = new Date(dateString);
+  //     var dNum = d.getTime();
+  //     if (!dNum && dNum !== 0) return false; // NaN value, Invalid date
+  //     return d.toISOString().slice(0, 10) === dateString;
+  //   }
+  // }
+  // /* Example Uses */
+  // console.log(isValidDate2("2016-11-25")); // true
+  // console.log(isValidDate2("1970-01-01")); // true = epoch
+  // console.log(isValidDate2("2013-02-29")); // false = not leap day
+  // console.log(isValidDate2("2016-02-29")); // true = leap day
+
+  // console.log(isValidDate2("0000/00/00")); // false
+  // console.log(isValidDate2("2015/01/40")); // false
+  // console.log(isValidDate2("2016/11/25")); // true
+  // console.log(isValidDate2("1970/01/01")); // true = epoch
+  // console.log(isValidDate2("2016/02/29")); // true = leap day
+  // console.log(isValidDate2("2013/02/29")); // false = not leap day
+  // console.log(isValidDate2("2016-11/25")); // false
+  // console.log(isValidDate2("2016/11-25")); // false
+
+  // console.log(isValidDate2("2016.11.25")); // false
+  // console.log(isValidDate2("2016/11.25")); // false
+
+
+  // Validating dates formatted in MM/DD/YYYY
+  console.log("");
+  function isValidDate2(passedDateString) {
+    let dateString = "";
+    dateString = passedDateString;
+    var regEx = /^([0-9]{1,2})([/,-]{1})([0-9]{1,2})\2{1}([0-9]{4})$/;
+    if (!dateString.match(regEx)) {
+      console.log("failed regex");
+      return false; // Invalid format
+    } else {
+      console.log(dateString);
+      console.log("passed regex");
+      if (dateString.includes("/")) {
+        dateString = dateString.split("/").join("-");
+      }
+      console.log(dateString);
+      let stringAsArray = [];
+      stringAsArray = dateString.split("-");
+      day = stringAsArray[0];
+      month = stringAsArray[1];
+      year = stringAsArray[2];
+      stringAsArray[0] = year;
+      stringAsArray[1] = month;
+      stringAsArray[2] = day;
+      dateString = stringAsArray.join("-");
+      console.log(dateString);
+
+      var d = new Date(dateString);
+      var dNum = d.getTime();
+      if (!dNum && dNum !== 0) return false; // NaN value, Invalid date
+      return d.toISOString().slice(0, 10) === dateString;
+    }
+  }
+  /* Example Uses */
+  // console.log(isValidDate2("25-11-2016")); // true
+  // console.log(isValidDate2("01-01-1970")); // true = epoch
+  // console.log();
+  // console.log(isValidDate2("29-02-2013")); // false = not leap day
+  // console.log();
+  // console.log(isValidDate2("29-02-2016")); // true = leap day
+  // console.log();
+  // console.log(isValidDate2("00/00/0000")); // false
+  // console.log(isValidDate2("01/40/2015")); // false
+  // console.log();
+  // console.log(isValidDate2("25/11/2016")); // true
+  // console.log(isValidDate2("01/01/1970")); // true = epoch
+  // console.log(isValidDate2("29/02/2016")); // true = leap day
+  // console.log();
+  // console.log(isValidDate2("02/29/2013")); // false = not leap day
+  // console.log(isValidDate2("11/25-2016")); // false
+  // console.log(isValidDate2("11-25/2016")); // false
+  // console.log(isValidDate2("11.25.2016")); // false
+  // console.log(isValidDate2("11.25/2016")); // false
+  console.log(isValidDate2("02/04/2020")); // false
+</script>

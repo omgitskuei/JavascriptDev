@@ -215,7 +215,7 @@
 
     function tableDeleteRow(element) {
         var thisBtn = $(element);
-        thisBtn.closest('tr').remove();
+        thisBtn.closest('tr').hide();
     }
 
     /**
@@ -224,17 +224,35 @@
      */
     function custTaxID() {
         alert("clicked MagGlass");
-        var formCUST_TAX_ID = document.getElementById("formCUST_TAX_ID").value;
+        var formCUST_TAX_IDval = document.getElementById("formCUST_TAX_ID").value;
         // 5.3, 5.3.1 - Check if input is not-empty
-        if (formCUST_TAX_ID == null || formCUST_TAX_ID === "" || formCUST_TAX_ID.length == 0) {
+        if (formCUST_TAX_IDval == null || formCUST_TAX_IDval === "" || formCUST_TAX_IDval.length == 0) {
             alert("請輸入客戶資料!");
         } else {
-            alert("formCUST_TAX_ID=" + formCUST_TAX_ID);
+            alert("formCUST_TAX_ID=" + formCUST_TAX_IDval);
             // Call AJAX to AAAA0307 doQuery(req), calls DKG0_0100.doGetid(req) where req wraps CUST_TAX_ID
-
-            // Get CUST_NAME query result from Ajax resp
-
-            // 5.2, 5.2.1 - Set CUST_NAME in Form as Ajax resp CUST_NAME
+            var webcontext = '<%=request.getContextPath()%>/servlet/HttpDispatcher/AAAA_0307/';
+            new Ajax.Request(
+                webcontext + 'doQuery',
+                {
+                    parameters: {
+                        CUST_TAX_ID: formCUST_TAX_IDval
+                    },
+                    asynchronous: false,
+                    onSuccess: function (XHT, resp) {
+                        // Get CUST_NAME query result from Ajax resp
+                        console.log("SUCCESS: CUST_NAME=[" + resp.CUST_NAME + "],");
+                        console.log("NAME=[" + resp.NAME + "]");
+                        if (!resp.CUST_NAME) {
+                            // No CUST_NAME found
+                            alert(resp.error);
+                        } else {
+                            // 5.2, 5.2.1 - Set CUST_NAME in Form as Ajax resp CUST_NAME
+                            document.getElementById("formCUST_NAME").value = resp.CUST_NAME;
+                        }
+                    }
+                }
+            );
         }
     }
 

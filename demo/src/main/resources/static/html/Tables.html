@@ -29,11 +29,13 @@
     <hr>
 
     <div id="tableDiv">
+        <span>StaticTable</span>
     </div>
 
     <hr>
 
     <div id="tableDiv2">
+        <span>StaticTable2</span>
     </div>
 
     <!-- <button onclick="a()">Button C</button> -->
@@ -41,19 +43,95 @@
     <hr>
 
     <!-- buttons -->
+    <div>Enter Row:Column to retrieve Cell from staticTable (jQuery)</div>
+    <div>Note: This queries all td cells, indices include thead row.</div>
+    <input type="text" id="queryRow" value="0" placeholder="Enter row...">
+    <input type="text" id="queryCol" value="0" placeholder="Enter col...">
     <input type="button" id="btn0" value="btn0">
+    <span id="queryResults"></span>
     <br />
-    <input type="text" id="text1" value="0">
-    <input type="button" id="btn1" value="td:eq(x)">
+    <div>Enter Row:Column to retrieve Cell from staticTable (Javascript)</div>
+    <div>Note: This queries cells in tbody, indices exclude thead row.</div>
+    <input type="text" id="queryRow2" value="0" placeholder="Enter row...">
+    <input type="text" id="queryCol2" value="0" placeholder="Enter col...">
+    <input type="button" id="btn2" value="btn2">
+    <span id="queryResults2"></span>
+    <br />
+    <br />
+    <div>Print all cell data in StaticTable</div>
+    <input type="button" id="btn1" value="btn1">
+    <div>
+        <span id="queryResults3"></span>
+    </div>
+
+    <!-- <input type="text" id="text1" value="0"> -->
+    <!-- <input type="button" id="btn1" value="td:eq(x)"> -->
 
 
     <script type="text/javascript" src="../js/references/Tables.js"></script>
 
     <script>
+        // Print all cell data in staticTable
+        $('#btn1').click(function () {
+            console.log("clicked btn1")
+            var thisTable = document.getElementById("staticTable");
+            var thisTbody = thisTable.children[1];
+            var allRows = thisTbody.children;
+            var allCellData = [];
+            for (let i = 0; i < allRows.length; i++) {
+                let eachRow = allRows[i];
+                let eachRowData = {};
+                eachRowData.Code = eachRow.children[0].innerHTML;
+                eachRowData.Name = eachRow.children[1].innerHTML;
+                eachRowData.Price = eachRow.children[2].innerHTML;
+                eachRowData.Stock = eachRow.children[3].innerHTML;
+                allCellData.push(eachRowData);
+            }
+            console.log("allCellData=");
+            console.log(allCellData);
+            var showResults = document.getElementById("queryResults3");
+            showResults.innerHTML = showResults.innerHTML + "------" + Date.now() + "------" + "<br/>";
+            for (let i2 = 0; i2 < allCellData.length; i2++) {
+                let eachRow = allCellData[i2];
+                console.log("eachRow=")
+                console.log(eachRow);
+                let code = eachRow.Code;
+                let name = eachRow.Name;
+                let price = eachRow.Price;
+                let stock = eachRow.Stock;
+                showResults.innerHTML = showResults.innerHTML + "Code:" + code + ", Name:" + name + ", Price:" + price + ", Stock:" + stock + "<br/>";
+            }
+
+        })
+
+        // Queries for cell (row:col) innerHTML (includes thead row)
         $('#btn0').click(function () {
             console.log("clicked btn0");
-            let s = $('staticTable td#staticTable-Row1-Col1');
+            var row = document.getElementById("queryRow").value;
+            var col = document.getElementById("queryCol").value;
+            var str = "#staticTable-Row" + row + "-Col" + col;
+            console.log(str);
+            let s = $(str);
             console.log(s);
+            document.getElementById("queryResults").innerHTML = s.text();
+        })
+
+
+
+
+        // Queries for cell (row:col) innerHTML (excludes thead row)
+        $('#btn2').click(function () {
+            console.log("clicked btn2");
+            var row = document.getElementById("queryRow2").value;
+            var col = document.getElementById("queryCol2").value;
+            console.log("Row:Col=" + row + ":" + col);
+            var thisTable = document.getElementById("staticTable");
+            console.log("thisTable=");
+            console.log(thisTable);
+            var thisTbody = thisTable.children[1];
+            console.log("thisTbody=");
+            console.log(thisTbody);
+            document.getElementById("queryResults2").innerHTML = thisTbody.children[row].children[col].innerHTML;
         })
 
         // If each index of cellsArray is a COLUMN
@@ -97,6 +175,8 @@
         // Add a column of buttons to the end of each tr in the 1st table
         addRowsDeleteBtns("tableDiv2", "Delete");
         addRowsDeleteBtns("staticTable2", "Delete!");
+
+
 
 
 

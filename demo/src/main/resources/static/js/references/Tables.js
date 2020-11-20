@@ -123,7 +123,7 @@ function createNewTable(
     console.log(debugString);
 }
 
-// Add a column of buttons to the end of each tr
+// Add a column of DELETE buttons to the end of each tr
 function addRowsDeleteBtns(tableID, btnText) {
     let debugString = `addRowsDeleteBtns(${tableID}, ${btnText})`;
     let table = document.getElementById(tableID);
@@ -147,6 +147,37 @@ function addRowsDeleteBtns(tableID, btnText) {
     }
     console.log(debugString);
 }
+
+// Add a column of HIDE buttons to the end of each tr
+function addRowsHideBtns(tableID, btnText) {
+    let debugString = `addRowsDeleteBtns(${tableID}, ${btnText})`;
+    let table = document.getElementById(tableID);
+    let tableRows = table.getElementsByTagName("tr");
+    // Add btn to each row
+    for (let i = 1; i < tableRows.length; i++) { // start from 1, not 0, to skip adding btn to header
+        // Create new td
+        let newTd = document.createElement("td");
+        // Create new btn
+        let button = document.createElement("button");
+        button.innerHTML = btnText;
+        button.addEventListener("click", hideRow);
+        // Add btn to td
+        newTd.appendChild(button);
+        let eachRow = tableRows[i];
+        // Add a td(btn) to each row
+        eachRow.appendChild(newTd);
+    }
+    function hideRow() {
+        console.log("clicked button \"" + this.innerHTML + "\", running function hideRow()");
+        var thisTd = this.parentNode;
+        //var thisTr = thisTd.parentNode;
+        thisTd.toggleAttribute("hidden");
+    }
+    console.log(debugString);
+}
+
+
+
 
 // function tableDeleteRow(element, tableID) {
 //     let table = document.getElementById(tableID);

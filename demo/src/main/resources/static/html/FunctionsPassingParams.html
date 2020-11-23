@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- import icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+    .card {
+        border: black solid 1px;
+        background-color: rgb(124, 243, 237);
+        margin: 0;
+        padding: 0;
+        width: 600px;
+        height: 100px;
+        text-align: center;
+        /* ALLOWS Vertically centers text inside DIV */
+        display:table-cell;
+    }
+    .card span.cardName {
+        vertical-align: middle;
+        text-align: middle;
+    }
+
+    .card span.top {
+        vertical-align: top;
+        text-align: left;
+    }
+
+    .card span.bottom {
+        vertical-align: bottom;
+        text-align: left;
+    }
+
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+</style>
+
+<!-- import dark/light modes-->
+<!-- <link rel="stylesheet" href="../css/references/darkLightModes.css"> -->
+
+<body>
+
+    <h1>Functions passing params</h1>
+    <!-- Static elements -->
+    Below are DIVs with onclick eventListeners that call function DelMember(this.id)
+    by passing this element's id via "this.id". 
+    "this" refers to the element which the onclick is a part of.
+    <hr>
+    <br>
+
+    <!-- Interactive elements -->
+    <div class="card" id="card_henry" onclick="DelMember(this.id)">
+        <span class="top">div class="card" id="card_henry" onclick="DelMember(this.id)"</span>
+        <br>
+        <span class="cardName">HENRY</span>
+        <br>
+        <span class="bottom">/div</span>
+    </div>
+</body>
+
+<script>
+    function DelMember(id) {
+        console.log("Clicked DelMember");
+        console.log("passed id=" + id);
+        document.getElementById(id).remove();
+    }
+</script>
+
+</html>

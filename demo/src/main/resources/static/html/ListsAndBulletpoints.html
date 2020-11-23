@@ -16,12 +16,14 @@
 
 <body>
     <p>Grey border for div, Red for ul, Blue for ol, Green for dl</p>
+    <br>
     <div style="border:3px solid grey" id="targetDIV"></div>
-    <br />
-    <input type="text" id=addAListInput>
+    <hr>
+    <!-- Add a new list in an element with [input.value] -->
+    <input type="text" id="addAListInput" value="targetDIV" placeholder="Enter where (target id) you want to add new list">
     <button style="width:200px" onclick="f1()">Add a List</button><br />
 
-    <input type="text" id=addAListItemInput>
+    <input type="text" id=addAListItemInput value="coffee" placeholder="Enter innerText of new list item">
     <button style="width:200px" onclick="f2()">Add a List Item</button><br />
     <button style="width:200px" onclick="f3()">Get all List Items</button><br />
     <button style="width:200px" onclick="f4()">Remove all List Items</button><br />
@@ -36,10 +38,10 @@
         var targetDIV = "targetDIV";
 
         function f1() {
-            addList("newList", targetDIV, "dl");
+            addList("newList", document.getElementById("addAListInput").value, "dl");
         }
         function f2() {
-            addListItem("newList", "", "Coffee");
+            addListItem("newList", "", document.getElementById("addAListItemInput").value);
         }
         function f3() {
             getAllListItems("newList");
@@ -112,7 +114,7 @@
             let targetList = document.getElementById(targetListID);
             let array = Array.from(targetList.getElementsByTagName("li"))
             for (let index = 0; index < array.length; index++) {
-                if (array[index].innerHTML == targetText) {
+                if (array[index].innerText == targetText) {
                     count = count + 1;
                     targetList.removeChild(array[index]);
                 }

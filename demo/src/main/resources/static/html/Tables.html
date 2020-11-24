@@ -57,6 +57,9 @@
     <input type="button" id="btn2" value="btn2">
     <span id="queryResults2"></span>
     <br />
+    <div>GetColumn</div>
+    <input type=number id="getColumnInput" placeholder="Enter column number (from left[0])" value=0></input>
+    <input type="button" id="btn3" value="btn3">
     <br />
     <div>Print all cell data in StaticTable</div>
     <input type="button" id="btn1" value="btn1">
@@ -71,6 +74,16 @@
     <script type="text/javascript" src="../js/references/Tables.js"></script>
 
     <script>
+        $('#btn3').click(function () {
+            console.log("clicked btn3");
+            let columnNum = document.getElementById("getColumnInput").value;
+            var columnArray = [];
+            columnArray = getColumn("staticTable2", columnNum);
+            console.log(columnArray);
+            mergeSameCells(columnArray);
+        })
+
+
         // Print all cell data in staticTable
         $('#btn1').click(function () {
             console.log("clicked btn1")
@@ -132,7 +145,7 @@
             console.log("thisTbody=");
             console.log(thisTbody);
             document.getElementById("queryResults2").innerHTML = thisTbody.children[row].children[col].innerHTML;
-        })
+        });
 
         // If each index of cellsArray is a COLUMN
         let targetID = "tableDiv";
@@ -157,9 +170,14 @@
         let headersArray2 = ["Code", "Name", "Price", "Stock"];
         let cellsArray2 = [
             ["A1", "Bananas", "$10", "210"],
-            ["A2", "Apples", "$12", "310"],
-            ["A3", "Oranges", "$11", "110"],
-            ["B1", "Pears", "$23", "120"]
+            ["A1", "Apples", "$12", "310"],
+            ["A1", "Oranges", "$11", "110"],
+            ["B1", "Pears", "$23", "120"],
+            ["B2", "Cake", "$23", "120"],
+            ["B2", "Pie", "$23", "120"],
+            ["B3", "Pig", "$23", "120"],
+            ["B3", "Bread", "$23", "120"],
+            ["B3", "Rice", "$23", "120"]
         ];
         let cellsArrayIsDelimitedByColumn2 = false;
         createNewTable(targetID2,
@@ -168,15 +186,39 @@
             cellsArray2,
             cellsArrayIsDelimitedByColumn2);
 
+
+        // let theads = document.getElementById(tableID2).children[0].children[0];
+
+        // let newTh = document.createElement("th");
+        // newTh.innerHTML = "Testing Hidden1";
+        // theads.appendChild(newTh);
+
+        // // successfully hides newly created cell (create > append > hide)
+        // newTh = document.createElement("th");
+        // newTh.innerHTML = "Testing Hidden2";
+        // theads.appendChild(newTh);
+        // newTh.setAttribute("style", "display:none;");
+        // // successfully hides newly created cell (create > hide > append)
+        // newTh = document.createElement("th");
+        // newTh.innerHTML = "Testing Hidden3";
+        // newTh.setAttribute("style", "display:none;");
+        // theads.appendChild(newTh);
+        // // successfully hides newly created cell (create > append > hide)
+        // newTh = document.createElement("th");
+        // newTh.innerHTML = "Testing Hidden4";
+        // theads.appendChild(newTh);
+        // theads.lastElementChild.setAttribute("style", "display:none;");
+
+
         // Add a column of buttons to the end of each tr in the 1st table
-        addRowsDeleteBtns("tableDiv", "Delete Row");
-        addRowsDeleteBtns("staticTable", "Delete me");
+        // addRowsDeleteBtns("tableDiv", "Delete Row");
+        // addRowsDeleteBtns("staticTable", "Delete me");
 
         // Add a column of buttons to the end of each tr in the 2nd table
-        addRowsDeleteBtns("tableDiv2", "Delete");
-        addRowsDeleteBtns("staticTable2", "Delete!");
+        // addRowsDeleteBtns("tableDiv2", "Delete");
+        // addRowsDeleteBtns("staticTable2", "Delete!");
 
-        addRowsHideBtns("staticTable2", "Hide!");
+        // addRowsHideBtns("staticTable2", "Hide!");
 
 
 

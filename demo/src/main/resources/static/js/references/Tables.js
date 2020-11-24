@@ -40,12 +40,7 @@
     </tbody>
 </table>
  */
-function createNewTable(
-    targetID,
-    newTableID,
-    headersArray,
-    cellsArray,
-    cellsArrayIsDelimitedByColumn) {
+function createNewTable(targetID, newTableID, headersArray, cellsArray, cellsArrayIsDelimitedByColumn) {
     let debugString = `createNewTable(${targetID}, ${newTableID}, ${headersArray}, ${cellsArray}, ${cellsArrayIsDelimitedByColumn})`;
     let cellX = 0;
     let cellV = 0;
@@ -79,7 +74,7 @@ function createNewTable(
     cellV = 0;
     if (cellsArrayIsDelimitedByColumn == true) {
         // If data is grouped by ROWS
-        for (let index = 0; index < headersArray.length; index++) {
+        for (let index = 0; index < cellsArray.length; index++) {
             // create tr
             tr = document.createElement("tr");
             let rowCount = tbody.childElementCount + 1;
@@ -89,6 +84,8 @@ function createNewTable(
                 let td = document.createElement("td");
                 td.innerHTML = cellsArray[indexCell][index];
                 td.id = `${newTableID}-Row${cellX}-Col${cellV}`;
+                td.colSpan = 1;
+                td.rowSpan = 1;
                 cellV++;
                 tr.appendChild(td);
             }
@@ -99,7 +96,7 @@ function createNewTable(
         }
     } else {
         // If data is grouped by COLUMNS not ROWS
-        for (let index = 0; index < headersArray.length; index++) {
+        for (let index = 0; index < cellsArray.length; index++) {
             // create tr
             tr = document.createElement("tr");
             let rowCount = tbody.childElementCount + 1;
@@ -108,6 +105,8 @@ function createNewTable(
             for (let indexCell = 0; indexCell < headersArray.length; indexCell++) {
                 let td = document.createElement("td");
                 td.innerHTML = cellsArray[index][indexCell];
+                td.colSpan = 1;
+                td.rowSpan = 1;
                 td.id = `${newTableID}-Row${cellX}-Col${cellV}`;
                 cellV++;
                 tr.appendChild(td);
@@ -176,6 +175,47 @@ function addRowsHideBtns(tableID, btnText) {
     console.log(debugString);
 }
 
+function getColumn(tableID, columnNum) {
+    // First check that col is not less then 0
+    if (columnNum < 0) {
+        return null;
+    }
+    var column = []
+    let table = document.getElementById(tableID);
+    let tbody = table.children[1];
+    let totalNumOfColumnsPerRow = tbody.children.length;
+    console.log("totalNumOfColumnsPerRow=" + totalNumOfColumnsPerRow);
+    for (let i = 0; i < totalNumOfColumnsPerRow; i++) {
+        let thisRow = tbody.children[i];
+        let allCellsInThisRow = thisRow.children;
+        let targetColumnCell = allCellsInThisRow[columnNum];
+        column.push(targetColumnCell);
+    }
+    return column;
+}
+
+function mergeSameCells(arrayOfCellElements) {
+    // Current Matching Target Text
+    var targetText = "";
+    // Current Total RowSpan
+    var totalRowSpan = 1;
+    var array = arrayOfCellElements;
+    for (let i = array.length - 1; i >= 0; i--) {
+        if (i == array.length - 1) {
+            targetText = array[i].innerText;
+        } else {
+            if (targetText == array[i].innerText) {
+                array[i + 1].setAttribute("style", "display:none;");
+                array[i + 1].innerText = "";
+                array[i].rowSpan = totalRowSpan + 1;
+                totalRowSpan = totalRowSpan + 1;
+            } else {
+                targetText = array[i].innerText;
+                totalRowSpan = 1;
+            }
+        }
+    }
+}
 
 
 

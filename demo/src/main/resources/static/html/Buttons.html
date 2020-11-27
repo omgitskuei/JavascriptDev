@@ -7,35 +7,85 @@
     </style>
 </head>
 
+<style>
+    * {
+        display: block;
+    }
+</style>
+
 <body>
-
     <h2>Buttons</h2>
-    <input type="button" id="btn0" value="btn0">
+    <!-- Eg. 1 -->
+    <!-- Triggers anon JS function (Marker A) && anon jQuery function (Marker B) -->
+    <input type="button" id="btn0" value="trigger ">
 
-    <!-- Vanilla Javascript btn onClick -->
-    <script>
-        var btn0 = document.getElementById("btn0");
-        btn0.addEventListener(
-            "click",
-            function () {
-                console.log("clicked btn0");
-                // btn0.removeAttribute("disabled");
-                // btn0.toggleAttribute("disabled");
-                // btn0.toggleAttribute("disabled", "true");
-                // btn0.toggleAttribute("disabled", "false");
-            }
-        )
+    <!-- Eg. 2 -->
+    <!-- Triggers 2 defined JS functions; function1 && function2-->
+    <input type="button" id="btn1" value="trigger two JS functions via 'onclick' attribute"
+        onclick="function1(), function2()">
 
-    </script>
+    <!-- Eg. 3 -->
+    <!-- Trigger 1 defined JS function -->
+    <input type="button" id="btn2" value="disable button with toggleAttribute('disable')" onclick="disableV1(this.id)">
 
-    <!-- jQuery btn onClick-->
-    <script src="..\js\jQueryLabsrc\js\jquery-3.4.1.min.js"></script>
-    <script>
-        // jQuery id-selector
-        $("#btn0").click(function () {
-            console.log("jQuery, clicked btn0");
-        });
-    </script>
+    <!-- Eg. 4 -->
+    <input type="button" id="btn3" value="disable button with toggleAttribute('disabled', 'true')"
+        onclick="disableV2(this.id)">
+
+    <!-- Eg. 5 -->
+    <input type="button" id="btn2" value='disable button with toggleAttribute("disabled", "false")'
+        onclick="disableV3(this.id)">
+
+    <!-- Eg. 6 -->
+    <input type="button" id="btn3" value='disable button with removeAttribute("disabled")' onclick="disableV4(this.id)">
+
 </body>
+
+<script>
+    // Eg. 3
+    function disableV1(id) {
+        document.getElementById(id).toggleAttribute("disabled");
+    }
+
+    // Eg. 4
+    function disableV2(id) {
+        document.getElementById(id).toggleAttribute("disabled", "true");
+    }
+
+    // Eg. 5
+    function disableV3(id) {
+        document.getElementById(id).toggleAttribute("disabled", "false");
+    }
+
+    // Eg. 6
+    function disableV4(id) {
+        document.getElementById(id).removeAttribute("disabled");
+    }
+
+
+    // Eg. 2
+    function function1() {
+        console.log("triggered function1 (javascript)");
+    }
+    function function2() {
+        console.log("triggered function2 (javascript)");
+    }
+
+    // Eg. 1 - Marker A
+    document.getElementById("btn0").addEventListener(
+        "click",
+        function () {
+            console.log("clicked btn0 (javascript)");
+        }
+    )
+</script>
+
+<script src="..\js\jQueryLabsrc\js\jquery-3.4.1.min.js"></script>
+<script>
+    // Eg. 1 - Marker B
+    $("#btn0").click(function () {
+        console.log("clicked btn0 (jQuery)");
+    });
+</script>
 
 </html>

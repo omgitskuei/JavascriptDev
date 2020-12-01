@@ -25,21 +25,40 @@
 
         <h3>The SELECT element</h3>
 
-        <div class="column" id="column1">
-            <h4>mySelect:</h5>
-                <select id="mySelect" size="10" style="width:150px">
-                    <option>Apple</option>
-                    <option>Pear</option>
-                    <option>Banana</option>
-                    <option>Orange</option>
-                </select>
-        </div>
+        document.getElementById(targetSelectID);
+        let selectedOption = thisSelect.options[thisSelect.selectedIndex];
 
+        <div class="column" id="column1">
+            <!-- A Select element -->
+            <h4>mySelect:</h4>
+            <select id="mySelect" size="10" style="width:150px"
+                onchange="mySelectOnChange(this.id, this.options[this.selectedIndex].text, this.options[this.selectedIndex].value)">
+                <option value="1">Apple</option>
+                <option value="pear">Pear</option>
+                <!-- .value=PROD3, .text=Banana -->
+                <option value="PROD3">Banana</option>
+                <!-- Note: If .value is NOT PROVIDED, then .value defaults to = .text -->
+                <option>Orange</option>
+            </select>
+        </div>
+        <!-- This Select's onChange eventListener -->
+        <script>
+            function mySelectOnChange(id, selectedText, selectedVal) {
+                console.log(id + " onChange triggered! Selected Option's Text = " + selectedText + ", Value = " + selectedVal);
+            }
+        </script>
+
+        <!-- UI Section for interacting with the Select -->
         <div class="column" id="column2">
             <!-- Add options -->
             <div>
                 <h5>Click to add an array of Options objects to the Select</h5>
-                <textarea id="addArrayTextarea" rows="4" cols="50">A textarea representing an empty array.</textarea>
+                <p>
+                    Note: You need to GET an array of Options.<br>
+                    The returned array will be displayed as a String in the below textArea.
+                </p>
+                <textarea id="addArrayTextarea" rows="4" cols="50"
+                    disabled>A textarea representing an empty array.</textarea>
                 <button onclick="f8()">addArrayOfOptionsToSelect</button>
             </div>
             <div>
@@ -50,19 +69,23 @@
             </div>
             <!-- Return options -->
             <div>
-                <h5>Click to return all current options</h5>
+                <h5>Click to GET all current options (V2)</h5>
+                <button onclick="f0()">getAllOptions</button>
+            </div>
+            <div>
+                <h5>Click to GET all current options</h5>
                 <button onclick="f1()">getAllOptions</button>
             </div>
             <div>
-                <h5>Click to return the selected option</h5>
+                <h5>Click to GET the selected option</h5>
                 <button onclick="f2()">getSelectedOption</button>
             </div>
             <div>
-                <h5>Click to returns an array of all selected options</h5>
+                <h5>Click to GET an array of all selected options</h5>
                 <button onclick="f3()">getAllSelectedOptions</button>
             </div>
             <div>
-                <h5>Click to return an option's value</h5>
+                <h5>Click to GET an option's value</h5>
                 <input type="text" id="getOptionValueByOptionTextInput" placeholder="Enter an option text" />
                 <button onclick="f7()">getOptionValuesByOptionText</button>
             </div>
@@ -105,15 +128,21 @@
         var arrayOfOptions = [];
         var selectID = "mySelect";
         let bool = false;
-
+        function f0() {
+            arrayOfOptions = getAllOptionsV2(selectID);
+            document.getElementById("addArrayTextarea").innerText = arrayOfOptions.toString;
+        }
         function f1() {
             arrayOfOptions = getAllOptions(selectID);
+            document.getElementById("addArrayTextarea").innerText = arrayOfOptions.toString;
         }
         function f2() {
-            getSelectedOption(selectID);
+            arrayOfOptions = getSelectedOption(selectID);
+            document.getElementById("addArrayTextarea").innerText = arrayOfOptions.toString;
         }
         function f3() {
-            getAllSelectedOptions(selectID);
+            arrayOfOptions = getAllSelectedOptions(selectID);
+            document.getElementById("addArrayTextarea").innerText = arrayOfOptions.toString;
         }
         function f4() {
             addOption(

@@ -14,26 +14,32 @@
 </style>
 
 <body>
+    <!-- Input Type - File -->
+    <input type="file">
+
+
+
+
     <!-- Table -->
     <form id="search-form" class="form-style needs-validation" novalidate>
         <div class="form-column">
             <div class="f-group quarter02">
-                <label class="label-style">чЩ╝чеичиощбЮ</label>
+                <label class="label-style">?Щ╝чеичиощб?</label>
                 <input id="formINV_TYPE" type="text" class="input-style" />
             </div>
 
             <div class="f-group quarter02">
-                <label class="label-style">ц│ХхоЪхИЖщбЮ</label>
+                <label class="label-style">ц│Хх?Ъх??щб?</label>
                 <input id="formLAW_TYPE" type="text" class="input-style cost-right" data-type="number" />
             </div>
 
             <div class="f-group quarter02">
-                <label class="label-style">чЩ╝чеич╖ишЩЯ</label>
+                <label class="label-style">?Щ╝чеич╖и???</label>
                 <input id="formINV_NO" type="text" class="input-style" />
             </div>
 
             <div class="f-group quarter02">
-                <label class="label-style">чЩ╝чеищЦЛчлЛцЧецЬЯ</label>
+                <label class="label-style">?Щ╝чеищ?Лч?ЛцЧе???</label>
                 <div class="f-sub-group">
                     <div class="i-group date" id="datepicker01" data-target-input="nearest" data-target="#datepicker01"
                         data-toggle="datetimepicker">
@@ -49,12 +55,12 @@
 
         <div class="form-column">
             <div class="f-group quarter02">
-                <label class="label-style">ховцИ╢хРНчи▒</label>
+                <label class="label-style">ховц?╢х?Нчи▒</label>
                 <input id="formCUST_NAME" type="text" class="input-style" />
             </div>
 
             <div class="f-group quarter02">
-                <label class="label-style">ховцИ╢чиЕшЩЯ</label>
+                <label class="label-style">ховц?╢ч?????</label>
                 <div class="f-sub-group flex-wrap">
                     <input id="formCUST_TAX_ID" type="text" class="input-style flex-1" />
                     <!-- Search Icon -->
@@ -65,18 +71,18 @@
             </div>
 
             <div class="f-group quarter02">
-                <label class="label-style">ф╗Шцм╛чЫочЪД</label>
+                <label class="label-style">ф╗Шцм╛?Ыо???</label>
                 <div class=autocomplete>
                     <select id="formPAY_PURPOSE" class="input-style" />
-                    <option value="шлЛщБ╕цУЗ">шлЛщБ╕цУЗ</option>
+                    <option value="шлЛщ?╕ц??">шлЛщ?╕ц??</option>
                     <option value="1">DKEMD</option>
-                    <option value="2">PH├Н KH├БC</option>
+                    <option value="2">PH?? KH??C</option>
                     </select>
                 </div>
             </div>
 
             <div class="f-group quarter02">
-                <label class="label-style">хКахА╝чиЕчОЗ</label>
+                <label class="label-style">??ах?╝ч?????</label>
                 <div class="i-group">
                     <input id="formVAT_RATE" type="text" class="input-style" />
                     <div class="input-icon">%</div>
@@ -86,12 +92,12 @@
 
         <div class="form-column">
             <div class="f-group quarter02">
-                <label class="label-style">щЗСщбН(цЬкчиЕ)</label>
+                <label class="label-style">??Сщ??(?Ькчи?)</label>
                 <input id="formAPY_AMT" type="text" class="input-style cost-right" data-type="number" />
             </div>
 
             <div class="f-group quarter02">
-                <label class="label-style">VATщЗСщбН</label>
+                <label class="label-style">VAT??Сщ??</label>
                 <input id="formVAT" type="text" class="input-style cost-right" data-type="number" />
             </div>
         </div>
@@ -99,27 +105,28 @@
         <!-- Form btns -->
         <div class="d-flex align-items-center justify-content-center mt-1">
             <!-- UCAAAA0307 1.4.3.3 && 1.4.4.1 -->
-            <button type="button" id="btnNew" class="btn btn-linear ml-2 btn-create" onclick="clickBtnNew()">цЦ░хвЮ</button>
+            <button type="button" id="btnNew" class="btn btn-linear ml-2 btn-create"
+                onclick="clickBtnNew()">?Ц░хв?</button>
             <button type="button" id="btnConfirmEdit" class="btn btn-linear ml-2 btn-edit" onclick="formUpdateRow()">
-                ф┐оцФ╣чв║шкН</button>
+                ф┐оцФ╣чв║ш??</button>
         </div>
 
         <div class="tableDiv">
             <table id="editTable" class="table-style normal-table">
                 <thead>
                     <tr>
-                        <th id="SEQ_NOColTH" width="50px">ч╖ишЩЯ</th>
-                        <th id="INV_TYPEColTH" width="85px">чЩ╝чеичиощбЮ</th>
-                        <th id="LAW_TYPEColTH" width="85px">ц│ХхоЪхИЖщбЮ</th>
-                        <th id="INV_NOColTH" width="85px">чЩ╝чеич╖ишЩЯ</th>
-                        <th id="INV_DATEColTH" width="115px">чЩ╝чеищЦЛчлЛцЧецЬЯ</th>
-                        <th id="CUST_NAMEColTH" width="95px">ховцИ╢хРНчи▒</th>
-                        <th id="CUST_TAX_IDColTH" width="95px">ховцИ╢чиЕшЩЯ</th>
-                        <th id="PAY_PURPOSEColTH" width="95px">ф╗Шцм╛чЫочЪД</th>
-                        <th id="VAT_RATEColTH" width="95px">хКахА╝чиЕчОЗ</th>
-                        <th id="APY_AMTColTH" width="130px">щЗСщбН(цЬкчиЕ)</th>
-                        <th id="VATColTH" width="130px">VATщЗСщбН</th>
-                        <th id="INV_TYPEColTH" width="90px">цУНф╜Ь</th>
+                        <th id="SEQ_NOColTH" width="50px">ч╖иш??</th>
+                        <th id="INV_TYPEColTH" width="85px">?Щ╝чеичиощб?</th>
+                        <th id="LAW_TYPEColTH" width="85px">ц│Хх?Ъх??щб?</th>
+                        <th id="INV_NOColTH" width="85px">?Щ╝чеич╖и???</th>
+                        <th id="INV_DATEColTH" width="115px">?Щ╝чеищ?Лч?ЛцЧе???</th>
+                        <th id="CUST_NAMEColTH" width="95px">ховц?╢х?Нчи▒</th>
+                        <th id="CUST_TAX_IDColTH" width="95px">ховц?╢ч?????</th>
+                        <th id="PAY_PURPOSEColTH" width="95px">ф╗Шцм╛?Ыо???</th>
+                        <th id="VAT_RATEColTH" width="95px">??ах?╝ч?????</th>
+                        <th id="APY_AMTColTH" width="130px">??Сщ??(?Ькчи?)</th>
+                        <th id="VATColTH" width="130px">VAT??Сщ??</th>
+                        <th id="INV_TYPEColTH" width="90px">??Нф??</th>
                     </tr>
                 </thead>
 
@@ -132,7 +139,7 @@
                         <td class="ColINV_DATE">01/04/2020</td>
                         <td class="ColCUST_NAME">Mr Jack Doodle</td>
                         <td class="ColCUST_TAX_ID">2343455</td>
-                        <td class="ColPAY_PURPOSE">PH├Н KH├БC</td>
+                        <td class="ColPAY_PURPOSE">PH?? KH??C</td>
                         <td class="ColVAT_RATE">10%</td>
                         <td class="ColAPY_AMT text-right">6.300.000</td>
                         <td class="ColVAT text-right">6.300.000</td>
@@ -182,7 +189,7 @@
         <hr />
         <!-- Save Button -->
         <div class="d-flex align-items-center justify-content-center">
-            <button type="submit" id="btnSave" class="btn btn-linear">цЪлхнШ</button>
+            <button type="submit" id="btnSave" class="btn btn-linear">?Ълхн?</button>
         </div>
     </form>
 
@@ -227,7 +234,7 @@
         var formCUST_TAX_IDval = document.getElementById("formCUST_TAX_ID").value;
         // 5.3, 5.3.1 - Check if input is not-empty
         if (formCUST_TAX_IDval == null || formCUST_TAX_IDval === "" || formCUST_TAX_IDval.length == 0) {
-            alert("шлЛш╝╕хЕеховцИ╢ш│ЗцЦЩ!");
+            alert("шлЛш╝╕??ехов??╢ш?????!");
         } else {
             alert("formCUST_TAX_ID=" + formCUST_TAX_IDval);
             // Call AJAX to AAAA0307 doQuery(req), calls DKG0_0100.doGetid(req) where req wraps CUST_TAX_ID
@@ -291,7 +298,7 @@
                 formPAY_PURPOSE_select.selectedIndex = i;
                 break;
             } else {
-                // else, select default "шлЛщБ╕цУЗ" ("Please select...")
+                // else, select default "шлЛщ?╕ц??" ("Please select...")
                 formPAY_PURPOSE_select.selectedIndex = 0;
             }
         }
@@ -310,71 +317,71 @@
     * Validate Form inputs before updating table row
     */
     function validateForm() {
-        // 4.1.1 чЩ╝чеичиощбЮуАБц│ХхоЪхИЖщбЮуАБчЩ╝чеич╖ишЩЯуАБчЩ╝чеищЦЛчлЛцЧецЬЯуАБховцИ╢хРНчи▒уАБховцИ╢чиЕшЩЯх┐ЕщаИш╝╕хЕе - Certain fields are required
+        // 4.1.1 ?Щ╝чеичиощбЮу??ц│Хх?Ъх??щбЮу???Щ╝чеич╖и??Яу???Щ╝чеищ?Лч?ЛцЧе??Яу??ховц?╢х?Нчи▒???ховц?╢ч????Ях?????ш╝╕х?? - Certain fields are required
         var invalid = false;
         var errors = [];
         var thisInput = null;
-        // чЩ╝чеич╖ишЩЯ
+        // ?Щ╝чеич╖и???
         thisInput = document.getElementById("formINV_TYPE");
         if (thisInput.value.trim() == "") {
-            errors.push("чЩ╝чеич╖ишЩЯ");
+            errors.push("?Щ╝чеич╖и???");
         }
-        // ц│ХхоЪхИЖщбЮ
+        // ц│Хх?Ъх??щб?
         thisInput = document.getElementById("formLAW_TYPE");
         if (thisInput.value.trim() == "") {
-            errors.push("ц│ХхоЪхИЖщбЮ");
+            errors.push("ц│Хх?Ъх??щб?");
         }
-        // чЩ╝чеич╖ишЩЯ
+        // ?Щ╝чеич╖и???
         thisInput = document.getElementById("formINV_NO");
         if (thisInput.value.trim() == "") {
-            errors.push("чЩ╝чеич╖ишЩЯ");
+            errors.push("?Щ╝чеич╖и???");
         }
-        // чЩ╝чеищЦЛчлЛцЧецЬЯ
+        // ?Щ╝чеищ?Лч?ЛцЧе???
         thisInput = document.getElementById("formINV_DATE");
         if (thisInput.value.trim() == "") {
-            errors.push("чЩ╝чеищЦЛчлЛцЧецЬЯ");
+            errors.push("?Щ╝чеищ?Лч?ЛцЧе???");
         }
-        // ховцИ╢хРНчи▒
+        // ховц?╢х?Нчи▒
         thisInput = document.getElementById("formCUST_NAME");
         if (thisInput.value.trim() == "") {
-            errors.push("ховцИ╢хРНчи▒");
+            errors.push("ховц?╢х?Нчи▒");
         }
-        // ховцИ╢чиЕшЩЯ
+        // ховц?╢ч?????
         thisInput = document.getElementById("formCUST_TAX_ID");
         if (thisInput.value.trim() == "") {
-            errors.push("ховцИ╢чиЕшЩЯ");
+            errors.push("ховц?╢ч?????");
         }
-        // 4.1.1 чВ║чй║чЪДшй▒щбпчд║щМпшкдшиКцБп:шлЛш╝╕хЕе(цмДф╜НхРНчи▒) - If empty, throw error
+        // 4.1.1 ??║чй║???шй▒щбпчд║щМпшкдш?Кц??:шлЛш╝╕???(цм?ф╜Нх?Нчи▒) - If empty, throw error
         if (errors.length > 0) {
-            var alertString = "шлЛш╝╕хЕе(";
+            var alertString = "шлЛш╝╕???(";
             for (let i = 0; i < errors.length; i++) {
                 alertString = alertString + errors[i]; if (i != errors.length - 1) {
                     alertString = alertString + ", ";
                 }
             } alertString = alertString + ")"; invalid = true; alert(alertString);
-        } // 4.1.2ф╗Шцм╛чЫочЪДх┐ЕщаИщБ╕цУЗ - Select id = formPAY_PURPOSE is required 
+        } // 4.1.2ф╗Шцм╛?Ыо???х┐??????╕ц?? - Select id = formPAY_PURPOSE is required 
         var formPAY_PURPOSE_select = document.getElementById("formPAY_PURPOSE");
         var selectedOption = formPAY_PURPOSE_select.options[formPAY_PURPOSE_select.selectedIndex];
-        if (selectedOption.innerText == "шлЛщБ╕цУЗ") {
-            alert("шлЛщБ╕цУЗф╗Шцм╛чЫочЪД");
+        if (selectedOption.innerText == "шлЛщ?╕ц??") {
+            alert("шлЛщ?╕ц??ф╗Шцм╛?Ыо???");
             invalid = true;
-        } // 4.1.3 хКахА╝чиЕчОЗуАБщЗСщбН(цЬкчиЕ)уАБVATщЗСщбНх┐ЕщаИш╝╕хЕецХ╕хнЧ - Certain fields must be nums errors=[]; // хКахА╝чиЕчОЗ
+        } // 4.1.3 ??ах?╝ч??????????Сщ??(?Ькчи?)???VAT??Сщ?Нх?????ш╝╕х?ецХ╕хн? - Certain fields must be nums errors=[]; // ??ах?╝ч?????
         thisInput = document.getElementById("formVAT_RATE");
-        if (thisInput.value.trim() == "") { errors.push("хКахА╝чиЕчОЗ"); }
-        //щЗСщбН(цЬкчиЕ) 
+        if (thisInput.value.trim() == "") { errors.push("??ах?╝ч?????"); }
+        //??Сщ??(?Ькчи?) 
         thisInput = document.getElementById("formAPY_AMT");
-        if (thisInput.value.trim() == "") { errors.push("щЗСщбН(цЬкчиЕ)"); }
-        // VATщЗСщбН 
+        if (thisInput.value.trim() == "") { errors.push("??Сщ??(?Ькчи?)"); }
+        // VAT??Сщ?? 
         thisInput = document.getElementById("formVAT");
-        if (thisInput.value.trim() == "") { errors.push("VATщЗСщбН"); }
-        // 4.1.3 шЛецквца╕хд▒цХЧя╝Мщбпчд║щМпшкдшиКцБп: (цмДф╜НхРНчи▒)шлЛш╝╕хЕецХ╕хнЧуАВ 
+        if (thisInput.value.trim() == "") { errors.push("VAT??Сщ??"); }
+        // 4.1.3 ?Лецквца╕хд▒ц?Чя?Мщбпчд║щМпшкдш?Кц??: (цм?ф╜Нх?Нчи▒)шлЛш╝╕??ецХ╕хнЧу?? 
         if (errors.length > 0) {
             var alertString = "(";
             for (let i = 0; i < errors.length; i++) {
                 alertString = alertString + errors[i]; if (i != errors.length - 1) {
                     alertString = alertString + ", ";
                 }
-            } alertString = alertString + ")шлЛш╝╕хЕецХ╕хнЧуАВ"; invalid = true; alert(alertString);
+            } alertString = alertString + ")шлЛш╝╕??ецХ╕хнЧу??"; invalid = true; alert(alertString);
         }
         if (invalid) { return false; }
         else { return true; }

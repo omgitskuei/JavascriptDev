@@ -44,6 +44,29 @@ function getAllOptions(targetSelectID) {
 }
 
 /**
+ * getAllOptionsV2() - Returns Array of All Options in Select element
+ */
+function getAllOptionsV2(targetSelectID) {
+    let arrayOfOptions = [];
+    let debugString = "getAllOptions(" + targetSelectID + ") returning: \n\r[";
+    let thisSelect = document.getElementById(targetSelectID);
+    let allOptionsAsArray = thisSelect.options;
+    for (let i = 0; i < allOptionsAsArray.length; i++) {
+        let text = allOptionsAsArray[i].text;
+        let value = allOptionsAsArray[i].value;
+        debugString = debugString.concat("{" + text + ":" + value + "}");
+        arrayOfOptions.push(allOptionsAsArray[i]);
+        if (i < (allOptionsAsArray.length - 1)) {
+            debugString = debugString.concat(", ");
+        }
+    }
+    debugString = debugString.concat("]");
+    console.log(debugString);
+    return arrayOfOptions;
+}
+
+
+/**
  * getSelectedOption() - Returns the selected Option in a Select element
  */
 function getSelectedOption(targetSelectID) {

@@ -66,6 +66,15 @@
     <div>
         <span id="queryResults3"></span>
     </div>
+    <input type="button" onclick="deleteAll()">
+    <script>
+        // This works, deletes all rows and cells in tbody
+        function deleteAll() {
+            var thisTable = document.getElementById("staticTable");
+            var thisTbody = thisTable.children[1];
+            thisTbody.innerHTML = "";
+        }
+    </script>
 
     <!-- <input type="text" id="text1" value="0"> -->
     <!-- <input type="button" id="btn1" value="td:eq(x)"> -->

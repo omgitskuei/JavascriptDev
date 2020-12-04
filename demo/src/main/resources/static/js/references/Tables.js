@@ -217,6 +217,44 @@ function mergeSameCells(arrayOfCellElements) {
     }
 }
 
+let array = document.createElement("div");
+array.className
+
+function addOneRow(tableID, arrRowData) {
+    // references
+    let targetTable = document.getElementById(tableID);
+    let tbody = targetTable.children[1];
+    // create tr
+    let tr = document.createElement("tr");
+    let rowcount = tbody.children.length;
+    tr.id = tableID + "Row" + rowcount;
+    for (let i = 0; i < arrRowData.length; i++) {
+        // add td cells to tr
+        let td = document.createElement("td");
+        td.innerHTML = arrRowData[i];
+        td.id = tableID + "Row" + i + "Col" + i;
+    }
+    // add tr to tbody
+    tbody.appendChild(tr);
+}
+
+
+
+for (let indexCell = 0; indexCell < headersArray.length; indexCell++) {
+
+
+    td.id = `${newTableID}-Row${cellX}-Col${cellV}`;
+    td.colSpan = 1;
+    td.rowSpan = 1;
+    cellV++;
+    tr.appendChild(td);
+}
+cellX++;
+
+cellV = 0;
+        }
+    }
+}
 
 
 // function tableDeleteRow(element, tableID) {

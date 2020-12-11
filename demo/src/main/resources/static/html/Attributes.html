@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+  </style>
+</head>
+
+<style>
+  * {}
+
+  .ui {
+    display: flex;
+  }
+
+  .display {
+    display: inline-block;
+    border: black dotted;
+    background-color: rgb(170, 170, 170);
+  }
+
+  .display input {
+    background-color: chocolate;
+    margin: 2px;
+  }
+
+  .display div {
+    background-color: rgb(210, 30, 30);
+    margin: 2px;
+  }
+
+  .display a {
+    background-color: rgb(210, 183, 30);
+    margin: 2px;
+  }
+
+  .display button {
+    background-color: rgb(96, 210, 30);
+    margin: 2px;
+    display: block;
+  }
+
+  .display select {
+    background-color: rgb(30, 210, 171);
+    margin: 2px;
+    display: block;
+  }
+
+  .display option {
+    background-color: rgb(30, 93, 210);
+    margin: 2px;
+
+  }
+</style>
+
+<body>
+  <h1>Attributes & HTML tags</h1>
+
+  <div id="display" class="display">
+    <input placeholder="An input">
+    <div>A div</div>
+    <a>A a</a>
+    <button>A button</button>
+    <select>A select
+      <option>An option</option>
+      <option>Another option</option>
+      <option>A third option</option>
+    </select>
+  </div>
+
+  <div class="ui">
+    <input type="text" id="userAttr" placeholder="Attribute name...">
+    <input type="button" id="addBtn" value="Add" onclick="btnsOnClick.add(this.id)">
+    <input type="button" id="resetBtn" value="Reset" onclick="btnsOnClick.reset(this.id)">
+  </div>
+
+
+
+</body>
+
+<script>
+  var addedAttributes = [];
+
+
+  // Eg. 3
+  var btnsOnClick = {
+    reset(id) {
+      console.log("clicked reset, btn id = " + id)
+      let display = document.getElementById("display");
+      for (let i = 0; i < display.children.length; i++) {
+        console.log(display.children[i]);
+        for (let i2 = 0; i2 < addedAttributes.length; i2++) {
+          console.log(addedAttributes.children[i2]);
+          display.children[i].removeAttribute(addedAttributes.children[i2]);
+        }
+        let options = display.children[4].children;
+        for (let i3 = 0; i3 < options.length; i3++) {
+          for (let i2 = 0; i2 < addedAttributes.length; i2++) {
+            console.log(options[i3]);
+            options[i3].removeAttribute(addedAttributes.children[i2]);
+          }
+        }
+        console.log(display.children[i]);
+      }
+    },
+
+    add(id) {
+      console.log("clicked add, btn id = " + id);
+      let display = document.getElementById("display");
+    }
+  }
+</script>
+
+</html>

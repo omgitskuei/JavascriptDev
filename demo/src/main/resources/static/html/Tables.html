@@ -62,11 +62,11 @@
     <input type="button" id="btn3" value="btn3">
     <br />
     <div>Print all cell data in StaticTable</div>
-    <input type="button" id="btn1" value="btn1">
+    <input type="button" id="btn1" value="btn1=>print All Data in StaticTable">
     <div>
         <span id="queryResults3"></span>
     </div>
-    <input type="button" onclick="deleteAll()">
+    <input type="button" id="btn5" onclick="deleteAll()" value="btn5=>deleteAll()">
     <script>
         // This works, deletes all rows and cells in tbody
         function deleteAll() {
@@ -76,12 +76,11 @@
         }
     </script>
 
-    <!-- <input type="text" id="text1" value="0"> -->
-    <!-- <input type="button" id="btn1" value="td:eq(x)"> -->
-
+    <div>
+        <input type="button" id="btn4" value="btn4=>add 'example' to class of StaticTable row3">
+    </div>
 
     <script type="text/javascript" src="../js/references/Tables.js"></script>
-
     <script>
         $('#btn3').click(function () {
             console.log("clicked btn3");
@@ -138,7 +137,18 @@
             document.getElementById("queryResults").innerHTML = s.text();
         })
 
-
+        $("#btn4").click(
+            function () {
+                console.log("clicked btn4");
+                var tableRows = document.getElementById("staticTable").children[1].children;
+                console.log("Before adding 'example' to staticTable row 3");
+                console.log(tableRows[3]);
+                tableRows[3].className = "example";
+                console.log("After adding 'example' to staticTable row 3");
+                console.log(tableRows[3]);
+                //let thisCell = tableRows.getElementsByClassName("example"); this doesnt work, undefined method
+            }
+        );
 
 
         // Queries for cell (row:col) innerHTML (excludes thead row)
@@ -154,7 +164,8 @@
             console.log("thisTbody=");
             console.log(thisTbody);
             document.getElementById("queryResults2").innerHTML = thisTbody.children[row].children[col].innerHTML;
-        });
+        }
+        );
 
         // If each index of cellsArray is a COLUMN
         let targetID = "tableDiv";
@@ -194,6 +205,10 @@
             headersArray2,
             cellsArray2,
             cellsArrayIsDelimitedByColumn2);
+
+        // Add a row to a table
+        let bonusRowData = ["A2", "Extra extra Pears", "$69", "220"];
+        addOneRow(targetID2, bonusRowData);
 
 
         // let theads = document.getElementById(tableID2).children[0].children[0];

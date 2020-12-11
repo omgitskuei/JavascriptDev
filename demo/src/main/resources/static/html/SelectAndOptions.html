@@ -89,6 +89,13 @@
                 <input type="text" id="getOptionValueByOptionTextInput" placeholder="Enter an option text" />
                 <button onclick="f7()">getOptionValuesByOptionText</button>
             </div>
+            <div>
+                <h5>Click to GET an option's text</h5>
+                <input type="text" id="getOptionTextByOptionValueInput" placeholder="Enter an option value" />
+                <button onclick="f13()">getOptionTextByOptionValue</button>
+            </div>
+
+
             <!-- Remove options -->
             <div>
                 <h5>Click to remove all options with a particular value</h5>
@@ -113,6 +120,11 @@
             <div>
                 <h5>Click to modify Select's multiple attribute</h5>
                 <button onclick="f11()">setSelectMultiple</button>
+            </div>
+            <div>
+                <h5>Click to set Select's selected option</h5>
+                <input type="text" id="setSelectedOptionInput" placeholder="Enter an option value" />
+                <button onclick="f12()">setSelectedOptionInput</button>
             </div>
         </div>
 
@@ -163,6 +175,11 @@
                 selectID,
                 document.getElementById("getOptionValueByOptionTextInput").value);
         }
+        function f13() {
+            getOptionTextByOptionValue(
+                selectID,
+                document.getElementById("getOptionTextByOptionValueInput").value);
+        }
         function f8() {
             addArrayOfOptionsToSelect(selectID, arrayOfOptions);
         }
@@ -180,6 +197,17 @@
         function f11() {
             bool = !bool;       // reverse the boolean (eg. false to true)
             setSelectMultiple(selectID, bool);
+        }
+
+        function f12() {
+            let setSelectedOptionValue = document.getElementById("setSelectedOptionInput").value;
+            let targetSelect = document.getElementById("mySelect");
+            for (let i = 0; i < targetSelect.length; i++) {
+                if (targetSelect[i].value == setSelectedOptionValue) {
+                    targetSelect.selectedIndex = i;
+                }
+
+            }
         }
     </script>
 

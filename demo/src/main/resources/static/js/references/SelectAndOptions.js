@@ -138,8 +138,47 @@ function getOptionValuesByOptionText(targetSelectID, targetOptionText) {
     return arrayOfOptions;
 }
 
+/**
+ * getOptionTextByOptionValue() - Returns option text given param option value
+ */
+function getOptionTextByOptionValue(targetSelectID, targetOptionValue) {
+    let returnText = "";
+    let debugString = "getOptionTextByOptionValue(" + targetSelectID + ", " + targetOptionValue + ") returning: \n\r";
+    let thisSelect = document.getElementById(targetSelectID);
+    let allOptionsAsArray = thisSelect.options;
+    for (let i = 0; i < allOptionsAsArray.length; i++) {
+        let text = allOptionsAsArray[i].text;
+        let value = allOptionsAsArray[i].value;
+        console.log(text + value);
+        if (value == targetOptionValue) {
+            returnText = text;
+            debugString = debugString.concat(returnText);
+            break;
+        }
+    }
+    console.log(debugString);
+    return returnText;
+}
 
 
+
+
+
+
+
+
+/**
+ * 
+ */
+function setSelectedOption(targetSelectID, selectedOptionValue) {
+    let targetSelect = document.getElementById(targetSelectID);
+    for (let i = 0; i < targetSelect.length; i++) {
+        if (targetSelect[i].value == selectedOptionValue) {
+            targetSelect.selectedIndex = i;
+        }
+
+    }
+}
 
 /**
  * setSelectSize() - Update Select element's size attribute'

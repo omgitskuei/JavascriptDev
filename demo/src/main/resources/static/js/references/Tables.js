@@ -233,6 +233,7 @@ function addOneRow(tableID, arrRowData) {
         let td = document.createElement("td");
         td.innerHTML = arrRowData[i];
         td.id = tableID + "Row" + i + "Col" + i;
+        tr.appendChild(td);
     }
     // add tr to tbody
     tbody.appendChild(tr);
@@ -240,21 +241,6 @@ function addOneRow(tableID, arrRowData) {
 
 
 
-for (let indexCell = 0; indexCell < headersArray.length; indexCell++) {
-
-
-    td.id = `${newTableID}-Row${cellX}-Col${cellV}`;
-    td.colSpan = 1;
-    td.rowSpan = 1;
-    cellV++;
-    tr.appendChild(td);
-}
-cellX++;
-
-cellV = 0;
-        }
-    }
-}
 
 
 // function tableDeleteRow(element, tableID) {

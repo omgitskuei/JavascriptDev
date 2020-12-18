@@ -76,6 +76,93 @@
         }
     </script>
 
+    <script>
+        var checkedRows = [];
+        var checkedRowsMap = new Map();
+    </script>
+    <!-- Table with checkbox -->
+    <h2>Table with checkboxes</h2>
+    <table>
+        <thead>
+            <th>Type</th>
+            <th>Amount ($)</th>
+            <th>ID</th>
+        </thead>
+        <tbody>
+            <tr id="rowid1">
+                <td>A1</td>
+                <td>1000</td>
+                <td>QT-1231</td>
+                <td><input type="checkbox" onclick="getRow(this)"></input></td>
+            </tr>
+            <tr id="rowid2">
+                <td>A2</td>
+                <td>3000</td>
+                <td></td>
+                <td><input type="checkbox" onclick="getRow(this)"></input></td>
+            </tr>
+            <tr id="rowid3">
+                <td>A3</td>
+                <td>6000</td>
+                <td>QT-1231</td>
+                <td><input type="checkbox" onclick="getRow(this)"></input></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        function getRow(checkbox) {
+            // td = checkbox.parentElement
+            // tr = checkbox.parentElement.parentElement
+            if (checkbox.checked) {
+                checkedRows.push(checkbox.parentElement.parentElement);
+
+                // check if it has ID
+                if (checkbox.parentElement.parentElement.children[2].innerText !== "") { // "ID" column's cell
+                    addAmount(checkbox);
+                }
+            } else {
+                for (let i = 0; i < checkedRows.length; i++) {
+                    if (checkedRows[i].id == checkbox.parentElement.parentElement.id) {
+                        checkedRows.splice(i, i + 1);
+                    }
+                }
+                // check if it has ID
+                if (checkbox.parentElement.parentElement.children[2].innerText !== "") { // "ID" column's cell
+                    subtractAmount(checkbox);
+                }
+            }
+
+            console.log(checkedRows);
+            console.log(checkedRowsMap.get("QT-1231"));
+        }
+
+        function addAmount(checkbox) {
+            let id = checkbox.parentElement.parentElement.children[2].innerText;
+            let newAmount = checkbox.parentElement.parentElement.children[1].innerText;
+            if (checkedRowsMap.has(id)) {
+                let currentAmount = checkedRowsMap.get(id);
+                newAmount = parseInt(currentAmount) + parseInt(newAmount);
+            }
+            checkedRowsMap.set(id, newAmount);
+        }
+
+        function subtractAmount(checkbox) {
+            let id = checkbox.parentElement.parentElement.children[2].innerText;
+            let newAmount = checkbox.parentElement.parentElement.children[1].innerText;
+            if (checkedRowsMap.has(id)) {
+                let currentAmount = checkedRowsMap.get(id);
+                currentAmount = parseInt(currentAmount) - parseInt(newAmount);
+                if (currentAmount == 0) {
+                    checkedRowsMap.delete(id);
+                } else {
+                    checkedRowsMap.set(id, currentAmount);
+                }
+            }
+        }
+    </script>
+
+
     <div>
         <input type="button" id="btn4" value="btn4=>add 'example' to class of StaticTable row3">
     </div>
@@ -209,6 +296,12 @@
         // Add a row to a table
         let bonusRowData = ["A2", "Extra extra Pears", "$69", "220"];
         addOneRow(targetID2, bonusRowData);
+
+
+
+
+
+
 
 
         // let theads = document.getElementById(tableID2).children[0].children[0];

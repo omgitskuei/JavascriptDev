@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+       body {
+           background-color: burlywood;
+       }
+       /* input {
+           border-color: crimson;
+           border-width: thick;
+       } */
+    </style>
+</head>
+
+<body>
+    <h1>Checkbox</h1>
+
+    <h2>In Table rows</h2>
+    <div id="section1">
+        <h3>Pending Funding Applications</h3>
+        <table id="staticTable">
+            <thead>
+                <tr id="staticTable-Row0">
+                    <th id="staticTable-Row0-Col0">ID</th>
+                    <th id="staticTable-Row0-Col1">Name</th>
+                    <th id="staticTable-Row0-Col2">Funding</th>
+                    <th id="staticTable-Row0-Col3">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr id="staticTable-Row1">
+                    <td id="staticTable-Row1-Col0">A1</td>
+                    <td id="staticTable-Row1-Col1">Morticia Adams</td>
+                    <td id="staticTable-Row1-Col2">$900</td>
+                    <td>
+                        <input type="checkbox" id="actionRow1">
+                    </td>
+                </tr>
+                <tr id="staticTable-Row2">
+                    <td id="staticTable-Row2-Col0">A2</td>
+                    <td id="staticTable-Row2-Col1">Gomez Adams</td>
+                    <td id="staticTable-Row2-Col2">$600</td>
+                    <td>
+                        <input type="checkbox" id="actionRow2">
+                    </td>
+                </tr>
+                <tr id="staticTable-Row3">
+                    <td id="staticTable-Row2-Col0">A3</td>
+                    <td id="staticTable-Row2-Col1">Wednesday Adams</td>
+                    <td id="staticTable-Row2-Col2">$666</td>
+                    <td>
+                        <input type="checkbox" id="actionRow3">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+        <button>Approve</button>
+        <button>Reject</button>
+    </div>
+    <br>
+    <hr>
+
+    <h2>In Forms</h2>
+    <div id="section2">
+        <h3>Login</h3>
+        <form>
+            <div>
+                <label>Email:</label>
+                <input type="email" placeholder="someEmail@email.email">
+            </div>
+            <div>
+                <label>Password:</label>
+                <input type="password" placeholder="strongestPassword">
+            </div>
+            
+            <input type="checkbox" id="remMe">Remember me</input>
+        </form>
+    </div>
+    <br>
+    <hr>
+
+    <div>
+        <h2>Console</h2>
+        <textarea rows="10"></textarea>
+
+        <h2>Legend</h2>
+        <div>
+            body:burlywood,
+            <!-- input:red -->
+        </div>
+    </div>
+
+</body>
+
+<script>
+    console.log("Init checkbox.html");
+    var allInputs = document.getElementsByTagName("input");
+
+    // Select all checkboxes
+    var allCheckboxes = [];
+    for(let i = 0; i<allInputs.length; i++) {
+        if(allInputs[i].type == "checkbox") {
+            allCheckboxes.push(allInputs[i]);
+        }
+    }
+    console.log("all inputs:");
+    console.log(allInputs);
+    console.log("all inputs (checkbox):");
+    console.log(allCheckboxes);
+
+    // Add onchange event to all checkboxes
+    for(let i = 0; i<allCheckboxes.length; i++) {
+        allCheckboxes[i].onchange = checkboxHandleClick;
+    }
+
+    function checkboxHandleClick(event) {
+        console.log("Clicked checkbox!");
+        console.log("event:");
+        console.log(event);
+        console.log("event.type:");
+        console.log(event.type);
+        console.log("event.target:");
+        console.log(event.target);
+        console.log("event.target.checked:");
+        console.log(event.target.checked);
+    }
+</script>
+</html>

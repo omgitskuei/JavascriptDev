@@ -10,6 +10,10 @@
         td {
             border: 1px solid gray
         }
+
+        .example {
+            background-color: aqua;
+        }
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
@@ -29,20 +33,9 @@
     <hr>
 
     <div id="tableDiv">
-        <span>StaticTable</span>
+        <h2>StaticTable</h2>
     </div>
 
-    <hr>
-
-    <div id="tableDiv2">
-        <span>StaticTable2</span>
-    </div>
-
-    <!-- <button onclick="a()">Button C</button> -->
-
-    <hr>
-
-    <!-- buttons -->
     <div>Enter Row:Column to retrieve Cell from staticTable (jQuery)</div>
     <div>Note: This queries all td cells, indices include thead row.</div>
     <input type="text" id="queryRow" value="0" placeholder="Enter row...">
@@ -50,23 +43,25 @@
     <input type="button" id="btn0" value="btn0">
     <span id="queryResults"></span>
     <br />
+    <br />
+
     <div>Enter Row:Column to retrieve Cell from staticTable (Javascript)</div>
     <div>Note: This queries cells in tbody, indices exclude thead row.</div>
     <input type="text" id="queryRow2" value="0" placeholder="Enter row...">
     <input type="text" id="queryCol2" value="0" placeholder="Enter col...">
     <input type="button" id="btn2" value="btn2">
     <span id="queryResults2"></span>
-    <br />
-    <div>GetColumn</div>
-    <input type=number id="getColumnInput" placeholder="Enter column number (from left[0])" value=0></input>
-    <input type="button" id="btn3" value="btn3">
-    <br />
-    <div>Print all cell data in StaticTable</div>
-    <input type="button" id="btn1" value="btn1=>print All Data in StaticTable">
+    <br /><br />
+    <div>add 'example' to class of StaticTable row3</div>
     <div>
-        <span id="queryResults3"></span>
+        <input type="button" id="btn4" value="btn4=>add 'example'">
     </div>
-    <input type="button" id="btn5" onclick="deleteAll()" value="btn5=>deleteAll()">
+    <br />
+
+    <input type="text" id="queryDeleteRow" value="0" placeholder="Enter row...">
+    <input type="button" onclick="deleteByRowNum()" value="delete by row number">
+    <br />
+    <input type="button" onclick="deleteAll()" value="delete all rows">
     <script>
         // This works, deletes all rows and cells in tbody
         function deleteAll() {
@@ -74,7 +69,34 @@
             var thisTbody = thisTable.children[1];
             thisTbody.innerHTML = "";
         }
+
+        function deleteByRowNum() {
+            let targetRowNum = document.getElementById("queryDeleteRow").value;
+            var thisTable = document.getElementById("staticTable");
+            var thisTbody = thisTable.children[1];
+            thisTbody.children[targetRowNum].innerHTML = "";
+        }
     </script>
+    <br />
+    <br />
+
+    <div>Print all cell data in StaticTable</div>
+    <input type="button" id="btn1" value="btn1=>print All Data in StaticTable">
+    <div>
+        <span id="queryResults3"></span>
+    </div>
+    <hr>
+
+    <div id="tableDiv2">
+        <h2>StaticTable2</h2>
+    </div>
+    <div>Combine cells with the same value By Column</div>
+    <input type=number id="getColumnInput" placeholder="Enter column number (from left[0])" value=0></input>
+    <input type="button" id="btn3" value="btn3">
+    <br />
+    <hr>
+
+
 
     <script>
         var checkedRows = [];
@@ -82,90 +104,183 @@
     </script>
     <!-- Table with checkbox -->
     <h2>Table with checkboxes</h2>
-    <table>
+    <span>Click the checkbox to: <br>1) Get the TR of checked checkbox<br>2) Get
+    </span>
+    <table id="checkboxTable">
         <thead>
-            <th>Type</th>
+            <th>Name</th>
             <th>Amount ($)</th>
+            <th>Inventory (#)</th>
+            <th>Weight (kg)</th>
             <th>ID</th>
         </thead>
         <tbody>
             <tr id="rowid1">
-                <td>A1</td>
+                <td>Pear</td>
                 <td>1000</td>
+                <td>0</td>
+                <td>100</td>
                 <td>QT-1231</td>
-                <td><input type="checkbox" onclick="getRow(this)"></input></td>
+                <td><input type="checkbox" onclick="handleCheckEvent(this)"></input></td>
             </tr>
             <tr id="rowid2">
-                <td>A2</td>
+                <td>Apple</td>
                 <td>3000</td>
+                <td>0</td>
+                <td>0</td>
                 <td></td>
-                <td><input type="checkbox" onclick="getRow(this)"></input></td>
+                <td><input type="checkbox" onclick="handleCheckEvent(this)"></input></td>
             </tr>
             <tr id="rowid3">
-                <td>A3</td>
+                <td>Pear</td>
                 <td>6000</td>
+                <td>0</td>
+                <td>0</td>
                 <td>QT-1231</td>
-                <td><input type="checkbox" onclick="getRow(this)"></input></td>
+                <td><input type="checkbox" onclick="handleCheckEvent(this)"></input></td>
             </tr>
+            <tr id="rowid4">
+                <td>Raspberry</td>
+                <td>6000</td>
+                <td>70</td>
+                <td>0</td>
+                <td>QT-4444</td>
+                <td><input type="checkbox" onclick="handleCheckEvent(this)"></input></td>
+            </tr>
+            <tr id="rowid5">
+                <td>Raspberry</td>
+                <td>6000</td>
+                <td>30</td>
+                <td>500</td>
+                <td>QT-4444</td>
+                <td><input type="checkbox" onclick="handleCheckEvent(this)"></input></td>
+            </tr>
+            <!-- <tfoot id="targetSpan"></tfoot> -->
         </tbody>
     </table>
 
     <script>
-        function getRow(checkbox) {
-            // td = checkbox.parentElement
-            // tr = checkbox.parentElement.parentElement
+        
+
+        /**
+         * 1) Get the onclick'd checkbox's TR
+         * 2) If checkbox was CHECKED, then add to array checkedRows (contains TR elements)
+         * 2.1) If the CHECKED TR's "ID" TD has innerText, then add the 
+         **/
+        function handleCheckEvent(checkbox) {
+            // NOTE: td = checkbox.parentElement
+            // NOTE: tr = checkbox.parentElement.parentElement
+            let tr = checkbox.parentElement.parentElement;
+
+            let rowData = getRowData(tr);    // [colName, colAmount, colInv, colWeight, colID]
+            // console.log(rowData);
+
             if (checkbox.checked) {
-                checkedRows.push(checkbox.parentElement.parentElement);
+                checkedRows.push(tr);
 
                 // check if it has ID
-                if (checkbox.parentElement.parentElement.children[2].innerText !== "") { // "ID" column's cell
-                    addAmount(checkbox);
+                if (rowData[4] !== "") {
+                    sumRowData(rowData);
                 }
             } else {
                 for (let i = 0; i < checkedRows.length; i++) {
-                    if (checkedRows[i].id == checkbox.parentElement.parentElement.id) {
+                    if (checkedRows[i].id == tr.id) {
                         checkedRows.splice(i, i + 1);
                     }
                 }
                 // check if it has ID
-                if (checkbox.parentElement.parentElement.children[2].innerText !== "") { // "ID" column's cell
-                    subtractAmount(checkbox);
+                if (rowData[4] !== "") {
+                    diffRowData(rowData);
                 }
             }
 
             console.log(checkedRows);
             console.log(checkedRowsMap.get("QT-1231"));
+            console.log(checkedRowsMap.get("QT-4444"));
         }
 
-        function addAmount(checkbox) {
-            let id = checkbox.parentElement.parentElement.children[2].innerText;
-            let newAmount = checkbox.parentElement.parentElement.children[1].innerText;
-            if (checkedRowsMap.has(id)) {
-                let currentAmount = checkedRowsMap.get(id);
-                newAmount = parseInt(currentAmount) + parseInt(newAmount);
+        function getRowData(tr) {
+            let rowData = [];
+            for(let i = 0; i<tr.children.length; i++) {
+                rowData.push(tr.children[i].innerText);
             }
-            checkedRowsMap.set(id, newAmount);
+            return rowData;
         }
 
-        function subtractAmount(checkbox) {
-            let id = checkbox.parentElement.parentElement.children[2].innerText;
-            let newAmount = checkbox.parentElement.parentElement.children[1].innerText;
-            if (checkedRowsMap.has(id)) {
-                let currentAmount = checkedRowsMap.get(id);
-                currentAmount = parseInt(currentAmount) - parseInt(newAmount);
-                if (currentAmount == 0) {
-                    checkedRowsMap.delete(id);
+        function sumRowData(newRowData) {
+            console.log("sumRowData()");
+            // console.log(newRowData);    // [colName, colAmount, colInv, colWeight, colID]
+            
+            let sum = 0;
+            if (checkedRowsMap.has(newRowData[4])) {
+                let prevRowData = checkedRowsMap.get(newRowData[4]);
+                // console.log(prevRowData);
+                sum = parseInt(prevRowData[1]) + parseInt(newRowData[1]);
+                newRowData[1] = sum;
+                newRowData[2] = parseInt(prevRowData[2]) + parseInt(newRowData[2]);
+                newRowData[3] = parseInt(prevRowData[3]) + parseInt(newRowData[3]);
+            }
+            checkedRowsMap.set(newRowData[4], newRowData);
+            updateByCheckedRows();
+        }
+
+        function diffRowData(newRowData) {
+            console.log("diffRowData()");
+            // console.log(rowData);    // [colName, colAmount, colInv, colWeight, colID]
+
+            let difference = 0;
+            if (checkedRowsMap.has(newRowData[4])) {
+                let prevRowData = checkedRowsMap.get(newRowData[4]);
+                difference = parseInt(prevRowData[1]) - parseInt(newRowData[1]);
+                if (difference == 0) {
+                    checkedRowsMap.delete(newRowData[4]);
+                    updateByCheckedRows();
                 } else {
-                    checkedRowsMap.set(id, currentAmount);
+                    newRowData[1] = difference;
+                    newRowData[2] = parseInt(prevRowData[2]) - parseInt(newRowData[2]);
+                    newRowData[3] = parseInt(prevRowData[3]) - parseInt(newRowData[3]);
+                    checkedRowsMap.set(newRowData[4], newRowData);
+                    updateByCheckedRows();
                 }
             }
         }
+
+        function updateByCheckedRows() {
+
+            let tbody = document.getElementById("checkboxTable").children[1];
+
+            for (let i = tbody.children.length - 1; i >= 0; i--) {
+                let thisTr = tbody.children[i];
+                let allRows = tbody.getElementsByTagName("tr");
+                if (allRows[i].id == "") {
+                    allRows[i].remove();
+                }
+            }
+
+            for (const [key, value] of checkedRowsMap.entries()) {
+                tbody.appendChild(createNewRow(value));
+            }
+        }
+
+        function createNewRow(arrRowData) {
+            // create tr
+            let tr = document.createElement("tr");
+            for (let i = 0; i < arrRowData.length; i++) {
+                // add td cells to tr
+                let td = document.createElement("td");
+                td.innerHTML = arrRowData[i];
+                td.id = tableID + "Row" + i + "Col" + i;
+                tr.appendChild(td);
+            }
+            // add tr to tbody
+            return tr;
+        }
+
+
     </script>
 
 
-    <div>
-        <input type="button" id="btn4" value="btn4=>add 'example' to class of StaticTable row3">
-    </div>
+
 
     <script type="text/javascript" src="../js/references/Tables.js"></script>
     <script>

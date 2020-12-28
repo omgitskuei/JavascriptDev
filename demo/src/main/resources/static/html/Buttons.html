@@ -39,6 +39,8 @@
     <!-- Eg. 6 -->
     <input type="button" id="btn3" value='disable button with removeAttribute("disabled")' onclick="disableV4(this.id)">
 
+    <!-- Eg. 7 -->
+    <input type="button" id="btn4" value="disable button with .disable = true" onclick="disableV5(this.id)">
 </body>
 
 <script>
@@ -60,6 +62,14 @@
     // Eg. 6
     function disableV4(id) {
         document.getElementById(id).removeAttribute("disabled");
+    }
+
+    function disableV5(id) {
+        console.log(id);
+        let thisBtn = document.getElementById(id);
+        console.log(thisBtn);
+        thisBtn.disabled = false;
+        console.log(thisBtn);
     }
 
 

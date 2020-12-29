@@ -1,51 +1,57 @@
-<!DOCTYPE HTML> 
-<html> 
+<!DOCTYPE HTML>
+<html>
 
-<head> 
-	<title> 
-		How to check input file is empty 
-		or not using JavaScript? 
-	</title> 
-</head> 
+<head>
+	<title>
+		How to check input file is empty
+		or not using JavaScript?
+	</title>
+</head>
 
-<body style = "text-align:center;"> 
-	
-	<h1 style = "color:green;"> 
-		GeeksForGeeks 
-	</h1> 
-	
-	<p id = "GFG_UP" style = 
-		"font-size: 15px; font-weight: bold;"> 
-	</p> 
-	
-	<input type="file" name="File" id="file" /> 
-	
-	<br><br> 
-	
-	<button onclick = "GFG_Fun()"> 
-		click here 
-	</button> 
-	
-	<p id = "GFG_DOWN" style = 
-		"color:green; font-size: 20px; font-weight: bold;"> 
-	</p> 
-	
-	<script> 
-		var up = document.getElementById('GFG_UP'); 
-		var down = document.getElementById('GFG_DOWN'); 
-		var file = document.getElementById("file"); 
-	
-		up.innerHTML = "Click on the button to see" 
-					+ " if any file is selected"; 
-		
-		function GFG_Fun() { 
-			if(file.files.length == 0 ){ 
-				down.innerHTML = "No files selected"; 
-			} else { 
-				down.innerHTML = "Some file is selected"; 
-			} 
+<body style="text-align:center;">
+
+	<h1 style="color:green;">
+		Check if input type=file has value
+	</h1>
+
+	<p>Click on the button to see if any file is selected</p>
+
+	<input type="file" name="File" id="uploadInput" />
+
+	<br><br>
+
+	<button onclick="checkInputFile()">
+		click here
+	</button>
+
+	<p id="GFG_DOWN" style="color:green; font-size: 20px; font-weight: bold;">
+	</p>
+
+	<script>
+		var down = document.getElementById('GFG_DOWN');
+		var uploadInput = document.getElementById("uploadInput");
+
+		function checkInputFile() {
+			console.log(uploadInput);
+			console.log(uploadInput.files);
+
+			console.log(uploadInput.files.length);
+			if (uploadInput.files.length == 0) {
+				down.innerHTML = "No files selected";
+			} else {
+				down.innerHTML = "Some file is selected";
+				console.log(uploadInput.files[0]);
+				var fileNameStr = uploadInput.files[0].name;
+				var fileType = fileNameStr.substring(fileNameStr.length - 3, fileNameStr.length);
+				console.log(fileNameStr);
+				console.log(fileType);
+				console.log(uploadInput.files[0].type);		// only works with some file formats like .txt, in which case returns "text/plain"
+				// doesn't work with .csv
+				console.log(uploadInput.files[0].lastModifiedDate);
+				console.log(uploadInput.files[0].size);		// size of file (not sure what unit), can be 0 if file is empty
+			}
 		} 
-	</script> 
-</body> 
+	</script>
+</body>
 
-</html> 
+</html>

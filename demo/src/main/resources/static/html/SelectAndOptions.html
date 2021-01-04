@@ -28,6 +28,10 @@
         document.getElementById(targetSelectID);
         let selectedOption = thisSelect.options[thisSelect.selectedIndex];
 
+        
+
+
+
         <div class="column" id="column1">
             <!-- A Select element -->
             <h4>mySelect:</h4>
@@ -66,6 +70,16 @@
                 <input type="text" id="addOptionText" placeholder="Enter an option text" />
                 <input type="text" id="addOptionValue" placeholder="Enter an option value" />
                 <button onclick="f4()">addOption</button>
+            </div>
+            <!-- Set selected option -->
+            <div>
+                <h5>Enter the option text, Click to select it</h5>
+                <input type="text" id="setSelectedOptionByText" placeholder="Enter an option text" />
+                <button onclick="f14()">Find this Option By Text and SET it as selected Option</button>
+
+                <h5>Enter the option value, Click to select it</h5>
+                <input type="text" id="setSelectedOptionByValue" placeholder="Enter an option value" />
+                <button onclick="f15()">Find this Option By Value and SET it as selected Option</button>
             </div>
             <!-- Return options -->
             <div>
@@ -111,7 +125,7 @@
                 <button onclick="f10()">removeDuplicateOptions</button>
             </div>
 
-            <!-- Modify Select -->
+            <!-- Modify Select / Options -->
             <div>
                 <h5>Click to modify Select's size attribute</h5>
                 <input type="text" id="selectSizeInput" />
@@ -122,8 +136,8 @@
                 <button onclick="f11()">setSelectMultiple</button>
             </div>
             <div>
-                <h5>Click to set Select's selected option</h5>
-                <input type="text" id="setSelectedOptionInput" placeholder="Enter an option value" />
+                <h5>Select an Option, Enter new Option text, Click to update selected Option's text with new Option text</h5>
+                <input type="text" id="setSelectedOptionTextInput" placeholder="Enter an new option text for selected option" />
                 <button onclick="f12()">setSelectedOptionInput</button>
             </div>
         </div>
@@ -133,6 +147,9 @@
             <textarea id="consoleTextarea" rows="4" cols="50">Returned results will appear here.</textarea>
         </div>
 
+
+
+
     </article>
 
 
@@ -140,21 +157,35 @@
         var arrayOfOptions = [];
         var selectID = "mySelect";
         let bool = false;
+
+        function arrToString(arr) {
+            var string = "[";
+            for (let i = 0; i < arr.length; i++) {
+                if(i!=0){
+                    string = string + ",";
+                }
+                string = string + arr[i].value;
+                
+            }
+            string = string + "]";
+            return string;
+        }
+
         function f0() {
             arrayOfOptions = getAllOptionsV2(selectID);
-            document.getElementById("addArrayTextarea").innerText = arrayOfOptions.toString;
+            document.getElementById("addArrayTextarea").innerText = arrToString(arrayOfOptions);
         }
         function f1() {
             arrayOfOptions = getAllOptions(selectID);
-            document.getElementById("addArrayTextarea").innerText = arrayOfOptions.toString;
+            document.getElementById("addArrayTextarea").innerText = arrToString(arrayOfOptions);
         }
         function f2() {
             arrayOfOptions = getSelectedOption(selectID);
-            document.getElementById("addArrayTextarea").innerText = arrayOfOptions.toString;
+            document.getElementById("addArrayTextarea").innerText = arrToString(arrayOfOptions);
         }
         function f3() {
             arrayOfOptions = getAllSelectedOptions(selectID);
-            document.getElementById("addArrayTextarea").innerText = arrayOfOptions.toString;
+            document.getElementById("addArrayTextarea").innerText = arrToString(arrayOfOptions);
         }
         function f4() {
             addOption(
@@ -200,14 +231,35 @@
         }
 
         function f12() {
-            let setSelectedOptionValue = document.getElementById("setSelectedOptionInput").value;
+            let newText = document.getElementById("setSelectedOptionTextInput").value;
             let targetSelect = document.getElementById("mySelect");
+            let selectedOption = targetSelect.options[targetSelect.selectedIndex];
+            selectedOption.text = newText;
+        }
+
+        function f14() {
+            let targetSelect = document.getElementById("mySelect");
+            let targetOptionText = document.getElementById("setSelectedOptionByText").value;
             for (let i = 0; i < targetSelect.length; i++) {
-                if (targetSelect[i].value == setSelectedOptionValue) {
+                if (targetSelect[i].text == targetOptionText) {
                     targetSelect.selectedIndex = i;
                 }
-
             }
+        }
+
+        function f15() {
+            console.log("do f15()")
+            let targetSelect = document.getElementById("mySelect");
+            
+
+            let targetOptionValue = document.getElementById("setSelectedOptionByValue").value;
+            // for (let i = 0; i < targetSelect.length; i++) {
+            //     if (targetSelect[i].value == targetOptionValue) {
+            //         targetSelect.selectedIndex = i;
+            //     }
+            // }
+
+            targetSelect.value = targetOptionValue;
         }
     </script>
 

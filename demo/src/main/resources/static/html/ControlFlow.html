@@ -1,0 +1,25 @@
+
+<html>
+<body id="body" onLoad="initApp2()">
+    <div> on load</div>
+</body>
+
+</html>
+
+
+
+<script>
+    let body = document.getElementById("body");
+    body.addEventListener("load", initApp1());
+    
+    
+    function initApp1() {
+        console.log("inside INITAPP1");
+    }
+    function initApp2() {
+        console.log("inside INITAPP2");
+    }
+    function initApp3() {
+        console.log("inside INITAPP3");
+    }
+</script>

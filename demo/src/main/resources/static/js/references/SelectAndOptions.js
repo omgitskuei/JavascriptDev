@@ -86,6 +86,24 @@ function getSelectedOption(targetSelectID) {
     return selectedOption;
 }
 
+function getSelectedOptionV2(targetSelectID) {
+    // let debugString = "getSelectedOption(" + targetSelectID + ") returning: \n\r{";
+    let debugString = "getSelectedOption(" + targetSelectID + ") returning: \n\r";
+    let thisSelect = document.getElementById(targetSelectID);
+    let selectedOption = thisSelect.options[thisSelect.selectedIndex];
+    if (selectedOption != undefined) {
+        let text = thisSelect.options[thisSelect.selectedIndex].text;
+        let value = thisSelect.options[thisSelect.selectedIndex].value;
+        let newOption = '{true, '+text+', '+value+'}';
+        debugString = debugString.concat(newOption);
+    } else {
+        debugString = debugString.concat("{}");
+    }
+    console.log(debugString);
+    return selectedOption;
+}
+
+
 /**
  * getAllSelectedOptions() - Returns ALL selected Options
  * This requires a multi-select to work

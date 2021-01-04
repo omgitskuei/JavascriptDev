@@ -15,7 +15,7 @@
 </head>
 
 <body>
-    <h1>Checkbox</h1>
+    <h1>Checkbox on-change passes event on click to function</h1>
 
     <h2>In Table rows</h2>
     <div id="section1">
@@ -97,10 +97,12 @@
 
 <script>
     console.log("Init checkbox.html");
+
+    // Select all inputs
     var allInputs = document.getElementsByTagName("input");
     
 
-    // Select all checkboxes
+    // Filters for all checkboxes from all inputs
     var allCheckboxes = [];
     for(let i = 0; i<allInputs.length; i++) {
         if(allInputs[i].type == "checkbox") {

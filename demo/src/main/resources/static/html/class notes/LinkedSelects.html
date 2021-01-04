@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>SelectAndOptions.html</title>
+    <style>
+        body {
+            border: 3px solid black;
+        }
+
+        .column {
+            display: block;
+            margin: auto auto;
+        }
+    </style>
+</head>
+
+<body onload="initApp()">
+    <article>
+        <h3>Two SELECT elements</h3>
+        <div>
+            Food groups
+            <select id="sel1">
+                <option>Fruit</option>
+                <option>Meats</option>
+                <option>Carbs</option>
+                <option>Veggies</option>
+            </select>
+        </div>
+
+        <div>
+            Food choices
+            <select id="sel2">
+                <option>Banana</option>
+                <option>Apple</option>
+                <option>Pear</option>
+                <option>Sausage</option>
+                <option>Fish</option>
+                <option>Bread</option>
+                <option>Rice</option>
+                <option>Spinach</option>
+                <option>Broccoli</option>
+            </select>
+        </div>
+
+
+        <div>
+            <h4>Console:</h4>
+            <textarea id="consoleTextarea" disabled rows="4" cols="50">Returned results will appear here.</textarea>
+        </div>
+    </article>
+
+    <script>
+        // Helper Methods
+        function getSelectedOptionElement(targetSelectID) {
+            // let debugString = "getSelectedOption(" + targetSelectID + ") returning: \n\r{";
+            let debugString = "getSelectedOption(" + targetSelectID + ") returning: \n\r";
+            let thisSelect = document.getElementById(targetSelectID);
+            let selectedOption = thisSelect.options[thisSelect.selectedIndex];
+            if (selectedOption != undefined) {
+                let text = thisSelect.options[thisSelect.selectedIndex].text;
+                let value = thisSelect.options[thisSelect.selectedIndex].value;
+                let newOption = document.createElement("option");
+                newOption.text = text;
+                newOption.value = value;
+                debugString = debugString.concat("{text=" + text + ", value=" + value+"}");
+            } else {
+                debugString = debugString.concat("{}");
+            }
+            console.log(debugString);
+            return selectedOption;
+        }
+
+        function getAllOptionElements(selectId) {
+            var targetSelect = document.getElementById(selectId);
+            var arrOptions = targetSelect.children;
+            return arrOptions;
+        }
+
+        function convertArrElementsToObjects(arrOptionEle) {
+            let arrObj = [];
+            for (let i = 0; i < arrOptionEle.length; i++) {
+                let newOption = {
+                    "text":arrOptionEle[i].innerText,
+                    "value":arrOptionEle[i].value,
+                    "selected":false
+                };
+                // newOption.text = text;
+                // newOption.value = value;
+                arrObj.push(newOption);
+            }
+            return arrObj;
+        }
+
+        function convertArrElementsToArrStr(arrOptionEle) {
+            let targetSelect = document.getElementById(selectId);
+            let arrStr = [];
+            targetSelect
+            arrStr.push();
+        }
+
+        function addOption(selectId, optionText, optionValue) {
+            let newOption = document.createElement("option");
+            newOption.innerText = optionText;
+            newOption.value = optionValue;
+            document.getElementById(selectId).appendChild(newOption);
+        }
+
+        
+
+        // on Prompt
+        // var sel1;
+        // var sel2;
+        // var sel1BackUp = [];
+        var sel2BackUp = [];
+
+        document.getElementById("sel1").onchange = handleSel1Change;
+
+        function initApp() {
+            // sel1 = document.getElementById("sel1");
+            // sel1BackUp = convertArrElementsToObjects(getAllOptionElements("sel1"));
+            sel2BackUp = convertArrElementsToObjects(getAllOptionElements("sel2"));
+            clearSel2();
+        }
+
+        function clearSel2() {
+            document.getElementById("sel2").innerHTML = "";
+        }
+
+
+        // Onchange
+        function handleSel1Change(e) {
+            console.log(e.target);
+            // console.log(sel1);
+            // console.log(sel2);
+            // console.log(sel1BackUp);
+            // console.log(sel2BackUp);
+            clearSel2();
+            // console.log(sel2BackUp);
+            for (let i = 0; i < sel2BackUp.length; i++) {
+                let text = sel2BackUp[i].text;
+                let value = sel2BackUp[i].value;
+                let selected = sel2BackUp[i].selected;
+                if (getSelectedOptionElement(e.target.id).innerText == "Fruit") {
+                    if (text == "Banana" || text == "Apple" || text == "Pear") {
+                        addOption("sel2", text, value);
+                    }
+                }
+                if (getSelectedOptionElement(e.target.id).innerText == "Meats") {
+                    if (text == "Sausage" || text == "Fish") {
+                        addOption("sel2", text, value);
+                    }
+                }
+                if (getSelectedOptionElement(e.target.id).innerText == "Carbs") {
+                    if (text == "Bread" || text == "Rice") {
+                        addOption("sel2", text, value);
+                    }
+                }
+                if (getSelectedOptionElement(e.target.id).innerText == "Veggies") {
+                    if (text == "Spinach" || text == "Broccoli") {
+                        addOption("sel2", text, value);
+                    }
+                }
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>

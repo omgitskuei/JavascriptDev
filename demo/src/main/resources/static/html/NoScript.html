@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" charset="UTF-8" content="width=device-width, initial-scale=1">
+    <title>NoScript tag</title>
+    <style>
+    </style>
+</head>
+
+<Style>
+
+
+</Style>
+
+<body>
+    <h2>Buttons</h2>
+        <article>
+            <input type="button" id="btn0" value="trigger ">
+        </article>
+
+        <h3>NoScript</h2>
+            <noscript>
+                1. This section has no JavaScript
+                <!-- Note this text is not displayed-->
+            </noscript>
+
+
+</body>
+
+<!-- Javascript -->
+<script type="text/javascript">
+    // <noscript>                               <noscript> cannot be a child of <script>
+    //     2. This section has no JavaScript
+    // </noscript>
+
+    document.getElementById("btn0").onclick = function () {
+        console.log("clicked btn0 (js)");        // This works with Edge
+        window.alert("clicked btn0");            // This works with Edge
+    }
+
+
+</script>
+
+<!-- JQuery -->
+<script src="..\js\jQueryLabsrc\js\jquery-3.4.1.min.js">
+    // Eg. 1 - Marker B
+    $("#btn0").click(function () {
+        console.log("clicked btn0 (jQuery)");   // This doesn't work with Edge
+    });
+</script>
+
+</html>

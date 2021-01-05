@@ -1,0 +1,138 @@
+<!--                     Match                     -->
+<a name="match">
+    <h3>.match()</h3>
+</a>
+<input type="text" id="targetMatchInput" placeholder="Enter a 'target' String" size="50" maxlength="50">
+<p>
+    <a name="match1">
+        <h4>Use-case #1: Finding first match</h4>
+    </a>
+    Search a String for a (case-sensitive) match <i>against another String</i>.<br>
+    If a match is found, return an Array containing the matched String. Else, return <b>null (not "null" or
+        []).</b><br>
+    <br>
+    Eg.1<br>
+    TargetStr = "Natalie"
+    <button onclick="autofill(this.innerText)">Autofill 'Natalie'</button><br>
+    MatchStr = "Nat"<br>
+    Rtn ==> ["Nat"]<br>
+    <br>
+    <input type="text" id="matchStrInput" placeholder="Enter a String to match with target" size="50"
+        maxlength="50"><br>
+    <textarea id="matchStrResult" disabled rows="2" cols="46">.Match result...</textarea><br>
+
+    <a name="match2">
+        <h4>Use-case #2: Finding all matches</h4>
+    </a>
+    Search a String for a match <i>against a regular expression</i>.<br>
+    If a match is found, return an Array. The Array CAN contain <i>MULTIPLE MATCHES</i>. Else, return null.<br>
+    <br>
+    <i>Note:</i> If the regular expression DOES NOT include the <b>/g flag (to perform a global search)</b>,<br>
+    the match() method will return only the first match in the string. In this case, it's functionally<br>
+    the same as Use-case #1.<br>
+    <br>
+    <i>Note:</i> It's probably a good idea <b>returning an empty array</b> instead of null, by adding "||
+    []".<br>
+    Like so;<br>
+    <span style="font-family:consola">let result = targetStr.match(matchStrOrRegex) || [];</span> *See Eg.2*<br>
+    <br>
+    <i>Sidenote:</i> Besides /g, other regex flags (aka gimsuy) include:
+<ul>
+    <li>g (multi-match) - matches multiple times</li>
+    <li>i (case-insensitive) - A and a both will match "a"</li>
+    <li>m (multiline-mode) - Will match all lines of a multiline string</li>
+    <li>s (dotall-mode - Note: not fully supported) - A dot '.' will match \n, normally a dot matches "any
+        character except a newline"</li>
+    <li>u (enable Unicode) - Enables matching of Unicode</li>
+    <li>y (sticky mode) - match accounts for position/index</li>
+</ul>
+Eg.1<br>
+TargetStr = "The rain in SPAIN stays mainly in the plain"
+<button onclick="autofill(this.innerText)">Autofill 'The rain in SPAIN stays mainly in the plain'</button><br>
+MatchRegex = /ain/g<i> (Note this is not "/ain/g")</i><br>
+Rtn = ["ain", "ain", "ain", "ain"]<br>
+<br>
+Eg.2<br>
+TargetStr = "These United States"
+<button onclick="autofill(this.innerText)">Autofill 'These United States'</button><br>
+MatchStr = "Healthcare"<br>
+Rtn ==> []<br>
+<br>
+<input type="text" id="matchRegexInput" placeholder="Enter a Regex to match with target" size="50"
+    maxlength="50"><br>
+<textarea id="matchRegexResult" disabled rows="2" cols="46">.Match result...</textarea><br>
+<br>
+</p>
+
+<!-- Javascript -->
+<script type="text/javascript">
+    // match String to String
+    document.getElementById("matchStrInput").onchange = function () {
+        let targetStr = document.getElementById("targetMatchInput").value;
+        let matchStr = document.getElementById("matchStrInput").value;
+        let result = targetStr.match(matchStr);
+        let resultStr = "";
+
+        // .match may NOT find a match, in which case it returns null
+        if (result == null) {
+            resultStr = "null";
+        }
+        // match found
+        else {
+            resultStr = arrayToString(result);
+        }
+        document.getElementById("matchStrResult").value = resultStr;
+    }
+
+    // match String to Regex
+    document.getElementById("matchRegexInput").onchange = function () {
+        let targetStr = document.getElementById("targetMatchInput").value;
+        let matchStr = document.getElementById("matchRegexInput").value;
+        console.log(targetStr);
+        console.log(matchStr);
+
+        let flags = matchStr.replace(/.*\/([gimuy]*)$/, '$1');
+        console.log(flags);
+        if (flags === matchStr) {
+            flags = '';
+        }
+        let pattern = (flags ? matchStr.replace(new RegExp('^/(.*?)/' + flags + '$'), '$1') : matchStr);
+        let matchRegex = new RegExp(pattern, flags);
+        let result = targetStr.match(matchRegex) || [];
+        console.log(result);
+        let resultStr = "";
+
+        // .match may NOT find a match, in which case it returns null
+        if (result == null) {
+            resultStr = "null";
+        }
+        // match found
+        else {
+            resultStr = arrayToString(result);
+        }
+        document.getElementById("matchRegexResult").value = resultStr;
+    }
+
+    // helper methods
+    function autofill(text) {
+        if (text == "Autofill 'Natalie'") {
+            document.getElementById('targetMatchInput').value = "Natalie";
+        } else if (text == "Autofill 'These United States'") {
+            document.getElementById('targetMatchInput').value = "These United States";
+        } else if (text == "Autofill 'The rain in SPAIN stays mainly in the plain'") {
+            document.getElementById("targetMatchInput").value = "The rain in SPAIN stays mainly in the plain";
+        }
+    }
+
+    function arrayToString(result) {
+        let resultStr = "[";
+        for (let i = 0; i < result.length; i++) {
+            if (i != 0 && i != result.length) {
+                resultStr = resultStr + ", ";
+            }
+            resultStr = resultStr + result[i];
+        }
+        resultStr = resultStr + "]";
+        return resultStr;
+    }
+</script>

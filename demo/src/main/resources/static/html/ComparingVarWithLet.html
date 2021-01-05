@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" charset="UTF-8" content="width=device-width, initial-scale=1">
+    <title>Comparing var to let</title>
+    <style>
+    </style>
+</head>
+
+<!-- CSS -->
+<Style>
+
+
+</Style>
+
+<!-- HTML body -->
+
+<body>
+    <h1>Comparing Var and Let</h1>
+    <h2>Var does not respect Scope</h2>
+        <article>
+            The main difference between Var and Let is that Var can be declared inside a code bloc
+            and later accessed outside of the bloc whereas Let cannot.
+        </article>
+</body>
+
+<!-- Javascript -->
+<script type="text/javascript">
+    // Fields
+    var fieldVar;
+    let fieldLet;
+    console.log(fieldVar);          // prints undefined
+    console.log(fieldLet);          // prints undefined
+    console.log("");
+
+    // some code bloc
+    function bloc1() {
+        fieldVar = 0;
+        fieldLet = 0;
+        console.log(fieldVar);      // tries to set a VAR outside code-bloc from inside     prints 0
+        console.log(fieldLet);      // tries to set a LET outside code-bloc from inside     prints 0
+        console.log("");
+    }
+    bloc1();
+
+    // another code bloc
+    function bloc2() {
+        {
+            var fieldVar1 = 3;
+            let fieldLet1 = 3;
+        }
+        let a = fieldVar1;
+        console.log(a);     // tries to refer to a VAR declared inside code-bloc from outside       prints 3
+        try {
+            let b = fieldLet1;
+            console.log(b);     // tries to refer to a LET declared inside code-bloc from outside
+        } catch (error) {
+            console.log(error);         // returns ReferenceError
+        }
+        console.log("");
+    }
+    bloc2();
+
+    // yet another code bloc
+    function bloc3() {
+        var fieldVar = 1;       // tries to re-declare a VAR outside this code-bloc
+        let fieldLet = 1;       // tries to re-declare a LET outside this code-bloc
+        console.log(fieldVar);  // prints 1
+        console.log(fieldLet);  // prints 1
+        console.log("");
+    }
+    bloc3();
+
+    // and yet another code bloc
+    function bloc4() {
+        var fieldVar1 = 4;      // tries to re-declare a VAR inside another code-bloc
+        let fieldLet1 = 4;      // tries to re-declare a LET inside another code-bloc
+        console.log(fieldVar1); // fieldVar1 is a new Var       prints 4
+        console.log(fieldLet1); // fieldLet1 is a new Let       prints 4
+        console.log("");
+    }
+    bloc4();
+
+
+    document.getElementById("btn0").onclick = function () {
+        console.log("clicked btn0 (js)");
+        window.alert("fieldVar = " + fieldVar + "fieldVar = " + fieldLet);
+    }
+
+
+</script>
+
+</html>

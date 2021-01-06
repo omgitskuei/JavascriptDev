@@ -17,19 +17,116 @@
 <!-- HTML body -->
 
 <body>
-    <h2>Buttons</h2>
+    <div>
+        <h1>FAQ Javascript Data Manipulation</h1>
+    </div>
+    <div>
+        <!--                     Table of Contents                     -->
+        <h2><a name="tableOfContents">Table of Contents</a></h2>
+        <ul>
+            <li><a href="#match">.match()</a></li>
+            <ul>
+                <li><a href="#match1">Finding first match</a></li>
+                <li><a href="#match2">Finding all matches</a></li>
+            </ul>
+
+            <li><a href="#includes">.includes()</a></li>
+            <ul>
+                <li><a href="#includes1">Checking String contains Substring</a></li>
+            </ul>
+
+            <li><a href="#substring">.toUpperCase()</a></li>
+            <ul>
+                <li><a href="#includes1">Changing string to Upper Case</a></li>
+            </ul>
+            
+        </ul>
+    </div>
+    <div>
+        <!--                     String Functions                     -->
+        <h2><a name="Function">String Functions</a></h2>
         <article>
-            <input type="button" id="btn0" value="trigger ">
+            <!--                     Match                     -->
+            <h3><a name="match">.match()</a></h3>
+            <input type="text" id="targetMatchInput" placeholder="Enter a 'target' String" size="50" maxlength="50">
+            
+            <h4><a name="match1">Use-case #1: Finding first match</a></h4>
+            <p>
+                Search a String for a (case-sensitive) match <i>against another String</i>.<br>
+                If a match is found, return an Array containing the matched String.<br>
+                Else, return <b>null (not "null" or [])</b>.<br>
+            </p>
+            <br>
+            <p>
+                Eg.1<br>
+                TargetStr = "Natalie"
+                <button id="autofillMatchBtnU1E1" onclick="autofill(this.id)">Autofill</button><br>
+                MatchStr = "Nat"<br>
+                Rtn ==> ["Nat"]<br>
+                <br>
+            </p>
+            <input type="text" id="matchStrInput" placeholder="Enter a String to match with target" size="50" maxlength="50"><br>
+
+            <h4><a name="match2">Use-case #2: Finding all matches</a></h4>
+            <p>
+                Search a String for a match <i>against a regular expression</i>.<br>
+                If a match is found, return an Array. The Array CAN contain <i>MULTIPLE MATCHES</i>.<br>
+                Else, return <b></b>null (not "null" or [])</b>.<br>
+                <i>Note:</i> If the regular expression DOES NOT include the <b>/g flag (to perform a global search)</b>,<br>
+                the match() method will return only the first match in the string. In this case, it's functionally<br>
+                the same as Use-case #1.<br>
+                <i>Sidenote:</i> Besides /g, other regex flags (aka gimsuy) include:
+                <ul>
+                    <li>g (multi-match) - matches multiple times</li>
+                    <li>i (case-insensitive) - A and a both will match "a"</li>
+                    <li>m (multiline-mode) - Will match all lines of a multiline string</li>
+                    <li>s (dotall-mode - Note: not fully supported) - A dot '.' will match \n, normally a dot matches "any
+                        character except a newline"</li>
+                    <li>u (enable Unicode) - Enables matching of Unicode</li>
+                    <li>y (sticky mode) - match accounts for position/index</li>
+                </ul>
+                <br>
+                <i>Note:</i> It's probably a good idea <b>returning an empty array</b> instead of null, by adding "|| []".<br>
+                Like so;<br>
+                <span style="font-family:Arial bold">let result = targetStr.match(matchStrOrRegex) || [];</span> *See Eg.2*<br>
+                <br>
+            </p>
+            <br>
+            <p>
+                Eg.1<br>
+                TargetStr = "The rain in SPAIN stays mainly in the plain"<button id="autofillMatchBtnU2E1" onclick="autofill(this.id)">Autofill</button><br>
+                MatchRegex = /ain/g<i> (Note this is not "/ain/g")</i><br>
+                Rtn = ["ain", "ain", "ain", "ain"]<br>
+                <br>
+                Eg.2<br>
+                TargetStr = "These United States"<button id="autofillMatchBtnU2E2" onclick="autofill(this.id)">Autofill</button><br>
+                MatchStr = "Healthcare"<br>
+                Rtn ==> []<br>
+                <br>
+            </p>
+            <input type="text" id="matchRegexInput" placeholder="Enter a Regex to match with target" size="50" maxlength="50"><br>
+            <textarea id="matchRegexResult" disabled rows="2" cols="46">.Match result...</textarea><br>
+            <br>
+            <a href="#tableOfContents">Back to Top</a>
+            <br>
+
+
+            
+            <textarea id="matchStrResult" disabled rows="2" cols="46">.Match result...</textarea><br>
+            <br>
+            <a href="#tableOfContents">Back to Top</a>
+            <br>
+
+
         </article>
+    </div>
+
+
+        
 </body>
 
 <!-- Javascript -->
 <script type="text/javascript">
-    document.getElementById("btn0").onclick = function () {
-        console.log("clicked btn0 (js)");
-        window.alert("clicked btn0");
-    }
-
 
 </script>
 

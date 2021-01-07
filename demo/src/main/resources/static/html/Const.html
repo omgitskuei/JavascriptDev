@@ -1,0 +1,48 @@
+<script type="text/javascript">
+    const TAX = 1.08;   // const are usually named in all-caps
+    var price = 100;
+
+    console.log(TAX * price);   // prints 108
+
+    var num1 = new Number(20);
+
+    console.log(num1);
+
+    // NaN is a number: typeof NaN returns number
+    //Infinity is a number: typeof Infinity returns number.
+    typeof Infinity; 
+
+    var x = 123;
+    var y = new Number(123);
+
+// typeof x returns number
+// typeof y returns object
+
+// (x == y) is true because x and y have equal values
+
+// (x === y) is false because x and y have different types
+
+var x = new Number(500);             
+var y = new Number(500);
+
+// (x == y) is false because objects cannot be compared
+
+// toFixed() returns a string, with the number written with a specified number of decimals:
+// Comparing two JavaScript objects will always return false.
+
+var x = 9.656;
+x.toFixed(0);           // returns 10
+x.toFixed(2);           // returns 9.66
+x.toFixed(4);           // returns 9.6560
+x.toFixed(6);           // returns 9.656000
+
+
+// toPrecision() Method
+// toPrecision() returns a string, with a number written with a specified length:
+
+var x = 9.656;
+x.toPrecision();        // returns 9.656
+x.toPrecision(2);       // returns 9.7
+x.toPrecision(4);       // returns 9.656
+x.toPrecision(6);       // returns 9.65600
+</script>

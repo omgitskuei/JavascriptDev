@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" charset="UTF-8" content="width=device-width, initial-scale=1">
+    <title>Template tag</title>
+    <style>
+    </style>
+</head>
+
+<!-- CSS -->
+<Style>
+    
+
+</Style>
+
+<!-- HTML body -->
+
+<body>
+
+    <div>
+        <span>SomeValue</span>
+        <input type="checkbox" onclick="checkboxClick(event)">onclick</button>
+        <input type="checkbox" onchange="checkboxChange(event)">onchange</button>
+
+        <input type="text" onclick="checkboxClick(event)">onclick</button>
+        <input type="text" onchange="checkboxChange(event)">onchange</button>
+
+        <input type="file" onclick="checkboxClick(event)">onclick</button>
+        <input type="file" onchange="checkboxChange(event)">onchange</button>
+
+        <input type="radio" onclick="checkboxClick(event)">onclick</button>
+        <input type="radio" onchange="checkboxChange(event)">onchange</button>
+
+        <select type="radio" onclick="checkboxClick(event)">
+            <option>a</option>
+            <option>b</option>
+            <option>c</option>
+        </select>
+        <select type="radio" onchange="checkboxChange(event)">
+            <option>a</option>
+            <option>b</option>
+            <option>c</option>
+        </select>
+        <br>
+    </div>
+
+   
+    <div>
+        <br>
+        <span>SRC : </span>
+        <input type="text" id="src" placeholder="Enter a src" size="50" maxlength="50"><br>
+        <span>TGT : </span>
+        <input type="text" id="target" placeholder="Enter a target" size="50" maxlength="50"><br>
+    </div>
+</body>
+
+<!-- Javascript -->
+<script type="text/javascript">
+    // console.log(document.querySelector("body > div > button:nth-child(1)"));
+
+    /**
+    Helper methods 
+    **/
+    
+    // pass String text, String targetID
+    function checkboxClick(event) {
+        console.log(event);                        // prints Event
+    }
+
+    function checkboxChange(event) {
+        console.log(event);                        // prints MouseEvent
+    }
+
+
+</script>
+
+</html>

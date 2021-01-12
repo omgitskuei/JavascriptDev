@@ -10,7 +10,19 @@
 
 <!-- CSS -->
 <Style>
+    p.code {
+        color:rgb(147, 210, 226);
+        background-color:rgb(65, 65, 65);
+        font-family: 'Courier New', Courier, monospace;
+    }
 
+    span.greenText {
+        color: rgb(2, 182, 2);
+    }
+
+    span.blueText {
+        color: rgb(78, 114, 161);
+    }
 
 </Style>
 
@@ -47,26 +59,28 @@
         <h2><a name="Function">String Functions</a></h2>
         <article>
             <!--                     Match                     -->
-            <h3><a name="match">.match()</a></h3>
+            <h3><a name="match">Function .match()</a></h3>
             <!-- syntax -->
             <div>
                 <p class="code">
                     <span class="greenText">// .match(String)</span>
-                    var arrMatches = "targetStr".match("tar");<br>
+                    <span class="blueText">var</span> arrMatches = "targetStr".match("tar");<br>
                     console.log(arrMatches) <span class="greenText">// returns ["tar"]</span><br>
                     <br>
                     arrMatches = "targetStr".match("T");<br>
                     console.log(arrMatches) <span class="greenText">// returns <i>null</i></span><br>
                     <br>
                     <span class="greenText">// .match(Regex)</span>
-                    var arrMatches = "targetStr".match(/t/);<br>
+                    <span class="blueText">var</span> arrMatches = "targetStr".match(/t/);<br>
                     console.log(arrMatches) <span class="greenText">// returns ["t"]</span><br>
                     <br>
                     arrMatches = "targetStr".match(/t/g);<br>
                     console.log(arrMatches) <span class="greenText">// returns ["t", "t", "t"]</span><br>
                 </p>
             </div>
+            <a href="#tableOfContents">Back to Top</a>
             <!-- summary -->
+            <h3>Summary</h3>
             <div>
                 <p>
                     <b>.match()</b> searches a string for a match.
@@ -94,7 +108,9 @@
                     <span style="font-family:Arial bold">let result = "someString".match(matchStrOrRegex) || [];</span> *See
                 </p>
             </div>
+            <a href="#tableOfContents">Back to Top</a>
             <!-- examples -->
+            <h3>Examples</h3>
             <div>
                 <div>
                     <h4>Eg.1 - .match(String)</h4>
@@ -112,28 +128,39 @@
                         Expected Rtn ==> ["Ott"]<br>
                     </p>
                     <br>
-                    <input type="text" id="srcMatchStrInput" placeholder="Enter a TargetStr" size="50" maxlength="50">
+                    <input type="text" id="srcMatchStrInput" placeholder="Enter a TargetStr" size="50" maxlength="50"><br>
                     <input type="text" id="matchStrInput" placeholder="Enter a MatchStr" size="50" maxlength="50"><br>
                     <textarea id="matchStrResult" disabled rows="2" cols="46">.match() Rtn...</textarea><br>
                     <br>
                 </div>
                 <div>
-                    <h4>Eg.2 - .match(Regex</h4>
-                TargetStr = "The rain in SPAIN stays mainly in the plain"
-                <button onclick="autofill('The rain in SPAIN stays mainly in the plain')">Autofill</button><br>
-                MatchRegex = /ain/g<i> (Note this is not "/ain/g")</i><br>
-                Rtn = ["ain", "ain", "ain", "ain"]<br>
+                    <h4>Eg.2 - .match(Regex)</h4>
+                    <p>
+                        TargetStr = "The rain in SPAIN stays mainly in the plain"
+                        <button onclick="autofill('The rain in SPAIN stays mainly in the plain', 'srcMatchRegexInput')">Autofill</button><br>
+                        MatchRegex = /ain/g<i> (Note this is not "/ain/g")</i><br>
+                        <button onclick="autofill('/ain/g', 'matchRegexInput')">Autofill</button><br>
+                        Rtn = ["ain", "ain", "ain", "ain"]<br>
+                        <br>
+                        Eg.2<br>
+                        TargetStr = "These United States"
+                        <button onclick="autofill('These United States', 'srcMatchRegexInput')">Autofill</button><br>
+                        MatchStr = "/es/"
+                        <button onclick="autofill('/es/', 'matchRegexInput')">Autofill</button><br>
+                        Rtn ==> []<br>
+                    </p>
+                    <br>
+                    <input type="text" id="srcMatchRegexInput" placeholder="Enter a TargetStr" size="50" maxlength="50"><br>
+                    <input type="text" id="matchRegexInput" placeholder="Enter a Regex" size="50" maxlength="50"><br>
+                    <textarea id="matchRegexResult" disabled rows="2" cols="46">.Match result...</textarea><br>
                 <br>
-                Eg.2<br>
-                TargetStr = "These United States"
-                <button onclick="autofill('These United States')">Autofill</button><br>
-                MatchStr = "Healthcare"<br>
-                Rtn ==> []<br>
-                <br>
+               
                 </div>
                 
             </div>
+            <a href="#tableOfContents">Back to Top</a>
             <!-- sample snippets -->
+            <h3>Snippets</h3>
             <div>
                 <h4><a name="match1">Use-case #1: Finding first match</a></h4>
 
@@ -146,11 +173,10 @@
             <p>
                 
             </p>
-            <input type="text" id="matchRegexInput" placeholder="Enter a Regex to match with target" size="50"
-                maxlength="50"><br>
-            <textarea id="matchRegexResult" disabled rows="2" cols="46">.Match result...</textarea><br>
+            
+            
             <br>
-            <a href="#tableOfContents">Back to Top</a>
+            
             <br>
 
 
@@ -217,8 +243,8 @@
     }
 
     // helper methods
-    function autofill(text) {
-        document.getElementById('targetMatchInput').value = text;
+    function autofill(text, targetID) {
+        document.getElementById(targetID).value = text;
     }
 
     function arrayToString(result) {

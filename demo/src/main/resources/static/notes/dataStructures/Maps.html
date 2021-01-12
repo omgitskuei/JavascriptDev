@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta name="viewport" charset="UTF-8" content="width=device-width, initial-scale=1">
+    <title>Javascript Maps</title>
+    <style>
+        body {
+            background-color: rgb(65, 84, 136);
+            color: seashell;
+            font-family: 'Courier New', Courier, monospace;
+            margin-left: 15%;
+            margin-right: 15%;
+        }
+        h1 {
+            text-align: center;
+        }
+        div.gridContainer {
+            display:grid;
+            grid-column-gap: 10px;
+            grid-row-gap: 10px;
+            padding: 5px;
+            grid-template-columns: auto auto;
+            border-color: black;
+            border-style: solid;
+        }
+
+        div.gridRowMerged {
+            grid-column-start: 1;
+            grid-column-end: 3;
+            border-color: black;
+            border-style: dashed;
+        }
+
+        div.gridLeftCol {
+            grid-column-start:1;
+            grid-column-end: 2;
+            border-color: black;
+            border-style: dashed;
+        }
+
+        div.gridRightCol {
+            grid-column-start:2;
+            grid-column-end: 3;
+            border-color: black;
+            border-style: dashed;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Javascript Maps</h2>
+    <div class="gridContainer">
+        <!-- Console -->
+        <div class="gridRowMerged">
+            <h3>Console</h3>
+            <textarea>~</textarea>
+        </div>
+
+        <!-- Construction -->
+        <div class="gridRowMerged">
+            <h3>Create a Map</h3>
+        </div>
+        <!-- new Map() -->
+        <div class="gridLeftCol">
+            <p>
+                <pre>
+                let map = new Map();
+                </pre>
+            </p>
+        </div>
+        <div class="gridRightCol">
+            <input type="text" placeholder="Enter a map name">
+            <button><span>Create</span></button>
+            <br>
+        </div>
+
+        <!-- Add & Remove pairs -->
+        <div class="gridRowMerged">
+            <h3>Add/Remove key-value pairs from Map</h3>
+        </div>
+        <!-- Add -->
+        <div class="gridLeftCol">
+            <p>
+                <pre>
+                // Add pairs
+                map.set('1', 'str');
+                map.set(1, 'num');
+                map.set(true, 'bool');
+                </pre>
+            </p>
+        </div>
+        <div class="gridRightCol">
+            <input type="text" placeholder="Enter a key">
+            <input type="text" placeholder="Enter a value">
+            <button><span>Set</span></button>
+            <br>
+        </div>
+        <!-- Remove -->
+        <div class="gridLeftCol">
+            <p>
+                <pre>
+                // Remove pairs
+                map.delete('1', 'str');
+                map.delete(1, 'num');
+                map.delete(true, 'bool');
+                </pre>
+            </p>
+        </div>
+        <div class="gridRightCol">
+            <input type="text" placeholder="Enter a key">
+            <input type="text" placeholder="Enter a value">
+            <button><span>Delete</span></button>
+            <br>
+        </div>
+
+        <!-- Get pairs -->
+        <div class="gridRowMerged">
+            <h3>Get a value by providing key from Map</h3>
+        </div>
+        <!-- new Map() -->
+        <div class="gridLeftCol">
+            <p>
+                <pre>
+                // Get a value from key-value pairs in a Map
+                map.get('1');       // 'str'
+                map.get(1);         // 'num'
+                map.get(true);      // 'bool'
+                map.get('aLife');   // ??
+                </pre>
+            </p>
+        </div>
+        <div class="gridRightCol">
+            <input type="text" placeholder="Enter a map name">
+            <button><span>Get</span></button>
+            <br>
+        </div>
+    </div>
+
+    
+    
+
+    
+
+
+
+    <script>
+        /**
+         * Global Var
+        **/
+        var mapOfMaps = new Map();
+        var allButtons = document.querySelectorAll("button");
+        
+        /**
+         * On Load
+         **/
+        window.addEventListener("load",function() {
+            allButtons.forEach(eachButton => {
+                eachButton.addEventListener(
+                    "click", 
+                    function() {
+                        btnsOnClick(event)
+                    }
+                );
+            });
+        });
+        
+
+        function btnsOnClick(event) {
+            let btnSpan = event.srcElement;
+            let btnText = btnSpan.innerText;
+            switch (btnText) {
+                case "Create":
+                    console.log("Clicked 'Create'");
+                    let mapName = btnSpan.parentElement.parentElement.children[0].value;
+                    addMap(mapName);
+                    break;
+                case "Set":
+                    console.log("Clicked 'Set'");
+
+                    break;
+                case "Delete":
+                    console.log("Clicked 'Delete'");
+
+                    break;
+                case "Get":
+                    console.log("Clicked 'Get'");
+
+                    break;
+                default:
+                    console.log("what");
+                    break;
+            }
+        }
+
+        function addMap(mapName) {
+            mapOfMaps.set(mapName, new Map());
+        }
+        
+        
+
+
+        // map.delete('');
+
+    </script>
+</body>
+
+
+</html>

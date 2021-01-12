@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" charset="UTF-8" content="width=device-width, initial-scale=1">
+    <title>Template tag</title>
+    <style>
+        body {
+            background-color: rgb(82, 160, 224);
+        }
+        
+        p.code {
+            color:rgb(147, 210, 226);
+            background-color:rgb(78, 78, 78);
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+        }
+
+        p.code span.greenText {
+            color: rgb(2, 182, 2);
+        }
+
+        p.code span.blueText {
+            color: rgb(92, 129, 179);
+        }
+
+        p.code span.yellowText {
+            color: rgb(231, 215, 162);
+        }
+    </style>
+</head>
+
+<!-- CSS -->
+<Style>
+    
+
+</Style>
+
+<!-- HTML body -->
+
+<body>
+    <pre>
+        <p class=code>
+            <br>
+            <span class=blueText>function</span>
+            <span class=yellowText>autofill</span>
+            (text, targetID) {
+            <br>
+            document.
+            <span class=yellowText>getElementById</span>
+            (targetID).value = text;
+            <br>
+            }
+            <br>
+            <br>
+        </p>
+    </pre>
+    <div>
+        <span>src = "Natalie"</span>
+        <button onclick="autofill('Natalie', 'src')">Autofill</button>
+        <br>
+    </div>
+
+    <div>
+        <span>src = "omg"</span>
+        <button id="btnOMG" onclick='autofill1(this)'>Autofill</button>
+        <br>
+    </div>
+
+    <div>
+        <span>target = "Autofill"</span>
+        <button onclick="autofill2(this, 'target')">Autofill</button>
+        <br>
+    </div>
+
+    <div>
+        <span>target = "frog"</span>
+        <button id="btnFrog" onclick="autofill3(event)">Autofill</button>
+        <br>
+    </div>
+    
+    <div>
+        <br>
+        <span>SRC : </span>
+        <input type="text" id="src" placeholder="Enter a src" size="50" maxlength="50"><br>
+        <span>TGT : </span>
+        <input type="text" id="target" placeholder="Enter a target" size="50" maxlength="50"><br>
+    </div>
+</body>
+
+<!-- Javascript -->
+<script type="text/javascript">
+    // console.log(document.querySelector("body > div > button:nth-child(1)"));
+
+    /**
+    Helper methods 
+    **/
+    
+    // pass String text, String targetID
+    function autofill(text, targetID) {
+        console.log(text, targetID);                        // prints Natalie, src
+        document.getElementById(targetID).value = text;
+    }
+
+    // pass this element
+    function autofill1(eventSrc) {
+        console.log(eventSrc);                              // prints <button id="btnOMG" onclick="autofill1(this)">Autofill</button>
+        if(eventSrc.id == "btnOMG") {                       // true
+            let wholeText = eventSrc.parentElement.children[0].innerText;       // "target = 'frog'"
+            let quotesIndex = wholeText.indexOf('"');
+            let text = wholeText.substring(quotesIndex+1, wholeText.length-1);      // 'omg'
+            document.getElementById("src").value = text;
+        }
+        
+    }
+
+    // pass this element, String targetID
+    function autofill2(eventSrc, targetID) {
+        console.log(eventSrc, targetID);                    // prints <button id="btnOMG" onclick="autofill1(this)">Autofill</button>, target
+        let text = eventSrc.innerText;
+        document.getElementById(targetID).value = text;
+    }
+
+    // pass event
+    function autofill3(e) {
+        console.log(e);
+        console.log("e.target:     ", e.target);
+        console.log("e.srcElement: ", e.srcElement);
+        console.log("e.toElement:  ", e.toElement);
+        console.log("e.type:       ", e.type);                                  // click
+        console.log("e.x:          ", e.x);                                     // 150
+        console.log("e.y:          ", e.y);                                     // 518
+        console.log("e.screenX:    ", e.screenX);                               // 975
+        console.log("e.screenY:    ", e.screenY);                               // 675
+        console.log("e.pageX:      ", e.pageX);                                 // 150
+        console.log("e.pageY:      ", e.pageY);                                 // 518
+        console.log("e.timeStamp:  ", e.timeStamp);                             // 5215.22499999999185
+        console.log("e.shiftKey:   ", e.shiftKey);                              // false    (true if hold shift when you click)
+        console.log("e.altKey:     ", e.altKey);                                // false
+        console.log("e.ctrlKey:    ", e.ctrlKey);                               // false
+        console.log("e.returnValue:", e.returnValue);                           // true     (default to true - false if event set to preventDefault() is called)
+        let wholeText = e.srcElement.parentElement.children[0].innerText;       // "target = 'frog'"
+        let quotesIndex = wholeText.indexOf('"');                               // 9
+        let text = wholeText.substring(quotesIndex+1, wholeText.length-1);      // 'frog'
+        document.getElementById("target").value = text;
+    }
+</script>
+
+</html>

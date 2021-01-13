@@ -7,7 +7,7 @@
     <title>Javascript Maps</title>
     <style>
         body {
-            background-color: rgb(65, 84, 136);
+            background-color: rgb(9, 28, 80);
             color: seashell;
             font-family: 'Courier New', Courier, monospace;
             margin-left: 15%;
@@ -55,7 +55,7 @@
         <!-- Console -->
         <div class="gridRowMerged">
             <h3>Console</h3>
-            <textarea>~</textarea>
+            <textarea cols="70" rows="15" maxlength="5000" placeholder="{}" readonly></textarea>
         </div>
 
         <!-- Construction -->
@@ -72,7 +72,7 @@
         </div>
         <div class="gridRightCol">
             <input type="text" placeholder="Enter a map name">
-            <button><span>Create</span></button>
+            <button>Create</button>
             <br>
         </div>
 
@@ -88,13 +88,21 @@
                 map.set('1', 'str');
                 map.set(1, 'num');
                 map.set(true, 'bool');
+
+                // Chaining
+                // Every map.set call returns the map itself, so we can “chain” the calls:
+                
+                map.set('1', 'str1')
+                   .set(1, 'num1')
+                   .set(true, 'bool1');
                 </pre>
             </p>
         </div>
         <div class="gridRightCol">
+            <input type="text" placeholder="Which">
             <input type="text" placeholder="Enter a key">
             <input type="text" placeholder="Enter a value">
-            <button><span>Set</span></button>
+            <button>Set</button>
             <br>
         </div>
         <!-- Remove -->
@@ -102,16 +110,16 @@
             <p>
                 <pre>
                 // Remove pairs
-                map.delete('1', 'str');
-                map.delete(1, 'num');
-                map.delete(true, 'bool');
+                map.delete('1');
+                map.delete(1);
+                map.delete(true);
                 </pre>
             </p>
         </div>
         <div class="gridRightCol">
+            <input type="text" placeholder="Which">
             <input type="text" placeholder="Enter a key">
-            <input type="text" placeholder="Enter a value">
-            <button><span>Delete</span></button>
+            <button>Delete</button>
             <br>
         </div>
 
@@ -119,11 +127,10 @@
         <div class="gridRowMerged">
             <h3>Get a value by providing key from Map</h3>
         </div>
-        <!-- new Map() -->
         <div class="gridLeftCol">
             <p>
                 <pre>
-                // Get a value from key-value pairs in a Map
+                // Return value in a Map
                 map.get('1');       // 'str'
                 map.get(1);         // 'num'
                 map.get(true);      // 'bool'
@@ -133,15 +140,80 @@
         </div>
         <div class="gridRightCol">
             <input type="text" placeholder="Enter a map name">
-            <button><span>Get</span></button>
+            <button>Get</button>
+            <br>
+        </div>
+
+        <!-- Check if key exists -->
+        <div class="gridRowMerged">
+            <h3>Check if key exists</h3>
+        </div>
+        <div class="gridLeftCol">
+            <p>
+                <pre>
+                // Looks for key
+                // If exists, else true/false
+                map.has('1');
+                map.has(1);
+                map.has(true);
+                map.has('humor');  // false
+                </pre>
+            </p>
+        </div>
+        <div class="gridRightCol">
+            <input type="text" placeholder="Enter a map name">
+            <button>Has</button>
+            <br>
+        </div>
+
+        <!-- Clear - delete all pairs -->
+        <div class="gridRowMerged">
+            <h3>Clear all pairs</h3>
+        </div>
+        <div class="gridLeftCol">
+            <p>
+                <pre>
+                // Clear all pairings in map
+                map.clear();
+                </pre>
+            </p>
+        </div>
+        <div class="gridRightCol">
+            <input type="text" placeholder="Enter a map name">
+            <button>Clear</button>
+            <br>
+        </div>
+
+        <!-- Size -->
+        <div class="gridRowMerged">
+            <h3>Get size (number) of Map</h3>
+        </div>
+        <div class="gridLeftCol">
+            <p>
+                <pre>
+                // Clear all pairings in map
+                let num = map.size;    // Note: no ()
+                </pre>
+            </p>
+        </div>
+        <div class="gridRightCol">
+            <input type="text" placeholder="Enter a map name">
+            <button>Size</button>
             <br>
         </div>
     </div>
 
     
-    
+    String as a key in Object is fine, but we can’t use another Object as a key in Object.
+    Using objects as keys is one of the most notable and important Map features. The same can't be done with Object.
 
-    
+    let john = { name: "John" };
+let ben = { name: "Ben" };
+
+let visitsCountObj = {}; // try to use an object
+
+visitsCountObj[ben] = 234; // try to use ben object as the key
+visitsCountObj[john] = 123; // try to use john object as the key, ben object will get replaced
 
 
 
@@ -166,42 +238,107 @@
             });
         });
         
-
+        /**
+         * Controller
+         **/
         function btnsOnClick(event) {
-            let btnSpan = event.srcElement;
-            let btnText = btnSpan.innerText;
+            // console.log(event.path);
+            let btnText = event.path[0].innerText;
+            let mapName = "";
+            let key     = "";
+            let value   = "";
             switch (btnText) {
                 case "Create":
                     console.log("Clicked 'Create'");
-                    let mapName = btnSpan.parentElement.parentElement.children[0].value;
+                    mapName = event.path[1].children[0].value;
                     addMap(mapName);
+                    printMap(mapOfMaps);
                     break;
                 case "Set":
                     console.log("Clicked 'Set'");
-
+                    mapName = event.path[1].children[0].value;
+                    key     = event.path[1].children[1].value;
+                    value   = event.path[1].children[2].value;
+                    setPair(mapName, key, value);
+                    printMap(mapOfMaps);
                     break;
                 case "Delete":
                     console.log("Clicked 'Delete'");
-
+                    mapName = event.path[1].children[0].value;
+                    key     = event.path[1].children[1].value;
+                    deletePair(mapName, key)
+                    printMap(mapOfMaps);
                     break;
                 case "Get":
                     console.log("Clicked 'Get'");
-
+                    
+                    printMap(mapOfMaps);
                     break;
                 default:
-                    console.log("what");
+                    alert("btnsOnClick(event) switch case error");
                     break;
             }
+        }
+
+        /**
+         * Methods
+         **/
+        function printMap(map) {
+            if(map.size==0) {
+                document.querySelector("textarea").value = "{}";
+            } else {
+                let str = "{\r\n";
+                let counter = 0;
+                map.forEach( (value, key, map) => {
+                    str = str
+                        + "  ["+ key + " : \r\n"
+                        + returnMapAsString(value)
+                        +"  ]";
+                    counter++;
+                    if(counter < (map.size)) {
+                        str = str + ",\r\n"
+                    } else {
+                        str = str + "\r\n"
+                    }
+                });
+                str = str + "}";
+                document.querySelector("textarea").value = str;
+            }
+            
+        }
+
+        function returnMapAsString(map) {
+            if(map.size==0) {
+                return "    {}\r\n";
+            }
+            let str = "    {\r\n";
+            let counter = 0;
+            map.forEach( (value, key, map) => {
+                str = str + "      ["+ key + " : "+value+"]";
+                counter++;
+                if(counter < (map.size)) {
+                    str = str + ",\r\n"
+                } else {
+                    str = str + "\r\n"
+                }
+            });
+            str = str + "    }\r\n";
+            return str;
         }
 
         function addMap(mapName) {
             mapOfMaps.set(mapName, new Map());
         }
         
-        
+        function setPair(mapName, key, value) {
+            let map = mapOfMaps.get(mapName);
+            map.set(key, value);
+        }
 
-
-        // map.delete('');
+        function deletePair(mapName, key) {
+            let map = mapOfMaps.get(mapName);
+            map.delete(key);
+        }
 
     </script>
 </body>

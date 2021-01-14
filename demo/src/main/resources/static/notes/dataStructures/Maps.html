@@ -10,8 +10,8 @@
             background-color: rgb(9, 28, 80);
             color: seashell;
             font-family: 'Courier New', Courier, monospace;
-            margin-left: 15%;
-            margin-right: 15%;
+            /* margin-left: 15%; */
+            /* margin-right: 15%; */
         }
         h1 {
             text-align: center;
@@ -21,12 +21,27 @@
             grid-column-gap: 10px;
             grid-row-gap: 10px;
             padding: 5px;
-            grid-template-columns: auto auto;
+            grid-template-columns: auto auto auto;
+            /* grid-template-areas:
+                'header header header header header header'
+                'menu main main main right right'
+                'menu footer footer footer footer footer'; */
             border-color: black;
             border-style: solid;
         }
 
+        div.gridConsole {
+            text-align: center;
+            grid-column-start: 3;
+            grid-column-end: 4;
+            grid-row-start: 1;
+            grid-row-end: 17;
+            border-color: black;
+            border-style: dashed;
+        }
+
         div.gridRowMerged {
+            text-align: center;
             grid-column-start: 1;
             grid-column-end: 3;
             border-color: black;
@@ -53,7 +68,7 @@
     <h1>Javascript Maps</h2>
     <div class="gridContainer">
         <!-- Console -->
-        <div class="gridRowMerged">
+        <div class="gridConsole">
             <h3>Console</h3>
             <textarea cols="70" rows="15" maxlength="5000" placeholder="{}" readonly></textarea>
         </div>
@@ -65,9 +80,7 @@
         <!-- new Map() -->
         <div class="gridLeftCol">
             <p>
-                <pre>
-                let map = new Map();
-                </pre>
+                <pre>let map = new Map();</pre>
             </p>
         </div>
         <div class="gridRightCol">
@@ -83,44 +96,40 @@
         <!-- Add -->
         <div class="gridLeftCol">
             <p>
-                <pre>
-                // Add pairs
-                map.set('1', 'str');
-                map.set(1, 'num');
-                map.set(true, 'bool');
-
-                // Chaining
-                // Every map.set call returns the map itself, so we can “chain” the calls:
+                <pre>// Add pairs</pre>
+                <pre>map.set('1', 'str');</pre>
+                <pre>map.set(1, 'num');</pre>
+                <pre>map.set(true, 'bool');</pre>
+                <br>
+                <pre>// Chaining</pre>
+                <pre>// Every map.set call returns the map itself</pre>
+                <pre>map = map.set('key1', "val1");</pre>
+                <pre>// So we can “chain” the calls:</pre>
+                <pre>map.set('1', 'str1')</pre>
+                <pre>   .set(1, 'num1')</pre>
+                <pre>   .set(true, 'bool1');</pre>
                 
-                map.set('1', 'str1')
-                   .set(1, 'num1')
-                   .set(true, 'bool1');
-                </pre>
             </p>
         </div>
         <div class="gridRightCol">
-            <input type="text" placeholder="Which">
-            <input type="text" placeholder="Enter a key">
-            <input type="text" placeholder="Enter a value">
-            <button>Set</button>
-            <br>
+            <input type="text" placeholder="Enter a map name"><br>
+            <input type="text" placeholder="Enter a key"><br>
+            <input type="text" placeholder="Enter a value"><br>
+            <button>Set</button><br>
         </div>
         <!-- Remove -->
         <div class="gridLeftCol">
             <p>
-                <pre>
-                // Remove pairs
-                map.delete('1');
-                map.delete(1);
-                map.delete(true);
-                </pre>
+                <pre>// Remove pairs</pre>
+                <pre>map.delete('1');</pre>
+                <pre>map.delete(1);</pre>
+                <pre>map.delete(true);</pre>
             </p>
         </div>
         <div class="gridRightCol">
-            <input type="text" placeholder="Which">
-            <input type="text" placeholder="Enter a key">
-            <button>Delete</button>
-            <br>
+            <input type="text" placeholder="Enter a map name"><br>
+            <input type="text" placeholder="Enter a key"><br>
+            <button>Delete</button><br>
         </div>
 
         <!-- Get pairs -->
@@ -129,19 +138,17 @@
         </div>
         <div class="gridLeftCol">
             <p>
-                <pre>
-                // Return value in a Map
-                map.get('1');       // 'str'
-                map.get(1);         // 'num'
-                map.get(true);      // 'bool'
-                map.get('aLife');   // ??
-                </pre>
+                <pre>// Return value in a Map</pre>
+                <pre>map.get('1');       // 'str'</pre>
+                <pre>map.get(1);         // 'num'</pre>
+                <pre>map.get(true);      // 'bool'</pre>
+                <pre>map.get('aLife');   // undefined</pre>
             </p>
         </div>
         <div class="gridRightCol">
-            <input type="text" placeholder="Enter a map name">
-            <button>Get</button>
-            <br>
+            <input type="text" placeholder="Enter a map name"><br>
+            <input type="text" placeholder="Enter a key"><br>
+            <button>Get</button><br>
         </div>
 
         <!-- Check if key exists -->
@@ -150,21 +157,27 @@
         </div>
         <div class="gridLeftCol">
             <p>
-                <pre>
-                // Looks for key
-                // If exists, else true/false
-                map.has('1');
-                map.has(1);
-                map.has(true);
-                map.has('humor');  // false
-                </pre>
+                <pre>// Looks for key</pre>
+                <pre>// If exists, else true/false</pre>
+                <pre>map.has('1');</pre>
+                <pre>map.has(1);</pre>
+                <pre>map.has(true);</pre>
+                <pre>map.has('humor');  // false</pre>
             </p>
         </div>
         <div class="gridRightCol">
-            <input type="text" placeholder="Enter a map name">
-            <button>Has</button>
-            <br>
+            <input type="text" placeholder="Enter a map name"><br>
+            <input type="text" placeholder="Enter a key"><br>
+            <button>Has</button><br>
         </div>
+
+
+
+
+
+
+
+
 
         <!-- Clear - delete all pairs -->
         <div class="gridRowMerged">
@@ -172,16 +185,13 @@
         </div>
         <div class="gridLeftCol">
             <p>
-                <pre>
-                // Clear all pairings in map
-                map.clear();
-                </pre>
+                <pre>// Clear all pairings in map</pre>
+                <pre>map.clear();</pre>
             </p>
         </div>
         <div class="gridRightCol">
-            <input type="text" placeholder="Enter a map name">
-            <button>Clear</button>
-            <br>
+            <input type="text" placeholder="Enter a map name"><br>
+            <button>Clear</button><br>
         </div>
 
         <!-- Size -->
@@ -190,30 +200,99 @@
         </div>
         <div class="gridLeftCol">
             <p>
-                <pre>
-                // Clear all pairings in map
-                let num = map.size;    // Note: no ()
-                </pre>
+                <pre>// Clear all pairings in map</pre>
+                <pre>let num = map.size;    // Note: no ()</pre>
             </p>
         </div>
         <div class="gridRightCol">
-            <input type="text" placeholder="Enter a map name">
-            <button>Size</button>
-            <br>
+            <input type="text" placeholder="Enter a map name"><br>
+            <button>Size</button><br>
+        </div>
+
+
+
+
+        <!-- Comparing Map to Object -->
+        <div class="gridRowMerged">
+            <h3>Comparing Map to Object</h3>
+            <p>Map functionality on the LEFT, Object's on the RIGHT</p>
+            
+        </div>
+        <div class="gridLeftCol">
+            <p>
+                <pre>// Set new pairs with Map</pre>
+                <pre>let newStudent = new Map();</pre>
+                <pre>newStudent.set('name', 'Bob');</pre>
+                <pre>newStudent.set('age', 20);</pre>
+                <pre>newStudent.set('hobbies', ['reading', 'games']);</pre>
+            </p>
+        </div>
+        <div class="gridRightCol">
+            <p>
+                <pre>// Set new pairs with Object</pre>
+                <pre>let newStudent  = {};</pre>
+                <pre>newStudent.name = 'Bob';    // String</pre>
+                <pre>newStudent.age  = 20;       // Num</pre>
+                <pre>newStudent.hobbies = ['reading', 'games'];</pre>
+                <br>
+                <pre>OR</pre>
+                <br>
+                <pre>let newStudent = {</pre>
+                <pre>    name: 'Bob',</pre>
+                <pre>    age: 20,</pre>
+                <pre>    hobbies: ['reading', 'games'],</pre>
+                <pre>};</pre>
+            </p>>
+        </div>
+
+        <div class="gridLeftCol">
+            <p>
+                <pre>// Map size, number of pairs</pre>
+                <pre>let sizeNum = newStudent.size;      // 3</pre>
+            </p>
+        </div>
+        <div class="gridRightCol">
+            <p>
+                <pre>// Object size</pre>
+                <pre>let arrOfKeys = Object.keys(newStudent);    // ['name', 'age', 'hobbies']</pre>
+                <pre>let sizeNum = arrOfKeys.length;             // 3</pre>
+                <br>
+                <pre>OR</pre>
+                <br>
+                <pre>let sizeNum = Object.keys(newStudent).length;</pre>
+            </p>
         </div>
     </div>
 
-    
-    String as a key in Object is fine, but we can’t use another Object as a key in Object.
-    Using objects as keys is one of the most notable and important Map features. The same can't be done with Object.
 
-    let john = { name: "John" };
-let ben = { name: "Ben" };
+    
+
+
+
+
+    WIP
+    WIP
+    WIP
+    WIP
+    WIP
+    WIP
+
+    // Map can do more than Object.
+                
+                Using objects as keys is one of the most notable and important Map features.
+                The same can't be done with Object - We can’t use another Object as a key in Object. .
+                let john = { name: "John" };
+                let ben = { name: "Ben" };
 
 let visitsCountObj = {}; // try to use an object
 
 visitsCountObj[ben] = 234; // try to use ben object as the key
 visitsCountObj[john] = 123; // try to use john object as the key, ben object will get replaced
+    
+WIP
+WIP
+WIP
+WIP
 
 
 
@@ -223,11 +302,14 @@ visitsCountObj[john] = 123; // try to use john object as the key, ben object wil
         **/
         var mapOfMaps = new Map();
         var allButtons = document.querySelectorAll("button");
-        
+        let allGridRowMerged = document.querySelectorAll(".gridRowMerged");
+        console.log(allGridRowMerged);
+
         /**
          * On Load
          **/
         window.addEventListener("load",function() {
+            // Add onclicks to all buttons
             allButtons.forEach(eachButton => {
                 eachButton.addEventListener(
                     "click", 
@@ -235,6 +317,23 @@ visitsCountObj[john] = 123; // try to use john object as the key, ben object wil
                         btnsOnClick(event)
                     }
                 );
+            });
+            // Hide all left/rightCol
+            allGridRowMerged.forEach(eachMerged => {
+                eachMerged.nextElementSibling.style.display = 'none';
+                eachMerged.nextElementSibling.nextElementSibling.style.display = 'none';
+            });
+            // Add onclicks to all headers to hide/show
+            allGridRowMerged.forEach(eachMerged => {
+                eachMerged.addEventListener(
+                    "click",
+                    function() {
+                        console.log(eachMerged.nextElementSibling);                     // leftCol
+                        console.log(eachMerged.nextElementSibling.nextElementSibling);  // rightCol
+                        eachMerged.nextElementSibling.style.display = 'grid';
+                        eachMerged.nextElementSibling.nextElementSibling.style.display = 'grid';
+                    }
+                )
             });
         });
         
@@ -245,34 +344,62 @@ visitsCountObj[john] = 123; // try to use john object as the key, ben object wil
             // console.log(event.path);
             let btnText = event.path[0].innerText;
             let mapName = "";
+            let map = new Map();
             let key     = "";
             let value   = "";
             switch (btnText) {
                 case "Create":
                     console.log("Clicked 'Create'");
                     mapName = event.path[1].children[0].value;
-                    addMap(mapName);
-                    printMap(mapOfMaps);
+                    mapOfMaps.set(mapName, new Map());
+                    printMapOfMaps();
                     break;
                 case "Set":
                     console.log("Clicked 'Set'");
                     mapName = event.path[1].children[0].value;
                     key     = event.path[1].children[1].value;
                     value   = event.path[1].children[2].value;
-                    setPair(mapName, key, value);
-                    printMap(mapOfMaps);
+                    map = mapOfMaps.get(mapName);
+                    map.set(key, value);
+                    printMapOfMaps();
                     break;
                 case "Delete":
                     console.log("Clicked 'Delete'");
                     mapName = event.path[1].children[0].value;
                     key     = event.path[1].children[1].value;
-                    deletePair(mapName, key)
-                    printMap(mapOfMaps);
+                    map = mapOfMaps.get(mapName);
+                    map.delete(key);
+                    printMapOfMaps();
                     break;
                 case "Get":
                     console.log("Clicked 'Get'");
-                    
-                    printMap(mapOfMaps);
+                    mapName = event.path[1].children[0].value;
+                    key     = event.path[1].children[1].value;
+                    map = mapOfMaps.get(mapName);
+                    value = map.get(key);
+                    document.querySelector("textarea").value = value;
+                    break;
+                case "Has":
+                    console.log("Clicked 'Has'");
+                    mapName = event.path[1].children[0].value;
+                    key     = event.path[1].children[1].value;
+                    map = mapOfMaps.get(mapName);
+                    let bool = map.has(key);
+                    document.querySelector("textarea").value = bool;
+                    break;
+                case "Clear":
+                    console.log("Clicked 'Has'");
+                    mapName = event.path[1].children[0].value;
+                    map = mapOfMaps.get(mapName);
+                    map.clear();
+                    printMapOfMaps();
+                    break;
+                case "Size":
+                    console.log("Clicked 'Size'");
+                    mapName = event.path[1].children[0].value;
+                    map = mapOfMaps.get(mapName);
+                    let num = map.size;
+                    document.querySelector("textarea").value = num;
                     break;
                 default:
                     alert("btnsOnClick(event) switch case error");
@@ -283,13 +410,13 @@ visitsCountObj[john] = 123; // try to use john object as the key, ben object wil
         /**
          * Methods
          **/
-        function printMap(map) {
-            if(map.size==0) {
+        function printMapOfMaps() {
+            if(mapOfMaps.size==0) {
                 document.querySelector("textarea").value = "{}";
             } else {
                 let str = "{\r\n";
                 let counter = 0;
-                map.forEach( (value, key, map) => {
+                mapOfMaps.forEach( (value, key, map) => {
                     str = str
                         + "  ["+ key + " : \r\n"
                         + returnMapAsString(value)
@@ -326,19 +453,6 @@ visitsCountObj[john] = 123; // try to use john object as the key, ben object wil
             return str;
         }
 
-        function addMap(mapName) {
-            mapOfMaps.set(mapName, new Map());
-        }
-        
-        function setPair(mapName, key, value) {
-            let map = mapOfMaps.get(mapName);
-            map.set(key, value);
-        }
-
-        function deletePair(mapName, key) {
-            let map = mapOfMaps.get(mapName);
-            map.delete(key);
-        }
 
     </script>
 </body>

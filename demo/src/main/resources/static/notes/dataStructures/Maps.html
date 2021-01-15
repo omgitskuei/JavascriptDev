@@ -7,14 +7,21 @@
     <title>Javascript Maps</title>
     <style>
         body {
-            background-color: rgb(9, 28, 80);
+            background-color: rgb(58, 58, 58);
             color: seashell;
             font-family: 'Courier New', Courier, monospace;
-            /* margin-left: 15%; */
-            /* margin-right: 15%; */
+            margin-left: 10%;
+            margin-right: 10%;
         }
         h1 {
             text-align: center;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        h3 {
+            text-align: center;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 0;
+            margin: 0;
         }
         div.gridContainer {
             display:grid;
@@ -22,11 +29,7 @@
             grid-row-gap: 10px;
             padding: 5px;
             grid-template-columns: auto auto auto;
-            /* grid-template-areas:
-                'header header header header header header'
-                'menu main main main right right'
-                'menu footer footer footer footer footer'; */
-            border-color: black;
+            border-color: rgb(255, 255, 255);
             border-style: solid;
         }
 
@@ -35,27 +38,29 @@
             grid-column-start: 3;
             grid-column-end: 4;
             grid-row-start: 1;
-            grid-row-end: 17;
-            border-color: black;
+            /* grid-row-end: 9; */
+            border-color: rgb(0, 0, 0);
             border-style: dashed;
+            min-width:350px;
         }
 
         div.gridRowMerged {
             text-align: center;
             grid-column-start: 1;
             grid-column-end: 3;
-            border-color: black;
+            border-color: rgb(0, 0, 0);
             border-style: dashed;
         }
 
         div.gridLeftCol {
             grid-column-start:1;
             grid-column-end: 2;
-            border-color: black;
+            border-color: rgb(0, 0, 0);
             border-style: dashed;
         }
 
         div.gridRightCol {
+            display:inline;
             grid-column-start:2;
             grid-column-end: 3;
             border-color: black;
@@ -70,7 +75,9 @@
         <!-- Console -->
         <div class="gridConsole">
             <h3>Console</h3>
-            <textarea cols="70" rows="15" maxlength="5000" placeholder="{}" readonly></textarea>
+            <textarea cols="40" rows="22" maxlength="5000" placeholder="{}" readonly></textarea>
+            <br>
+            <button onclick="printMapOfMaps()">Show map</button>
         </div>
 
         <!-- Construction -->
@@ -81,19 +88,24 @@
         <div class="gridLeftCol">
             <p>
                 <pre>let map = new Map();</pre>
+                <br>
+                <pre>let map = new Map([</pre>
+                <pre>        ["apple", 10],</pre>
+                <pre>        ["orange", 30],</pre>
+                <pre>        ["banana", 20]</pre>
+                <pre>    ]);</pre>
             </p>
         </div>
         <div class="gridRightCol">
-            <input type="text" placeholder="Enter a map name">
+            <input type="text" placeholder="Enter a map name"><br>
             <button>Create</button>
             <br>
         </div>
 
-        <!-- Add & Remove pairs -->
+        <!-- Add pairs -->
         <div class="gridRowMerged">
-            <h3>Add/Remove key-value pairs from Map</h3>
+            <h3>Add key-value pairs from Map</h3>
         </div>
-        <!-- Add -->
         <div class="gridLeftCol">
             <p>
                 <pre>// Add pairs</pre>
@@ -117,7 +129,11 @@
             <input type="text" placeholder="Enter a value"><br>
             <button>Set</button><br>
         </div>
-        <!-- Remove -->
+
+        <!-- Remove pairs -->
+        <div class="gridRowMerged">
+            <h3>Remove key-value pairs from Map</h3>
+        </div>
         <div class="gridLeftCol">
             <p>
                 <pre>// Remove pairs</pre>
@@ -129,7 +145,7 @@
         <div class="gridRightCol">
             <input type="text" placeholder="Enter a map name"><br>
             <input type="text" placeholder="Enter a key"><br>
-            <button>Delete</button><br>
+            <button>Delete</button>
         </div>
 
         <!-- Get pairs -->
@@ -148,7 +164,7 @@
         <div class="gridRightCol">
             <input type="text" placeholder="Enter a map name"><br>
             <input type="text" placeholder="Enter a key"><br>
-            <button>Get</button><br>
+            <button>Get</button>
         </div>
 
         <!-- Check if key exists -->
@@ -168,16 +184,8 @@
         <div class="gridRightCol">
             <input type="text" placeholder="Enter a map name"><br>
             <input type="text" placeholder="Enter a key"><br>
-            <button>Has</button><br>
+            <button>Has</button>
         </div>
-
-
-
-
-
-
-
-
 
         <!-- Clear - delete all pairs -->
         <div class="gridRowMerged">
@@ -191,7 +199,7 @@
         </div>
         <div class="gridRightCol">
             <input type="text" placeholder="Enter a map name"><br>
-            <button>Clear</button><br>
+            <button>Clear</button>
         </div>
 
         <!-- Size -->
@@ -206,9 +214,42 @@
         </div>
         <div class="gridRightCol">
             <input type="text" placeholder="Enter a map name"><br>
-            <button>Size</button><br>
+            <button>Size</button>
         </div>
 
+        <!-- Iterate or Loop over a Map -->
+        <div class="gridRowMerged">
+            <h3>Iterate over a Map</h3>
+            <p>Iterator follows the same order as Pair Insertion (FIFO)</p>
+        </div>
+        <div class="gridLeftCol">
+            <p>
+                <pre>// Pre ES6:</pre>
+                <pre>for (var m in map){</pre>
+                <pre>    for (var i=0; i &lt map[m].length; i++){ </pre>
+                <pre>        map[m][i];</pre>
+                <pre>    }</pre>
+                <pre>}</pre>
+                <pre>* Note ^ this did NOT work for </pre>
+                <pre>Google Chrome v87 in 2021</pre>
+                <br>
+                <pre>// For ES6 (ES 2015):</pre>
+                <pre>for (let eachKey of map.keys()) {</pre>
+                <pre>    console.log(eachKey);</pre>
+                <pre>}</pre>
+                <pre>for (let eachVal of map.values()) {</pre>
+                <pre>    console.log(eachVal);</pre>
+                <pre>}</pre>
+                <br>
+                <pre>for (const [key, value] of myMap.entries()) {</pre>
+                <pre>    console.log(key, value);</pre>
+                <pre>}</pre>
+            </p>
+        </div>
+        <div class="gridRightCol">
+            <input type="text" placeholder="Enter a map name"><br>
+            <button>Iterate</button>
+        </div>
 
 
 
@@ -300,17 +341,28 @@ WIP
         /**
          * Global Var
         **/
-        var mapOfMaps = new Map();
-        var allButtons = document.querySelectorAll("button");
-        let allGridRowMerged = document.querySelectorAll(".gridRowMerged");
-        console.log(allGridRowMerged);
-
+        var mapOfMaps           = new Map();
+        mapOfMaps.set(
+            "test", 
+            new Map([
+                ["key1", "val1"], 
+                ["key2", "val2"], 
+                ["key3", "val3"]
+            ])
+        );
+        var allGridRightColButtons  = document.querySelectorAll(".gridRightCol button");
+        let allGridRowMerged        = document.querySelectorAll(".gridRowMerged");
+        let allGridLeftCol          = document.querySelectorAll(".gridLeftCol");
+        let allGridRightCol         = document.querySelectorAll(".gridRightCol");
+        let gridConsole             = document.querySelector(".gridConsole");       // note this is the div, not the textarea
         /**
          * On Load
          **/
         window.addEventListener("load",function() {
-            // Add onclicks to all buttons
-            allButtons.forEach(eachButton => {
+            // Set style grid-row-end to number of div.gridRowMerged
+            gridConsole.style.gridRowEnd = allGridRowMerged.length+1;
+            // Add onclicks to all .gridRightCol buttons
+            allGridRightColButtons.forEach(eachButton => {
                 eachButton.addEventListener(
                     "click", 
                     function() {
@@ -318,28 +370,52 @@ WIP
                     }
                 );
             });
-            // Hide all left/rightCol
-            allGridRowMerged.forEach(eachMerged => {
-                eachMerged.nextElementSibling.style.display = 'none';
-                eachMerged.nextElementSibling.nextElementSibling.style.display = 'none';
-            });
+
             // Add onclicks to all headers to hide/show
             allGridRowMerged.forEach(eachMerged => {
                 eachMerged.addEventListener(
                     "click",
                     function() {
-                        console.log(eachMerged.nextElementSibling);                     // leftCol
-                        console.log(eachMerged.nextElementSibling.nextElementSibling);  // rightCol
-                        eachMerged.nextElementSibling.style.display = 'grid';
-                        eachMerged.nextElementSibling.nextElementSibling.style.display = 'grid';
+                        gridRowMergedOnClick(eachMerged);
                     }
                 )
             });
+            // Hide/Fold all content
+            hideAll(allGridLeftCol);
+            hideAll(allGridRightCol);
+            // Print Current mapOfMaps
+            printMapOfMaps();
         });
         
         /**
          * Controller
          **/
+        function gridRowMergedOnClick(thisMerged) {
+            // Already hidden, Show
+            if(thisMerged.nextElementSibling.style.display == "none") {
+                // revert all
+                hideAll(allGridLeftCol);
+                hideAll(allGridRightCol);
+                revertAllBorderColors(allGridRowMerged);                                // turns previous white to black
+                // show this
+                thisMerged.nextElementSibling.style.display = '';                       // leftCol
+                thisMerged.nextElementSibling.nextElementSibling.style.display = '';    // rightCol
+                // inverse
+                inverseColor(thisMerged);                                               // turns white
+                // adjust console gridEnd to prevVal + 1
+                gridConsole.style.gridRowEnd = allGridRowMerged.length+2;
+            } 
+            // Hide this
+            else {
+                thisMerged.nextElementSibling.style.display = 'none';                       // leftCol
+                thisMerged.nextElementSibling.nextElementSibling.style.display = 'none';    // rightCol
+                // inverse
+                inverseColor(thisMerged);
+                // adjust console gridEnd to prevVal - 1
+                gridConsole.style.gridRowEnd = allGridRowMerged.length+1;
+            }
+        }
+
         function btnsOnClick(event) {
             // console.log(event.path);
             let btnText = event.path[0].innerText;
@@ -347,59 +423,114 @@ WIP
             let map = new Map();
             let key     = "";
             let value   = "";
+            let inputs  = event.path[1].querySelectorAll("input");
             switch (btnText) {
                 case "Create":
                     console.log("Clicked 'Create'");
-                    mapName = event.path[1].children[0].value;
+                    mapName = inputs[0].value;
                     mapOfMaps.set(mapName, new Map());
                     printMapOfMaps();
                     break;
                 case "Set":
                     console.log("Clicked 'Set'");
-                    mapName = event.path[1].children[0].value;
-                    key     = event.path[1].children[1].value;
-                    value   = event.path[1].children[2].value;
-                    map = mapOfMaps.get(mapName);
-                    map.set(key, value);
+                    mapName = inputs[0].value;
+                    key     = inputs[1].value;
+                    value   = inputs[2].value;
+                    try {
+                        map = mapOfMaps.get(mapName);
+                        map.set(key, value);
+                    } catch (error) {
+                        alert(error);
+                        console.log(error);
+                    }
                     printMapOfMaps();
                     break;
                 case "Delete":
                     console.log("Clicked 'Delete'");
-                    mapName = event.path[1].children[0].value;
-                    key     = event.path[1].children[1].value;
-                    map = mapOfMaps.get(mapName);
-                    map.delete(key);
+                    mapName = inputs[0].value;
+                    key     = inputs[1].value;
+                    try {
+                        map = mapOfMaps.get(mapName);
+                        map.delete(key);
+                    } catch (error) {
+                        alert(error);
+                        console.log(error);
+                    }
                     printMapOfMaps();
                     break;
                 case "Get":
                     console.log("Clicked 'Get'");
-                    mapName = event.path[1].children[0].value;
-                    key     = event.path[1].children[1].value;
-                    map = mapOfMaps.get(mapName);
-                    value = map.get(key);
+                    mapName = inputs[0].value;
+                    key     = inputs[1].value;
+                    try {
+                        map = mapOfMaps.get(mapName);
+                        value = map.get(key);
+                    } catch (error) {
+                        alert(error);
+                        console.log(error);
+                    }
                     document.querySelector("textarea").value = value;
                     break;
                 case "Has":
                     console.log("Clicked 'Has'");
-                    mapName = event.path[1].children[0].value;
-                    key     = event.path[1].children[1].value;
-                    map = mapOfMaps.get(mapName);
-                    let bool = map.has(key);
-                    document.querySelector("textarea").value = bool;
+                    mapName = inputs[0].value;
+                    key     = inputs[1].value;
+                    try {
+                        map = mapOfMaps.get(mapName);
+                        value = map.has(key);               // typeOf = boolean
+                    } catch (error) {
+                        alert(error);
+                        console.log(error);
+                    }
+                    document.querySelector("textarea").value = value;
                     break;
                 case "Clear":
                     console.log("Clicked 'Has'");
-                    mapName = event.path[1].children[0].value;
-                    map = mapOfMaps.get(mapName);
-                    map.clear();
+                    mapName = inputs[0].value;
+                    try {
+                        map = mapOfMaps.get(mapName);
+                        map.clear();
+                    } catch (error) {
+                        alert(error);
+                        console.log(error);
+                    }
                     printMapOfMaps();
                     break;
                 case "Size":
                     console.log("Clicked 'Size'");
-                    mapName = event.path[1].children[0].value;
-                    map = mapOfMaps.get(mapName);
-                    let num = map.size;
-                    document.querySelector("textarea").value = num;
+                    mapName = inputs[0].value;
+                    try {
+                        map = mapOfMaps.get(mapName);
+                        value = map.size;                       // typeOf = num
+                    } catch (error) {
+                        alert(error);
+                        console.log(error);
+                    }
+                    document.querySelector("textarea").value = value;
+                    break;
+                case "Iterate":
+                    console.log("Clicked 'Iterate'");
+                    mapName = inputs[0].value;
+                    let textArea = "";
+                    let count = 0;
+                    try {
+                        map = mapOfMaps.get(mapName);
+                        textArea = "Keys: "
+                        for (let eachKey of map.keys()) {           // can change to "for (let eachKey of map.values()) {"
+                            textArea = textArea + eachKey + ", ";
+                            count++;
+                        }
+                        textArea = textArea + "\r\nValues: "
+                        for (const [key, value] of map.entries()) {
+                            // console.log(key, value);
+                            textArea = textArea + value + ", ";
+                        }
+                        textArea = textArea + "\r\nTotal Pairs = " + count;
+                    } catch (error) {
+                        alert(error);
+                        console.log(error);
+                    }
+                    document.querySelector("textarea").value = textArea;
                     break;
                 default:
                     alert("btnsOnClick(event) switch case error");
@@ -453,6 +584,28 @@ WIP
             return str;
         }
 
+        function hideAll(arr) {
+            // Hide all left/rightCol
+            arr.forEach(each => {
+                each.style.display = 'none';
+            });
+        }
+
+        function revertAllBorderColors(arr) {
+            arr.forEach(each => {
+                if(each.style.borderColor == "white") {
+                    each.style.borderColor = "black";
+                }
+            });
+        }
+
+        function inverseColor(element) {
+            if(element.style.borderColor == "white") {
+                element.style.borderColor = "black";
+            } else {
+                element.style.borderColor = "white";
+            }
+        }
 
     </script>
 </body>

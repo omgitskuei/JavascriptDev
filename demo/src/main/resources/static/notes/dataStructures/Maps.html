@@ -89,6 +89,7 @@
             <p>
                 <pre>let map = new Map();</pre>
                 <br>
+                <pre>// new Map(newMapParam), where each inner arrays match '[key,pair]' layout</pre>
                 <pre>let map = new Map([</pre>
                 <pre>        ["apple", 10],</pre>
                 <pre>        ["orange", 30],</pre>
@@ -251,8 +252,6 @@
             <button>Iterate</button>
         </div>
 
-
-
         <!-- Comparing Map to Object -->
         <div class="gridRowMerged">
             <h3>Comparing Map to Object</h3>
@@ -266,6 +265,21 @@
                 <pre>newStudent.set('name', 'Bob');</pre>
                 <pre>newStudent.set('age', 20);</pre>
                 <pre>newStudent.set('hobbies', ['reading', 'games']);</pre>
+            </p>
+            <hr>
+            <p>
+                <pre>// Map size, number of pairs</pre>
+                <pre>let sizeNum = newStudent.size;      // 3</pre>
+            </p>
+            <hr>
+            <p>
+                <pre>// Convert Object to Map</pre>
+                <pre>let obj = {</pre>
+                <pre>   name: "John",       // 'name' being entry (key)</pre>
+                <pre>   age: 30</pre>       // '30' being entry (value)
+                <pre>};</pre>
+                <br>
+                <pre>let map = new Map(Object.entries(obj));</pre>
             </p>
         </div>
         <div class="gridRightCol">
@@ -283,16 +297,8 @@
                 <pre>    age: 20,</pre>
                 <pre>    hobbies: ['reading', 'games'],</pre>
                 <pre>};</pre>
-            </p>>
-        </div>
-
-        <div class="gridLeftCol">
-            <p>
-                <pre>// Map size, number of pairs</pre>
-                <pre>let sizeNum = newStudent.size;      // 3</pre>
             </p>
-        </div>
-        <div class="gridRightCol">
+            <hr>            
             <p>
                 <pre>// Object size</pre>
                 <pre>let arrOfKeys = Object.keys(newStudent);    // ['name', 'age', 'hobbies']</pre>
@@ -301,6 +307,16 @@
                 <pre>OR</pre>
                 <br>
                 <pre>let sizeNum = Object.keys(newStudent).length;</pre>
+            </p>
+            <hr>
+            <p>
+                <pre>// Convert Map to Object</pre>
+                <textarea cols="40" rows="7" maxlength="5000" readonly>let map = new Map();
+map.set('banana', 1);
+map.set('orange', 2);
+map.set('meat', 4);
+let obj = Object.fromEntries(map.entries());
+                </textarea>
             </p>
         </div>
     </div>
@@ -341,24 +357,27 @@ WIP
         /**
          * Global Var
         **/
-        var mapOfMaps           = new Map();
-        mapOfMaps.set(
-            "test", 
-            new Map([
-                ["key1", "val1"], 
-                ["key2", "val2"], 
-                ["key3", "val3"]
-            ])
-        );
+        var mapOfMaps               = new Map();
+        // var mapOfObjs               = new Map();
         var allGridRightColButtons  = document.querySelectorAll(".gridRightCol button");
         let allGridRowMerged        = document.querySelectorAll(".gridRowMerged");
         let allGridLeftCol          = document.querySelectorAll(".gridLeftCol");
         let allGridRightCol         = document.querySelectorAll(".gridRightCol");
         let gridConsole             = document.querySelector(".gridConsole");       // note this is the div, not the textarea
+        
         /**
          * On Load
          **/
         window.addEventListener("load",function() {
+            // Create a new map for easy demo-ing
+            mapOfMaps.set(
+                "map1", 
+                new Map([
+                    ["key1", "val1"], 
+                    ["key2", "val2"], 
+                    ["key3", "val3"]
+                ])
+            );
             // Set style grid-row-end to number of div.gridRowMerged
             gridConsole.style.gridRowEnd = allGridRowMerged.length+1;
             // Add onclicks to all .gridRightCol buttons
@@ -370,7 +389,6 @@ WIP
                     }
                 );
             });
-
             // Add onclicks to all headers to hide/show
             allGridRowMerged.forEach(eachMerged => {
                 eachMerged.addEventListener(
@@ -427,7 +445,7 @@ WIP
             switch (btnText) {
                 case "Create":
                     console.log("Clicked 'Create'");
-                    mapName = inputs[0].value;
+                    mapName         = inputs[0].value;
                     mapOfMaps.set(mapName, new Map());
                     printMapOfMaps();
                     break;
@@ -469,7 +487,7 @@ WIP
                         alert(error);
                         console.log(error);
                     }
-                    document.querySelector("textarea").value = value;
+                    gridConsole.querySelector("textarea").value = value;
                     break;
                 case "Has":
                     console.log("Clicked 'Has'");
@@ -482,7 +500,7 @@ WIP
                         alert(error);
                         console.log(error);
                     }
-                    document.querySelector("textarea").value = value;
+                    gridConsole.querySelector("textarea").value = value;
                     break;
                 case "Clear":
                     console.log("Clicked 'Has'");
@@ -506,7 +524,7 @@ WIP
                         alert(error);
                         console.log(error);
                     }
-                    document.querySelector("textarea").value = value;
+                    gridConsole.querySelector("textarea").value = value;
                     break;
                 case "Iterate":
                     console.log("Clicked 'Iterate'");
@@ -530,7 +548,7 @@ WIP
                         alert(error);
                         console.log(error);
                     }
-                    document.querySelector("textarea").value = textArea;
+                    gridConsole.querySelector("textarea").value = textArea;
                     break;
                 default:
                     alert("btnsOnClick(event) switch case error");
@@ -560,10 +578,57 @@ WIP
                     }
                 });
                 str = str + "}";
-                document.querySelector("textarea").value = str;
+                gridConsole.querySelector("textarea").value = str;
             }
             
         }
+
+        // function printMapOfObjs() {
+        //     if(mapOfObjs.size==0) {
+        //         document.querySelector("textarea").value = "{}";
+        //     } else {
+        //         let str = "[\r\n";
+        //         let counter = 0;
+        //         mapOfObjs.forEach( (value, key, obj) => {
+        //             str = str
+        //                 + "  ["+ key + " : \r\n"
+        //                 + returnObjAsString(obj)
+        //                 +"  ]";
+        //             counter++;
+        //             if(counter < (Object.keys(obj).length)) {
+        //                 str = str + ",\r\n"
+        //             } else {
+        //                 str = str + "\r\n"
+        //             }
+        //         });
+        //         str = str + "]";
+        //         gridConsole.querySelector("textarea").value = str;
+        //     }
+        // }
+
+        // function returnObjAsString(obj) {
+        //     let objArr = Object.keys(obj);
+
+        //     if(objArr.length==0) {
+        //         return "    []\r\n";
+        //     }
+        //     let str             = "    [\r\n";
+        //     let counter         = 0;
+        //     for (let i = 0; i < objArr.length; i++) {
+        //         const eachPair  = array[i];
+        //         let key         = eachPair[0];
+        //         let val         = eachPair[1];
+        //         str             = str + "      ["+ key + " : "+value+"]";
+        //         counter++;
+        //         if(counter < (map.size)) {
+        //             str         = str + ",\r\n"
+        //         } else {
+        //             str         = str + "\r\n"
+        //         }
+        //     }
+        //     str = str + "    }\r\n";
+        //     return str;
+        // }
 
         function returnMapAsString(map) {
             if(map.size==0) {

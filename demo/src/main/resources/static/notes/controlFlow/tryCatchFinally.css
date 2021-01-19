@@ -1,0 +1,98 @@
+div.gridPageLayout {
+    display:grid;
+    min-width: 700px;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    padding: 5px;
+    grid-template-columns: 100px auto 100px;
+    grid-template-rows: 100px 2000px 100px;
+    border-color: rgb(114, 114, 114);
+    border-style: solid;
+}
+
+div.gridBanner {
+    text-align: center;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    padding: 5px;
+    border-color: rgb(255, 0, 0);
+    border-style: dashed;
+}
+
+div.gridAdsL {
+    grid-column-start:1;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    padding: 5px;
+    border-color: black;
+    border-style: dashed;
+}
+
+div.gridAdsR {
+    grid-column-start:3;
+    grid-column-end: 4;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    padding: 5px;
+    border-color: black;
+    border-style: dashed;
+}
+
+div.gridMain {
+    grid-column-start:2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    padding: 5px;
+    border-color: blue;
+    border-style: dashed;
+}
+
+div.gridArticle {
+    display:grid;
+    height: 99.2%;
+    min-width: 500px;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    padding: 5px;
+    grid-template-columns: auto auto auto auto auto auto auto auto auto auto;
+    grid-template-rows: 100px auto;
+    border-color: rgb(114, 114, 114);
+    border-style: solid;
+}
+
+div.gridArticle div.title {
+    text-align: center;
+    grid-column-start: 1;
+    grid-column-end: 11;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    border-color: rgb(255, 0, 0);
+    border-style: dashed;
+}
+
+div.gridArticle div.snippet {
+    grid-column-start:1;
+    grid-column-end: 6;
+    border-color: green;
+    border-style: dashed;
+}
+
+div.gridArticle div.description {
+    grid-column-start:6;
+    grid-column-end: 11;
+    border-color: blue;
+    border-style: dashed;
+}
+
+div.gridFoot {
+    grid-column-start:1;
+    grid-column-end: 4;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    border-color: green;
+    border-style: dashed;
+}

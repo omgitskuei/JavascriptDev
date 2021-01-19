@@ -1,24 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-
-
 <head>
-    <meta name="viewport" charset="UTF-8" content="width=device-width, initial-scale=1">
-    <title>{TITLE}</title>
-    <!-- <link rel="stylesheet" href="{CSS RESET CHOICE}"> -->
-    <style>
-        /* {EDITOR CSS} */
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
-
-
 <body>
-    <!-- {EDITOR HTML} -->
-
-    <script>
-        // { EDITOR JS }
-    </script>
+    
 </body>
-
-
+<script>
+    window.addEventListener("load",
+        function() {
+            // ... some code
+            console.log("init success");
+            document.querySelector("body").innerText = "init done";
+        }
+    );
+</script>
 </html>

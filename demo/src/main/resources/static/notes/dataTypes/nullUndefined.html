@@ -1,24 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-
-
 <head>
-    <meta name="viewport" charset="UTF-8" content="width=device-width, initial-scale=1">
-    <title>{TITLE}</title>
-    <!-- <link rel="stylesheet" href="{CSS RESET CHOICE}"> -->
-    <style>
-        /* {EDITOR CSS} */
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
-
-
 <body>
-    <!-- {EDITOR HTML} -->
-
-    <script>
-        // { EDITOR JS }
-    </script>
+    <input type="text" id="inp1" placeholder="w">
+    <button onclick="a()">Get Value</button>
+    <pre>
+        var w = undefined;
+        var x;                  // returns undefined
+        var y = "";
+        var z = null;
+    </pre>
 </body>
+<script>
+    var w = undefined;
+    var x;
+    var y = "";
+    var z = null;
+    var val = "";
 
+    window.addEventListener("load",
+        function() {
+            // ... some code
+            console.log("init success");
+        }
+    );
 
+    function a() {
+            document.getElementById("inp1").focus();
+
+            val = document.getElementById("inp1").value;
+
+            console.log("a(", val, ")")
+            if(val == "w") {
+                console.log(w);
+            } else if(val == "x") {
+                console.log(x);
+            } else if(val == "y") {
+                console.log(y);
+            } else if(val == "z") {
+                console.log(z);
+            } else {
+                console.log("notFound");
+            }
+        }
+</script>
 </html>

@@ -10,6 +10,7 @@
         }
         
         p.code {
+            font-size: small;
             color:rgb(147, 210, 226);
             background-color:rgb(78, 78, 78);
             font-family: 'Courier New', Courier, monospace;
@@ -41,18 +42,47 @@
 <body>
     <pre>
         <p class=code>
-            <br>
-            <span class=blueText>function</span>
-            <span class=yellowText>autofill</span>
-            (text, targetID) {
-            <br>
-            document.
-            <span class=yellowText>getElementById</span>
-            (targetID).value = text;
-            <br>
+            
+            ... onclick="autofill('Natalie', 'src')"
+
+            <span class=blueText>function</span> <span class=yellowText>autofill</span>(text, targetID) {
+                document.<span class=yellowText>getElementById</span>(targetID).value = text;
             }
-            <br>
-            <br>
+            
+
+            ... onclick="autofill2(this, 'target')"
+
+            <span class=blueText>function</span> <span class=yellowText>autofill2</span>(eventSrc, targetID) {
+                console.<span class=yellowText>log</span>(eventSrc, targetID);
+                <span class=blueText>let</span> text = eventSrc.innerText;
+                document.<span class=yellowText>getElementById</span>(targetID).value = text;
+            }
+            
+
+            ... onclick="autofill3(event)"
+
+            <span class=blueText>function</span> <span class=yellowText>autofill3</span>(e) {
+                console.<span class=yellowText>log</span>(e);
+                console.<span class=yellowText>log</span>("e.target:     ", e.target);
+                console.<span class=yellowText>log</span>("e.srcElement: ", e.srcElement);
+                console.<span class=yellowText>log</span>("e.toElement:  ", e.toElement);
+                console.<span class=yellowText>log</span>("e.type:       ", e.type);                                  // click
+                console.<span class=yellowText>log</span>("e.x:          ", e.x);                                     // 150
+                console.<span class=yellowText>log</span>("e.y:          ", e.y);                                     // 518
+                console.<span class=yellowText>log</span>("e.screenX:    ", e.screenX);                               // 975
+                console.<span class=yellowText>log</span>("e.screenY:    ", e.screenY);                               // 675
+                console.<span class=yellowText>log</span>("e.pageX:      ", e.pageX);                                 // 150
+                console.<span class=yellowText>log</span>("e.pageY:      ", e.pageY);                                 // 518
+                console.<span class=yellowText>log</span>("e.timeStamp:  ", e.timeStamp);                             // 5215.22499999999185
+                console.<span class=yellowText>log</span>("e.shiftKey:   ", e.shiftKey);                              // false    (true if hold shift when you click)
+                console.<span class=yellowText>log</span>("e.altKey:     ", e.altKey);                                // false
+                console.<span class=yellowText>log</span>("e.ctrlKey:    ", e.ctrlKey);                               // false
+                console.<span class=yellowText>log</span>("e.returnValue:", e.returnValue);                           // true     (default to true - false if event set to preventDefault() is called)
+                <span class=blueText>let</span> wholeText = e.srcElement.parentElement.children[0].innerText;       // "target = 'frog'"
+                <span class=blueText>let</span> quotesIndex = wholeText.<span class=yellowText>indexOf</span>('"');                               // 9
+                <span class=blueText>let</span> text = wholeText.<span class=yellowText>substring</span>(quotesIndex+1, wholeText.length-1);      // 'frog'
+                document.<span class=yellowText>getElementById</span>("target").value = text;
+            }
         </p>
     </pre>
     <div>

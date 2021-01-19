@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copy on-click</title>
+    <style>
+        p.codeSnippet {
+            font-family:monospace;
+        }
+    </style>
+</head>
+
+<body>
+    <input id="inputText" type="text">
+    <button id="buttonCopy" onclick="handleOnClick(this.id)">Copy</button>
+    <span id="result"></span>
+    <br>
+    <span>
+        If button is disabled, this browser doesn't support the Copy command.<br>
+        You may need IE 10+, Chrome 43+, Firefox 41+, and Opera 29+.
+    </span>
+    <br>
+    <textarea rows="10" cols="29" placeholder="Try paste here"></textarea>
+    <br>
+    <button id="buttonClear" onclick="handleOnClick(this.id)">Clear</button>
+    <br>
+    <h3>Snippet</h3>
+    <p class="codeSnippet">
+        function copyOnClickV2(copySrc) {<br>
+        &emsp;let successBool = false;<br>
+        &emsp;copySrc.select();<br>
+        &emsp;copySrc.setSelectionRange(0, 99999);<br>
+        &emsp;if (document.queryCommandEnabled('copy')) {<br>
+        &emsp;&emsp;try {<br>
+        &emsp;&emsp;&emsp;</pre>successBool = document.execCommand("copy");<br>
+        &emsp;&emsp;} catch (error) {<br>
+        &emsp;&emsp;&emsp;</pre>result.innerText = "Copy failed with Error:", error;<br>
+        &emsp;&emsp;}<br>
+        &emsp;}<br>
+        &emsp;window.getSelection().removeAllRanges();<br>
+        &emsp;return successBool;<br>
+        }
+    </p>
+</body>
+<script>
+    /**
+     * Global
+     **/
+    var input = document.getElementById("inputText");
+    var btn = document.getElementById("buttonCopy");
+    var result = document.getElementById("result");
+
+    /**
+     * Init
+     **/
+    try {
+        window.addEventListener("load",
+            function () {
+                console.log("init success");
+                // Disable button if browser doesn't support copy command
+                btn.disabled = !document.queryCommandSupported('copy');
+            }
+        );
+    } catch (error) {
+        alert(error);
+    }
+
+    function handleOnClick(id) {
+        console.log(id);
+        if (id == "buttonCopy") {
+            copyOnClick(input);
+            // copyOnClickV2(input);
+        } else if (id == "buttonClear") {
+            console.log(document.querySelector("textarea"));
+            document.querySelector("textarea").value = '';
+        }
+    }
+
+    /**
+     * Copy input text value on button click
+     **/
+    function copyOnClick(copySrc) {
+        let msg = "";
+        let successBool = false;
+        /*
+        Ahead of calling document.execCommand(),
+        you should ensure that this API is supported.
+        You can do this with;
+            let bool = document.queryCommandSupported('copy');
+        
+        We could set the button disabled state based on support. (See init)
+        
+        According to https://developers.google.com/web/updates/2015/04/cut-and-copy-commands, 
+        IE 10+, Chrome 43+, Firefox 41+, and Opera 29+ support these commands.
+        */
+        console.log("queryCommandSupported: ", document.queryCommandSupported('copy'));
+        // console.log("queryCommandEnabled:   ", document.queryCommandEnabled('copy'));       // false, because (selection) range is missing
+        if (document.queryCommandSupported('copy')) {
+            /* Select the text field */
+            copySrc.select();
+            copySrc.setSelectionRange(0, 99999); /* For mobile devices */
+            /* True only when select range is given AND is Supported */
+            console.log("queryCommandEnabled:   ", document.queryCommandEnabled('copy'));
+            if (document.queryCommandEnabled('copy')) {
+                try {
+                    /* Copy the text inside the text field */
+                    successBool = document.execCommand("copy");                     // this would return false if input is empty
+                } catch (error) {
+                    result.innerText = "Copy failed";
+                }
+            }
+            /* De-select text field */
+            window.getSelection().removeAllRanges();
+        }
+        msg = successBool ? 'successful' : 'unsuccessful';
+        /* Show Copy result */
+        result.innerText = "Copied " + copySrc.value + ", " + msg;
+    }
+
+
+    function copyOnClickV2(copySrc) {
+        let debugMsg = "";
+        let successBool = false;
+            copySrc.select();
+            copySrc.setSelectionRange(0, 99999);
+            if (document.queryCommandEnabled('copy')) {
+                try {
+                    successBool = document.execCommand("copy");
+                } catch (error) {
+                    result.innerText = "Copy failed with Error:", error;
+                }
+            }
+            window.getSelection().removeAllRanges();
+        debugMsg = "Copied '" + copySrc.value + "', " + (successBool ? 'successful' : 'unsuccessful');
+        // console.log(debugMsg);
+        return successBool;
+    }
+</script>
+
+</html>

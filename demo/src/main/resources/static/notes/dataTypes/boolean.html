@@ -1,24 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-
-
 <head>
-    <meta name="viewport" charset="UTF-8" content="width=device-width, initial-scale=1">
-    <title>{TITLE}</title>
-    <!-- <link rel="stylesheet" href="{CSS RESET CHOICE}"> -->
-    <style>
-        /* {EDITOR CSS} */
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boolean, JS</title>
 </head>
-
-
 <body>
-    <!-- {EDITOR HTML} -->
-
-    <script>
-        // { EDITOR JS }
-    </script>
+    
 </body>
+<script>
+    var bool = true;
+    var boolStr = 'true';
+    
+    window.addEventListener("load",
+        function() {
+            console.log("typeof bool:", typeof bool);   // typeof  => boolean
+            if(bool) {                                  // if/else => true
+                console.log("was true");
+            } else {
+                console.log("was false");
+            }
+            console.log(bool ? "omg" : "yay");          // ternary operator => omg
+            console.log("");
 
 
+
+            console.log("typeof bool:", typeof boolStr);    // typeof  => string
+            if(boolStr) {                                   // if/else => true              !!! NOTE !!!
+                console.log("== was true");
+            } else {
+                console.log("was false");
+            }
+            console.log(boolStr ? "omg" : "yay");           // ternary operator => omg
+            console.log("");
+
+
+
+            if(boolStr === true) {                          // if/else => false             !!! NOTE !!!
+                console.log("was true");
+            } else {
+                console.log("=== was false");
+            }
+        }
+    );
+</script>
 </html>

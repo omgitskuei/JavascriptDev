@@ -29,7 +29,16 @@
                     <h1>Try-Catch, and Finally</h1>
                 </div>
                 <div class="snippet">
-
+                    <p>
+                        try {<br>
+                            // Execute this code block unless one line throws error<br>
+                            // Break if error thrown
+                        } catch (error) {<br>
+                            // Execute catch block if error thrown<br>
+                        } finally {<br>
+                            // Execute this code block regardless<br>
+                        }<br>
+                    </p>
                 </div>
                 <div class="description">
 
@@ -43,10 +52,12 @@
     </div>
 
     <script>
-
+        function initialize() {
+            alert("WIP");
+        }
 
         try {
-            init();
+            initialize();
         } catch (error) {
             
         } finally {
@@ -54,6 +65,4 @@
         }
     </script>
 </body>
-
-
 </html>

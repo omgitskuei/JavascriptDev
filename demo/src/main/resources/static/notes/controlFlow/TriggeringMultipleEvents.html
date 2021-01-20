@@ -4,7 +4,7 @@
 
 <head>
     <meta name="viewport" charset="UTF-8" content="width=device-width, initial-scale=1">
-    <title>jsClass</title>
+    <title>Triggering multiple events</title>
     <style>
 
     </style>
@@ -25,16 +25,23 @@
         <div class="gridMain">
             <div class="gridArticle">
                 <div class="title">
-                    <h1>Javascript Classes</h1>
+                    <h1>Triggering multiple events</h1>
                 </div>
                 <div class="snippet">
-                    
+                    <p>
+                        The Entire list (ol, in aquamarine) has an onClick listener.<br>
+                        The list's items (li, in yellow, green, and no color) each also have an onClick listener.<br>
+                        Both events will trigger if the user clicks on a list item.
+                    </p>
+                    <span>Most Expensive cars ranked in USD:</span>
+                    <ol id="carList" style="background-color: aquamarine;">
+                        <li value="1" style="background-color: rgb(255, 208, 0);">Kuei's car</li>
+                        <li value="2" style="background-color: rgb(0, 255, 34);">Bae's car</li>
+                        <li value="3">Wooden car</li>
+                    </ol>
                 </div>
                 <div class="description">
-                    <p>
 
-                    </p>
-                    
                 </div>
             </div>
         </div>
@@ -48,8 +55,25 @@
         /**
          * Global
          **/
+        
 
         function initialize() {
+            const carList = document.getElementById("carList");
+            carList.addEventListener(
+                "click", 
+                function(event) {
+                    console.log("clicked carlist");
+                }
+            );
+            const carListItems = carList.querySelectorAll("li");
+            carListItems.forEach(li => {
+                li.addEventListener(
+                    "click", 
+                    function(event) {
+                        console.log("clicked carlist item", event.srcElement.value);
+                    }
+                );
+            });
             
         }
 
@@ -58,6 +82,7 @@
         } catch (err) {
             alert(err)
         } finally {
+
         }
 
 

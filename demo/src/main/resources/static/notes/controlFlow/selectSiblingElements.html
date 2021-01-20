@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta name="viewport" charset="UTF-8" content="width=device-width, initial-scale=1">
+    <title>Sibling Elements</title>
+    <style>
+
+    </style>
+</head>
+
+
+<body>
+    <div class="gridPageLayout">
+        <div class="gridBanner">
+
+        </div>
+        <div class="gridAdsL">
+
+        </div>
+        <div class="gridAdsR">
+
+        </div>
+        <div class="gridMain">
+            <div class="gridArticle">
+                <div class="title">
+                    <h1>Sibling Elements</h1>
+                </div>
+                <div class="snippet">
+                    <form>
+                        <div style="border-color: darkred; border-width: 3px;">
+                            <label>Name:</label>
+                            <input placeholder="Enter name">
+                        </div>
+                        <div style="border-color: darkblue;">
+                            <label>Age:</label>
+                            <input type="number" placeholder="Enter age">
+                        </div>
+                        <div style="border-color: darkred;">
+                            <label>Profession:</label>
+                            <input placeholder="Enter job">
+                        </div>
+                        <div style="border-color: darkblue;">
+                            <label>Hobbies:</label>
+                            <label>Hockey</label><input type="checkbox"><br>
+                            <label>Swimming</label><input type="checkbox"><br>
+                            <label>Running</label><input type="checkbox"><br>
+                        </div>
+                        <div style="border-color: darkred;">
+                            <label>Sex:</label>
+                            <select>
+                                <option>Undisclosed</option>
+                                <option>Male</option>
+                                <option>Female</option>
+                            </select>
+                        </div>
+                        <div style="border-color: darkblue;">
+                            <label>Profession:</label>
+                            <input placeholder="Enter job">
+                        </div>
+                    </form>
+                    <br>
+                    <div>
+                        <button id="btnGetThis">Highlight This Sibling</button>
+                        <button id="btnGetNext">Highlight Next Sibling</button>
+                        <button id="btnGetPrev">Highlight Prev Sibling</button>
+                        <button id="btnGetAll">Console All Siblings</button>
+                        <button id="btnReset">Reset</button>
+                    </div>
+                </div>
+                <div class="description">
+                    <p>
+                        element.nextSibling <br>
+                        Or<br>
+                        element.nextElementSibling<br>
+                        ... to get the next sibling.<br>
+                        NOTE: .nextSibling includes non-elements (things with tags) like text nodes<br>
+                        <br>
+                        Select all siblings by:<br>
+                        1) element.parentElement        // Select parent<br>
+                        2) .children                    // Select all of its children<br>
+                        <br>
+                        Or, you could:<br>
+                        1) element.parentNode           // Select parent<br>
+                        2) .firstChild                  // Select parent's first children<br>
+                        3) while-loop siblings, push to array<br>
+                    </p>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="gridFoot">
+
+        </div>
+
+    </div>
+
+    <script>
+        /**
+         * Global
+         **/
+        var currentElement;
+        var arr = [];
+
+        function initialize() {
+            // Add onclick to each div in <form>, the onclick sets the currentElement as clicked div
+            let divs = document.getElementsByClassName("snippet")[0].querySelector("form").querySelectorAll("div");
+            divs.forEach(element => {
+                element.addEventListener(
+                    "click", 
+                    function() {
+                        currentElement = element;
+                        element.style.backgroundColor = "lightBlue"
+                        console.log("Set currentElement to ", currentElement);
+                    }
+                )
+            });
+            // Add onclick to buttons
+            document.querySelectorAll("button").forEach(eachBtn => {
+                if(eachBtn.id == "btnGetThis") {
+                    eachBtn.addEventListener(
+                        "click", 
+                        function() {
+                            // highlight current
+                            highlightThis(currentElement);
+                            console.log("Highlight currentElement ", currentElement);
+                        }
+                    )
+                } else if(eachBtn.id == "btnGetNext") {
+                    eachBtn.addEventListener(
+                        "click", 
+                        function() {
+                            // highlight next sibling
+                            highlightThis(currentElement.nextElementSibling);
+                            console.log("Highlight next ", currentElement);
+                        }
+                    )
+                } else if(eachBtn.id == "btnGetPrev") {
+                    eachBtn.addEventListener(
+                        "click", 
+                        function() {
+                            // highlight prev sibling
+                            highlightThis(currentElement.previousElementSibling);
+                            console.log("Highlight prev ", currentElement);
+                        }
+                    )
+                } else if(eachBtn.id == "btnGetAll") {
+                    eachBtn.addEventListener(
+                        "click", 
+                        function() {
+                            // get all siblings
+                            selectAllSiblings(currentElement);
+                        }
+                    )
+                } else if(eachBtn.id == "btnReset") {
+                    eachBtn.addEventListener(
+                        "click", 
+                        function() {
+                            resetHighlights();
+                        }
+                    )
+                }
+            });
+        }
+
+        try {
+            initialize();
+        } catch (err) {
+            alert(err)
+        } finally {
+
+        }
+
+        function highlightThis(element) {
+            // reset highlights
+            // currentElement.parentElement.children.forEach(eachChild => {
+            //     eachChild.style.backgroundColor = "white";
+            // });
+            // highlight this
+            element.style.backgroundColor = "yellow"
+        }
+        
+        function resetHighlights() {
+            let divs = document.getElementsByClassName("snippet")[0].querySelectorAll("div");
+            for(let i = 0; i<divs.length; i++) {
+                divs[i].style.backgroundColor = "white";
+            }
+        }
+
+        function selectAllSiblings(currentElement) {
+            let parent = currentElement.parentElement;
+            let firstChild = parent.children[0];
+            let sibling = firstChild;
+            console.log(sibling);
+
+            while(sibling) {
+                arr.push(sibling);
+                sibling = sibling.nextElementSibling;
+            }
+
+            console.log(arr);
+        }
+
+
+    </script>
+</body>
+
+<style>
+    div.gridPageLayout {
+    display:grid;
+    min-width: 700px;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    padding: 5px;
+    grid-template-columns: 100px auto 100px;
+    grid-template-rows: 100px 2000px 100px;
+    border-color: rgb(114, 114, 114);
+    border-style: solid;
+}
+
+div.gridBanner {
+    text-align: center;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    padding: 5px;
+    border-color: rgb(255, 0, 0);
+    border-style: dashed;
+}
+
+div.gridAdsL {
+    grid-column-start:1;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    padding: 5px;
+    border-color: black;
+    border-style: dashed;
+}
+
+div.gridAdsR {
+    grid-column-start:3;
+    grid-column-end: 4;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    padding: 5px;
+    border-color: black;
+    border-style: dashed;
+}
+
+div.gridMain {
+    grid-column-start:2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    padding: 5px;
+    border-color: blue;
+    border-style: dashed;
+}
+
+div.gridArticle {
+    display:grid;
+    height: 99.2%;
+    min-width: 500px;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    padding: 5px;
+    grid-template-columns: auto auto auto auto auto auto auto auto auto auto;
+    grid-template-rows: 100px auto;
+    border-color: rgb(114, 114, 114);
+    border-style: solid;
+}
+
+div.gridArticle div.title {
+    text-align: center;
+    grid-column-start: 1;
+    grid-column-end: 11;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    border-color: rgb(255, 0, 0);
+    border-style: dashed;
+}
+
+div.gridArticle div.snippet {
+    grid-column-start:1;
+    grid-column-end: 6;
+    border-color: green;
+    border-style: dashed;
+}
+
+div.gridArticle div.description {
+    grid-column-start:6;
+    grid-column-end: 11;
+    border-color: blue;
+    border-style: dashed;
+}
+
+div.gridFoot {
+    grid-column-start:1;
+    grid-column-end: 4;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    border-color: green;
+    border-style: dashed;
+}
+</style>
+</html>

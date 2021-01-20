@@ -4,7 +4,7 @@
 
 <head>
     <meta name="viewport" charset="UTF-8" content="width=device-width, initial-scale=1">
-    <title>jsClass</title>
+    <title>DetectCaps</title>
     <style>
 
     </style>
@@ -25,16 +25,19 @@
         <div class="gridMain">
             <div class="gridArticle">
                 <div class="title">
-                    <h1>Javascript Classes</h1>
+                    <h1>Try-Catch, and Finally</h1>
                 </div>
                 <div class="snippet">
-                    
+                    <input id="myInput" placeholder="Press Caps-Lock in here">
+                    <p id="capsWarning">    WARNING! Caps lock      is ON.</p>
+                    <p id="numLWarning">    WARNING! NumLock lock   is ON.</p>
+                    <p id="altWarning">     WARNING! Alt lock       is ON.</p>
+                    <p id="ctrlWarning">    WARNING! Control lock   is ON.</p>
+                    <p id="shftWarning">    WARNING! Shift lock     is ON.</p>
+                    <p id="scrlWarning">    WARNING! ScrollLock     is ON.</p>
                 </div>
                 <div class="description">
-                    <p>
 
-                    </p>
-                    
                 </div>
             </div>
         </div>
@@ -48,9 +51,23 @@
         /**
          * Global
          **/
+        var input = document.getElementById("myInput");
+
+        var snippet = document.getElementsByClassName("snippet")[0];
+        var description = document.getElementsByClassName("description")[0];
+
+        var capsWarning = document.getElementById("capsWarning");
+        var altWarning  = document.getElementById("altWarning");
+        var ctrlWarning = document.getElementById("ctrlWarning");
+        var numLWarning = document.getElementById("numLWarning");
+        var shftWarning = document.getElementById("shftWarning");
+        var scrlWarning = document.getElementById("scrlWarning");
 
         function initialize() {
-            
+            input.addEventListener("keyup", function (event) {
+                resetMsgs();
+                updateMsgs();
+            });
         }
 
         try {
@@ -60,7 +77,34 @@
         } finally {
         }
 
+        function resetMsgs() {
+            let allMsgs = input.parentElement.querySelectorAll("p");
+            allMsgs.forEach(element => {
+                element.style.fontWeight = "100";
+            });
+        }
 
+        function updateMsgs() {
+            // All/most legal values for event.getModifierState("");
+            if (event.getModifierState("CapsLock")) {               // More commonly used
+                capsWarning.style.fontWeight = "900";
+
+            } else if (event.getModifierState("NumLock")) {         // More commonly used
+                numLWarning.style.fontWeight = "900";
+
+            } else if (event.getModifierState("Alt")) {
+                altWarning.style.fontWeight = "900";
+
+            } else if (event.getModifierState("Control")) {
+                ctrlWarning.style.fontWeight = "900";
+
+            } else if (event.getModifierState("Shift")) {           // NOTE: THIS IS SHIFT-LOCK, not Shift
+                shftWarning.style.fontWeight = "900";
+
+            } else if (event.getModifierState("ScrollLock")) {
+                scrlWarning.style.fontWeight = "900";
+            } 
+        }
     </script>
 </body>
 

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-layer List</title>
+    <style>
+        ul {
+            border: black;
+            border-style: solid;
+        }
+        li {
+            border: grey;
+            border-style: dashed;
+        }
+    </style>
+</head>
+<body>
+    <a href="omg">omg</a>
+</body>
+<script>
+    // Global
+    var body = document.getElementsByTagName("body")[0];
+    var tech = new Map();
+
+    let articles = new Map();
+    let category = new Map();
+
+    articles.set("Array", "link1");
+    articles.set("Set", "link2");
+    articles.set("Map", "link3");
+    articles.set("Object", "link4");
+
+    category.set("Data Structures", articles);
+
+    tech.set("Javascript", category);
+
+    console.log(tech);
+
+    articles = new Map();       // Note, you can't use articles.clear(); here because pass by reference, not pass by value
+    category = new Map();
+
+    articles.set("List", "link5");
+    articles.set("Map", "link6");
+    articles.set("Queue", "link7")
+    articles.set("Set", "link8");
+    articles.set("Stach", "link9");
+
+    category.set("Data Structures", articles);
+    
+    tech.set("Java", category);
+
+    console.log(tech);
+
+    let techNameUl = document.createElement("ul");
+    
+    /*
+    <ul>
+        <li>
+            Javascript
+            <ul>
+                <li>
+                    Data Structures
+                    <ul>
+                        <li>
+                            <a href="link1">
+                                Array
+                            </a>
+                        </li>
+                        <li>
+                            <a href="link2">
+                                Set
+                            </a>
+                        </li>
+                        <li>
+                            <a href="link3">
+                                Map
+                            </a>
+                        </li>
+                        <li>
+                            <a href="link4">
+                                Object
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li>
+            Java
+            <ul>
+                <li>
+                    Data Structures
+                    <ul>
+                        <li>
+                            <a href="link5">
+                                List
+                            </a>
+                        </li>
+                        <li>
+                            <a href="link6">
+                                Map
+                            </a>
+                        </li>
+                        <li>
+                            <a href="link7">
+                                Queue
+                            </a>
+                        </li>
+                        <li>
+                            <a href="link8">
+                                Set
+                            </a>
+                        </li>
+                        <li>
+                            <a href="link9">
+                                Stach
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
+
+    Create this html with javascript
+    */
+
+
+    for (let techKey of tech.keys()) {             // Java/Javascript
+        let techValMap = tech.get(techKey);
+        let techLi = document.createElement("li");
+        let catUl = document.createElement("ul");
+        techLi.innerText = techKey;
+        for (let catKey of techValMap.keys()) {       // Data Structure
+            let catValMap = techValMap.get(catKey);
+            let catLi = document.createElement("li");
+            let artUl = document.createElement("ul");
+            catLi.innerText = catKey;
+            for (let artKey of catValMap.keys()) {       // Set
+                let artLink = catValMap.get(artKey);
+                let artLi = document.createElement("li");
+                let artA = document.createElement("a");
+                artA.innerText = artKey;
+                artA.href = artLink;
+                artLi.appendChild(artA);
+                artUl.appendChild(artLi);
+                
+            }
+            catLi.appendChild(artUl);
+            catUl.appendChild(catLi);
+            techLi.appendChild(catUl);
+        }
+        techNameUl.appendChild(techLi);
+    }
+    body.appendChild(techNameUl);
+
+</script>
+</html>

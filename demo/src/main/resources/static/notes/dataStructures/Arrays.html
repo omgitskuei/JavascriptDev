@@ -1,24 +1,400 @@
 <!DOCTYPE html>
 <html lang="en">
-
-
 <head>
     <meta name="viewport" charset="UTF-8" content="width=device-width, initial-scale=1">
-    <title>{TITLE}</title>
-    <!-- <link rel="stylesheet" href="{CSS RESET CHOICE}"> -->
+    <title>jsClass</title>
     <style>
-        /* {EDITOR CSS} */
+
+
     </style>
 </head>
-
-
 <body>
-    <!-- {EDITOR HTML} -->
+    <div class="gridPageLayout">
+        <div class="gridBanner">
+
+
+        </div>
+        <div class="gridAdsL">
+
+        </div>
+        <div class="gridAdsR">
+
+        </div>
+        <div class="gridMain">
+            <div class="gridArticle">
+                <div class="title">
+                    <h1>Javascript Arrays</h1>
+                </div>
+                <div class="snippet">
+                    <input id="arrName" type="text" placeholder="array name"><br>
+                    <button id="newBtn" >new Array()</button><br>
+                    <input id="arrElem" type="text" placeholder="new array element"><br>
+                    <button id="addBtn" >array.push(newVal)</button><button id="addBtn" >array.get()</button><br>
+
+                </div>
+                <div class="description">
+                    <p>
+                        <h2>
+                            Array Initialization
+                        </h2>
+                        JavaScript arrays are used to store multiple values in a single variable.
+                        <code>
+                            var cars = ["Saab", "Volvo", "BMW"];<br>
+                            var cars = new Array("Saab", "Volvo", "BMW");<br>
+                        </code>
+
+                        <h2>
+                            Access the Elements of an Array
+                        </h2>
+                        <code>
+                            var name = cars[0];                     // NOTE: Array indexes start with 0.<br>
+                            var cars = ["Saab", "Volvo", "BMW"];<br>
+                            document.getElementById("demo").innerHTML = cars[0];<br>
+                        </code>
+                        
+                        <h2>
+                            Changing an Array's value by ID
+                        </h2>
+                        <code>
+                            cars[0] = "Opel";
+                        </code>
+
+                        <h2>
+                            Removing Elements from End of an Array
+                        </h2>
+                        JavaScript Array elements can be removed from the end of an array by setting the length property to a value less than the current value. Any element whose index is greater than or equal to the new length will be removed.
+                        <code>
+                            var ar = [1, 2, 3, 4, 5, 6];<br>
+                            ar.length = 4; // set length to remove elements<br>
+                            console.log( ar ); // [1, 2, 3, 4]<br>
+                        </code>
+                        The pop method removes the last element of the array, returns that element, and updates the length property. The pop method modifies the array on which it is invoked, This means unlike using delete the last element is removed completely and the array length reduced.
+                        <code>
+                            var ar = [1, 2, 3, 4, 5, 6];<br>
+                            ar.pop(); // returns 6<br>
+                            console.log( ar ); // [1, 2, 3, 4, 5]<br>
+                        </code>
+
+                        <h2>
+                            Removing Elements from Beginning of an Array
+                        </h2>
+                        The shift method works much like the pop method except it removes the first element of a JavaScript array instead of the last.
+                        There are no parameters since the shift method only removed the first array element. When the element is removed the remaining elements are shifted down.
+                        The shift method returns the element that has been removed.
+                        If there are no elements, or the array length is 0, the method returns undefined.
+                        <code>
+                            var ar = ['zero', 'one', 'two', 'three'];<br>
+                            ar.shift(); // returns "zero"<br>
+                            console.log( ar ); // ["one", "two", "three"]<br>
+                        </code>
+
+                        <h2>
+                            Using Splice to Remove Array Elements in JavaScript
+                        </h2>
+                        The splice method can be used to add or remove elements from an array. 
+                        The first argument specifies the location at which to begin adding or removing elements. 
+                        The second argument specifies the number of elements to remove. 
+                        The third and subsequent arguments are optional; they specify elements to be added to the array.
+                        An array containing the removed elements is returned by the splice method.
+                        <code>
+                            var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];       // arr = [1, 2, 5, 6, 7, 8, 9, 0]<br>
+                            var removed = arr.splice(2,2);                  // removed = [3, 4]<br>
+                        </code>
+
+                        <h2>
+                            Removing Array Items By Value Using Splice
+                        </h2>
+                        First you must identify the index of the target item. You then use the index as the start element and remove just one element.
+                        <code>
+                            var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];<br>
+                            for( var i = 0; i < arr.length; i++){ <br>
+                                if ( arr[i] === 5) { <br>
+                                    arr.splice(i, 1);       // This works if you only want to remove a single item.<br>
+                                }                           // The next item after your matched value is skipped because the array length shrinks.<br>
+                            }<br>
+                            //=> [1, 2, 3, 4, 6, 7, 8, 9, 0]<br>
+    
+                            var arr = [1, 2, 3, 4, 5, 5, 6, 7, 8, 5, 9, 0];<br>
+                            for( var i = 0; i < arr.length; i++){ <br>
+                                if ( arr[i] === 5) { <br>
+                                    arr.splice(i, 1); <br>
+                                    i--;                    // decrement the index variable so it does not skip the next item in the array.<br>
+                                }<br>
+                            }<br>
+                            //=> [1, 2, 3, 4, 6, 7, 8, 9, 0]<br>
+                        </code>
+
+                        <h2>
+                            Using the Array filter Method to Remove Items By Value
+                        </h2>
+                        Unlike the splice method, filter creates a new array. filter() does not mutate the array on which it is called, but returns a new array.
+                        filter() has a single parameter, a callback method. 
+                        The callback is triggered as the filter method iterates through the array elements. 
+                        It will pass three values to the callback: the current value or element, the current array index and the full array.
+                        The callback method should return either true or false. 
+                        It is your responsibility to test the value (element) to see if it meets your criteria. 
+                        If it does you can return true. Elements that return true are added to the new, filtered array.
+                        <code>
+                            var array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];<br>
+                            var filtered = array.filter(function(value, index, arr){ <br>
+                                return value > 5;<br>
+                            });<br>
+                            //filtered => [6, 7, 8, 9]<br>
+                            //array => [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]<br>
+                        </code>
+
+                        <h2>
+                            There's no native array.remove(thisValue) method but we can create one via filters
+                        </h2>
+                        It uses Array.filter to return elements not matching a value.
+                        <code>
+                            function arrayRemove(arr, value) { <br>
+                                return arr.filter(function(ele){ <br>
+                                    return ele != value; <br>
+                                });<br>
+                            }<br>
+                            var result = arrayRemove(array, 6);<br>
+                            // result = [1, 2, 3, 4, 5, 7, 8, 9, 0]<br>
+                        </code>
+
+                        <h2>
+                        	Access the Full Array
+                        </h2>
+                        With JavaScript, the full array can be accessed by referring to the array name:
+                        <code>
+                            var cars = ["Saab", "Volvo", "BMW"];<br>
+                            document.getElementById("demo").innerHTML = cars;<br>
+                        </code>
+
+                        <h2>
+                            Arrays are Objects
+                        </h2>
+                        NOTE: The typeof operator in JavaScript returns "object" for arrays.
+                        However, arrays use index (numbers) to access elements, while objects use keys (string).
+                        <code>
+                            var person = ["John", "Doe", 46];<br>
+                            person[0]     // returns 46<br>
+                            (vs)<br>
+                            var person = {firstName:"John", lastName:"Doe", age:46};<br>
+                            person.age    // returns 46<br>
+                        </code>
+
+                        <h2>
+                            Array Elements Can Be any type of Object
+                        </h2>
+                        <code>
+                            myArray[0] = Date.now;              // date<br>
+                            myArray[1] = aFunction;             // function<br>
+                            myArray[2] = anotherArrayOfCars;    // another array<br>
+                            myArray[3] = "hi";                  // string<br>
+                            myArray[4] = 3;                     // number<br>
+                        </code>
+
+                        <h2>
+                            Array Properties and Methods
+                        </h2>
+                        <code>
+                            var x = cars.length;   // The length property returns the number of elements<br>
+                            var y = cars.sort();   // The sort() method sorts arrays<br>
+                        </code>
+
+                        <h2>
+                            Accessing the Last Array Element
+                        </h2>
+                        <code>
+                            fruits = ["Banana", "Orange", "Apple", "Mango"];<br>
+                            var last = fruits[fruits.length - 1];<br>
+                        </code>
+
+                        <h2>
+                            Looping Array Elements
+                        </h2>
+                        For-loop
+                        <code>
+                            // Loop through and create a list (ul)<br>
+                            var fruits, text, fLen, i;<br>
+                            fruits = ["Banana", "Orange", "Apple", "Mango"];<br>
+                            fLen = fruits.length;<br>
+                            text = '< ul >';<br>
+                            for (i = 0; i < fLen; i++) {<br>
+                                text += "< li >" + fruits[i] + "< /li >";<br>
+                            }<br>
+                            text += "< /ul >";<br>
+                            console.log(text);<br>
+                        </code>
+                        For-each
+                        <code>
+                            // Loop through and create a list (ul)<br>
+                            var fruits, text;<br>
+                            fruits = ["Banana", "Orange", "Apple", "Mango"];<br>
+
+                            text = "< ul >";<br>
+                            fruits.forEach(value => {<br>
+                                text += "< li >" + value + "</ li >";<br>
+                            });< br >
+                            text += "< /ul >";<br>
+                            console.log(text);<br>
+                        </code>
+
+                    </p>
+                    
+
+                </div>
+            </div>
+        </div>
+        <div class="gridFoot">
+
+
+        </div>
+    </div>
 
     <script>
-        // { EDITOR JS }
+        /**
+         * Global
+         **/
+        var mapOfArrays = new Map();
+        var snippet = document.getElementsByClassName("snippet")[0];
+        var arrNameInput = document.getElementById("arrName");
+        var arrElemInput = document.getElementById("arrElem");
+        var addBtn = document.getElementById("addBtn");
+        var newBtn = document.getElementById("newBtn");
+
+        function initialize() {
+            
+
+        }
+
+        try {
+            initialize();
+            newBtn.onclick = function() {
+                console.log("Clicked newBtn");
+                mapOfArrays.set(arrNameInput.value, new Array());
+                console.log(mapOfArrays);
+            }
+
+            addBtn.onclick = function() {
+                let arr = mapOfArrays.get(arrNameInput.value);
+                arr.push(arrElemInput.value);
+                console.log(mapOfArrays);
+            };
+            
+            
+            
+        } catch (err) {
+            alert(err)
+        } finally {
+            //
+        }
+
+
     </script>
 </body>
 
+<style>
+    code {
+        display: block;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        background-color: grey;
+    }
+    
+    div.gridPageLayout {
+    display:grid;
+    min-width: 700px;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    padding: 5px;
+    grid-template-columns: 100px auto 100px;
+    grid-template-rows: 100px 2000px 100px;
+    border-color: rgb(114, 114, 114);
+    border-style: solid;
+}
 
+div.gridBanner {
+    text-align: center;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    padding: 5px;
+    border-color: rgb(255, 0, 0);
+    border-style: dashed;
+}
+
+div.gridAdsL {
+    grid-column-start:1;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    padding: 5px;
+    border-color: black;
+    border-style: dashed;
+}
+
+div.gridAdsR {
+    grid-column-start:3;
+    grid-column-end: 4;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    padding: 5px;
+    border-color: black;
+    border-style: dashed;
+}
+
+div.gridMain {
+    grid-column-start:2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    padding: 5px;
+    border-color: blue;
+    border-style: dashed;
+}
+
+div.gridArticle {
+    display:grid;
+    height: 99.2%;
+    min-width: 500px;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    padding: 5px;
+    grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
+    grid-template-rows: 100px auto;
+    border-color: rgb(114, 114, 114);
+    border-style: solid;
+}
+
+div.gridArticle div.title {
+    text-align: center;
+    grid-column-start: 1;
+    grid-column-end: 11;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    border-color: rgb(255, 0, 0);
+    border-style: dashed;
+}
+
+div.gridArticle div.snippet {
+    grid-column-start:1;
+    grid-column-end: 4;
+    border-color: green;
+    border-style: dashed;
+}
+
+div.gridArticle div.description {
+    grid-column-start:4;
+    grid-column-end: 11;
+    border-color: blue;
+    border-style: dashed;
+}
+
+div.gridFoot {
+    grid-column-start:1;
+    grid-column-end: 4;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    border-color: green;
+    border-style: dashed;
+}
+</style>
 </html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>JS Document.body Demo</title>
+
+    <script>
+    console.log("From HEAD: ", document.body); // Outputs: null (since <body> is not parsed yet)
+    </script>
+</head>
+
+<body>
+    
+    <script>
+    console.log("From BODY: ", document.body); // Outputs: HTMLBodyElement
+    </script>
+</body>
+
+</html>

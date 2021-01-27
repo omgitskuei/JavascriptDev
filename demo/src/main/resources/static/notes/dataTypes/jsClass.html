@@ -26,15 +26,68 @@
                     <h1>Javascript Classes</h1>
                 </div>
                 <div class="snippet">
-                    
+                    <div >
+                        Name:<input type="text" id="name" placeholder="Name"><br>
+                        Tel:<input type="number" id="tel" placeholder="Tel"><br>
+                        Email:<input type="email" id="email" placeholder="Email"><br>
+                        Fav Color:<input type="color" id="color" placeholder="Fav Color"><br>
+                        Employed:<input type="checkbox" id="emp" placeholder="True"><br>
+                        <br>
+                        <input type="submit">
+                        <button onclick="submitThis(this.parentElement)">Submit</button>
+                        <input type="reset">
+                        
+                    </div>
+                    <button onclick="autofill()">Autofill</button>
+                    <br>
+                    <table style="background-color: grey; border: 1px solid black; border-collapse: collapse;">
+                        <caption>Table of People</caption>
+                        <thead>
+                            <tr>
+                                <td>Name</td>
+                                <td>Tel</td>
+                                <td>Email</td>
+                                <td>Fav Color</td>
+                                <td>Employed</td>
+                            </tr>
+                        </thead>
+                        <tbody>
 
+                        </tbody>
+                    </table>
                 </div>
                 <div class="description">
                     <p>
+                        ECMAScript 2015, also known as ES6, introduced JavaScript Classes.<br>
+                        JavaScript Classes are templates for JavaScript Objects.<br>
+                        A JavaScript class is not an object.<br>
 
-
+                        The constructor method is a special method:<br>
+                        It has to have the exact name "constructor"<br>
+                        It is executed automatically when a new object is created<br>
+                        It is used to initialize object properties<br>
+                        If you do not define a constructor method, JavaScript will add an empty constructor method.<br>
                     </p>
-                    
+                    <code>
+                        class Car {<br>
+                            constructor(name, year) {<br>
+                                this.name = name;<br>
+                                this.year = year;<br>
+                            }<br>
+                            method1() {<br>
+                                //...<br>
+                            }<br>
+                            age(x) {<br>
+                                return x - this.year;<br>
+                            }<br>
+                        }<br>
+                        let myCar1 = new Car("Ford", 2014);<br>
+                        myCar1.method1();<br>
+                        let myCar2 = new Car("Audi", 2019);<br>
+                        document.getElementById("demo").innerHTML = "My car is " + myCar2.age(year) + " years old.";<br>
+                        <br>
+                        // https://www.w3schools.com/js/js_classes.asp<br>
+                    </code>
 
                 </div>
             </div>
@@ -50,15 +103,116 @@
          * Global
          **/
 
-        function initialize() {
-            
+        class ThisForm {
+            constructor(Name, Tel, Email, Color, Employed) {
+                this.name = Name;
+                this.tel = Tel;
+                this.email = Email;
+                this.color = Color;
+                this.emp = Employed;
+            }
+            isValidTel() {
+                return this.tel.length == 8;
+            }
+            isValidEmail() {
+                return this.email.includes("@");
+            }
         }
 
-        try {
-            initialize();
-        } catch (err) {
-            alert(err)
-        } finally {
+        function appendTable(newForm) {
+            let tbody = document.querySelector("tbody");
+            let tr = document.createElement("tr");
+            let tdName = document.createElement("td");
+            tdName.style = "border:black solid 1px;"
+            tdName.innerText = newForm.name;
+            let tdTel = document.createElement("td");
+            tdTel.innerText = newForm.tel;
+            if(newForm.isValidTel()) {
+                console.log("valid tel")
+                tdTel.style = "border:black solid 1px;background-color:lightblue;"
+            } else {
+                console.log("invalid tel")
+                tdTel.style = "border:black solid 1px;background-color:red;"
+            }
+            let tdEmail = document.createElement("td");
+            tdEmail.style = "border:black solid 1px;"
+            tdEmail.innerText = newForm.email;
+            let tdColor = document.createElement("td");
+            tdColor.style = "border:black solid 1px;"
+            tdColor.innerText = newForm.color;
+            let tdEmp = document.createElement("td");
+            tdEmp.style = "border:black solid 1px;"
+            tdEmp.innerText = newForm.emp;
+            tr.appendChild(tdName);
+            tr.appendChild(tdTel);
+            tr.appendChild(tdEmail);
+            tr.appendChild(tdColor);
+            tr.appendChild(tdEmp);
+            tbody.appendChild(tr);
+        }
+
+        function autofill() {
+            let newForm = new ThisForm(gen("Name"), gen("Tel"), gen("Email"), '#000000', "On");
+            appendTable(newForm);
+        }
+
+        function submitThis(form) {
+            let inputs = form.querySelectorAll("input");
+            let newForm = new ThisForm(inputs[0].value, inputs[1].value, inputs[2].value, inputs[3].value, inputs[4].value);
+            appendTable(newForm);
+        }
+
+
+        var allLetters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+        var allSymbols = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")"];
+        function gen(select) {
+            let rand = "";
+            switch (select) {
+                case "Name":
+                    let nameLength = 8;
+                    for (let i = 0; i < nameLength; i++) {
+                        let letterIndex = Math.floor(Math.random() * allLetters.length);                    // returns 0 to 25
+                        rand = rand + allLetters[letterIndex];
+                    }
+                    return rand;
+                case "Tel":
+                    let telLength = 8;
+                    for (let i = 0; i < telLength; i++) {
+                        rand = rand + Math.floor(Math.random() * 10);                                       // returns 0 to 9
+                    }
+                    return rand;
+                case "Email":
+                    let emailLength = 5;
+                    for (let i = 0; i < emailLength; i++) {
+                        rand = rand + allLetters[Math.floor(Math.random() * allLetters.length)];            // returns 0 to 25
+                    }
+                    rand = rand + "@blah.com";
+                    return rand;
+                case "Password":
+                    let pwLength = 50;
+                    for (let i = 0; i < pwLength; i++) {
+                        // randomly pick between appending letters or numbers
+                        let type = Math.floor(Math.random() * 3);                                           // returns 0 to 2
+                        if(type == 0) {                
+                            // randomly pick between appending UPPER/LOWER-CASE letter
+                            if(Math.floor(Math.random() * 2) == 0) {
+                                rand = rand + allLetters[Math.floor(Math.random() * allLetters.length)].toUpperCase();     // returns 0 to 25
+                            } else {
+                                rand = rand + allLetters[Math.floor(Math.random() * allLetters.length)];                   // returns 0 to 25
+                            }
+                        } else if(type == 1) {
+                            // append random symbol
+                            rand = rand + allSymbols[Math.floor(Math.random() * allSymbols.length)];        // returns 0 to 9
+                        } else if(type == 2) {
+                            // append random number
+                            rand = rand + Math.floor(Math.random() * 10);                                   // returns 0 to 9
+                        }
+                    }
+                    return rand;
+                default:
+                    console.log("what..")
+                    return rand;
+            }
         }
 
 
@@ -73,7 +227,7 @@
     grid-row-gap: 0px;
     padding: 5px;
     grid-template-columns: 100px auto 100px;
-    grid-template-rows: 100px 2000px 100px;
+    grid-template-rows: 100px auto 100px;
     border-color: rgb(114, 114, 114);
     border-style: solid;
 }
@@ -121,12 +275,12 @@ div.gridMain {
 
 div.gridArticle {
     display:grid;
-    height: 99.2%;
+    height:fit-content;
     min-width: 500px;
     grid-column-gap: 0px;
     grid-row-gap: 0px;
     padding: 5px;
-    grid-template-columns: auto auto auto auto auto auto auto auto auto auto;
+    grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
     grid-template-rows: 100px auto;
     border-color: rgb(114, 114, 114);
     border-style: solid;
@@ -145,6 +299,8 @@ div.gridArticle div.title {
 div.gridArticle div.snippet {
     grid-column-start:1;
     grid-column-end: 6;
+    grid-row-start: 2;
+    grid-row-end: 3;
     border-color: green;
     border-style: dashed;
 }
@@ -152,6 +308,8 @@ div.gridArticle div.snippet {
 div.gridArticle div.description {
     grid-column-start:6;
     grid-column-end: 11;
+    grid-row-start: 2;
+    grid-row-end: 3;
     border-color: blue;
     border-style: dashed;
 }

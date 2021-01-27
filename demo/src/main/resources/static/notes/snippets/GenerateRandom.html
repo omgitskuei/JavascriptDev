@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<script>
+    /**
+     * 
+     * Snippet 
+     * 
+     **/
+    function generateRandom(length, type) {
+        const allLetters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+        const allSymbols = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")"];
+        let rand = "";
+        switch (type) {
+            case "Name":
+                for (let i = 0; i < length; i++) {
+                    rand = rand + allLetters[Math.floor(Math.random() * allLetters.length)];            // returns 0 to 25
+                }
+                return rand;
+            case "Tel":
+                for (let i = 0; i < length; i++) {
+                    rand = rand + Math.floor(Math.random() * 10);                                       // returns 0 to 9
+                }
+                return rand;
+            case "Email":
+                for (let i = 0; i < length; i++) {
+                    rand = rand + allLetters[Math.floor(Math.random() * allLetters.length)];            // returns 0 to 25
+                }
+                return rand + "@blah.com";
+            case "Password":
+                for (let i = 0; i < length; i++) {
+                    // randomly pick between appending letters or numbers
+                    let pick = Math.floor(Math.random() * 3);                                           // returns 0 to 2, 0=>letter, 1=>symbol, 2=>number
+                    if(pick == 0) {                
+                        // randomly pick between appending UPPER/LOWER-CASE letter
+                        if(Math.floor(Math.random() * 2) == 0) {
+                            rand = rand + allLetters[Math.floor(Math.random() * allLetters.length)].toUpperCase();     // returns 0 to 25
+                        } else {
+                            rand = rand + allLetters[Math.floor(Math.random() * allLetters.length)];                   // returns 0 to 25
+                        }
+                    } else if(pick == 1) {
+                        // append random symbol
+                        rand = rand + allSymbols[Math.floor(Math.random() * allSymbols.length)];        // returns 0 to 9
+                    } else if(pick == 2) {
+                        // append random number
+                        rand = rand + Math.floor(Math.random() * 10);                                   // returns 0 to 9
+                    }
+                }
+                return rand;
+            default:
+                return rand;
+        }
+    }
+</script>
+
+
+<body>
+    <select>
+        <option>Name</option>
+        <option>Tel</option>
+        <option>Email</option>
+        <option>Password</option>
+        <!-- <option>Color</option> -->
+    </select>
+    <button onclick="gen()">Generate Random</button>
+    <span></span>
+</body>
+</html>
+<script>
+    // Global
+    var select = "Name";
+    var btn = document.querySelector("button");
+    var span = document.querySelector("span");
+    
+    function gen() {
+        const allLetters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+        const allSymbols = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")"];
+        let rand = "";
+        let length = 8;
+        switch (select) {
+            case "Name":
+                for (let i = 0; i < length; i++) {
+                    rand = rand + allLetters[Math.floor(Math.random() * allLetters.length)];            // returns 0 to 25
+                }
+                span.innerText = rand;
+                break;
+            case "Tel":
+                for (let i = 0; i < length; i++) {
+                    rand = rand + Math.floor(Math.random() * 10);                                       // returns 0 to 9
+                }
+                span.innerText = rand;
+                break;
+            case "Email":
+                for (let i = 0; i < length; i++) {
+                    rand = rand + allLetters[Math.floor(Math.random() * allLetters.length)];            // returns 0 to 25
+                }
+                span.innerText = rand + "@blah.com";
+                break;
+            case "Password":
+                for (let i = 0; i < length; i++) {
+                    // randomly pick between appending letters or numbers
+                    let type = Math.floor(Math.random() * 3);                                           // returns 0 to 2, 0=>letter, 1=>symbol, 2=>number
+                    if(type == 0) {                
+                        // randomly pick between appending UPPER/LOWER-CASE letter
+                        if(Math.floor(Math.random() * 2) == 0) {
+                            rand = rand + allLetters[Math.floor(Math.random() * allLetters.length)].toUpperCase();     // returns 0 to 25
+                        } else {
+                            rand = rand + allLetters[Math.floor(Math.random() * allLetters.length)];                   // returns 0 to 25
+                        }
+                    } else if(type == 1) {
+                        // append random symbol
+                        rand = rand + allSymbols[Math.floor(Math.random() * allSymbols.length)];        // returns 0 to 9
+                    } else if(type == 2) {
+                        // append random number
+                        rand = rand + Math.floor(Math.random() * 10);                                   // returns 0 to 9
+                    }
+                }
+                span.innerText = rand;
+                break;
+            default:
+                break;
+        }
+    }
+
+    document.querySelector("select").onchange = function(event) {
+        console.log(event.srcElement.value);
+        select = event.srcElement.value;
+    }
+</script>

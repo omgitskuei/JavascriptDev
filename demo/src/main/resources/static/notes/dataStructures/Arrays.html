@@ -26,10 +26,41 @@
                     <h1>Javascript Arrays</h1>
                 </div>
                 <div class="snippet">
-                    <input id="arrName" type="text" placeholder="array name"><br>
-                    <button id="newBtn" >new Array()</button><br>
-                    <input id="arrElem" type="text" placeholder="new array element"><br>
-                    <button id="addBtn" >array.push(newVal)</button><button id="addBtn" >array.get()</button><br>
+                    var <input id="arrName" placeholder="array name"> = new Array() ;<br>
+                    <button id="newBtn" >New</button><br>
+                    <br>
+                    <input name="arrName2" disabled>.push( <input id="arrElem" placeholder="new array element" >) ;<br>
+                    <button id="addBtn" >Push</button><br>
+                    <br>
+                    <input name="arrName2" disabled>[ <input type="number"> ] = <input > ;<br>
+                    <button>Set</button><br>
+                    <br>
+                    console.log( <input name="arrName2" disabled>.length ) ;<br>
+                    <button id="addBtn" >Length</button><br>
+                    <br>
+                    <input name="arrName2" disabled>.length = <input id="newLength" placeholder="new length"> ;<br>
+                    <button>Shorten</button><br>
+                    <br>
+                    <input name="arrName2" disabled>.sort() ;<br>
+                    <button>Sort</button><br>
+                    <br>
+                    var last = <input name="arrName2" disabled>.pop() ;<br>
+                    console.log(last, arrName);<br>
+                    <button>Pop</button><br>
+                    <br>
+                    var array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];<br>
+                            var filtered = array.filter(function(value, index, arr){ <br>
+                                return value > 5;<br>
+                            });<br>
+                            //filtered => [6, 7, 8, 9]<br>
+                            //array => [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]<br>
+
+                    var ar = ['zero', 'one', 'two', 'three'];<br>
+                            ar.shift(); // returns "zero"<br>
+                            console.log( ar ); // ["one", "two", "three"]<br>
+
+                            var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];       // arr = [1, 2, 5, 6, 7, 8, 9, 0]<br>
+                            var removed = arr.splice(2,2);                  // removed = [3, 4]<br>
 
                 </div>
                 <div class="description">
@@ -166,6 +197,9 @@
                             document.getElementById("demo").innerHTML = cars;<br>
                         </code>
 
+                        Clear the array
+
+                        
                         <h2>
                             Arrays are Objects
                         </h2>
@@ -256,32 +290,44 @@
         var snippet = document.getElementsByClassName("snippet")[0];
         var arrNameInput = document.getElementById("arrName");
         var arrElemInput = document.getElementById("arrElem");
+        var arrName2Inputs = document.getElementsByName("arrName2");
         var addBtn = document.getElementById("addBtn");
         var newBtn = document.getElementById("newBtn");
 
         function initialize() {
-            
+            try {
+                arrNameInput.onchange = function() {
+                    for (let i = 0; i < arrName2Inputs.length; i++) {
+                        arrName2Inputs[i].value = arrNameInput.value;
+                        
+                    }
+                }
+
+                newBtn.onclick = function() {
+                    console.log("Clicked newBtn");
+                    mapOfArrays.set(arrNameInput.value, new Array());
+                    console.log(mapOfArrays);
+                }
+
+                addBtn.onclick = function() {
+                    let arr = mapOfArrays.get(arrNameInput.value);
+                    arr.push(arrElemInput.value);
+                    console.log(mapOfArrays);
+                }
+            } catch (error) {
+                alert(err);
+            }
 
         }
 
         try {
             initialize();
-            newBtn.onclick = function() {
-                console.log("Clicked newBtn");
-                mapOfArrays.set(arrNameInput.value, new Array());
-                console.log(mapOfArrays);
-            }
-
-            addBtn.onclick = function() {
-                let arr = mapOfArrays.get(arrNameInput.value);
-                arr.push(arrElemInput.value);
-                console.log(mapOfArrays);
-            };
+            
             
             
             
         } catch (err) {
-            alert(err)
+            alert(err);
         } finally {
             //
         }
@@ -376,13 +422,13 @@ div.gridArticle div.title {
 
 div.gridArticle div.snippet {
     grid-column-start:1;
-    grid-column-end: 4;
+    grid-column-end: 6;
     border-color: green;
     border-style: dashed;
 }
 
 div.gridArticle div.description {
-    grid-column-start:4;
+    grid-column-start:6;
     grid-column-end: 11;
     border-color: blue;
     border-style: dashed;

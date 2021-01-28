@@ -2,6 +2,7 @@
  * 
  * JavaScript Performance - How to speed up your JavaScript code.
  * 
+ * 
  * 1) Reduce Activity in Loops
  * 2) Reduce DOM Access
  * 3) Reduce DOM Size
@@ -69,18 +70,16 @@ document.getElementById("demo").innerHTML = firstName + " " + lastName;
  * 
  * Another alternative is adding your script to the page programmically, after the page has loaded via window.onload()
  */
+// <script>
+    window.onload = function() {
+        var element = document.createElement("script");
+        element.src = "myScript.js";
+        document.body.appendChild(element);
+    };
+// </script>
 
-
-
-Example
-<script>
-window.onload = function() {
-  var element = document.createElement("script");
-  element.src = "myScript.js";
-  document.body.appendChild(element);
-};
-</script>
-Avoid Using with
-Avoid using the with keyword. It has a negative effect on speed. It also clutters up JavaScript scopes.
-
-The with keyword is not allowed in strict mode.
+/**
+ * 6) Avoid Using with
+ * Avoid using the with keyword. It has a negative effect on speed. It also clutters up JavaScript scopes.
+ * The with keyword is not allowed in strict mode.
+ */

@@ -355,6 +355,37 @@ WIP
 
     <script>
         /**
+         * Takes array, filters out duplicate anagrams, returning array of uniques only
+         * Anagrams are words with the same (number of) letters in different order.
+         * Eg. Example => Mapelex, Dog => God
+         * In this example, God would be considered a 'duplicate' of Dog.
+         * Does not matter which of the two is kept.
+         * @Params: js array
+         * @Returns: js array
+         **/
+         function filterAnagrams(arr) {
+            // create a set of all sorted anagrams
+            let map = new Map();
+            let resultArr = new Array();
+            for (let i = 0; i < arr.length; i++) {
+                const word = arr[i];
+                // Notice that anagrams regardless of letter order, all anagrams become the same once they're sorted
+                let sorted = word           // eg. PAN              , eg. NAP
+                    .toLowerCase()          // eg. pan              , eg. nap
+                    .split('')              // eg. ['p','a','n']    , eg. ['n', 'a', 'p']
+                    .sort()                 // eg. ['a','n','p']    , eg. ['a','n','p']
+                    .join('');              // eg. anp              , eg. anp
+                // Set can only store uniques, if set doesn't have a sorted, ...
+                map.set(sorted, word);
+            }
+            return Array.from(map.values());
+        }
+
+
+
+
+
+        /**
          * Global Var
         **/
         var mapOfMaps               = new Map();

@@ -16,7 +16,14 @@
     <!-- {EDITOR HTML} -->
 
     <script>
-        // { EDITOR JS }
+        var a = new Object();
+        a.name = "Bob"      // rtn "Bob"
+        a.age = 29;         // rtn 29
+        a                   // rtn {name: "Bob", age: 29}
+        a.job = "coder"     // rtn "coder"
+        a                   // rtn {name: "Bob", age: 29, job: "coder"}
+        a.age               // rtn 29
+        console.log(a);
     </script>
 </body>
 

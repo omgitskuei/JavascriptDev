@@ -10,24 +10,28 @@
 // Returns false (as expected) because x is not equal to 10:
 var x = 0;
 if (x == 10) { }
+
 // Returns true (not as expected), because 10 is true:
 var x = 0;
 if (x = 10) { }
+
 // Returns false (maybe not as expected), because 0 is false:
 var x = 0;
 if (x = 0)
 
-  /**
-   * Expecting Loose Comparison
-   */
-  // In regular comparison, data type does not matter. Returns true.
+/**
+ * Expecting Loose Comparison
+ */
+// In regular comparison, data type does not matter. Returns true.
   var x = 10;
 var y = "10";
 console.log(x == y);
+
 // In strict comparison, data type does matter. Returns false.
 var x = 10;
 var y = "10";
 if (x === y) { }
+
 // switch statements ALWAYS use STRICT comparison:
 var x = 10;
 switch (x) {

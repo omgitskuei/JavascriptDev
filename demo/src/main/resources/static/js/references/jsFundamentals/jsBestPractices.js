@@ -144,13 +144,13 @@ Use Parameter Defaults
 If a function is called with a missing argument, the value of the missing argument is set to undefined.
 Undefined values can break your code. It is a good habit to assign default values to arguments.
  */
-function myFunction(x, y) {                                 // param 2 (y) may not be given
+function myFunction (x, y) {                                 // param 2 (y) may not be given
   if (y === undefined) {                                    // set y default to 0
     y = 0;
   }
 }
 
-function (a=1, b=1) {                                       // ECMAScript 2015 allows default parameters in the function call
+function someFunction (a=1, b=1) {                                       // ECMAScript 2015 allows default parameters in the function call
     /*function code*/;
 }
 

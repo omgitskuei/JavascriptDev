@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    NOTE: 
+    let javaDate = new Date(string);  // string must be in "YYYY-MM-DD" format, "/" won't work
+
+</body>
+<script>
+    // 41 Lines long including comments
+    function isValidDateString(dateStr) {
+        const regEx_MMDDYYYY = /^(([0]?[1-9])|([1][0-2]))([/,-]{1})(([0]?[1-9])|([1-2][0-9])|(3[01]))(\4{1})([0-9]{4})$/;
+        const regEx_DDMMYYYY = /^(([0]?[1-9])|([1-2][0-9])|(3[01]))([/,-]{1})(([0]?[1-9])|([1][0-2]))(\5{1})([0-9]{4})$/;
+        const regEx_YYYYMMDD = /^([0-9]{4})([/,-]{1})(([0]?[1-9])|([1][0-2]))(\2{1})([0-3]{1}[0-9]{1})$/;
+        const regEx_YYYYDDMM = /^([0-9]{4})([/,-]{1})([0-3]{1}[0-9]{1})(\2{1})(([0]?[1-9])|([1][0-2]))$/;
+
+        if (!(dateStr.match(regEx_MMDDYYYY) || dateStr.match(regEx_DDMMYYYY) || dateStr.match(regEx_YYYYMMDD) || dateStr.match(regEx_YYYYDDMM))) {
+            return false;
+        }
+        
+        let arrDateStr = [];
+        if (dateStr.includes('/')) {
+            arrDateStr = dateStr.split('/');
+        } else {
+            arrDateStr = dateStr.split('-');
+        }
+
+        let DD = "", MM = "", YYYY = "";
+        if (dateStr.match(regEx_MMDDYYYY)) {
+            DD = arrDateStr[1];
+            MM = arrDateStr[0];
+            YYYY = arrDateStr[2];
+        } else if (dateStr.match(regEx_DDMMYYYY)) {
+            DD = arrDateStr[0];
+            MM = arrDateStr[1];
+            YYYY = arrDateStr[2];
+        } else if (dateStr.match(regEx_YYYYMMDD)) {
+            DD = arrDateStr[2];
+            MM = arrDateStr[1];
+            YYYY = arrDateStr[0];
+        } else if (dateStr.match(regEx_YYYYDDMM)) {
+            DD = arrDateStr[1];
+            MM = arrDateStr[2];
+            YYYY = arrDateStr[0];
+        }
+        
+        const d = new Date(YYYY+"-"+MM+"-"+DD);
+        let dNum = d.getTime();
+        if (!dNum && dNum !== 0) {  // NaN value, Invalid date
+            return false;
+        }
+        return d.toISOString().slice(0, 10) === YYYY+"-"+MM+"-"+DD;
+    }
+
+
+    console.log("isValidDateString(12-31-2021):", isValidDateString("12-31-2021"), ", answer: 'true'");
+    console.log("isValidDateString(31-12-2021):", isValidDateString("31-12-2021"), ", answer: 'true'");
+    console.log("isValidDateString(2021-31-12):", isValidDateString("2021-31-12"), ", answer: 'true'");
+    console.log("isValidDateString(2021-12-31):", isValidDateString("2021-12-31"), ", answer: 'true'");
+    console.log("isValidDateString(31/12-2021):", isValidDateString("31/12-2021"), ", answer: 'false'");
+    console.log("isValidDateString(31-31-2021):", isValidDateString("31-31-2021"), ", answer: 'false'");
+    console.log("isValidDateString(01-01-2021):", isValidDateString("01-01-2021"), ", answer: 'true', NOTE: Ambiguous");
+    console.log("isValidDateString(0000-12-31):", isValidDateString("0000-12-31"), ", answer: 'true'");
+    console.log("isValidDateString(2021-02-31):", isValidDateString("2021-02-31"), ", answer: 'false', NOTE: Short month");
+    console.log("isValidDateString(2021-29-02):", isValidDateString("2021-29-02"), ", answer: 'false', NOTE: !(leap year)");
+    console.log("isValidDateString(2020-29-02):", isValidDateString("2020-29-02"), ", answer: 'true', NOTE: leap year");
+    console.log("isValidDateString(2019-29-02):", isValidDateString("2019-29-02"), ", answer: 'false', NOTE: !(leap year)");
+    console.log("isValidDateString(2018-29-02):", isValidDateString("2018-29-02"), ", answer: 'false', NOTE: !(leap year)");
+
+    console.log('0000-00-00:', isValidDateString('0000-00-00')); // false
+    console.log('2015-01-40:', isValidDateString('2015-01-40')); // false
+    console.log('');
+    console.log('2016-11-25:', isValidDateString('2016-11-25')); // true
+    console.log('1970-01-01:', isValidDateString('1970-01-01')); // true (epoch)
+    console.log('2016-02-29:', isValidDateString('2016-02-29')); // true (leap day)
+    console.log('');
+    console.log('2013-02-29:', isValidDateString('2013-02-29')); // false (not leap day)
+    console.log('');
+    console.log('2016-11/25;', isValidDateString('2016-11/25')); // false
+    console.log('2016/11-25:', isValidDateString('2016/11-25')); // false
+    console.log('');
+    console.log('2016/11/25:', isValidDateString('2016/11/25')); // true
+    console.log('1970/01/01:', isValidDateString('1970/01/01')); // true (epoch)
+    console.log('2016/02/29:', isValidDateString('2016/02/29')); // true (leap day)
+    console.log('');
+    console.log('29-01-2020:', isValidDateString('29-01-2020'));  // true
+    console.log('1/01/2020:', isValidDateString('1/01/2020'));  // true
+    console.log('09/1/2020:', isValidDateString('09/1/2020'));  // true
+    console.log('11/01/2020:', isValidDateString('11/01/2020'));  // true
+    console.log('19/01/2020:', isValidDateString('19/01/2020'));  // true
+    console.log('20/01/2020:', isValidDateString('20/01/2020'));  // true
+    console.log('29/01/2020:', isValidDateString('29/01/2020'));  // true
+    console.log('30/01/2020:', isValidDateString('30/01/2020'));  // true
+    console.log('31/01/2020:', isValidDateString('31/01/2020'));  // true
+    // !!! INCORRECT !!!
+    console.log('31/01/0000:', isValidDateString('31/01/0000'));  // FALSE, !!!
+    console.log('');
+    console.log('13-01/2020:', isValidDateString('13-01/2020'));  // false
+    console.log('39/01/2020:', isValidDateString('39/01/2020'));  // false
+    console.log('01/39/2020:', isValidDateString('01/39/2020'));  // false
+    console.log('39/39/2020:', isValidDateString('39/39/2020'));  // false
+    console.log('39/39/0:', isValidDateString('39/39/0'));        // false
+    console.log('39/39/000:', isValidDateString('39/39/000'));    // false
+</script>
+
+</html>

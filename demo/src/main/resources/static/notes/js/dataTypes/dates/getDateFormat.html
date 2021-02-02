@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    function getDateStrFormat(dateStr) {
+        const regEx_MMDDYYYY = /^(([0]?[1-9])|([1][0-2]))([/,-]{1})(([0]?[1-9])|([1-2][0-9])|(3[01]))(\4{1})([0-9]{4})$/;
+        const regEx_DDMMYYYY = /^(([0]?[1-9])|([1-2][0-9])|(3[01]))([/,-]{1})(([0]?[1-9])|([1][0-2]))(\5{1})([0-9]{4})$/;
+        const regEx_YYYYMMDD = /^([0-9]{4})([/,-]{1})(([0]?[1-9])|([1][0-2]))(\2{1})([0-3]{1}[0-9]{1})$/;
+        const regEx_YYYYDDMM = /^([0-9]{4})([/,-]{1})([0-3]{1}[0-9]{1})(\2{1})(([0]?[1-9])|([1][0-2]))$/;
+
+        // Matches 4 possible sets: [1-9, 01-09, 10-29, 30-31]
+        const regEx_DD = /^(([0]?[1-9])|([1-2][0-9])|(3[01]))$/;
+        // Matches 3 possible sets: [1-9, 01-09, 10-12]
+        const regEx_MM = /^(([0]?[1-9])|([1][0-2]))$/;
+
+        if (dateStr.match(regEx_MMDDYYYY)) {
+            return 'MMDDYYYY';
+        } else if (dateStr.match(regEx_DDMMYYYY)) {
+            return 'DDMMYYYY';
+        } else if (dateStr.match(regEx_YYYYMMDD)) {
+            return 'YYYYMMDD';
+        } else if (dateStr.match(regEx_YYYYDDMM)) {
+            return 'YYYYDDMM';
+        } else {
+            return 'invalid';
+        }
+    }
+
+    console.log("getDateStrFormat(12-31-2021):", getDateStrFormat("12-31-2021"), ", answer: 'MMDDYYYY'");
+    console.log("getDateStrFormat(31-12-2021):", getDateStrFormat("31-12-2021"), ", answer: 'DDMMYYYY'");
+    console.log("getDateStrFormat(2021-31-12):", getDateStrFormat("2021-31-12"), ", answer: 'YYYYDDMM'");
+    console.log("getDateStrFormat(2021-12-31):", getDateStrFormat("2021-12-31"), ", answer: 'YYYYMMDD'");
+    console.log("getDateStrFormat(31/12-2021):", getDateStrFormat("31/12-2021"), ", answer: 'invalid'");
+    console.log("getDateStrFormat(31-31-2021):", getDateStrFormat("31-31-2021"), ", answer: 'invalid'");
+    console.log("getDateStrFormat(01-01-2021):", getDateStrFormat("01-01-2021"), ", answer: 'MMDDYYYY', NOTE: Ambiguous");
+    console.log("getDateStrFormat(0000-12-31):", getDateStrFormat("0000-12-31"), ", answer: 'YYYYMMDD'");
+    console.log("getDateStrFormat(2021-02-31):", getDateStrFormat("2021-02-31"), ", answer: 'Invalid', NOTE: Short month, Lacks validation, Out of method scope");
+    console.log("getDateStrFormat(2021-29-02):", getDateStrFormat("2021-29-02"), ", answer: 'Invalid', NOTE: !(leap year), Lacks validation, Out of method scope");
+</script>
+
+</html>

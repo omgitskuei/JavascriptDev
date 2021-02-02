@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 11 lines, but doesnt account for different formats DDMMYYYY or MMDDYYYY
+    function isValidDate(dateString) {
+        var regEx = /^([0-9]{4})([/,-]{1})([0-9]{1,2})\2{1}([0-9]{1,2})$/;
+        if (!dateString.match(regEx)) {
+            return false; // Invalid format
+        } 
+        if (dateString.includes("/")) {
+            dateString = dateString.split("/").join("-");
+        }
+        var d = new Date(dateString);
+        var dNum = d.getTime();
+        if (!dNum && dNum !== 0) {
+            return false; // NaN value, Invalid date
+        } 
+        return d.toISOString().slice(0, 10) === dateString;
+    }
+    /* Example Uses */
+    console.log('0000-00-00:', isValidDate('0000-00-00')); // false
+    console.log('2015-01-40:', isValidDate('2015-01-40')); // false
+    console.log('');
+    console.log('2016-11-25:', isValidDate('2016-11-25')); // true
+    console.log('1970-01-01:', isValidDate('1970-01-01')); // true (epoch)
+    console.log('2016-02-29:', isValidDate('2016-02-29')); // true (leap day)
+    console.log('');
+    console.log('2013-02-29:', isValidDate('2013-02-29')); // false (not leap day)
+    console.log('');
+    console.log('2016-11/25;', isValidDate('2016-11/25')); // false
+    console.log('2016/11-25:', isValidDate('2016/11-25')); // false
+    console.log('');
+    // !!! INCORRECT !!!
+    console.log('2016/11/25:', isValidDate('2016/11/25')); // true
+    console.log('1970/01/01:', isValidDate('1970/01/01')); // true (epoch)
+    console.log('2016/02/29:', isValidDate('2016/02/29')); // true (leap day)
+    console.log('');
+    // !!! INCORRECT !!!
+    console.log('29-01-2020:', isValidDate('29-01-2020'));  // true
+    console.log('1/01/2020:', isValidDate('1/01/2020'));  // true
+    console.log('09/1/2020:', isValidDate('09/1/2020'));  // true
+    console.log('11/01/2020:', isValidDate('11/01/2020'));  // true
+    console.log('19/01/2020:', isValidDate('19/01/2020'));  // true
+    console.log('20/01/2020:', isValidDate('20/01/2020'));  // true
+    console.log('29/01/2020:', isValidDate('29/01/2020'));  // true
+    console.log('30/01/2020:', isValidDate('30/01/2020'));  // true
+    console.log('31/01/2020:', isValidDate('31/01/2020'));  // true
+    console.log('31/01/0000:', isValidDate('31/01/0000'));  // true, !!!
+    console.log('');
+    console.log('13-01/2020:', isValidDate('13-01/2020'));  // false
+    console.log('39/01/2020:', isValidDate('39/01/2020'));  // false
+    console.log('01/39/2020:', isValidDate('01/39/2020'));  // false
+    console.log('39/39/2020:', isValidDate('39/39/2020'));  // false
+    console.log('39/39/0:', isValidDate('39/39/0'));        // false, !!!
+    console.log('39/39/000:', isValidDate('39/39/000'));    // false, !!!
+</script>
+
+</html>

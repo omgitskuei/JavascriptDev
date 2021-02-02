@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    Correct regex patterns will have their loops // commented out
+    Incorrect regex patterns have a // Note: ... on the same line as the const
+</body>
+<script>
+    let array = ["0", "1", "9", "00", "01", "09", "10", "11", "12", "13", "19", "20", "21", "29", "30", "31", "39"];
+    // Matches 4 possible sets: [1-9, 01-09, 10-29, 30-31]
+    const regEx_DD = /^(([0]?[1-9])|([1-2][0-9])|(3[01]))$/;
+    let i, a;
+    // for (i = 0; i < array.length; i++) {
+    //     a = array[i].match(regEx_DD);
+    //     if (a == null) {
+    //         console.log(array[i], a);
+    //     } else {
+    //         console.log(a);
+    //     }
+    // }
+
+    // Matches 3 possible sets: [1-9, 01-09, 10-12]
+    const regEx_MM = /^(([0]?[1-9])|([1][0-2]))$/;
+    // for (i = 0; i < array.length; i++) {
+    //     a = array[i].match(regEx_MM);
+    //     if (a == null) {
+    //         console.log(array[i], a);
+    //     } else {
+    //         console.log(a);
+    //     }
+    // }
+
+    let array2 = ["0000", "0001", "0101", "9999", "0", "00", "01", "9", "09", "8", "08", "001", "2021", "a", "123A"];
+    // Matches any 4 digits between 0-9
+    const regEx_YYYY = /^([0-9]{4})$/;
+    // for (i = 0; i < array2.length; i++) {
+    //     a = array2[i].match(regEx_YYYY);
+    //     if (a == null) {
+    //         console.log(array2[i], a);
+    //     } else {
+    //         console.log(a);
+    //     }
+    // }
+
+    // Matches any 1 digit or 2 digits where each digit is between 0-8
+    // Matches 2 possible sets: [0-8, 00-08]
+    const regEx_NN = /^([0-8]{1,2})$/;
+    // for (i = 0; i < array2.length; i++) {
+    //     a = array2[i].match(regEx_NN);
+    //     if (a == null) {
+    //         console.log(array2[i], a);
+    //     } else {
+    //         console.log(a);
+    //     }
+    // }
+
+    // Matches any 1 symbol from ["/", "-"]; either / or -
+    let array3 = ["a", "A1", "1", "12", "/", "-", "/-", "-/"];
+    const regEx_Symbol = /^([/,-]{1})$/;
+    // for (i = 0; i < array3.length; i++) {
+    //     a = array3[i].match(regEx_Symbol);
+    //     if (a == null) {
+    //         console.log(array3[i], a);
+    //     } else {
+    //         console.log(a);
+    //     }
+    // }
+
+    // Combined
+    let array4 = ["00-", "00/", "01-", "01/", "09-", "09/", "10-", "10/", "19-", "19/", "20-", "20/", "21-", "29-", "30-", "31-", "32-"];
+    const regEx_NN_Symbol = /^([0-9]{1,2})([/,-]{1})$/;
+    // for (i = 0; i < array4.length; i++) {
+    //     a = array4[i].match(regEx_NN_Symbol);
+    //     if (a == null) {
+    //         console.log(array4[i], a);
+    //     } else {
+    //         console.log(a);
+    //     }
+    // }
+
+    const regEx_DD_Symbol = /^(([0]?[1-9])|([1-2][0-9])|(3[01]))([/,-]{1})$/;
+    // for (i = 0; i < array4.length; i++) {
+    //     a = array4[i].match(regEx_DD_Symbol);
+    //     if (a == null) {
+    //         console.log(array4[i], a);
+    //     } else {
+    //         console.log(a);
+    //     }
+    // }
+
+    const regEx_DD_Symbol_v2 = /^((([0]?[1-9])|([1-2][0-9])|(3[01])){1,2})([/,-]{1})$/;  // Note: 32- will pass, this is INCORRECT
+    // for (i = 0; i < array4.length; i++) {
+    //     a = array4[i].match(regEx_DD_Symbol_v2);
+    //     if (a == null) {
+    //         console.log(array4[i], a);
+    //     } else {
+    //         console.log(a);
+    //     }
+    // }
+
+    let array5 = ["00-00", "00/00", "00-01", "01/00", "01-01", "01/01", "09-09", "09/09", "9-09", "10-10", "10/10", "19-10", "10/19", "20-20", "20/200", "212-21", "29-29", "30-30", "31-31", "32-32"];
+    const regEx_DD_Symbol_DD = /^(([0]?[1-9])|([1-2][0-9])|(3[01]))([/,-]{1})(([0]?[1-9])|([1-2][0-9])|(3[01]))$/;
+    // for (i = 0; i < array5.length; i++) {
+    //     a = array5[i].match(regEx_DD_Symbol_DD);
+    //     if (a == null) {
+    //         console.log(array5[i], a);
+    //     } else {
+    //         console.log(a);
+    //     }
+    // }
+
+    // array6 answers => t, f, t, f, t (epoch, aka Yr1), f (short month), t (leap year), f (not leap year)
+    let array6 = ["31-01-1993", "01-31-1993", "31/12/1993", "01-03/1993", "01/01/1970", "31-02-1993", "29-02-2016", "29-02-2017"];
+    const regEx_DD_Symbol_MM_Symbol_YYYY = /^(([0]?[1-9])|([1-2][0-9])|(3[01]))([/,-]{1})(([0]?[1-9])|([1][0-2]))([/,-]{1})([0-9]{4})$/;  // Note: 01-03/1993 will pass, INCORRECT
+    // for (i = 0; i < array6.length; i++) {                                                                                                // short month and leap year INCORRECT
+    //     a = array6[i].match(regEx_DD_Symbol_MM_Symbol_YYYY);
+    //     if (a == null) {
+    //         console.log(array6[i], a);
+    //     } else {
+    //         console.log(a);
+    //     }
+    // }
+
+    // This pattern is useful for validating DATE format, though NOTE it does NOT account for leap years and short month
+    // NOTE: the \5 copies the ([/,-]{1}). [0]? counts as 2.
+    const regEx_DD_Symbol_MM_Symbol_YYYY_v2 = /^(([0]?[1-9])|([1-2][0-9])|(3[01]))([/,-]{1})(([0]?[1-9])|([1][0-2]))(\5{1})([0-9]{4})$/;
+    for (i = 0; i < array6.length; i++) {
+        a = array6[i].match(regEx_DD_Symbol_MM_Symbol_YYYY_v2);
+        if (a == null) {
+            console.log(array6[i], a);
+        } else {
+            console.log(a);
+        }
+    }
+
+</script>
+
+</html>

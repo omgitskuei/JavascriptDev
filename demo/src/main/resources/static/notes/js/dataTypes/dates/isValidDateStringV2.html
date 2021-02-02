@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // NOTE: DATE is in YYYY-MM-DD format
+    // 111 Lines long including comments, missing parts, would be even longer
+
+    function isValidDateString(dateStr) {
+        // Match 4 possible sets: [NN/NN/YYYY or NN-NN-YYYY]
+        const regEx_NNNNYYYY = /^([0-9]{1,2})([/,-]{1})([0-9]{1,2})(\2{1})([0-9]{4})$/;
+        // Match 4 possible sets: [YYYY/NN/NN or YYYY-NN-NN]
+        const regEx_YYYYNNNN = /^([0-9]{4})([/,-]{1})([0-9]{1,2})(\2{1})([0-9]{1,2})$/;
+        // Matches 4 possible sets: [1-9, 01-09, 10-29, 30-31]
+        const regEx_DD = /^(([0]?[1-9])|([1-2][0-9])|(3[01]))$/;
+        // Matches 3 possible sets: [1-9, 01-09, 10-12]
+        const regEx_MM = /^(([0]?[1-9])|([1][0-2]))$/;
+
+        if (dateStr.match(regEx_NNNNYYYY)) {
+            // Split at symbols
+            let arrDateStr = [];
+            if (dateStr.includes('/')) {
+                arrDateStr = dateStr.split('/');  // returns [DD/MM, DD/MM, YYYY]
+            } else {
+                arrDateStr = dateStr.split('-');  // returns [DD/MM, DD/MM, YYYY]
+            }
+            // Validate DD and MM
+            // Determine if arrDateStr[0] is DD, or if arrDateStr[1] is DD, or if neither is valid DD
+            // Check if first is valid DD
+            if ((arrDateStr[0].match(regEx_MM) || []).length > 0) {
+                // See if second is valid MM
+                if ((arrDateStr[1].match(regEx_DD) || []).length > 0) {
+                    // Convert from MM-DD-YYYY to YYYY-MM-DD
+
+
+
+
+                    const d = new Date(dateStr);
+                    let dNum = d.getTime();
+                    if (!dNum && dNum !== 0) {
+                        return false; // NaN value, Invalid date
+                    }
+                    return d.toISOString().slice(0, 10) === dateStr;
+                } else {
+                    console.log('MM invalid');
+                    return false;
+                }
+            } else if ((arrDateStr[1].match(regEx_MM) || []).length > 0) {
+                // See if first is valid MM
+                if ((arrDateStr[0].match(regEx_DD) || []).length > 0) {
+                    // Convert from DD-MM-YYYY to YYYY-MM-DD
+
+
+
+
+                    const d = new Date(dateStr);
+                    let dNum = d.getTime();
+                    if (!dNum && dNum !== 0) {
+                        return false; // NaN value, Invalid date
+                    }
+                    return d.toISOString().slice(0, 10) === dateStr;
+                } else {
+                    console.log('MM invalid');
+                    return false;
+                }
+            } else {
+                console.log('DD invalid');
+                return false;
+            }
+        } else if (dateStr.match(regEx_YYYYNNNN)) {
+            // Split at symbols
+            let arrDateStr = [];
+            if (dateStr.includes('/')) {
+                arrDateStr = dateStr.split('/');  // returns [YYYY, DD/MM, DD/MM]
+            } else {
+                arrDateStr = dateStr.split('-');  // returns [YYYY, DD/MM, DD/MM]
+            }
+            // Validate DD and MM
+            // Determine if arrDateStr[1] is DD, or if arrDateStr[2] is DD, or if neither is valid DD
+            // Check if first is valid DD
+            if ((arrDateStr[1].match(regEx_MM) || []).length > 0) {
+                // See if second is valid MM
+                if ((arrDateStr[2].match(regEx_DD) || []).length > 0) {
+                    const d = new Date(dateStr);
+                    let dNum = d.getTime();
+                    if (!dNum && dNum !== 0) {
+                        return false; // NaN value, Invalid date
+                    }
+                    return d.toISOString().slice(0, 10) === dateStr;
+                } else {
+                    console.log('MM invalid');
+                    return false;
+                }
+            } else if ((arrDateStr[2].match(regEx_MM) || []).length > 0) {
+                // See if first is valid MM
+                if ((arrDateStr[1].match(regEx_DD) || []).length > 0) {
+                    // Convert YYYY-DD-MM to YYYY-MM-DD
+
+
+
+
+                    const d = new Date(dateStr);
+                    let dNum = d.getTime();
+                    if (!dNum && dNum !== 0) {
+                        return false; // NaN value, Invalid date
+                    }
+                    return d.toISOString().slice(0, 10) === dateStr;
+                } else {
+                    console.log('MM invalid');
+                    return false;
+                }
+            } else {
+                console.log('DD invalid');
+                return false;
+            }
+        } else {
+            console.log('Format invalid');
+            return false;
+        }
+    }
+    console.log('0000-00-00:', isValidDateString('0000-00-00')); // false
+    console.log('2015-01-40:', isValidDateString('2015-01-40')); // false
+    console.log('');
+    console.log('2016-11-25:', isValidDateString('2016-11-25')); // true
+    console.log('1970-01-01:', isValidDateString('1970-01-01')); // true (epoch)
+    console.log('2016-02-29:', isValidDateString('2016-02-29')); // true (leap day)
+    console.log('');
+    console.log('2013-02-29:', isValidDateString('2013-02-29')); // false (not leap day)
+    console.log('');
+    console.log('2016-11/25;', isValidDateString('2016-11/25')); // false
+    console.log('2016/11-25:', isValidDateString('2016/11-25')); // false
+    console.log('');
+    console.log('2016/11/25:', isValidDateString('2016/11/25')); // true
+    console.log('1970/01/01:', isValidDateString('1970/01/01')); // true (epoch)
+    console.log('2016/02/29:', isValidDateString('2016/02/29')); // true (leap day)
+    console.log('');
+
+    // !!! INCORRECT !!!
+    console.log('29-01-2020:', isValidDateString('29-01-2020'));  // true
+    console.log('1/01/2020:', isValidDateString('1/01/2020'));  // true
+    console.log('09/1/2020:', isValidDateString('09/1/2020'));  // true
+    console.log('11/01/2020:', isValidDateString('11/01/2020'));  // true
+    console.log('19/01/2020:', isValidDateString('19/01/2020'));  // true
+    console.log('20/01/2020:', isValidDateString('20/01/2020'));  // true
+    console.log('29/01/2020:', isValidDateString('29/01/2020'));  // true
+    console.log('30/01/2020:', isValidDateString('30/01/2020'));  // true
+    console.log('31/01/2020:', isValidDateString('31/01/2020'));  // true
+    console.log('31/01/0000:', isValidDateString('31/01/0000'));  // false, !!!
+    console.log('');
+    console.log('13-01/2020:', isValidDateString('13-01/2020'));  // false
+    console.log('39/01/2020:', isValidDateString('39/01/2020'));  // false
+    console.log('01/39/2020:', isValidDateString('01/39/2020'));  // false
+    console.log('39/39/2020:', isValidDateString('39/39/2020'));  // false
+    console.log('39/39/0:', isValidDateString('39/39/0'));        // false
+    console.log('39/39/000:', isValidDateString('39/39/000'));    // false
+</script>
+
+</html>

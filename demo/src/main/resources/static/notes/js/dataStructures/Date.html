@@ -16,6 +16,15 @@
     <!-- {EDITOR HTML} -->
 
     <script>
+        var a = new Date("2020-01-13"); // always YMD
+        console.log(a);
+
+        try {
+            a = new Date("2020/01/13");
+            console.log(a);
+        } catch (err) {
+            console.log("nope");
+        }
         var d = new Date();
         console.log(d)  // Chrome returns "Wed Jan 27 2021 10:43:47 GMT+0800 (台北標準時間)"
 
@@ -23,6 +32,15 @@
         d.setYear(2019);
         //1548557027944
         // Sun Jan 27 2019 10:43:47 GMT+0800 (台北標準時間)
+
+
+        //建立日期物件語法 1
+        let d = new Date(); // now
+        let theYear = d.getFullYear() - 1911;  //convert to mingguo units
+        let theMonth = d.getMonth() + 1;  //month goes from 0-11, for Jan-Dec
+        let theDate = d.getDate();
+        //document.write(d);
+        document.write("民國" + theYear + "年" + theMonth + "月" + theDate + "日" + "<br>");
 
     </script>
 </body>

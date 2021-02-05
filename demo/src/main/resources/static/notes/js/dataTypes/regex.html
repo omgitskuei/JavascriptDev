@@ -10,6 +10,8 @@
 <body>
     Correct regex patterns will have their loops // commented out
     Incorrect regex patterns have a // Note: ... on the same line as the const
+    <input type="text" name="" id="input1">
+    <span id="span1"></span>
 </body>
 <script>
     let array = ["0", "1", "9", "00", "01", "09", "10", "11", "12", "13", "19", "20", "21", "29", "30", "31", "39"];
@@ -130,10 +132,29 @@
     // This pattern is useful for validating DATE format, though NOTE it does NOT account for leap years and short month
     // NOTE: the \5 copies the ([/,-]{1}). [0]? counts as 2.
     const regEx_DD_Symbol_MM_Symbol_YYYY_v2 = /^(([0]?[1-9])|([1-2][0-9])|(3[01]))([/,-]{1})(([0]?[1-9])|([1][0-2]))(\5{1})([0-9]{4})$/;
-    for (i = 0; i < array6.length; i++) {
-        a = array6[i].match(regEx_DD_Symbol_MM_Symbol_YYYY_v2);
+    // for (i = 0; i < array6.length; i++) {
+    //     a = array6[i].match(regEx_DD_Symbol_MM_Symbol_YYYY_v2);
+    //     if (a == null) {
+    //         console.log(array6[i], a);
+    //     } else {
+    //         console.log(a);
+    //     }
+    // }
+
+    // Looks for strings with only numbers and letters (alphanumeric), does not include international chars like A with accent
+    let array7 = ["dGgs1s23", "12fUgdf", "121232", "abchfe", "abd()*", "42232^5$", "john paul", "johnpaul", "K999"];
+    const regEx_Nums_EnLetters_Only = /^[a-z0-9]+$/i;
+    // ^         Start of string
+    // [a-z0-9]  a or b or ... z or 0 or 1 or ... 9
+    // +         one or more times (change to * to allow empty string)
+    // $         end of string    
+    // /i        case-insensitive
+    for (i = 0; i < array7.length; i++) {
+        a = array7[i].match(regEx_Nums_EnLetters_Only);
         if (a == null) {
-            console.log(array6[i], a);
+            console.log(array7[i], a);
+            document.getElementById('span1').innerText = '請輸入英文/數字';
+            document.getElementById('input1').style.backgroundColor = 'red';
         } else {
             console.log(a);
         }

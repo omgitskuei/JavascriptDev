@@ -5,12 +5,6 @@ target/
 !**/src/test/**/target/
 
 ### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
 .sts4-cache
 
 ### IntelliJ IDEA ###
@@ -30,4 +24,3 @@ build/
 !**/src/test/**/build/
 
 ### VS Code ###
-.vscode/

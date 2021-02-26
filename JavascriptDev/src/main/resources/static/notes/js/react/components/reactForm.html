@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quickstart Reactjs in VSCode</title>
+</head>
+
+<body>
+    <h1>My React Form</h1>
+    <div id="root"></div>
+    <div id="boot"></div>
+</body>
+
+</html>
+
+<script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+<script type="text/babel">
+    function InputGroup(props) {
+        return (
+            (props.type == "password") ? 
+            <div>
+                <label>{props.label}:</label>
+                <input type={props.type} placeholder={props.placeholder} onChange={props.onChange}>{props.value}</input>
+                <button onClick={props.onClick}>{props.btnValue}</button>
+            </div>
+            :
+            <div>
+                <label>{props.label}:</label>
+                <input type={props.type} placeholder={props.placeholder}>{props.value}</input>
+            </div>
+        )
+    }
+    class InputGroup1Wrapper extends React.Component {
+        renderInputGroup1(i) {
+            return (
+                <InputGroup
+                    label={this.props.labels[i]}
+                    type={this.props.types[i]}
+                    placeholder={this.props.placeholders[i]}
+                    onChange={this.props.onChange(i)}
+                    value=""
+                    onClick={() => this.props.onClick(i)}
+                    btnValue={this.props.btnValue[i]}
+                    />
+                );
+        }
+        render() {
+            return (
+                <form>
+                    <h2>InputGroup1 Form</h2>
+                    {this.renderInputGroup1(0)}
+                    {this.renderInputGroup1(1)}
+                    {this.renderInputGroup1(2)}
+                    {this.renderInputGroup1(3)}
+                    {this.renderInputGroup1(4)}
+                </form>
+            );
+        }
+    }
+
+
+    class InputGroup2 extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = { value: '' };
+
+            this.handleChange = this.handleChange.bind(this);
+            // this.handleSubmit = this.handleSubmit.bind(this);
+        }
+
+        handleChange(event) {
+            this.setState({ value: event.target.value });
+        }
+
+        handleSubmit(event) {
+            alert('A name was submitted: ' + this.state.value);
+            event.preventDefault();
+        }
+
+        render() {
+            return (
+                // <form onSubmit={this.handleSubmit}>
+                    <div>
+                        <label>{this.props.inputLabel}: </label>
+                        <input type="text" value={this.state.value} onChange={this.handleChange} />
+                        <input type="submit" value="Submit" />
+                    </div>
+                // </form>
+            );
+        }
+    }
+
+    ReactDOM.render(
+        <InputGroup2 />,
+        document.getElementById('root'),
+    );
+
+
+</script>

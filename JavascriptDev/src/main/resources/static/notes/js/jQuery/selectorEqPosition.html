@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul>
+        <li>list item 1</li>
+        <li>list item 2</li> <!-- index = 1 -->
+        <li>list item 3</li>
+        <li>list item 4</li> <!-- index = 3 -->
+        <li>list item 5</li>
+    </ul>
+    <p>Enter any number into input text to select the x "li"</p>
+    <input type="text" id="jquerySelectorLi" onchange="f1(this.value)"/>
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script>
+    // eq(indexPositionOfElement, where 0 is first element)
+    $("li").eq(3).css("background-color", "red");
+    $("ul li").eq(1).css("background-color", "green");
+
+    function f1(number) {
+        $("ul li").eq(number).css("background-color", "blue");
+    }
+</script>
+
+</html>

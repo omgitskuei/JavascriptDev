@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="CH_NAME"/>
+    <p id="demo"></p>
+
+</body>
+<script>
+
+    document.getElementById("CH_NAME").onchange = f1;
+
+    function f1() {
+        console.log("f1");
+        // Split each char into an element of the array
+        // Eg. "how is" => ["h", "o", "w", " ", "i", "s"]
+        var inputCHNameArr = document.getElementById("CH_NAME").value.split("");
+        // Write array to dom
+        document.getElementById("demo").innerHTML = inputCHNameArr;
+    }
+
+</script>
+
+</html>

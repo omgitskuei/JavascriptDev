@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quickstart Reactjs in VSCode</title>
+</head>
+
+<body>
+    <div id="root"></div>
+</body>
+
+</html>
+
+<script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+<script type="text/babel">
+
+    // Convert from list of Objects to React component class ReactSelect
+    const options = [
+        { value: 'chocolate', label: 'Chocolate', id:"f1" },
+        { value: 'strawberry', label: 'Strawberry', id:"f2" },
+        { value: 'vanilla', label: 'Vanilla', id:"f3" },
+    ];
+
+    // class Option extends React.Component {
+    //     render() {
+    //         return (
+    //             <option label={this.prop.label}>{this.prop.value}</option>
+    //         );
+    //     }
+    // }
+
+    class ReactSelect extends React.Component {
+        render() {
+            return (
+                <select name={this.props.name} id={this.props.id}>
+                    {options.map((eachOption, index) => {
+                        return <option key={eachOption.id} id={eachOption.id} value={eachOption.value}>{eachOption.label}</option>
+                    })}
+                </select>
+            );
+        }
+    }
+
+    ReactDOM.render(
+        <ReactSelect name="mySelectName" id="mySelectID" />,
+        document.getElementById('root')
+    );
+</script>

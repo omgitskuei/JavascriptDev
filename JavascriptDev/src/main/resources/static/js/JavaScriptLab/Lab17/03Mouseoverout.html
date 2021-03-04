@@ -5,18 +5,34 @@
     <title>03Mouseoverout.html</title>
 </head>
 <body>
+    <!-- Star 1, change on mouseover/mouseout -->
     <img id="idimg" src="Images/star.gif" />
-    <script>        
-        document.getElementById("idimg").onmouseover=mouseover;
-        document.getElementById("idimg").onmouseout=mouseout;      
-
+    <script>
+        var star1 = document.getElementById("idimg");
+        star1.onmouseover=mouseover;
+        star1.onmouseout=mouseout;      
         function mouseover() {
             this.src="Images/chngstar.gif";
         }
-
-
         function mouseout() {
             this.src="Images/star.gif";
+        }
+    </script>
+
+    <hr>
+
+    <!-- Star 2, change on onclick-->
+    <img id="idimg2" src="Images/star.gif" />
+    <script>
+        var clickOnOff = true;
+        document.getElementById("idimg2").onclick=clicked; 
+        function clicked() {
+            clickOnOff = !clickOnOff;
+            if(clickOnOff) {
+                this.src="Images/star.gif";
+            } else {
+                this.src="Images/chngstar.gif";
+            }
         }
     </script>
 </body>

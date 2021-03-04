@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="add1Btn" onclick="f1()">Add 1</button>
+
+    <div></div>
+</body>
+<script>
+    var number = 0;                     // if you type typeof number, you get "number"
+    var numPlusString = 0 + "a";        // if you type typeof numPlusString, you get "string"
+
+    window.addEventListener("load",
+        function() {
+            // prints this right after loading page
+            console.log("init success");
+            // prints 'init done' in webpage
+            document.querySelector("div").innerText = "init done";
+            // add 1 to 0
+            number++;
+            // you can type "number" into console, to get "1"
+        }
+    );
+
+    function f1() {
+        console.log("add1")
+        number++;
+    }
+
+
+</script>
+</html>

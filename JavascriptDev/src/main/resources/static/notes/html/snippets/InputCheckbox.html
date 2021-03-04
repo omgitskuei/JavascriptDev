@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="checkbox" id="AGREE_PRIVACY" onclick="f1()" /> <!-- this is not checked -->
+    <input type="checkbox" id="AGREE_PRIVACY" onclick="f1()" checked /> <!-- this is checked -->
+    <input type="checkbox" id="AGREE_PRIVACY" onclick="f1()" checked="false" /> <!-- this is checked -->
+    <input type="checkbox" id="AGREE_PRIVACY" onclick="f1()" checked="true" /> <!-- this is checked -->
+</body>
+<script>
+    function f1() {
+
+        // javascript selector input-checkbox
+        let input2 = document.getElementById("AGREE_PRIVACY");
+        console.log("AGREE_PRIVACY (js)     = ", input2.value, input2.checked); // on true/false
+
+        // document.getElementById("checkboxMsg").value = "asd";
+        document.querySelector("#checkboxMsg").value = "triggered f1()";
+    }
+
+
+</script>
+
+</html>

@@ -1,0 +1,18 @@
+.scrollbars { 
+	width: 530px;
+}
+.scrollbars .viewport { 
+	height: 340px; 
+	overflow: hidden; 
+	position: relative; 
+	width: 520px;
+}
+.scrollbars .overview { list-style: none; position: absolute; left: 0; top: 0; padding: 0; margin: 0; }
+.scrollbars .scrollbar{  position: relative; background-position: 0 0; float: right; width: 10px; }
+.scrollbars .track { height: 100%; width:4px; position: relative; padding: 0 1px; 
+background-color: #999999;
+}
+.scrollbars .thumb { background-color:#FF8000; height: 20px; width: 5px; cursor: pointer; overflow: hidden; position: absolute; top: 0; left: 0px; }
+.scrollbars .thumb .end { background-color:#FF8000;  overflow: hidden; height: 5px; width: 10px; }
+.scrollbars .disable { display: none; }
+.noSelect { user-select: none; -o-user-select: none; -moz-user-select: none; -khtml-user-select: none; -webkit-user-select: none; }

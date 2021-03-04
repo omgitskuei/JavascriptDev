@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="main2.css"> -->
+    <!-- <link rel="stylesheet" href="cropper.css"> -->
+    <!-- <link rel="stylesheet" href="bootstrap.css"> -->
+    <!-- <link rel="stylesheet" href="tinyscrollbar.css"> -->
+</head>
+
+
+<body>
+    <h2>How do you customize how an input checkbox looks? By overlaying it with an image and then hiding the input checkbox</h2>
+    <div class="explanation_box">
+        <div>
+            Source imgs loaded into body - click them to console.log(this.src)<br/>
+            <button onclick=f1(this)>Hide</button>
+            <script>
+                function f1(ele) {
+                    if(ele.innerText == "Hide") {
+                        document.getElementById("img2").toggleAttribute("hidden", true);
+                        document.getElementById("img3").toggleAttribute("hidden", true);
+                        ele.innerText = "Show";
+                    } else {
+                        document.getElementById("img2").removeAttribute("hidden");
+                        document.getElementById("img3").removeAttribute("hidden");
+                        ele.innerText = "Hide";
+                    }
+                }
+            </script>
+
+            <img src="..\..\..\css\images\input_checkbox.png" id="img2" onclick=f2(this.src)>
+            <img src="..\..\..\css\images\input_checkbox_checked.png" id="img3" onclick=f2(this.src)>
+            <script>
+                function f2(src) {
+                    console.log(src);
+                }
+            </script>
+
+            
+        </div>
+        <hr>
+        <div style="position: relative;display: inline-block;">
+            Click the image to swap it out for another image - the input-checkbox is linked to the image change onclick event, to store value input.checked = true/false<br/>
+            // Image: 
+            <img src="..\..\..\css\images\input_checkbox.png" id="AGREE_PRIVACY_IMG" onclick=f(this)>
+            // checkbox storing value: 
+            <input id="AGREE_PRIVACY" name="AGREE_PRIVACY" type="checkbox" disabled>
+            // hidden checkbox: 
+            <input id="AGREE_PRIVACY_hidden" name="AGREE_PRIVACY_hidden" type="checkbox" disabled hidden>
+            // 
+            <script>
+                function f(ele) {
+                    // checkbox storing value
+                    var checkbox = document.getElementById("AGREE_PRIVACY");
+                    checkbox.checked = !checkbox.checked;
+                    // hidden checkbox
+                    var checkbox_hidden = document.getElementById("AGREE_PRIVACY_hidden");
+                    checkbox_hidden.checked = !checkbox_hidden.checked;
+
+                    if (checkbox.checked) {
+                        console.log("checked");
+                        // console.log(ele);
+                        ele.src = document.getElementById("img3").src;
+                    } else {
+                        console.log("not checked");
+                        // console.log(ele);
+                        ele.src = document.getElementById("img2").src;
+                    }
+                }
+            </script>
+        </div>
+    </div>
+</body>
+</html>

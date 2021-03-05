@@ -15,6 +15,8 @@
 
 <body>
     <h2>Buttons</h2>
+    <button id="testSubject">testSubject</button>
+
     <!-- Eg. 1 -->
     <!-- Triggers anon JS function (Marker A) && anon jQuery function (Marker B) -->
     <input type="button" id="btn0" value="trigger ">
@@ -26,50 +28,46 @@
 
     <!-- Eg. 3 -->
     <!-- Trigger 1 defined JS function -->
-    <input type="button" id="btn2" value="disable button with toggleAttribute('disable')" onclick="disableV1(this.id)">
+    <input type="button" id="btn1" value="disable button with toggleAttribute('disable')" onclick="disableV1(this.id)">
 
     <!-- Eg. 4 -->
-    <input type="button" id="btn3" value="disable button with toggleAttribute('disabled', 'true')"
+    <input type="button" id="btn2" value="disable button with toggleAttribute('disabled', 'true')"
         onclick="disableV2(this.id)">
 
     <!-- Eg. 5 -->
-    <input type="button" id="btn2" value='disable button with toggleAttribute("disabled", "false")'
+    <input type="button" id="btn3" value='disable button with toggleAttribute("disabled", "false")'
         onclick="disableV3(this.id)">
 
     <!-- Eg. 6 -->
-    <input type="button" id="btn3" value='disable button with removeAttribute("disabled")' onclick="disableV4(this.id)">
+    <input type="button" id="btn4" value='disable button with removeAttribute("disabled")' onclick="disableV4(this.id)">
 
     <!-- Eg. 7 -->
-    <input type="button" id="btn4" value="disable button with .disable = true" onclick="disableV5(this.id)">
+    <input type="button" id="btn5" value="disable button with .disable = true" onclick="disableV5(this.id)">
 </body>
 
 <script>
     // Eg. 3
     function disableV1(id) {
-        document.getElementById(id).toggleAttribute("disabled");
+        document.getElementById("testSubject").toggleAttribute("disabled");
     }
 
     // Eg. 4
     function disableV2(id) {
-        document.getElementById(id).toggleAttribute("disabled", "true");
+        document.getElementById("testSubject").toggleAttribute("disabled", "true");
     }
 
     // Eg. 5
     function disableV3(id) {
-        document.getElementById(id).toggleAttribute("disabled", "false");
+        document.getElementById("testSubject").toggleAttribute("disabled", "false");
     }
 
     // Eg. 6
     function disableV4(id) {
-        document.getElementById(id).removeAttribute("disabled");
+        document.getElementById("testSubject").removeAttribute("disabled");
     }
 
     function disableV5(id) {
-        console.log(id);
-        let thisBtn = document.getElementById(id);
-        console.log(thisBtn);
-        thisBtn.disabled = false;
-        console.log(thisBtn);
+        document.getElementById("testSubject").disabled = false;
     }
 
 

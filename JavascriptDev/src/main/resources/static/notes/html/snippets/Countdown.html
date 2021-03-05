@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var timeDisplayText = document.getElementById("TIMER").innerText;
+        var timer = setInterval(updateTimerText, 1000);  // every second, do function updateTimerText
+        function updateTimerText() {                                    // runs 6 times total;
+            console.log("triggered updateTimerText()")
+            timeDisplayText = (parseInt(timeDisplayText)) - 1;
+            if (timeDisplayText == -1) {
+                var btn = document.getElementById("RESEND");        // runs 1 timeDisplayText
+                btn.toggleAttribute("disabled");
+                btn.style = 'background-color : #329F3B';
+                clearInterval(timer);
+            } else {                                                  // TIMER displays 5, 4, 3, 2, 1, 0
+                document.getElementById("TIMER").innerText = timeDisplayText;  // runs 5 times
+            }
+        }	
+    </script>
+</head>
+
+<body>
+    <p id="TIMER">5</p>
+    <button id="RESEND">RESET</button>
+</body>
+
+</html>

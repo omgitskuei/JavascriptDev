@@ -17,17 +17,26 @@
 	<p>Click on the button to see if any file is selected</p>
 
 	<input type="file" name="File" id="uploadInput" />
+	<hr>
 
-	<br><br>
+	// onclick, copy value from id="uploadInput" to this id="uploadInput2"
+	<input type="file" name="File" id="uploadInput2" />
+	<hr>
 
-	<button onclick="checkInputFile()">
-		click here
-	</button>
+	// onchange, copy value from id="uploadInput" to this id="uploadInput3"
+	<input type="file" name="File" id="uploadInput3" />
+	<hr>
+	
+	<button onclick="checkInputFile()">click here</button>
 
 	<p id="GFG_DOWN" style="color:green; font-size: 20px; font-weight: bold;">
 	</p>
 
 	<script>
+		document.getElementById("uploadInput").onchange = function() {
+			document.getElementById("uploadInput3").files=document.getElementById("uploadInput").files;
+		}
+
 		var down = document.getElementById('GFG_DOWN');
 		var uploadInput = document.getElementById("uploadInput");
 
@@ -49,6 +58,8 @@
 				// doesn't work with .csv
 				console.log(uploadInput.files[0].lastModifiedDate);
 				console.log(uploadInput.files[0].size);		// size of file (not sure what unit), can be 0 if file is empty
+				// copy value to another input-file
+				document.getElementById("uploadInput2").files=uploadInput.files;
 			}
 		} 
 	</script>

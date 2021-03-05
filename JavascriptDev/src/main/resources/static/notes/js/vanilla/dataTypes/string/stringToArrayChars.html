@@ -11,6 +11,7 @@
 <body>
     <input type="text" id="CH_NAME"/>
     <p id="demo"></p>
+    <p id="demo1"></p>
 
 </body>
 <script>
@@ -24,6 +25,9 @@
         var inputCHNameArr = document.getElementById("CH_NAME").value.split("");
         // Write array to dom
         document.getElementById("demo").innerHTML = inputCHNameArr;
+        inputCHNameArr.forEach(function (valString, index) {
+        	document.getElementById("demo1").innerHTML = document.getElementById("demo1").innerHTML + (valString);
+    	});
     }
 
 </script>

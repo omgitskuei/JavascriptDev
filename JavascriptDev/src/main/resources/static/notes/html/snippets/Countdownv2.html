@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+
+<body>
+    <input id="minuteInput" value="02"/>:<input id="secondInput" value="12"/><button id="setTimerBtn">SET</button>
+    <p id="TIMER">00:00</p>
+    <button id="RESEND">RESEND</button>
+    <script>
+        // Global variables
+        var timer;
+
+        document.getElementById("setTimerBtn").onclick=function() {
+            timer = setInterval(updateTimerText, 1000);  // every second, do function updateTimerText
+            document.getElementById("setTimerBtn").toggleAttribute("disabled");
+            document.getElementById("TIMER").innerText = document.getElementById("minuteInput").value + ":" + document.getElementById("secondInput").value;
+        }
+
+        function updateTimerText() {
+            let currMinute = document.getElementById("TIMER").innerText.substring(0, 2);
+            let currSec = document.getElementById("TIMER").innerText.substring(3, 5);
+            let totalSec = (parseInt(currMinute)*60) + parseInt(currSec);
+            if(totalSec == 0) {
+                var btn = document.getElementById("RESEND");
+                btn.toggleAttribute("disabled");
+                btn.style = 'background-color : #329F3B';
+                clearInterval(timer);
+            } else {
+                totalSec = totalSec-1;
+                currMinute = "0" + Math.floor((totalSec/60));
+                if(currSec==="00") {
+                    currSec = "59";
+                } else {
+                    currSec = (parseInt(currSec)-1);
+                    if(currSec<10) {
+                        currSec = "0" + currSec;
+                    }
+                }
+                document.getElementById("TIMER").innerText = currMinute + ":" + currSec;
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -10,7 +10,7 @@
 
 <body>
     // input type="text" id="tel"
-    <input type="text" id="tel" />
+    <input type="text" id="RECM_ID" />
 </body>
 
 <script>
@@ -18,15 +18,15 @@
         return /^\d+$/.test(value);
     };
 
-    var onlyContainsAlphabets = function (value) {
+    var onlyContainsAlphabetsNumbers = function (value) {
         return /^[a-z0-9]+$/i.test(value);
     };
 
     //綁定input event
-    document.querySelector('#tel').addEventListener('input', function (event) {
-        if (!onlyContainsAlphabets(this.value)) {
+    document.querySelector('#RECM_ID').addEventListener('input', function (event) {
+        if (!onlyContainsAlphabetsNumbers(this.value)) {
             this.value = this.value.split('').filter(function (currentValue, index, array) {
-                return onlyContainsAlphabets(currentValue);
+                return onlyContainsAlphabetsNumbers(currentValue);
             }).join('');
         }
     });

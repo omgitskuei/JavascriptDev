@@ -12,7 +12,7 @@
             勾選表示您已詳閱下條款且同意
         </p>
         <strong>
-            <input type="checkbox" id="AGREE_PRIVACY" onclick="f1()"/><a href='https://www.cathaylife.com.tw/cathaylife/-/media/A331E4D5D69A4799AB9A684E2F48B97E.pdf?sc_lang=zh-TW' style="color:orange;" id="Link">個人資料保護法告知事項(點此閱讀)</a>
+            <input type="checkbox" id="AGREE_PRIVACY" onclick="f1()" onchange="f2()"/><a href='https://www.cathaylife.com.tw/cathaylife/-/media/A331E4D5D69A4799AB9A684E2F48B97E.pdf?sc_lang=zh-TW' style="color:orange;" id="Link">個人資料保護法告知事項(點此閱讀)</a>
         </strong>
         <input id="checkboxMsg"/>
     </div>
@@ -20,6 +20,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 <script>
     function f1() {
+        console.log("f1()");
         // jQuery selector input-checkbox
         let input = $('#AGREE_PRIVACY');
         console.log("AGREE_PRIVACY (jQuery) = ", input.val(), input.is(':checked'));
@@ -32,6 +33,10 @@
         document.querySelector("#checkboxMsg").value = "triggered f1()";
     }
 
-    
+    function f2() {
+        console.log("f2()");
+        let input = $('#AGREE_PRIVACY');
+        console.log("AGREE_PRIVACY (jQuery) = ", input.val(), input.is(':checked'));
+    }
 </script>
 </html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>documentReady.html</title>
+</head>
+
+<body>
+    <h1>document ready()</h1>
+    <p>
+        ready()<br/>
+        -------<br/>
+        jQuery fires a <b>custom event named 'ready' when the DOM is loaded</b> and available for manipulation.<br/>
+        You can attach as many ready() events to the document as you would like.<br/>
+        They are executed in the order they were added top down in script tag.<br/>
+        FYI: ready() triggers before CSS is loaded. After jQuery 1.3, always include all CSS files before any jQuery code.<br/>
+        FYI: ready() triggers as script is parsed, not after.<br/>
+
+        onload()<br/>
+        --------<br/>
+        jQuery window.onload event loads after all assets including all scripts are loaded.<br/>
+    </p>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script>
+        // This is a common pattern seen with jQuery usage.
+
+        /************************************************************************************
+        jQuery window.onload event loads after all assets including all scripts are loaded
+        ************************************************************************************/
+        jQuery(window).load(function () {
+            alert('The page and all its assets are loaded!');
+        });
+
+        /************************************************************************************
+        jQuery has custom read() functions after DOM loads but before SCRIPT loads.
+        These 3 jQuery ready() functions fire in the order they're written (top to bottom)
+        The custom ready() event is not entirely needed. 
+        If your JavaScript code does not affect the DOM, you can include it anywhere in the HTML document. 
+        This means you can avoid the ready() event altogether if your JavaScript code is not dependent on the DOM being intact.
+        ************************************************************************************/
+        jQuery(document).ready(function () {
+            alert('DOM is ready!');
+        });
+
+        jQuery(function () {
+            alert('No really, the DOM is ready!');
+        });
+        
+        jQuery(function ($) {
+            // Shortcut with fail-safe usage of $. A reference to the jQuery function is passed
+            //  into the anonymous function. Use $() without fear of conflicts. 
+            alert('Seriously its ready!');
+        });
+    </script>
+</body>
+
+</html>

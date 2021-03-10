@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hideShow.html</title>
+</head>
+
+<body>
+    <h1>hideShow.html</h1>
+    <h2>Select by ID and toggle between hide/show</h2>
+    <p>Click the btn and div below;</p>
+    <button id="btn">Toggle</button>
+    <div style="background-color: lightgrey;border: black;border-style: solid;border-width: 1px;">A div</div>
+
+    <!-- Import jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script>
+        var boolean = false;
+
+        $(document).ready(function () {
+            // With jQuery
+            $("#btn").click(function () {
+                boolean = !boolean;
+                console.log(boolean);
+                if(boolean) {
+                    $('#btn').next().hide();
+                } else {
+                    $('#btn').next().show();
+                }
+            });
+
+            // With javascript (equivalent to above)
+            // document.getElementById("btn").onclick = function() {
+            //     boolean = !boolean;
+            //     let div = document.getElementsByTagName("div")[0];
+            //     if(boolean) {
+            //         div.style.display = "none";
+            //     } else {
+            //         div.style.display = "block";
+            //     }
+            // }
+        });
+    </script>
+</body>
+
+</html>

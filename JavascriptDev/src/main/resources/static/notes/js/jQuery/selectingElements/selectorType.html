@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>selectorElementType.html</title>
+</head>
+
+<body>
+    <h1>Select all element of the same type</h1>
+    <p>
+        Open console.log() to see selector for all &lt;p&gt;&lt;/p&gt;<br>
+        <br>
+        var arrayOfPs = $("p");<br>
+        <br>
+        var arrayOfPsInnerHTML = [];<br>
+        $.each(arrayOfPs, function(arrayIndex, value) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;console.log("arrayIndex: ", arrayIndex, "value: ", value);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;arrayOfPsInnerHTML.push(value);<br>
+        });<br>
+    </p>
+    <!-- a group of p's-->
+    <p>#1 p</p>
+    <p>#2 p</p>
+    <p>#3 p</p>
+    <p>#4 p</p>
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script>
+    // You can select all <p> elements on a page like this:
+    var arrayOfPs = $("p");
+    console.log("arrayOfPs: ", arrayOfPs);
+
+    var arrayOfPsInnerHTML = [];
+    
+    $.each(arrayOfPs, function(arrayIndex, value) {
+        console.log("arrayIndex: ", arrayIndex, "value: ", value);
+        arrayOfPsInnerHTML.push(value);
+    });
+
+    console.log("arrayOfPsInnerHTML: ", arrayOfPsInnerHTML);
+</script>
+
+</html>

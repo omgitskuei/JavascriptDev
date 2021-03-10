@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>changeInnerHTMLBeforeAfter.html</title>
+</head>
+
+<body>
+    <h1>.before() & .after()</h1>
+    <h2>Inserting specified content before or after selected element(s)</h2>
+    <p>Click the btn and div below;</p>
+    <button>$("button").after("&lt;p&gt;Hello world!&lt;/p&gt;");</button>
+    <div style="background-color: lightgrey;border: black;border-style: solid;border-width: 1px;">$("div").before("&lt;span&gt;Bye world!&lt;/span&gt;");</div>
+
+    <!-- Import jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Add p element after each btn onclick
+            $("button").click(function () {
+                $("button").after("<p>Hello world!</p>");
+            });
+
+            // Add span element after each div onclick
+            $("div").click(function () {
+                $("div").before("<span>Bye world!</span>");
+            });
+
+        });
+    </script>
+</body>
+
+</html>

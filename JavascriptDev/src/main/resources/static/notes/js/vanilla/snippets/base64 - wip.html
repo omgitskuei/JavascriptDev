@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input id="file1" type="file" />
+    <button id="logImage1btn">console.log(file1)</button>
+
+    <hr>
+
+    <canvas id="canvas1"></canvas>
+    <hr>
+
+    <div>
+        <img id="image1" src="" alt="whyYouDoDis">
+    </div>
+    <button id="btoaBtn">window.btoa(image1)</button>
+
+    <script>
+        function base64Converter(string) {
+            const encodedData = window.btoa('Hello, world'); // encode a string
+            const decodedData = window.atob(encodedData); // decode the string
+            console.log("encodedData: ", encodedData);
+            console.log("decodedData:", decodedData);
+            return { "encodedData": encodedData, "decodedData": decodedData };
+        }
+
+
+
+
+        document.getElementById("file1").onchange = function () {
+            console.log("file1 onchange");
+            document.getElementById("image1").src = document.getElementById("file1").files[0].name;
+            
+            var c = document.getElementById("canvas1");
+            var img = document.getElementById('image1');
+            c.height = img.naturalHeight;
+            c.width = img.naturalWidth;
+            var ctx = c.getContext('2d');
+            ctx.drawImage(img, 0, 0, c.width, c.height);
+            var base64String = c.toDataURL(); 
+            console.log("base64String: ", base64String);
+        }
+
+        document.getElementById("logImage1btn").onclick = function () {
+            console.log(document.getElementById("file1"));
+            console.log(document.getElementById("file1").files[0]);
+        }
+
+        document.getElementById("btoaBtn").onclick = function () {
+            console.log(document.getElementById("image1"));
+            console.log(window.btoa(document.getElementById("image1")));
+            var a = window.btoa(document.getElementById("image1"));
+            console.log(typeof a);
+        }
+    </script>
+</body>
+
+</html>

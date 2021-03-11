@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChainOnchange.html</title>
+</head>
+<body>
+    <p>When you change this input, the bottom two inputs gets changed</p>
+    <input type="text" id="i1"/>
+    <hr>
+    <p>But these bottom two inputs being changed this way doesn't trigger their onchange</p>
+    <input type="text" id="i2"/><br/>
+    <textarea id="t1"></textarea><br/>
+    <script>
+        // Notice that When i1 onchange triggers, i2 and t1 is changed
+        document.getElementById("i1").onchange = function() {
+            console.log("i1 changed");
+            document.getElementById("i2").value = document.getElementById("i1").value;
+            document.getElementById("t1").value = document.getElementById("i1").value;
+        }
+
+        // BUT i2 and t1's onchange IS NOT TRIGGERED
+        document.getElementById("i2").onchange = function() {
+            console.log("i2 changed");
+        }
+
+        document.getElementById("t1").onchange = function() {
+            console.log("t1 changed");
+        }
+    </script>
+</body>
+</html>

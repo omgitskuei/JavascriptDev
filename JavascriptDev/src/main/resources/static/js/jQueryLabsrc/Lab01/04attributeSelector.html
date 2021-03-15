@@ -7,18 +7,24 @@
 </head>
 
 <body>
-    <a href="a.doc">A(doc)</a> |
-    <a href="a.pdf">A(pdf)</a> <br />
-    <a href="bpdf.doc">B(doc)</a> |
-    <a href="b.pdf">B(pdf)</a>
+    <a href="a.doc">a href="a.doc"</a>
+    <br/>
+    <a href="a.pdf">href="a.pdf"</a>
+    <br/>
+    <a href="bpdf.doc">href="bpdf.doc"</a>
+    <br/>
+    <a href="b.pdf">href="b.pdf"</a>
+    <br/>
+    
     <hr>
+
     <input type="button" id="btn1" value="a['href']">
-    <input type="button" id="btn2" value="=">
-    <input type="button" id="btn3" value="!=">
-    <input type="button" id="btn4" value="^=">
-    <input type="button" id="btn5" value="*=">
-    <input type="button" id="btn6" value="$=">
-    <input type="button" id="btn7" value="$=href">
+    <input type="button" id="btn2" value="a[href='a.pdf']">
+    <input type="button" id="btn3" value="a[href!='a.doc']">
+    <input type="button" id="btn4" value="a[href^='a']">
+    <input type="button" id="btn5" value="a[href*='pdf']">
+    <input type="button" id="btn6" value="a[href$='.doc']">
+    <input type="button" id="btn7" value="a[href$='.pdf']">
 
     <script src="../js/jquery-3.4.1.min.js"></script>
     <script>
@@ -47,15 +53,16 @@
             $("#btn6").click(function () {
                 $("a[href$='.doc']").css(
                     {
-                        "background-color": "yellow",
-                        "color": "green"
+                        "background-color" : "yellow",
+                        "color" : "green"
                     });
             });
             $("#btn7").click(function () {
                 //在前面加上小圖
                 $("a[href$='.pdf']").css({
-                    "text-decoration": "none",
-                    "background": "url('images/pdf_icon.gif') no-repeat"
+                    "text-decoration" : "none",
+                    "" : ""
+                    // "background": "url('images/pdf_icon.gif') repeat"
                 });
             });
         });

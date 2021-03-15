@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>selectorQuickGuide.html</title>
+</head>
+
+<body>
+    <h2>This is Heading 2</h2>
+
+    <p class="classP">class=classP</p>
+    <p class="classP">class=classP</p>
+    <p id="idP1">id=idP1</p>
+
+    <div class="classDiv">class=classDiv</div>
+    <div class="classDiv">class=classDiv</div>
+    <span class="classSpan" id="idSpan1">class=classSpan, id=idSpan1</span><br/>
+    <span class="classSpan" id="idSpan2">class=classSpan, id=idSpan1</span>
+
+    <ul id="idUl1">ul id=idUl1
+        <li id="idLi1">id=idLi1</li>
+        <li id="idLi2">id=idLi2</li>
+        <li id="idLi3">id=idLi3</li>
+        <li id="idLi4">id=idLi4</li>
+        <li id="idLi5">id=idLi5</li>
+    </ul>
+
+    <input type="button" id="idBtn1" value="*">
+    <input type="button" id="idBtn2" value="element p">
+    <input type="button" id="idBtn3" value="class=classDiv">
+    <input type="button" id="idBtn4" value="id=idSpan1">
+    <input type="button" id="idBtn5" value="element p+class=classP, span#idSpan2">
+    <input type="button" id="idBtn6" value="2nd element p+class=classP">
+    <input type="button" id="idBtn7" value="first ul, odd li, even li">
+
+    
+    <script src="../jquery-3.4.1.min.js"></script>
+    <script>
+        $(function () {
+            // # selector refers to id, apply multiple css changes (font-family, font-size)
+            $("#idBtn1").click(function () {
+                $("*").css(
+                        {
+                            "font-family": "Garamond, Helvetica, sans-serif",
+                            "font-size": "200%"
+                        }
+                    );
+            });
+
+            //when button2 is pressed, apply css action background pink TO ALL <p> tags
+            $("#idBtn2").click(function () {
+                $("p").css("background-color", "pink");
+            });
+
+            // . selector refers to class
+            $("#idBtn3").click(function () {
+                $(".classDiv").css("text-decoration", "line-through");
+            });
+
+            // # select by id
+            $("#idBtn4").click(function () {
+                $("#idSpan1").css("background-color", "yellow");
+            });
+
+            // select p with class classP, and span with id idSpan2
+            $("#idBtn5").click(function () {
+                $("p.classP,span#idSpan2").css("border", "dotted red 2px");
+            });
+
+            // select 2nd classP
+            $("#idBtn6").click(function () {
+
+                // both ways of writing do the same thing
+
+                // $("p.classP")
+                //     .eq(1).css('font-weight', 'bold')
+                //     .eq(1).css('font-style', 'italic');
+                
+                $("p.classP")
+                    .eq(1).css(
+                        {
+                            'font-weight' : 'bold',
+                            'font-style' : 'italic'
+                        }
+                    );
+            });
+
+            // select every other li in ul
+            $("#idBtn7").click(function () {
+                // select first ul
+                $("ul").eq(0).css("border", "dashed green 2px");
+                // select every odd li
+                $("li:nth-child(odd)").css("background-color", "lightBlue");
+                // select every other li
+                $("li:nth-child(even)").css("background-color", "white");
+            });
+        });
+    </script>
+
+</body>
+
+</html>

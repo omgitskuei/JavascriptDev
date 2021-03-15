@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <!-- Whenever you copy this DIV, Run showMsgOnCopy function -->
+    <div oncopy="showMsgOnCopy()" style="border: black;border-style: solid;">
+        Copy any part of this text to display a new message below
+    </div>
+    <script>
+        function showMsgOnCopy() {
+            // Show message on copy
+            document.getElementById("demo").innerHTML = "You copied text!"
+        }
+    </script>
+
+    <p id="demo"></p>
+
+    <textarea name="textarea" rows="15" cols="50" placeholder="Try pasting here..."></textarea>
+
+    <!-- Whenever you copy, Add text to clipboard (2020 and later) -->
+    <script>
+        document.addEventListener('copy', (event) => {
+            const pagelink = `\n\nRead more at: ${document.location.href}`;
+            event.clipboardData.setData('text', document.getSelection() + pagelink);
+            event.preventDefault();
+        });
+    </script>
+
+</body>
+
+</html>

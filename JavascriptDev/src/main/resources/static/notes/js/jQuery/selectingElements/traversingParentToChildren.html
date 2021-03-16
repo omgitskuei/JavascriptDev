@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>06endDemo.html</title>
+    <title>traversingParentToChildren.html</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <style>
             figure{
@@ -16,31 +16,36 @@
     </style>
 </head>
 <body>
+    <h1>Traversing from Parent to Children</h1>
+    <h2>Click to console.log the img element</h2>
+    <p>Note: The click event listener is tied to the figure tag around each image, so traversing from parent to child is required.</p>
     <div class="container">
         <div class="d-flex">
             <figure>
-                <img id="pokemon1" src="images/pokemon1.png" alt="pokemon1">
+                <img id="pokemon1" src="../../../../css/images/pokemon1.png" alt="pokemon1">
             </figure>
             <figure>
-                <img id="pokemon2" src="images/pokemon2.png" alt="pokemon2">
+                <img id="pokemon2" src="../../../../css/images/pokemon2.png" alt="pokemon2">
             </figure>
             <figure>
-                <img id="pokemon3" src="images/pokemon3.png" alt="pokemon3">
+                <img id="pokemon3" src="../../../../css/images/pokemon3.png" alt="pokemon3">
             </figure>
             <figure>
-                <img id="pokemon4" src="images/pokemon4.png" alt="pokemon4">
+                <img id="pokemon4" src="../../../../css/images/pokemon4.png" alt="pokemon4">
             </figure>
             <figure>
-                <img id="pokemon5" src="images/pokemon5.png" alt="pokemon5">
+                <img id="pokemon5" src="../../../../css/images/pokemon5.png" alt="pokemon5">
             </figure>
         </div>
     </div> 
 
-    <script src="../js/jquery-3.4.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
         $(function(){
             $("figure").click(function(){
-                
+                console.log(
+                    $(this).children().filter("img")[0]
+                );
             });
 
         })

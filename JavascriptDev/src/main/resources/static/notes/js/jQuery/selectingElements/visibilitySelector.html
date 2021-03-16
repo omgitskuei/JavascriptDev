@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>04visibilitySelector.html</title>
@@ -11,35 +12,39 @@
             border: 3px outset blue;
             float: left;
         }
+
         .starthidden {
-            display: none;            
+            display: none;
         }
-  </style>
-    
+    </style>
+
 </head>
+
 <body>
+    <h1>Visibility Selector</h1>
     <div>div1</div>
     <div class="starthidden">div2</div>
     <div>div3</div>
     <div style="display:none;">div4</div>
-    <div>div5</div>    
+    <div>div5</div>
     <hr style="clear:both">
 
     <input type="button" id="btn1" value="visible">
     <input type="button" id="btn2" value="hidden">
-    
-    <script src="../js/jquery-3.4.1.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
-        $(function(){
-            $("#btn1").click(function(){
-                $( "div:visible" ).css( "background", "yellow" ); 
+        $(function () {
+            $("#btn1").click(function () {
+                $("div:visible").css("background", "yellow");
             });
 
-            $("#btn2").click(function(){                
+            $("#btn2").click(function () {
                 $("div:hidden").show("slow");  //顯示元素，P164 slow=600msec
-            });         
-            
+            });
+
         });
     </script>
 </body>
+
 </html>

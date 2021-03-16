@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>jQuery callback</h1>
+    <p>
+        A callback function is executed after the current effect is 100% finished.<br />
+        JavaScript statements are executed line by line. <br />
+        However, with effects, the next line of code can be run even though the effect is not finished. This can create
+        errors.<br />
+        To prevent this, you can create a callback function.<br />
+        A callback function is executed after the current effect is finished.<br />
+        Typical syntax: $(selector).hide(speed,callback);<br />
+    </p>
+
+    <hr>
+
+    <button>Hide</button>
+    <p>This is a paragraph with little content.</p>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Basic Select all buttons, Add onclick
+            $("button").click(function () {
+                // Hide P slowly with callback
+                console.log("triggered onclick")
+                $("p").hide("slow", function () {
+                    // triggered callback
+                    console.log("triggered callback");
+                    $("p").show();
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>differenceBetweenBasicAndFilterSelectors.html</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <h1>Difference between Basic and Filter Selectors</h1>
+
+    <!-- Two ways to write buttons: -->
+    <!-- 1) input button -->
+    <input type="button" value="Filter Selector" id="btn1">
+    <script>
+        $('#btn1').click(function () {
+            // A Basic Selector
+            // basic selector applies to <button></button> BUT NOT <input type=button/>
+            $('button').hide();
+        })
+    </script>
+
+    <!-- 2) button -->
+    <button id="btn2">Basic and Filter Selector</button>
+    <script>
+        $('#btn2').click(function () {
+            // A Filter Selector
+            // filter selector applies to BOTH <button></button> AND <input type=button/>
+            $(':button').hide();
+        })
+    </script>
+</body>
+</html>

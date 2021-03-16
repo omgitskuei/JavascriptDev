@@ -3,10 +3,12 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>04attributeSelector.html</title>
+    <title>selectByAttribute.html</title>
 </head>
 
 <body>
+    <h1>Select by Attribute</h1>
+
     <a href="a.doc">a href="a.doc"</a>
     <br/>
     <a href="a.pdf">href="a.pdf"</a>
@@ -17,7 +19,7 @@
     <br/>
     
     <hr>
-
+    <input type="button" id="btn0" value="RESET">
     <input type="button" id="btn1" value="a['href']">
     <input type="button" id="btn2" value="a[href='a.pdf']">
     <input type="button" id="btn3" value="a[href!='a.doc']">
@@ -26,9 +28,19 @@
     <input type="button" id="btn6" value="a[href$='.doc']">
     <input type="button" id="btn7" value="a[href$='.pdf']">
 
-    <script src="../js/jquery-3.4.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
         $(function () {
+            // Reset
+            $("#btn0").click(function () {
+                $("a")
+                    .css("text-decoration", "none")
+                    .css("text-decoration", "underline")
+                    .css("color", "blue")
+                    .css("background-color", "white")
+                    .css("border", "none");
+            });
+
             // Select all a href
             $("#btn1").click(function () {
                 $("a[href]").css("text-decoration", "none");
@@ -61,8 +73,8 @@
                 //在前面加上小圖
                 $("a[href$='.pdf']").css({
                     "text-decoration" : "none",
-                    "" : ""
-                    // "background": "url('images/pdf_icon.gif') repeat"
+                    "background-color" : "grey",
+                    "background": "url('../../../../css/images/pdf_icon.gif') no-repeat"
                 });
             });
         });

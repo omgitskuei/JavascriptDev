@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <title>contentSelector.html</title>
+    <style>
+        fieldset {
+            width: 500px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Content Selector</h1>
+    <fieldset id="domSampleFieldset">
+        <legend>DOM Sample</legend>
+
+        <div><label>Some images:</label></div>
+        <div>
+            <p>
+                <img src="../../../../css/images/image1.jpg" id="hibiscus" alt="Hibiscus" />
+                <img src="../../../../css/images/image2.jpg" id="littleBear" title="A dog named Little Bear" alt="" />
+                <img src="../../../../css/images/image3.jpg" id="verbena" alt="Verbena" />
+                <img src="../../../../css/images/image4.jpg" id="cozmo" title="A puppy named Cozmo" alt="" />
+                <img src="../../../../css/images/image5.jpg" id="tigerLily" alt="Tiger Lily" />
+                <img src="../../../../css/images/image6.jpg" id="coffeePot" alt="" />
+            </p>
+        </div>
+        <p>this is paragraph</p>
+        <p id="idp"></p>
+        <br>
+    </fieldset>
+    <hr>
+    <input type="button" id="btn1" value="div:contains('images')">
+    <input type="button" id="btn2" value="p:empty">
+    <input type="button" id="btn3" value="div:has(img)">
+    <input type="button" id="btn4" value="p:parent">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        $(function () {
+            $("#btn1").click(function () {
+                $("div:contains('images')").css("border", "double blue 3px");
+            });
+
+            $("#btn2").click(function () {
+                $("p:empty").css("border", "dotted green 3px");
+                //    $("input:empty").css("border","dotted green 3px");
+                //    $("img:empty").css("border","dotted green 3px");  
+                //    $("hr:empty").css("border","dotted green 3px"); 
+
+            });
+
+            $("#btn3").click(function () {
+                $("div:has(img)").css("background-color", "lime");
+            });
+
+            $("#btn4").click(function () {
+                $("p:parent").css("border", "solid fuchsia 2px");
+                // $("label:parent").css("background-color","yellow");
+                // $("legend:parent").css("border","solid fuchsia 2px");            
+                // $("div:parent").css("background-color","fuchsia");
+                // $("img:parent").css("border","2px fuchsia solid");
+            });
+
+
+        });
+    </script>
+</body>
+
+</html>

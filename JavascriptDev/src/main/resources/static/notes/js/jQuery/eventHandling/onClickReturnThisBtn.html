@@ -5,29 +5,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>beforeAfter.html</title>
+    <title>onClickReturnThisBtn.html</title>
 </head>
 
 <body>
-    <h1>selectorClass.html</h1>
-    <h2>Selecting element(s) by class</h2>
-    <p>Click the btn below;</p>
-    <button class="classBtn">
-        class="classBtn"
+    <h1>onClickReturnThisBtn.html</h1>
+    <h2>On-click returning this Button</h2>
+    <p>Click the btn below to pass this btn element to the btn's onclick function;</p>
+    <button class="classBtn" id="idBtn">
+        Return this button
     </button>
 
     <!-- Import jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script>
-        var thisElement;
+        
         $(document).ready(function () {
-            // Select by class ".className"
-            $("button.classBtn").click(function () {
-                thisElement = $(".classBtn");
-                console.log("thisElement (jQuery object): \r\n", thisElement);
+            
+            $("#idBtn").click(function () {
+                // 'this' is the button
                 console.log("$(this) (jQuery object): \r\n", $(this));
-                
-                console.log("thisElement[0] (jQuery object): \r\n", thisElement[0]);
                 console.log("$(this)[0] (jQuery object): \r\n", $(this)[0]);
             });
         });

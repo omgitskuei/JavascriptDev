@@ -11,37 +11,37 @@
     <div id="div1">
         >div1 begin here
 
-        <a>>child a of div1</a>
+        <a>>div1 > a</a>
 
-        <p>>child p of div1
-            <a>>>child a of child p of div1</a>
+        <p>>div1 > p
+            <a>>>div1 > p > a</a>
         </p>
 
         <div id="div2">
-            >child div2 begin here
+            >div1 > div2 begin here
 
-            <p>>>child p1 of child div2</p>
-            <p>>>child p2 of child div2</p>
+            <p>>div1 > div2 > p</p>
+            <p>>div1 > div2 > p</p>
 
-            >child div2 end here
+            >div1 > div2 end here
         </div>
 
-        <p>>child p of div1</p>
+        <p>>div1 > p</p>
 
         >div1 end here
     </div>
 
-
     <p>next p</p>
     <p>sibling p</p>
+    
     <hr>
 
-    <input type="button" id="btn1" value="div>p">
-    <input type="button" id="btn2" value="div p">
-    <input type="button" id="btn3" value="div+p">
-    <input type="button" id="btn4" value="div~p">
+    <input type="button" id="btn1" value="div1>p">
+    <input type="button" id="btn2" value="div1 p">
+    <input type="button" id="btn3" value="div1+p">
+    <input type="button" id="btn4" value="div1~p">
 
-    <script src="../js/jquery-3.4.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
         $(function () {
             $("#btn1").click(function () {

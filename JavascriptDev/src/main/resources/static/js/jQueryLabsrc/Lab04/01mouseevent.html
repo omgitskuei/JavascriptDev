@@ -17,40 +17,51 @@
         <button class="btn btn-primary" id="hover">hover</button>
     </div>
 
-    <script src="../js/jquery-3.4.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
         $(function(){
+            // click
             $("#click").click(function(){
-                // alert("click")
                 console.log("click")
             });
+
+            // double-click
             $("#dblclick").dblclick(function(){
-                // alert("click")
                 console.log("double click")
             });
+
+            // right click
             $("#contextmenu").contextmenu(function(){
-                // alert("click")
                 console.log("contextmenu")
             });
     
+            // mouse down & up
             $("#mouseDown").mousedown(function(){
                 console.log("mouse down")
             })
             $("#mouseUp").mouseup(function(){
                 console.log("mouse up")
             })
+
+            // mouse enter & leave
             $("#mouseEnter").mouseenter(function(){
                 console.log("mouse enter")
             })
             $("#mouseLeave").mouseleave(function(){
                 console.log("mouse leave")
             })
-    
-            $("#hover").hover(function(){
-                console.log("enter")
-            }, function(){
-                console.log("leave")
-            })            
+            
+            // hover
+            $("#hover").hover(
+                // mouseenter
+                function(){
+                    console.log("enter")
+                },
+                // mouseleave
+                function(){
+                    console.log("leave")
+                }
+            )            
       });
     </script>
 </body>

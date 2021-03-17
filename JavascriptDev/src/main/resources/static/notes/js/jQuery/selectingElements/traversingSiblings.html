@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>04siblingendTraversing.html</title>
+    <title>traversingSiblings.html</title>
     <style> 
             .level-1 * { 
                 display: block;
@@ -33,23 +33,23 @@
     </ul>
     <hr>
     <input type="button" id="btn1" value="siblings()">
-    <input type="button" id="btn2" value="end()">
+    <!-- <input type="button" id="btn2" value="end()"> -->
 
-    <script src="../js/jquery-3.4.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
         $(function(){
             $("#btn1").click(function(){
                 $( ".item-iv" ).siblings().css( "border", "solid 2px aqua" );  //I,II,II,V,VI,VII             
             });
 
-            $("#btn2").click(function(){
-                $( "ul.level-1" )
-                    .find(".item-a")
-                    .css( "border", "solid 2px blue" )
-                    .end()
-                    .find(".item-ii")
-                    .css("border","solid 2px red");         
-            });
+            // $("#btn2").click(function(){
+            //     $( "ul.level-1" )
+            //         .find(".item-a")
+            //         .css( "border", "solid 2px blue" )          // A
+            //         .end()
+            //         .find(".item-ii")
+            //         .css("border","solid 2px red");             // II
+            // });
         });
     </script>
 </body>

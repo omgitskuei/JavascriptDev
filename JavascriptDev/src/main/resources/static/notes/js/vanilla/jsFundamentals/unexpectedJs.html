@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        if ("" == 0) {
+            // It is! But why??
+            console.log("example1 = true");
+        }
+        if (1 < x < 3) {
+            // True for *any* value of x!
+            console.log("exmaple2 = true")
+        }
+        const obj = { width: 10, height: 15 };
+        // Why is this NaN? Spelling is hard!
+        const area = obj.width * obj.heigth; // spelling error on height
+
+        console.log(4 / []); // infinity
+    </script>
+</body>
+
+</html>

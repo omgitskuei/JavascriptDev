@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        document.onreadystatechange = function () {
+            if (document.readyState == "complete") {
+                console.log(document.getElementById("selectSys"));
+
+                document.getElementById("selectSys2").disabled=true;
+
+                document.getElementById("selectSys").addEventListener("change", function selectSysChange(e) {
+                    let selectedOptionLabel = e.target.selectedOptions[0].innerText;
+                    let selectedOptionValue = e.target.selectedOptions[0].value;
+                    console.log(selectedOptionLabel, selectedOptionValue);
+                    console.log(e.target.selectedOptions.length);
+
+                    document.getElementById("selectSys2").disabled=false;
+
+                    for(let i=0; i<e.target.selectedOptions.length; i++) {
+                        console.log("append")
+                        let newOption = document.createElement("option");
+                        newOption.innerText = selectedOptionLabel;
+                        newOption.value     = selectedOptionValue;
+                        document.getElementById("selectSys2").appendChild(newOption);
+                    }
+
+                });
+
+                document.getElementById("selectSys2").addEventListener("change", function selectSysChange(e) {
+                    let selectedOptionLabel = e.target.selectedOptions[0].innerText;
+                    let selectedOptionValue = e.target.selectedOptions[0].value;
+                    console.log(selectedOptionLabel, selectedOptionValue);
+                    console.log(e.target.selectedOptions.length);
+                });
+            }
+        }
+
+
+    </script>
+</head>
+
+<body>
+    <select id="selectSys">
+        <option value="OMG">omg</option>
+        <option value="WTF">wtf</option>
+        <option value="WUT">wut</option>
+        <option value="POG">pog</option>
+    </select>
+
+    <select id="selectSys2" size="10">
+    </select>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://use.fontawesome.com/3124f93cd1.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+</head>
+
+<body>
+    <div>
+        <p>Different kinds of stars:</p>
+        <div><i class="fa fa-star-o" aria-hidden="true"></i><span> - fa fa-star-o</span></div>
+        <div><i class="fa fa-star" aria-hidden="true"></i><span> - fa fa-star</span></div>
+        <div><i class="fa fa-star-half-o" aria-hidden="true"></i><span> - fa fa-star-half-o</span></div>
+    </div>
+    <hr>
+    <div id="starRating">
+        <p>Click to toggle between empty and filled stars</p>
+        <div id="star1">
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+        </div>
+        <div id="star2">
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+        </div>
+        <div id="star3">
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+        </div>
+        <div id="star4">
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+        </div>
+        <div id="star5">
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+        </div>
+    </div>
+    <script>
+        $("#starRating").children().click(function () {
+            console.log("jQuery $(this): ", $(this));
+            console.log("HTMLElement $(this)[0]: ", $(this)[0]);
+            console.log("Icon: ", $(this).children()[0]);
+            console.log("ClassName: ", $(this).children()[0].className);
+            if($(this).children()[0].className == "fa fa-star-o") {
+                $(this).children().filter("i").attr("class","fa fa-star");
+            } else {
+                $(this).children().filter("i").attr("class","fa fa-star-o");
+            }
+            
+        });
+    </script>
+</body>
+</html>

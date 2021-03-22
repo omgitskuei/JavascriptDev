@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <select id="selectProDef">
+        <option value=" ">--請選擇--</option>
+        <option value="asyncNewInsurance_Gateway_v5:1:392725">新險開辦</option>
+    </select>
+
+    <script>
+        window.addEventListener("load",
+            function () {
+                // ... some code
+                document.getElementById('selectProDef')
+                    .removeChild(
+                        document.getElementById('selectProDef')
+                            .querySelector('option:not([value=" "])'));
+
+            }
+        );
+
+    </script>
+</body>
+
+</html>

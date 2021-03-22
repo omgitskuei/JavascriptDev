@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+
 /**
  * Class Option that mirrors the html element Option
  * Declaration syntax:

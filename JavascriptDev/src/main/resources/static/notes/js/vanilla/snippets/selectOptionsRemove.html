@@ -15,18 +15,24 @@
         <option value="asyncNewInsurance_Gateway_v5:1:392725">新險開辦</option>
     </select>
 
+    <button id="asd">btn</button>
+
     <script>
-        window.addEventListener("load",
-            function () {
-                // ... some code
-                document.getElementById('selectProDef')
-                    .removeChild(
-                        document.getElementById('selectProDef')
-                            .querySelector('option:not([value=" "])'));
+        document.onreadystatechange = function () {
+            if (document.readyState == "complete") {
+                let removeThisElement = document.getElementById('selectProDef')
+                    .querySelector('option:not([value="asyncNewInsurance_Gateway_v5:1:392725"])');
 
+                document.getElementById("asd").addEventListener("click",
+                    function asdF(e) {
+                        console.log("asd", removeThisElement);
+                        document.getElementById('selectProDef').removeChild(
+                            removeThisElement
+                        );
+                    }
+                );
             }
-        );
-
+        }
     </script>
 </body>
 

@@ -1,51 +1,226 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style type="text/css">
+        textarea {
+            margin-top: 0px;
+            vertical-align: top;
+        }
+
+        /* div {
+            border: black solid 2px;
+        } */
+    </style>
 </head>
+
 <body>
-    <input type="text" id="inp1" placeholder="w">
-    <button onclick="a()">Get Value</button>
+    <h1>Null and Undefined in Javascript</h1>
     <pre>
         var w = undefined;
         var x;                  // returns undefined
         var y = "";
         var z = null;
     </pre>
+    <label>Select variable: </label>
+    <select id="inp1" autofocus>
+        <option value="w">w</option>
+        <option value="x">x</option>
+        <option value="y">y</option>
+        <option value="z">z</option>
+    </select>
+    <br>
+    <button onclick="consoleTypeOf()">Get typeof(var)</button>
+    <textarea id="output1" rows="1" cols="12" readonly>...</textarea><br>
+    <button onclick="consoleVal()">Get val(var).....</button>
+    <textarea id="output2" rows="1" cols="12" readonly>...</textarea><br>
+    <hr />
+
+    <p>Note: Something == null actually not only checks <br>
+        whether it is specifically the value null - it <br>
+        also checks whether it's potentially undefined.
+    </p>
+    <pre>
+        if(undefined ==  null) { // true }<br>
+        if(undefined === null) { // false }<br>
+    </pre>
+    <div>
+        <label>Compare: </label>
+        <select id="inp2">
+            <option value="w" selected>w</option>
+            <option value="x">x</option>
+            <option value="y">y</option>
+            <option value="z">z</option>
+        </select>
+        <label>with: </label>
+        <select id="inp3">
+            <option value="w">w</option>
+            <option value="x" selected>x</option>
+            <option value="y">y</option>
+            <option value="z">z</option>
+        </select>
+        <button onclick="compareVal()">==</button>
+        <button onclick="compareTrueVal()">===</button>
+        <textarea id="output3" rows="1" cols="12" readonly>...</textarea><br>
+    </div>
+
+
 </body>
 <script>
-    var w = undefined;
-    var x;
-    var y = "";
-    var z = null;
-    var val = "";
+    const w = undefined;
+    var x;      // can't declare "const x;", it'll trigger syntax error
+    const y = "";
+    const z = null;
 
     window.addEventListener("load",
-        function() {
-            // ... some code
+        function () {
             console.log("init success");
+
+            let undefinedVal = undefined;
+            let nullVal = null;
+
+            if (undefinedVal == null) {
+                console.log("undefined == null")
+            }
         }
     );
 
-    function a() {
-            document.getElementById("inp1").focus();
+    function consoleTypeOf() {
+        document.getElementById("inp1").focus();
+        let val = document.getElementById("inp1").selectedOptions[0].value;
+        let result = {};
+        if (val == "w") {
+            result.type = typeof (w);
+        } else if (val == "x") {
+            result.type = typeof (x);
+        } else if (val == "y") {
+            result.type = typeof (y);
+        } else if (val == "z") {
+            result.type = typeof (z);
+        } else {
+            result.type = "notFound";
+        }
+        console.log("consoleTypeOf() => f(" + val + ") = ", result.type);
+        document.getElementById("output1").innerText = result.type;
+    }
 
-            val = document.getElementById("inp1").value;
+    function consoleVal() {
+        document.getElementById("inp1").focus();
+        let val = document.getElementById("inp1").selectedOptions[0].value;
+        let result;
+        if (val == "w") {
+            result = (w);
+        } else if (val == "x") {
+            result = (x);
+        } else if (val == "y") {
+            result = (y);
+        } else if (val == "z") {
+            result = (z);
+        } else {
+            result = "notFound";
+        }
+        console.log("consoleVal() => f(" + val + ") = ", result);
+        document.getElementById("output2").innerText = result;
+    }
 
-            console.log("a(", val, ")")
-            if(val == "w") {
-                console.log(w);
-            } else if(val == "x") {
-                console.log(x);
-            } else if(val == "y") {
-                console.log(y);
-            } else if(val == "z") {
-                console.log(z);
-            } else {
-                console.log("notFound");
+    function compareVal() {
+        let val1 = document.getElementById("inp2").selectedOptions[0].value;
+        let val2 = document.getElementById("inp3").selectedOptions[0].value;
+        let result;
+        if(val1 === "w") {
+            if(val2 === "w") {
+                result = w == w;
+            } else if(val2 === "x") {
+                result = w == x;
+            } else if(val2 === "y") {
+                result = w == y;
+            } else if(val2 === "z") {
+                result = w == z;
+            }
+        } else if(val1 === "x") {
+            if(val2 === "w") {
+                result = x == w;
+            } else if(val2 === "x") {
+                result = x == x;
+            } else if(val2 === "y") {
+                result = x == y;
+            } else if(val2 === "z") {
+                result = x == z;
+            }
+        } else if(val1 === "y") {
+            if(val2 === "w") {
+                result = y == w;
+            } else if(val2 === "x") {
+                result = y == x;
+            } else if(val2 === "y") {
+                result = y == y;
+            } else if(val2 === "z") {
+                result = y == z;
+            }
+        } else if(val1 === "z") {
+            if(val2 === "w") {
+                result = z == w;
+            } else if(val2 === "x") {
+                result = z == x;
+            } else if(val2 === "y") {
+                result = z == y;
+            } else if(val2 === "z") {
+                result = z == z;
             }
         }
+        document.getElementById("output3").innerText = result;
+    }
+
+    function compareTrueVal() {
+        let val1 = document.getElementById("inp2").selectedOptions[0].value;
+        let val2 = document.getElementById("inp3").selectedOptions[0].value;
+        let result;
+        if(val1 === "w") {
+            if(val2 === "w") {
+                result = w === w;
+            } else if(val2 === "x") {
+                result = w === x;
+            } else if(val2 === "y") {
+                result = w === y;
+            } else if(val2 === "z") {
+                result = w === z;
+            }
+        } else if(val1 === "x") {
+            if(val2 === "w") {
+                result = x === w;
+            } else if(val2 === "x") {
+                result = x === x;
+            } else if(val2 === "y") {
+                result = x === y;
+            } else if(val2 === "z") {
+                result = x === z;
+            }
+        } else if(val1 === "y") {
+            if(val2 === "w") {
+                result = y === w;
+            } else if(val2 === "x") {
+                result = y === x;
+            } else if(val2 === "y") {
+                result = y === y;
+            } else if(val2 === "z") {
+                result = y === z;
+            }
+        } else if(val1 === "z") {
+            if(val2 === "w") {
+                result = z === w;
+            } else if(val2 === "x") {
+                result = z === x;
+            } else if(val2 === "y") {
+                result = z === y;
+            } else if(val2 === "z") {
+                result = z === z;
+            }
+        }
+        document.getElementById("output3").innerText = result;
+    }
 </script>
+
 </html>

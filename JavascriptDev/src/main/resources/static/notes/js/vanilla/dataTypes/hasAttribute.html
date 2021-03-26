@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div name="asdomg">asdomg has name attr</div>
+    <div id="omg">omg has id attr</div>
+    <script>
+        console.log(document.getElementsByName("asdomg")[0].hasAttribute("name")); // true
+        console.log(document.getElementById("omg").hasAttribute("id")); // true
+    </script>
+</body>
+</html>

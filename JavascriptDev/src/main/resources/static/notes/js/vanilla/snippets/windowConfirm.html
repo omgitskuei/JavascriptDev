@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Window.confirm('PromptText')</title>
+</head>
+
+<body>
+
+    <p>Click the button to display a confirm box.</p>
+
+    <button onclick="myFunction()">Try it</button>
+
+    <script>
+        function myFunction() {
+            // Whereas an alert box comes with "OK" button,
+            // A confirm box comes with "OK", and "Cancel" buttons
+            let a = confirm("We want to send you push notifications!");
+            alert(a); // true/false
+        }
+    </script>
+</body>
+
+</html>

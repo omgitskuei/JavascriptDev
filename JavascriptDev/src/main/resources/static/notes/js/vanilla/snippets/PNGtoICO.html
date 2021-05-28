@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var inputFile, options = null, outputfile = "";
+        function getInputValueById(e) {
+            return document.getElementById(e).value
+        }
+        function outputInfo(e) {
+            document.getElementById("outputArea").innerHTML = e
+        }
+        function _Hex(e, t) {
+            for (var n = []; t > 0; t--)
+                n.push(String.fromCharCode(255 & e)), e >>= 8;
+            return n.join("")
+        }
+        function _collapseData(e, t) {
+            for (var n, o, a, i = e.length, r = i ? e[0].length : 0, u = "", s = []; t > 0; t--)
+                u += "\0";
+            for (n = 0; n < i; n++) {
+                for (o = 0; o < r; o++)
+                    a = e[n][o], s.push(String.fromCharCode(a[2]) + String.fromCharCode(a[1]) + String.fromCharCode(a[0]) + (void 0 === a[3] ? "Ã¿" : String.fromCharCode(a[3])));
+                s.push(u)
+            }
+            return s.join("")
+        }
+        function getRowsFromImg(e) {
+            var t = e.width, n = e.height, o = e.getContext("2d").getImageData(0, 0, t, n), a = [];
+            for (h = n - 1; h >= 0; h--) {
+                var i = [];
+                for (w = 0; w < t; w++) {
+                    var r = [], u = 4 * (h * t + w);
+                    r.push(o.data[u + 0]), r.push(o.data[u + 1]), r.push(o.data[u + 2]), r.push(o.data[u + 3]), i.push(r)
+                }
+                a.push(i)
+            }
+            return a
+        }
+
+        function imagesToIco(e) {
+            var t, n = [];
+            for (x = 0; x < e.length; x++) {
+                (p = e[x]).width, p.height, p.getContext("2d");
+                var o, a, i, r = getRowsFromImg(p), u = r.length, s = u ? r[0].length : 0, d = 3 * s % 4, l = (4 * s + d) * u, f = 40 + l + 64, c = new Array(s * u * 2 / 8 + 1).join("\0");
+                o = _Hex(2 * u, 4), a = _Hex(s, 4), l = _Hex(l, 4), f = _Hex(f, 4), i = "(\0\0\0" + a + o + "\0 \0\0\0\0\0" + l + "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0" + _collapseData(r, d) + c, n.push(i)
+            }
+            for (imgsNum = _Hex(e.length, 2), t = "\0\0\0" + imgsNum, offset = t.length + 16 * e.length, x = 0; x < e.length; x++) {
+                var p;
+                (p = e[x]).width, p.height;
+                t = t + _Hex(p.width, 1) + _Hex(p.height, 1) + "\0\0\0 \0" + _Hex(n[x].length, 4) + _Hex(offset, 4), offset += n[x].length
+            }
+            for (x = 0; x < e.length; x++)
+                t += n[x];
+            return "data:image/vnd.microsoft.icon;base64," + btoa(t)
+        }
+        function convertDo(e, t, n) {
+            t = t.toLowerCase(), outputfile = t.replace(".jpg", "").replace(".png", "").replace(".gif", "") + ".ico", options = n;
+            for (var o = [], a = document.getElementsByClassName("isize"), i = 0; a[i]; ++i)
+                a[i].checked && o.push(a[i].value);
+            if (0 == o.length)
+                return void outputInfo(str_noiconsize);
+            var r = [];
+            const u = new Image;
+            u.onload = function () {
+                for (var e = 0; o[e]; ++e) {
+                    const t = document.createElement("canvas"), n = t.getContext("2d"); t.width = o[e], t.height = o[e], n.drawImage(u, 0, 0, u.width, u.height, 0, 0, t.width, t.height), r.push(t), document.getElementById("imagelist").appendChild(t);
+                    const a = document.createElement("span");
+                    a.innerHTML = t.width + "x" + t.height, document.getElementById("imagelist").appendChild(a)
+                }
+                var t = imagesToIco(r);
+                if (t) {
+                    var n = t, a = (t.length / 1024).toFixed(2).toString();
+                    outputInfo("<i class='fa fa-ok fa-2x'></i><br>" + str_converSuccess + "<a download='" + outputfile + "' href='" + n + "'>" + str_clicktoSave + "(" + outputfile + "," + a + "k)</a>")
+                } else {
+                    outputInfo(str_convertFailed)
+                }
+            }, u.src = e
+        }
+        function bReady() {
+            window.File && window.FileReader && window.FileList && window.Blob || outputInfo(str_browserNotSupport); var e = document.getElementById("filedropzone"); e.addEventListener("dragover", function (e) { e.stopPropagation(), e.preventDefault(), e.dataTransfer.dropEffect = "copy" }), e.addEventListener("drop", function (e) {
+                e.stopPropagation(), e.preventDefault(), document.getElementById("bfile").value = "";
+                for (var t, n = e.dataTransfer.files, o = 0; t = n[o]; o++)
+                    document.getElementById("curFileInput").innerHTML = "<i class='fa fa-docs'></i>" + t.name, inputFile = t
+            }), document.getElementById("bfile").addEventListener("change", function (e) {
+                for (var t, n = e.target.files, o = 0; t = n[o]; o++)document.getElementById("curFileInput").innerHTML = "<i class='fa fa-docs'></i>" + t.name, inputFile = t
+            }, !1), document.getElementById("convertBtn").addEventListener("click", function (e) {
+                if (void 0 !== inputFile) { outputInfo(str_readingFile), document.getElementById("imagelist").innerHTML = ""; var t = new FileReader; t.onload = function () { !function (e) { outputInfo("<i class='fa fa-spin3 animate-spin'></i>" + str_process); var t = new XMLHttpRequest; t.open("GET", "/convertParam.php?x1=yrstp"), t.onload = function () { if (200 === t.status) { var n = t.responseText.split(","); convertDo(e, inputFile.name, { scale: n[0] }) } else console.log("Request failed.  Returned status of " + t.status) }, t.send() }(t.result) }, t.readAsDataURL(inputFile) }
+                else outputInfo(str_pleaseLoadFile)
+            })
+        }
+        document.addEventListener("DOMContentLoaded", function () {
+            bReady()
+        }, !1);
+    </script>
+</body>
+
+</html>

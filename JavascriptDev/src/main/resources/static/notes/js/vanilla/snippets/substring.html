@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="cellNum" value="0963798118" disabled>
+    <button id="btn">move</button>
+    <span id="anonNum">[XXXXXXXXXX]</span>
+</body>
+<script>
+    document.getElementById("btn").addEventListener("click", function(){
+        var cell = document.getElementById("cellNum").value;
+        cell = cell.substring(0, 7) + "XXX";
+        document.getElementById("anonNum").innerText = cell;
+    });
+    
+
+</script>
+</html>

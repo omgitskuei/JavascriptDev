@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="hi">hi</button>
+    <select id="aSelect">
+
+    </select>
+
+    <script>
+        function addOption(targetSelectID, optionText, optionValue) {
+            let targetSelect = document.getElementById(targetSelectID);
+            let newOption = document.createElement('option');
+            newOption.appendChild(document.createTextNode(optionText));
+            newOption.value = optionValue;
+            targetSelect.appendChild(newOption);
+        }
+
+        var array = [{ "key": "key", "value": "value" }, { "key": "key1", "value": "value1" }, { "key": "key2", "value": "value2" }];
+
+        document.getElementById("hi").addEventListener("click", function() {
+            array.forEach(element => {
+                console.log(element);
+                let targetSelectID = "aSelect";
+                let optionText = element.key;
+                let optionValue = element.value;
+                addOption(targetSelectID, optionText, optionValue);
+            });
+        })
+    </script>
+</body>
+
+</html>

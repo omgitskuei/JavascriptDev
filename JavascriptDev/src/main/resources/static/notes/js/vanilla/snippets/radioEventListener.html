@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- Note, the radios are grouped together by 'name' attribute -->
+    <!-- This is one group, name = animals -->
+    <div>
+        <input type="radio" id="animals1" name="animals" value="cat">
+        <label for="animals1">Cat</label>
+    </div>
+    <div>
+        <input type="radio" id="animals2" name="animals" value="dog" checked> <!-- note, this starts checked -->
+        <label for="animals2">Dog</label>
+    </div>
+    <div>
+        <input type="radio" id="animals3" name="animals" value="parrot">
+        <label for="animals3">Parrot</label>
+    </div>
+    <!-- This is another group, name = machines, note this group doesn't have checked -->
+    <div>
+        <input type="radio" id="machines1" name="machines" value="blender">
+        <label for="machines1">Blender</label>
+    </div>
+    <div>
+        <input type="radio" id="machines2" name="machines" value="laptop">
+        <label for="machines2">Laptop</label>
+    </div>
+
+
+    <input type="text" id="output">
+</body>
+<script>
+    var animalsRadioGroup = document.getElementsByName("animals");
+    for (let index = 0; index < animalsRadioGroup.length; index++) {
+        // add onclick to each radio to radio-group 'animals'
+        animalsRadioGroup[index].addEventListener('click', function() {
+            console.log("clicked", this.value);
+        });
+
+        // add onchange to each radio to radio-group 'animals'
+        animalsRadioGroup[index].addEventListener('change', function() {
+            console.log("changed", this.value);
+        });
+    }
+</script>
+
+</html>

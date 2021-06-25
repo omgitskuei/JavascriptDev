@@ -14,7 +14,7 @@
 <script>
     document.getElementById("btn").addEventListener("click", function(){
         var cell = document.getElementById("cellNum").value;
-        cell = cell.substring(0, 7) + "XXX";
+        cell = "[" + cell.substring(0, 7) + "XXX" + "]";
         document.getElementById("anonNum").innerText = cell;
     });
     

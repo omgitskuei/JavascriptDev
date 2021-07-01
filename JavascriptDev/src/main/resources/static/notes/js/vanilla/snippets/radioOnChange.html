@@ -7,17 +7,73 @@
     <title>Document</title>
 </head>
 <body>
+    <h1>Radios in groups</h1>
+    <p>
+        Notice the 3 different groups of radios written in different HTML structures for various effects.
+    </p>
+
+    <!-- Radios of the allotRadios group -->
+    <h2>allotRadios</h2>
+    <p>
+        Theses two radios sharing the same value for the name attribute ("allotRadios")<br>
+        configures them so that only one radio of the two can be checked at any time.
+    </p>
     <div>
-        <input type="radio" name="bedStatus" id="allot" checked value="allot">
+        <input type="radio" name="allotRadios" id="allot" value="a1" checked>
         <label>Allot</label>
     </div>
+    <div>
+        <input type="radio" name="allotRadios" id="allot1" value="a2">
+        <label>Allot1</label>
+    </div>
+    <br>
+    <!-- Radios of the transferRadios group -->
+    <h2>transferRadios</h2>
+    <p>
+        See how selecting one of the two radios above does NOT uncheck this radio - that's<br>
+        because this radio's name attribute equals "transferRadios", not "allotRadios".
+    </p>
+    <input type="radio" name="transferRadios" id="transfer" value="transfer">Transfer
+    <!-- Radios with no group -->
+    <h2>catsRadio</h2>
+    <p>
+        All of these radios have no name attribute - since they're not grouped, they can<br>
+        all be selected at the same time. Consider using checkboxes instead for this effect.
+    </p>
+    <div>
+        <input type="radio" id="cats" value="cats"><label>Cats</label>
+        <input type="radio" id="dogs" value="dogs"><label>Dogs</label>
+        <input type="radio" id="bats" value="bats"><label>Bats</label>
+    </div>
     
-    <input type="radio" name="bedStatus" id="transfer" value="transfer">Transfer
-
     <script>
-        document.getElementById("allot").addEventListener("change", function() {
-            alert("allot");
-        })
+        /*
+        Two different ways of writing on change for all radios in group
+        */
+
+        // Add onChange listener to all radios of the allotRadios group
+        for (let index = 0; index < document.getElementsByName("allotRadios").length; index++) {
+            const element = document.getElementsByName("allotRadios")[index];
+            element.addEventListener("change", function() {
+                console.log(element.id, element.value, element.name);
+            });
+        }
+
+
+        // Add onChange listener to all radios of the allotRadios group
+        addOnChangeToRadioGroup("allotRadios");
+
+        function addOnChangeToRadioGroup(name) {
+            const radioGroup = document.getElementsByName(name);
+            for (let index = 0; index < radioGroup.length; index++) {
+                const element = radioGroup[index];
+                element.addEventListener("change", function() {
+                    console.log(element.id, element.value, element.name);
+                    //
+                });
+            }
+        }
+        
     </script>
 </body>
 </html>
